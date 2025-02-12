@@ -1,0 +1,87 @@
+/* styles.css */
+
+/* Reset some default browser settings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F6F8FA;
+    color: #333;
+}
+
+/* Navigation Menu */
+nav {
+    background-color: #0D1117;
+    padding: 1em;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1em;
+}
+
+nav ul li a {
+    color: #C9D1D9;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #58A6FF;
+    /* Hover effect */
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 2em 1em;
+    background-color: #58A6FF;
+    color: white;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5em;
+}
+
+/* Sections */
+section {
+    padding: 2em 1em;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+section h2 {
+    margin-bottom: 1em;
+    font-size: 1.8rem;
+    color: #0D1117;
+}
+
+section h3 {
+    margin-bottom: 0.5em;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+section ul {
+    margin-left: 1.5em;
+    margin-top: 0.5em;
+    list-style: disc;
+}
+
+footer {
+    text-align: center;
+    padding: 1em;
+    background-color: #0D1117;
+    color: #C9D1D9;
+}
