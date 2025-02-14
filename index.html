@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
     <!-- FontAwesome Icons (local version) -->
-    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css" />
 
     <!-- Typed.js (Hero Text Effect) -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
@@ -32,14 +32,16 @@
         <div class="sidebar-content">
             <div class="brand">Steve Sibi</div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#achievements">Achievements</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="#experience"><i class="fas fa-briefcase"></i> Experience</a></li>
+                <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
+                <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+                <li><a href="#certifications"><i class="fas fa-certificate"></i> Certifications</a></li>
+                <li><a href="#achievements"><i class="fas fa-trophy"></i> Achievements</a></li>
+                <li><a href="#blog"><i class="fas fa-blog"></i> Blog</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
             <div class="sidebar-social">
                 <a href="https://www.linkedin.com/in/steve-sibi" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -197,39 +199,77 @@
         <!-- SKILLS SECTION -->
         <section id="skills" class="container my-5" data-aos="fade-up">
             <h2>Skills</h2>
-            <div class="row">
-                <div class="col-md-6">
+            <div class="skill-tabs mb-4">
+                <button class="btn btn-outline-primary skill-tab active" data-target="cyber">Cybersecurity</button>
+                <button class="btn btn-outline-primary skill-tab" data-target="os">Operating Systems</button>
+                <button class="btn btn-outline-primary skill-tab" data-target="cloud">Cloud Services</button>
+                <button class="btn btn-outline-primary skill-tab" data-target="prog">Programming</button>
+            </div>
+            <div class="skill-content">
+                <div class="skills-category" id="cyber">
+                    <h5>Cybersecurity Skills</h5>
+                    <div class="progress mb-3">
+                        <div class="progress-bar" role="progressbar" style="width: 90%;">Network Security</div>
+                    </div>
+                    <div class="progress mb-3">
+                        <div class="progress-bar" role="progressbar" style="width: 80%;">Penetration Testing</div>
+                    </div>
+                </div>
+                <div class="skills-category" id="os" style="display: none;">
+                    <h5>Operating Systems</h5>
+                    <div class="progress mb-3">
+                        <div class="progress-bar" role="progressbar" style="width: 85%;">Linux</div>
+                    </div>
+                    <div class="progress mb-3">
+                        <div class="progress-bar" role="progressbar" style="width: 75%;">Windows</div>
+                    </div>
+                </div>
+                <div class="skills-category" id="cloud" style="display: none;">
+                    <h5>Cloud Services</h5>
+                    <div class="progress mb-3">
+                        <div class="progress-bar" role="progressbar" style="width: 90%;">AWS</div>
+                    </div>
+                    <div class="progress mb-3">
+                        <div class="progress-bar" role="progressbar" style="width: 80%;">Azure</div>
+                    </div>
+                </div>
+                <div class="skills-category" id="prog" style="display: none;">
                     <h5>Programming</h5>
                     <div class="progress mb-3">
                         <div class="progress-bar" role="progressbar" style="width: 90%;">Python</div>
                     </div>
                     <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Django</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 75%;">JavaScript</div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <h5>Cybersecurity Tools</h5>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 90%;">Nmap, Wireshark</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Burp Suite, Nessus</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 70%;">Ansible, Docker, Terraform
-                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 80%;">JavaScript</div>
                     </div>
                 </div>
             </div>
-            <div class="mt-4">
-                <h5>Cloud Services & Certifications:</h5>
-                <p>
-                    <strong>AWS</strong>, <strong>Azure AD</strong>, <strong>Microsoft 365</strong>,
-                    <strong>Security+</strong>, <strong>CNSS</strong>
-                </p>
+        </section>
+
+        <!-- EDUCATION SECTION (Placeholder) -->
+        <section id="education" class="container my-5" data-aos="fade-up">
+            <h2>Education</h2>
+            <div class="education-item mb-4">
+                <h4>B.Sc. in Computing Security (Placeholder)</h4>
+                <p class="small"><em>Rochester Institute of Technology, 2018 - 2022</em></p>
+                <p>Placeholder details about your undergraduate program in Computing Security.</p>
+            </div>
+            <div class="education-item">
+                <h4>Master of Cybersecurity (Placeholder)</h4>
+                <p class="small"><em>Illinois Institute of Technology, 2023 - 2025</em></p>
+                <p>Placeholder details about your current or upcoming master's program in Cybersecurity.</p>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS SECTION (Placeholder) -->
+        <section id="certifications" class="container my-5" data-aos="fade-up">
+            <h2>Certifications</h2>
+            <div class="certification-item mb-3">
+                <h4>Security+ (Placeholder)</h4>
+                <p class="small"><em>CompTIA, 2021</em></p>
+            </div>
+            <div class="certification-item mb-3">
+                <h4>Certified Ethical Hacker (Placeholder)</h4>
+                <p class="small"><em>EC-Council, 2022</em></p>
             </div>
         </section>
 
@@ -307,7 +347,6 @@
         </section>
 
         <!-- CONTACT SECTION -->
-        <!-- CONTACT SECTION -->
         <section id="contact" class="container my-5" data-aos="fade-up">
             <h2>Contact Me</h2>
             <div class="row justify-content-center">
@@ -318,7 +357,6 @@
                 </div>
             </div>
         </section>
-
     </div>
 
     <!-- Bootstrap JS -->
@@ -369,6 +407,19 @@
                     themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
                 }
             }
+
+            // Skill Tabs Switching
+            const skillTabs = document.querySelectorAll(".skill-tab");
+            const skillCategories = document.querySelectorAll(".skills-category");
+            skillTabs.forEach(tab => {
+                tab.addEventListener("click", function () {
+                    skillTabs.forEach(t => t.classList.remove("active"));
+                    skillCategories.forEach(cat => cat.style.display = "none");
+                    this.classList.add("active");
+                    const target = this.getAttribute("data-target");
+                    document.getElementById(target).style.display = "block";
+                });
+            });
         });
     </script>
 </body>
