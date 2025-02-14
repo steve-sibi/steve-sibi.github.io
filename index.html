@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
-    <!-- FontAwesome Icons -->
+    <!-- FontAwesome Icons (local version) -->
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
 
     <!-- Typed.js (Hero Text Effect) -->
@@ -59,14 +59,18 @@
     <div class="main-content">
         <!-- HERO SECTION -->
         <section class="hero" id="home" data-aos="zoom-in">
-            <h1>Hi, I'm Steve Joseph Sibi</h1>
-            <p>
-                I'm passionate about <span class="typed-text"></span>
-            </p>
-            <p class="tagline">Securing the Digital Frontier</p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-outline-light me-2">View Projects</a>
-                <a href="#contact" class="btn btn-primary">Contact Me</a>
+            <!-- Overlay for improved contrast -->
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>Hi, I'm Steve Joseph Sibi</h1>
+                <p>
+                    I'm passionate about <span class="typed-text"></span>
+                </p>
+                <p class="tagline">Securing the Digital Frontier</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-outline-light me-2">View Projects</a>
+                    <a href="#contact" class="btn btn-primary">Contact Me</a>
+                </div>
             </div>
         </section>
 
@@ -79,24 +83,19 @@
                 </div>
                 <div class="col-md-8">
                     <p>
-                        I'm a <strong>Master of Cybersecurity</strong> student at
-                        <em>Illinois Institute of Technology</em> (graduating May 2025). With a B.Sc in Computing
-                        Security from RIT, I've developed a robust
-                        understanding of penetration testing, forensics, and secure system design.
+                        I'm a <strong>Master of Cybersecurity</strong> student at <em>Illinois Institute of
+                            Technology</em> (graduating May 2025). With a B.Sc in Computing Security from RIT, I've
+                        developed a robust understanding of penetration testing, forensics, and secure system design.
                     </p>
                     <p>
                         My professional experience spans <strong>web development</strong> using <strong>Django,
-                            JavaScript, and AWS</strong>, to
-                        <strong>infrastructure security</strong> with tools like <strong>Ansible, Terraform, and
-                            Docker</strong>.
-                        I'm passionate about bridging software engineering with cutting-edge security practices to build
-                        resilient,
-                        scalable systems.
+                            JavaScript, and AWS</strong>, to <strong>infrastructure security</strong> with tools like
+                        <strong>Ansible, Terraform, and Docker</strong>. I'm passionate about bridging software
+                        engineering with cutting-edge security practices to build resilient, scalable systems.
                     </p>
                     <p>
                         Outside of work, I love experimenting with cryptographic algorithms, container orchestration,
-                        and contributing
-                        to open-source projects that make cybersecurity accessible to all.
+                        and contributing to open-source projects that make cybersecurity accessible to all.
                     </p>
                     <a href="#contact" class="btn btn-primary mt-3">Hire Me</a>
                 </div>
@@ -107,7 +106,7 @@
         <section id="experience" class="container my-5" data-aos="fade-up">
             <h2>Experience</h2>
             <div class="timeline">
-                <div class="timeline-item left">
+                <div class="timeline-item">
                     <h4>
                         <i class="fas fa-laptop-code me-2"></i>
                         James Fisher Strainstall, Dubai, UAE <span class="text-muted">| Software Engineer</span>
@@ -119,7 +118,7 @@
                         <li>Transitioned the web platform to AWS for improved scalability and reliability.</li>
                     </ul>
                 </div>
-                <div class="timeline-item right">
+                <div class="timeline-item">
                     <h4>
                         <i class="fas fa-server me-2"></i>
                         Neutral Fuels Holdings Ltd, Dubai, UAE <span class="text-muted">| Infrastructure Engineer</span>
@@ -131,7 +130,7 @@
                         <li>Enforced MFA and Azure Conditional Access for enhanced cybersecurity.</li>
                     </ul>
                 </div>
-                <div class="timeline-item left">
+                <div class="timeline-item">
                     <h4>
                         <i class="fas fa-user-shield me-2"></i>
                         Schneider Electric, Dubai, UAE <span class="text-muted">| Cybersecurity Intern</span>
@@ -157,12 +156,10 @@
                             <h5 class="mt-2">PrivacyFusion</h5>
                             <p class="mb-1">
                                 A PyQt-based toolkit integrating <strong>Diffprivlib</strong> and
-                                <strong>TenSEAL</strong>
-                                for differential privacy & homomorphic encryption solutions.
+                                <strong>TenSEAL</strong> for differential privacy & homomorphic encryption solutions.
                             </p>
-                            <a href="https://github.com/steve-sibi/privacyfusion" target="_blank" class="text-primary">
-                                View Project
-                            </a>
+                            <a href="https://github.com/steve-sibi/privacyfusion" target="_blank"
+                                class="text-primary">View Project</a>
                         </div>
                     </div>
                 </div>
@@ -176,9 +173,7 @@
                                 experts.
                             </p>
                             <a href="https://github.com/steve-sibi/mactime-beautifier" target="_blank"
-                                class="text-primary">
-                                View Project
-                            </a>
+                                class="text-primary">View Project</a>
                         </div>
                     </div>
                 </div>
@@ -192,9 +187,7 @@
                                 in an interactive interface.
                             </p>
                             <a href="https://github.com/steve-sibi/multi-threaded-nmap" target="_blank"
-                                class="text-primary">
-                                View Project
-                            </a>
+                                class="text-primary">View Project</a>
                         </div>
                     </div>
                 </div>
@@ -234,8 +227,8 @@
             <div class="mt-4">
                 <h5>Cloud Services & Certifications:</h5>
                 <p>
-                    <strong>AWS</strong>, <strong>Azure AD</strong>,
-                    <strong>Microsoft 365</strong>, <strong>Security+</strong>, <strong>CNSS</strong>
+                    <strong>AWS</strong>, <strong>Azure AD</strong>, <strong>Microsoft 365</strong>,
+                    <strong>Security+</strong>, <strong>CNSS</strong>
                 </p>
             </div>
         </section>
@@ -314,39 +307,24 @@
         </section>
 
         <!-- CONTACT SECTION -->
+        <!-- CONTACT SECTION -->
         <section id="contact" class="container my-5" data-aos="fade-up">
             <h2>Contact Me</h2>
             <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <p class="text-center">
-                        Have a question, opportunity, or want to collaborate? Feel free to drop a message!
+                <div class="col-md-8 text-center">
+                    <p>If you'd like to get in touch, please email me at:
+                        <a href="mailto:steve.sibi@gmail.com" class="text-primary">steve.sibi@gmail.com</a>
                     </p>
-                    <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Your Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="John Doe" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="email" placeholder="john@example.com" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="5"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
-                    </form>
                 </div>
             </div>
         </section>
+
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- AOS JS -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-
-    <!-- Typed.js Initialization & Dark Mode Toggle Script -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Initialize Typed.js
@@ -362,21 +340,16 @@
                 backDelay: 2000,
                 loop: true
             });
-
             // Initialize AOS
             AOS.init();
-
             // DARK MODE TOGGLE
             const themeToggleBtn = document.getElementById('themeToggle');
             const htmlElement = document.documentElement;
-
-            // Set theme based on localStorage if available
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme) {
                 htmlElement.setAttribute('data-theme', savedTheme);
                 updateToggleIcon(savedTheme);
             }
-
             themeToggleBtn.addEventListener('click', () => {
                 let currentTheme = htmlElement.getAttribute('data-theme');
                 if (currentTheme === 'dark') {
@@ -389,7 +362,6 @@
                     updateToggleIcon('dark');
                 }
             });
-
             function updateToggleIcon(theme) {
                 if (theme === 'dark') {
                     themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
