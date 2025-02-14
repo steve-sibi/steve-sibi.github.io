@@ -2,42 +2,61 @@
   LIGHT/DARK THEME VARIABLES
   Toggle the "data-theme" attribute on <html> to switch themes.
 */
+
+/* LIGHT MODE VARIABLES */
 :root {
-    --bg-color: #ffffff;
-    --text-color: #333;
-    --section-heading-color: #0D1117;
-    --navbar-bg: #0D1117;
-    --navbar-text: #C9D1D9;
-    --navbar-hover: #58A6FF;
-    --hero-bg: #58A6FF;
+    --bg-color: #f5f5f5;
+    /* Soft off-white background */
+    --text-color: #333333;
+    --section-heading-color: #2c3e50;
+    /* Dark slate for headings */
+    --navbar-bg: #2c3e50;
+    /* Dark blue-grey for navbar */
+    --navbar-text: #ecf0f1;
+    /* Light text on navbar */
+    --navbar-hover: #3498db;
+    /* Light blue for hover */
+    --hero-bg: #2980b9;
+    /* Calm blue for hero background */
     --hero-text: #ffffff;
-    --hero-typed-bg: #C9D1D9;
-    --hero-typed-text: #0D1117;
-    --timeline-line: #ddd;
-    --timeline-dot: #58A6FF;
-    --progress-bg: #e9ecef;
-    --progress-bar-color: #58A6FF;
-    --footer-bg: #0D1117;
-    --footer-text: #C9D1D9;
-    --timeline-item-bg: #ffffff;
+    --hero-typed-bg: #ecf0f1;
+    /* Soft grey for typed text background */
+    --hero-typed-text: #2c3e50;
+    --timeline-line: #bdc3c7;
+    /* Light grey for timeline line */
+    --timeline-dot: #3498db;
+    /* Accent blue for timeline dots */
+    --progress-bg: #dfe6e9;
+    /* Light, subtle background for progress bars */
+    --progress-bar-color: #3498db;
+    /* Matching accent for progress bars */
+    --footer-bg: #2c3e50;
+    --footer-text: #ecf0f1;
+    --timeline-item-bg: #f5f5f5;
+    /* Matching overall background */
 }
 
+/* DARK MODE VARIABLES */
 [data-theme="dark"] {
-    --bg-color: #0f111a;
+    --bg-color: #121212;
+    /* Deep dark background */
     --text-color: #c9d1d9;
     --section-heading-color: #c9d1d9;
-    --navbar-bg: #161b22;
+    --navbar-bg: #1f1f1f;
+    /* Slightly lighter dark grey for navbar */
     --navbar-text: #c9d1d9;
-    --navbar-hover: #58A6FF;
-    --hero-bg: #1f6feb;
+    --navbar-hover: #2980b9;
+    /* Blue accent for hover */
+    --hero-bg: #1f2a44;
+    /* Deep navy for hero background */
     --hero-text: #ffffff;
-    --hero-typed-bg: #c9d1d9;
-    --hero-typed-text: #161b22;
-    --timeline-line: #444;
-    --timeline-dot: #1f6feb;
+    --hero-typed-bg: #3a3a3a;
+    --hero-typed-text: #c9d1d9;
+    --timeline-line: #444444;
+    --timeline-dot: #2980b9;
     --progress-bg: #2d333b;
-    --progress-bar-color: #1f6feb;
-    --footer-bg: #161b22;
+    --progress-bar-color: #2980b9;
+    --footer-bg: #1f1f1f;
     --footer-text: #c9d1d9;
     --timeline-item-bg: rgba(255, 255, 255, 0.1);
 }
@@ -104,7 +123,6 @@ a {
     margin-right: 8px;
 }
 
-
 #sidebar .nav-links a:hover {
     color: var(--navbar-hover);
 }
@@ -161,13 +179,10 @@ a {
     position: relative;
     background: url('images/hero-bg.jpg') center/cover no-repeat, linear-gradient(135deg, var(--hero-bg), #0f2a57);
     color: var(--hero-text);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-    padding: 2rem;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 .hero .hero-overlay {
@@ -183,6 +198,14 @@ a {
 .hero .hero-content {
     position: relative;
     z-index: 2;
+    padding: 2rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .hero h1 {
@@ -345,28 +368,6 @@ section h2::after {
     color: #fff;
 }
 
-/* CONTACT FORM */
-#contact .form-control,
-#contact .btn {
-    border-radius: 0.5rem;
-}
-
-#contact .btn-primary {
-    background-color: var(--navbar-bg);
-    border-color: var(--navbar-bg);
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-#contact .btn-primary:hover {
-    background-color: var(--navbar-hover);
-    border-color: var(--navbar-hover);
-}
-
-#contact .form-control:focus {
-    border-color: var(--navbar-hover);
-    box-shadow: 0 0 5px var(--navbar-hover);
-}
-
 /* BLOG / NEWS CARDS */
 .blog-card {
     background: var(--bg-color);
@@ -386,4 +387,22 @@ section h2::after {
     border-top-right-radius: 8px;
     height: 200px;
     object-fit: cover;
+}
+
+/* Scroll Arrow Styles (Bottom Right) */
+#scroll-arrow {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--navbar-bg);
+    color: var(--navbar-text);
+    border-radius: 50%;
+    padding: 12px;
+    cursor: pointer;
+    z-index: 1100;
+    transition: opacity 0.3s;
+}
+
+#scroll-arrow:hover {
+    opacity: 0.8;
 }
