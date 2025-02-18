@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Steve Joseph Sibi - Cybersecurity Portfolio</title>
+    <title>Steve Joseph Sibi – Cybersecurity Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS (v5) -->
@@ -13,506 +13,643 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
-    <!-- FontAwesome Icons (local version) -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css" />
-
-    <!-- Typed.js (Hero Text Effect) -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
     <!-- AOS (Animate on Scroll) CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Typed.js (Hero Text Effect) -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
 
 <body>
-    <!-- Vertical Sidebar Navbar -->
-    <nav id="sidebar">
-        <div class="sidebar-content">
-            <div class="brand">Steve Sibi</div>
-            <ul class="nav-links">
-                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
-                <li><a href="#experience"><i class="fas fa-briefcase"></i> Experience</a></li>
-                <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
-                <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
-                <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
-                <li><a href="#certifications"><i class="fas fa-certificate"></i> Certifications</a></li>
-                <li><a href="#achievements"><i class="fas fa-trophy"></i> Achievements</a></li>
-                <li><a href="#blog"><i class="fas fa-blog"></i> Blog</a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-            </ul>
-            <div class="sidebar-social">
-                <a href="https://www.linkedin.com/in/steve-sibi" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://twitter.com/steve_sibi" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.instagram.com/steve_sibi" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.github.com/steve-sibi" target="_blank"><i class="fab fa-github"></i></a>
-            </div>
-            <div class="sidebar-bottom">
-                <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Dark Mode">
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#home">Steve Sibi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">
+                            <i class="fas fa-user me-1"></i>About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">
+                            <i class="fas fa-briefcase me-1"></i>Experience
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">
+                            <i class="fas fa-project-diagram me-1"></i>Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">
+                            <i class="fas fa-code me-1"></i>Skills
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">
+                            <i class="fas fa-graduation-cap me-1"></i>Education
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#certifications">
+                            <i class="fas fa-certificate me-1"></i>Certifications
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#achievements">
+                            <i class="fas fa-trophy me-1"></i>Achievements
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">
+                            <i class="fas fa-envelope me-1"></i>Contact
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Social icons in nav (optional) -->
+                <div class="d-none d-lg-flex ms-3">
+                    <a href="https://www.linkedin.com/in/steve-sibi" class="text-light mx-2" target="_blank"><i
+                            class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://twitter.com/steve_sibi" class="text-light mx-2" target="_blank"><i
+                            class="fab fa-twitter fa-lg"></i></a>
+                    <a href="https://www.instagram.com/steve_sibi" class="text-light mx-2" target="_blank"><i
+                            class="fab fa-instagram fa-lg"></i></a>
+                    <a href="https://www.github.com/steve-sibi" class="text-light ms-2" target="_blank"><i
+                            class="fab fa-github fa-lg"></i></a>
+                </div>
+
+                <!-- Dark/Light Mode Toggle -->
+                <button class="btn btn-sm btn-outline-light ms-3" id="themeToggle" aria-label="Toggle Dark Mode">
                     <i class="fas fa-moon"></i>
                 </button>
-                <p class="sidebar-footer">&copy; 2025 Steve Joseph Sibi</p>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content Wrapper -->
-    <div class="main-content">
-        <!-- HERO SECTION -->
-        <section class="hero" id="home" data-aos="zoom-in">
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <h1>Hi, I'm Steve!</h1>
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Hi, I'm Steve!</h1>
+            <p class="fs-4">
+                I'm passionate about <span class="typed-text"></span>
+            </p>
+            <p class="tagline">Securing the Digital Frontier</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-outline-light me-2">View Projects</a>
+                <a href="#contact" class="btn btn-primary">Contact Me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="container my-5" data-aos="fade-up">
+        <h2>About Me</h2>
+        <div class="row align-items-center mt-4">
+            <div class="col-md-4 text-center">
+                <img src="images/profile.jpg" alt="Steve's Photo" class="profile-img mb-3" />
+            </div>
+            <div class="col-md-8">
                 <p>
-                    I'm passionate about <span class="typed-text"></span>
+                    I'm a <strong>Master of Cybersecurity</strong> student at
+                    <em>Illinois Institute of Technology</em> (graduating May 2025). With
+                    a B.Sc in Computing Security from RIT, I've developed a robust
+                    understanding of penetration testing, forensics, and secure system
+                    design.
                 </p>
-                <p class="tagline">Securing the Digital Frontier</p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-outline-light me-2">View Projects</a>
-                    <a href="#contact" class="btn btn-primary">Contact Me</a>
-                </div>
+                <p>
+                    My professional experience spans <strong>web development</strong>
+                    using <strong>Django, JavaScript, and AWS</strong>, to
+                    <strong>infrastructure security</strong> with tools like
+                    <strong>Ansible, Terraform, and Docker</strong>. I'm passionate about
+                    bridging software engineering with cutting-edge security practices to
+                    build resilient, scalable systems.
+                </p>
+                <p>
+                    Outside of work, I love experimenting with cryptographic algorithms,
+                    container orchestration, and contributing to open-source projects
+                    that make cybersecurity accessible to all.
+                </p>
+                <a href="#contact" class="btn btn-primary mt-3">Hire Me</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ABOUT SECTION -->
-        <section id="about" class="container my-5" data-aos="fade-up">
-            <h2>About Me</h2>
-            <div class="row align-items-center mt-4">
-                <div class="col-md-4 text-center">
-                    <img src="images/profile.jpg" alt="Steve's Photo" class="profile-img mb-3" />
+    <!-- EXPERIENCE SECTION (TIMELINE GRAPH) -->
+    <section id="experience" class="container my-5" data-aos="fade-up">
+        <h2>Experience</h2>
+        <div class="vertical-timeline">
+            <!-- JOB 1 -->
+            <div class="vt-item">
+                <div class="vt-icon">
+                    <i class="fas fa-laptop-code"></i>
                 </div>
-                <div class="col-md-8">
-                    <p>
-                        I'm a <strong>Master of Cybersecurity</strong> student at <em>Illinois Institute of
-                            Technology</em> (graduating May 2025). With a B.Sc in Computing Security from RIT, I've
-                        developed a robust understanding of penetration testing, forensics, and secure system design.
-                    </p>
-                    <p>
-                        My professional experience spans <strong>web development</strong> using <strong>Django,
-                            JavaScript, and AWS</strong>, to <strong>infrastructure security</strong> with tools like
-                        <strong>Ansible, Terraform, and Docker</strong>. I'm passionate about bridging software
-                        engineering with cutting-edge security practices to build resilient, scalable systems.
-                    </p>
-                    <p>
-                        Outside of work, I love experimenting with cryptographic algorithms, container orchestration,
-                        and contributing to open-source projects that make cybersecurity accessible to all.
-                    </p>
-                    <a href="#contact" class="btn btn-primary mt-3">Hire Me</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- EXPERIENCE SECTION -->
-        <section id="experience" class="container my-5" data-aos="fade-up">
-            <h2>Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
+                <div class="vt-content">
+                    <span class="vt-date">May 2022 – Oct 2023</span>
                     <h4>
-                        <i class="fas fa-laptop-code me-2"></i>
-                        James Fisher Strainstall, Dubai, UAE <span class="text-muted">| Software Engineer</span>
+                        James Fisher Strainstall, Dubai, UAE
+                        <span class="text-muted">| Software Engineer</span>
                     </h4>
-                    <p class="small"><em>May 2022 – Oct 2023</em></p>
                     <ul>
-                        <li>Developed a Smart Asset Management System with Django and JavaScript, emphasizing responsive
-                            design and maintainable code for efficient asset tracking.</li>
-                        <li>Strengthened platform security by 30% through adopting robust coding practices that meets
-                            industry standards.</li>
-                        <li>Directed the web platform’s transition to AWS, enhancing scalability, monitoring, and
-                            reliability.</li>
-                        <li>Oversaw server maintenance, focusing on performance and PostgreSQL optimization in Linux
-                            environments like Debian/CentOS.</li>
-                        <li>Innovated advanced Python modules, increasing real-time data processing efficiency.</li>
-                        <li>Authored and refined documentation, streamlining code maintenance and upgrades.</li>
-                        <li>Deployed Ansible for server management, automating user management, and network security
-                            configurations.</li>
-                        <li>Monitored web traffic using AWS CloudWatch, implementing load-balancing for consistent
-                            responsiveness and uptime.</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    <h4>
-                        <i class="fas fa-server me-2"></i>
-                        Neutral Fuels Holdings Ltd, Dubai, UAE <span class="text-muted">| Technical
-                            Support/Infrastructure Engineer</span>
-                    </h4>
-                    <p class="small"><em>Jun 2021 – Mar 2022</em></p>
-                    <ul>
-                        <li>Directed the company-wide shift to Microsoft 365 Business and Microsoft Exchange, boosting
-                            email infrastructure and productivity by 70%.</li>
-                        <li>Enforced the use of mail rules and quarantine inboxes to allow for prevention and analysis
-                            of spam/phishing emails.</li>
-                        <li>Responsible for migrating emails of 200+ users to Microsoft Exchange seamlessly.</li>
-                        <li>Architected a Wireless Mesh Network using Cisco Business Wireless Access Points, overseeing
-                            network security and efficiency.</li>
-                        <li>Formulated IT policies and Standard Operating Procedures, securing devices via JumpCloud,
-                            SureMDM, and Microsoft Intune.</li>
-                        <li>Drove cybersecurity efforts, initiating MFA and Azure Conditional Access policies,
-                            proactively bolstering system security for Corporate and BYOD devices by 45%.</li>
-                        <li>Increased IT Support efficiency by 60% by establishing a helpdesk for 50+ users,
-                            streamlining technical documentation, and conducting IT budget audits.</li>
-                        <li>Managed IT hardware/software procurement and enhanced existing security solutions with a
-                            strong emphasis on continuous maintenance, development, and improvement of organizational
-                            security.</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    <h4>
-                        <i class="fas fa-user-shield me-2"></i>
-                        Schneider Electric, Dubai, UAE <span class="text-muted">| Cybersecurity Intern</span>
-                    </h4>
-                    <p class="small"><em>Jun 2020 – Sep 2020</em></p>
-                    <ul>
-                        <li>Proactively set up administrative controls for customer systems, tailoring solutions to
-                            unique security requirements.</li>
-                        <li>Independently completed extensive cybersecurity training for industrial control systems,
-                            enhancing skills and contributing to improved system security.</li>
-                        <li>Formulated and delivered detailed cybersecurity strategies for IoT devices, addressing
-                            emerging digital threats.</li>
+                        <li>
+                            Developed a Smart Asset Management System with Django and JavaScript, emphasizing responsive
+                            design and maintainable code.
+                        </li>
+                        <li>
+                            Strengthened platform security by 30% by adopting robust coding practices that meet industry
+                            standards.
+                        </li>
+                        <li>
+                            Directed the web platform’s transition to AWS, improving scalability, monitoring, and
+                            reliability.
+                        </li>
+                        <li>
+                            Oversaw server maintenance and PostgreSQL optimization in Linux environments.
+                        </li>
+                        <li>
+                            Innovated advanced Python modules, boosting real-time data processing efficiency.
+                        </li>
+                        <li>
+                            Deployed Ansible for automated server and network security configurations.
+                        </li>
+                        <li>
+                            Monitored web traffic using AWS CloudWatch, implementing load-balancing for consistent
+                            responsiveness.
+                        </li>
                     </ul>
                 </div>
             </div>
-        </section>
 
-        <!-- PROJECTS SECTION -->
-        <section id="projects" class="container my-5" data-aos="fade-up">
-            <h2>Projects</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="project-card p-3">
-                        <img src="https://via.placeholder.com/600x400" alt="PrivacyFusion" class="img-fluid" />
-                        <div class="p-2">
-                            <h5 class="mt-2">PrivacyFusion</h5>
-                            <p class="mb-1">
-                                A PyQt-based toolkit integrating <strong>Diffprivlib</strong> and
-                                <strong>TenSEAL</strong> for differential privacy & homomorphic encryption solutions.
-                            </p>
-                            <a href="https://github.com/steve-sibi/DataPriv-Encryptor" target="_blank"
-                                class="text-primary">View Project</a>
-                        </div>
-                    </div>
+            <!-- JOB 2 -->
+            <div class="vt-item">
+                <div class="vt-icon">
+                    <i class="fas fa-server"></i>
                 </div>
-                <div class="col-md-4">
-                    <div class="project-card p-3">
-                        <img src="https://via.placeholder.com/600x400" alt="Mactime Beautifier" class="img-fluid" />
-                        <div class="p-2">
-                            <h5 class="mt-2">Automated Vulnerability Scanner</h5>
-                            <p class="mb-1">
-                                A <strong>Flask</strong> app that performs concurrent network scans and displays results
-                                in an interactive interface.
-                            </p>
-                            <a href="https://github.com/steve-sibi/Automated-Vulnerability-Scanner" target="_blank"
-                                class="text-primary">View Project</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="project-card p-3">
-                        <img src="https://via.placeholder.com/600x400" alt="Multi-threaded Nmap" class="img-fluid" />
-                        <div class="p-2">
-                            <h5 class="mt-2">Server Hardening Script Suite</h5>
-                            <p class="mb-1">
-                                an automated, idempotent Linux server hardening script that enhances security by
-                                performing system updates,
-                                disabling unnecessary services, configuring firewalls and SSH, enforcing strong password
-                                policies, and log management.
-                            </p>
-                            <a href="https://github.com/steve-sibi/Server-Hardening-Script" target="_blank"
-                                class="text-primary">View Project</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="project-card p-3">
-                        <img src="https://via.placeholder.com/600x400" alt="Multi-threaded Nmap" class="img-fluid" />
-                        <div class="p-2">
-                            <h5 class="mt-2">Exploring Differential Privacy in Machine Learning</h5>
-                            <p class="mb-1">
-                                This project demonstrates the implementation of differential privacy in machine learning
-                                using TensorFlow Privacy. It includes a comparison between standard logistic regression
-                                and differentially private logistic regression models using the Iris dataset.
-                            </p>
-                            <a href="https://github.com/steve-sibi/differential-privacy-ml" target="_blank"
-                                class="text-primary">View Project</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="project-card p-3">
-                        <img src="https://via.placeholder.com/600x400" alt="Multi-threaded Nmap" class="img-fluid" />
-                        <div class="p-2">
-                            <h5 class="mt-2">Mactime Beautifier</h5>
-                            <p class="mb-1">
-                                an automated, idempotent Linux server hardening script that enhances security by
-                                performing system updates,
-                                disabling unnecessary services, configuring firewalls and SSH, enforcing strong password
-                                policies, and log management.
-                            </p>
-                            <a href="https://github.com/steve-sibi/mactimebeautifier" target="_blank"
-                                class="text-primary">View Project</a>
-                        </div>
-                    </div>
+                <div class="vt-content">
+                    <span class="vt-date">Jun 2021 – Mar 2022</span>
+                    <h4>
+                        Neutral Fuels Holdings Ltd, Dubai, UAE
+                        <span class="text-muted">| Technical Support/Infrastructure Engineer</span>
+                    </h4>
+                    <ul>
+                        <li>
+                            Directed the company-wide shift to Microsoft 365 Business and Microsoft Exchange, boosting
+                            email infrastructure and productivity by 70%.
+                        </li>
+                        <li>
+                            Enforced mail rules and quarantine inboxes for spam/phishing email analysis.
+                        </li>
+                        <li>
+                            Migrated emails of 200+ users to Microsoft Exchange seamlessly.
+                        </li>
+                        <li>
+                            Architected a Wireless Mesh Network using Cisco Business Wireless APs, overseeing network
+                            security and efficiency.
+                        </li>
+                        <li>
+                            Formulated IT policies, securing devices via JumpCloud, SureMDM, and Microsoft Intune.
+                        </li>
+                        <li>
+                            Drove cybersecurity efforts, initiating MFA and Azure Conditional Access policies for
+                            Corporate/BYOD devices.
+                        </li>
+                        <li>
+                            Established a helpdesk for 50+ users, streamlining support and documentation.
+                        </li>
+                        <li>
+                            Enhanced IT security solutions with continuous maintenance, development, and improvement of
+                            organizational security.
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </section>
 
-        <!-- SKILLS SECTION -->
-        <section id="skills" class="container my-5" data-aos="fade-up">
-            <h2>Skills</h2>
-            <div class="skill-tabs mb-4">
-                <button class="btn btn-outline-primary skill-tab active" data-target="cyber">Cybersecurity</button>
-                <button class="btn btn-outline-primary skill-tab" data-target="prog">Programming Languages</button>
-                <button class="btn btn-outline-primary skill-tab" data-target="os">Operating Systems</button>
-                <button class="btn btn-outline-primary skill-tab" data-target="cloud">Cloud Services</button>
-
-            </div>
-            <div class="skill-content">
-                <div class="skills-category" id="cyber">
-                    <h5>Cybersecurity Tools</h5>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 90%;">nmap</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Wireshark</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Nessus</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Burp Suite</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Aircrack-ng</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Volatility</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Autopsy</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Docker</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Ansible</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">VMWare</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Terraform</div>
-                    </div>
+            <!-- JOB 3 -->
+            <div class="vt-item">
+                <div class="vt-icon">
+                    <i class="fas fa-user-shield"></i>
                 </div>
-                <div class="skills-category" id="prog" style="display: none;">
-                    <h5>Programming</h5>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 90%;">Python</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Django</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">C</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Javascript</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Bash</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">SQL (MySQL, PostgreSQL)</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">NoSQL (MongoDB, Redis)</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">HTML</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">CSS</div>
-                    </div>
+                <div class="vt-content">
+                    <span class="vt-date">Jun 2020 – Sep 2020</span>
+                    <h4>
+                        Schneider Electric, Dubai, UAE
+                        <span class="text-muted">| Cybersecurity Intern</span>
+                    </h4>
+                    <ul>
+                        <li>
+                            Set up administrative controls for customer systems, tailoring solutions to unique security
+                            requirements.
+                        </li>
+                        <li>
+                            Completed extensive ICS cybersecurity training, contributing to improved system security.
+                        </li>
+                        <li>
+                            Formulated and delivered cybersecurity strategies for IoT devices, addressing emerging
+                            digital threats.
+                        </li>
+                    </ul>
                 </div>
-                <div class="skills-category" id="os" style="display: none;">
-                    <h5>Operating Systems</h5>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 85%;">Linux (Kali, Debian, CentOS)
-                        </div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 75%;">Windows 10/11</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 75%;">Windows 2012/2016/2019</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 75%;">MacOS</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 75%;">Windows 10/11</div>
-                    </div>
-                </div>
-                <div class="skills-category" id="cloud" style="display: none;">
-                    <h5>Cloud Services</h5>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 90%;">AWS</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Azure</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Azure Security & Compliance
-                        </div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Azure DevOps</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">GitHub</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Bitbucket</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Jira</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">GCP</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Microsoft 365</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Microsoft Intune</div>
-                    </div>
-                    <div class="progress mb-3">
-                        <div class="progress-bar" role="progressbar" style="width: 80%;">Microsoft Sharepoint</div>
-                    </div>
-                </div>
+            </div>
+        </div>
+    </section>
 
-            </div>
-        </section>
-
-        <!-- EDUCATION SECTION (Placeholder) -->
-        <section id="education" class="container my-5" data-aos="fade-up">
-            <h2>Education</h2>
-            <div class="education-item mb-4">
-                <h4>B.Sc. in Computing Security</h4>
-                <p class="small"><em>Rochester Institute of Technology, 2017 - 2022</em></p>
-                <!-- <p>Placeholder details about your undergraduate program in Computing Security.</p> -->
-            </div>
-            <div class="education-item">
-                <h4>Master of Cybersecurity</h4>
-                <p class="small"><em>Illinois Institute of Technology, 2023 - 2025</em></p>
-                <!-- <p>Placeholder details about your current or upcoming master's program in Cybersecurity.</p> -->
-            </div>
-        </section>
-
-        <!-- CERTIFICATIONS SECTION (Placeholder) -->
-        <section id="certifications" class="container my-5" data-aos="fade-up">
-            <h2>Certifications</h2>
-            <div class="certification-item mb-3">
-                <h4>CompTIA Security+</h4>
-                <p class="small"><em>CompTIA</em></p>
-            </div>
-            <div class="certification-item mb-3">
-                <h4>Fortinet Network Security Expert 2</h4>
-                <p class="small"><em>Fortinet</em></p>
-            </div>
-            <div class="certification-item mb-3">
-                <h4>Certified Network Security Specialist</h4>
-                <p class="small"><em>International Cybersecurity Institute</em></p>
-            </div>
-        </section>
-
-        <!-- ACHIEVEMENTS SECTION -->
-        <section id="achievements" class="container my-5" data-aos="fade-up">
-            <h2>Achievements & Awards</h2>
-            <div class="mt-4">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <strong>Dean’s List (RIT)</strong> - Recognized for academic excellence, maintaining a high GPA.
-                    </li>
-                    <li class="list-group-item">
-                        <strong>2020 Collegiate Penetration Testing Competition (Regional Winners)</strong> - Led a team
-                        that excelled in simulated real-world pentesting challenges.
-                    </li>
-                    <li class="list-group-item">
-                        <strong>Research Assistant in Intelligent Security Systems (RIT)</strong> - Contributed to
-                        advanced security research, focusing on AI-driven threat detection.
-                    </li>
-                    <li class="list-group-item">
-                        <strong>Consultant at International Consulting Network (ICON)</strong> - Provided strategic IT
-                        security guidance to businesses.
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- BLOG / NEWS SECTION -->
-        <section id="blog" class="container my-5" data-aos="fade-up">
-            <h2>Blog & News</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="blog-card">
-                        <img src="https://via.placeholder.com/600x200" alt="Blog Post 1" class="img-fluid" />
-                        <div class="p-3">
-                            <h5 class="mt-2">Latest Cybersecurity Trends</h5>
-                            <p class="small text-muted">Posted on Feb 12, 2025</p>
-                            <p>
-                                Insights into the most pressing security challenges of the year, including zero-trust
-                                networks and advanced persistent threats.
-                            </p>
-                            <a href="#" class="text-primary">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="blog-card">
-                        <img src="https://via.placeholder.com/600x200" alt="Blog Post 2" class="img-fluid" />
-                        <div class="p-3">
-                            <h5 class="mt-2">Deploying Flask Apps on AWS</h5>
-                            <p class="small text-muted">Posted on Jan 28, 2025</p>
-                            <p>
-                                A step-by-step guide on containerizing your Flask applications and hosting them securely
-                                on AWS Fargate.
-                            </p>
-                            <a href="#" class="text-primary">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="blog-card">
-                        <img src="https://via.placeholder.com/600x200" alt="Blog Post 3" class="img-fluid" />
-                        <div class="p-3">
-                            <h5 class="mt-2">Differential Privacy Basics</h5>
-                            <p class="small text-muted">Posted on Jan 10, 2025</p>
-                            <p>
-                                Learn how differential privacy can protect user data in your ML pipelines without
-                                sacrificing utility.
-                            </p>
-                            <a href="#" class="text-primary">Read More</a>
-                        </div>
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="container my-5" data-aos="fade-up">
+        <h2>Projects</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="project-card p-3">
+                    <img src="https://via.placeholder.com/600x400" alt="PrivacyFusion" class="img-fluid" />
+                    <div class="p-2">
+                        <h5 class="mt-2">PrivacyFusion</h5>
+                        <p class="mb-1">
+                            A PyQt-based toolkit integrating
+                            <strong>Diffprivlib</strong> and <strong>TenSEAL</strong> for
+                            differential privacy & homomorphic encryption solutions.
+                        </p>
+                        <a href="https://github.com/steve-sibi/DataPriv-Encryptor" target="_blank"
+                            class="text-primary">View Project</a>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="container my-5" data-aos="fade-up">
-            <h2>Contact Me</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-8 text-center">
-                    <p>If you'd like to get in touch, please email me at:
-                        <a href="mailto:steve.sibi@gmail.com" class="text-primary">steve.sibi@gmail.com</a>
-                    </p>
+            <div class="col-md-4">
+                <div class="project-card p-3">
+                    <img src="https://via.placeholder.com/600x400" alt="Vulnerability Scanner" class="img-fluid" />
+                    <div class="p-2">
+                        <h5 class="mt-2">Automated Vulnerability Scanner</h5>
+                        <p class="mb-1">
+                            A <strong>Flask</strong> app that performs concurrent network
+                            scans and displays results in an interactive interface.
+                        </p>
+                        <a href="https://github.com/steve-sibi/Automated-Vulnerability-Scanner" target="_blank"
+                            class="text-primary">View Project</a>
+                    </div>
                 </div>
             </div>
-        </section>
-    </div>
+            <div class="col-md-4">
+                <div class="project-card p-3">
+                    <img src="https://via.placeholder.com/600x400" alt="Server Hardening Script" class="img-fluid" />
+                    <div class="p-2">
+                        <h5 class="mt-2">Server Hardening Script Suite</h5>
+                        <p class="mb-1">
+                            An automated Linux server hardening script that performs system
+                            updates, disables unnecessary services, configures firewalls &
+                            SSH, enforces strong password policies, and manages logs.
+                        </p>
+                        <a href="https://github.com/steve-sibi/Server-Hardening-Script" target="_blank"
+                            class="text-primary">View Project</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="project-card p-3">
+                    <img src="https://via.placeholder.com/600x400" alt="Differential Privacy ML" class="img-fluid" />
+                    <div class="p-2">
+                        <h5 class="mt-2">
+                            Exploring Differential Privacy in Machine Learning
+                        </h5>
+                        <p class="mb-1">
+                            Demonstrates how to integrate TensorFlow Privacy to compare
+                            standard vs. differentially private logistic regression on the Iris
+                            dataset.
+                        </p>
+                        <a href="https://github.com/steve-sibi/differential-privacy-ml" target="_blank"
+                            class="text-primary">View Project</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="project-card p-3">
+                    <img src="https://via.placeholder.com/600x400" alt="Mactime Beautifier" class="img-fluid" />
+                    <div class="p-2">
+                        <h5 class="mt-2">Mactime Beautifier</h5>
+                        <p class="mb-1">
+                            Automates and cleans up forensic Mactime data, parsing logs to
+                            streamline forensic timelines in Linux environments.
+                        </p>
+                        <a href="https://github.com/steve-sibi/mactimebeautifier" target="_blank"
+                            class="text-primary">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Scroll Arrow (Bottom Right) -->
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="container my-5" data-aos="fade-up">
+        <h2>Skills</h2>
+        <div class="skill-tabs mb-4 d-flex flex-wrap">
+            <button class="btn btn-outline-primary skill-tab active me-2 mb-2" data-target="cyber">
+                Cybersecurity
+            </button>
+            <button class="btn btn-outline-primary skill-tab me-2 mb-2" data-target="prog">
+                Programming Languages
+            </button>
+            <button class="btn btn-outline-primary skill-tab me-2 mb-2" data-target="os">
+                Operating Systems
+            </button>
+            <button class="btn btn-outline-primary skill-tab me-2 mb-2" data-target="cloud">
+                Cloud Services
+            </button>
+        </div>
+        <div class="skill-content">
+            <!-- Cybersecurity Tools -->
+            <div class="skills-category" id="cyber">
+                <h5>Cybersecurity Tools</h5>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 90%">
+                        nmap
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Wireshark
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Nessus
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Burp Suite
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Aircrack-ng
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Volatility
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Autopsy
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Docker
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Ansible
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        VMWare
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Terraform
+                    </div>
+                </div>
+            </div>
+            <!-- Programming -->
+            <div class="skills-category" id="prog" style="display: none;">
+                <h5>Programming Languages & Frameworks</h5>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 90%">
+                        Python
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Django
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        C
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        JavaScript
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Bash
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        SQL (MySQL, PostgreSQL)
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        NoSQL (MongoDB, Redis)
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        HTML
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        CSS
+                    </div>
+                </div>
+            </div>
+            <!-- Operating Systems -->
+            <div class="skills-category" id="os" style="display: none;">
+                <h5>Operating Systems</h5>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 85%">
+                        Linux (Kali, Debian, CentOS)
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 75%">
+                        Windows 10/11
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 75%">
+                        Windows 2012/2016/2019
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 75%">
+                        MacOS
+                    </div>
+                </div>
+            </div>
+            <!-- Cloud Services -->
+            <div class="skills-category" id="cloud" style="display: none;">
+                <h5>Cloud Services</h5>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 90%">
+                        AWS
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Azure
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Azure Security & Compliance
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Azure DevOps
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        GitHub
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Bitbucket
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Jira
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        GCP
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Microsoft 365
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Microsoft Intune
+                    </div>
+                </div>
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" style="width: 80%">
+                        Microsoft Sharepoint
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education" class="container my-5" data-aos="fade-up">
+        <h2>Education</h2>
+        <div class="education-item mb-4">
+            <h4>B.Sc. in Computing Security</h4>
+            <p class="small">
+                <em>Rochester Institute of Technology, 2017 - 2022</em>
+            </p>
+        </div>
+        <div class="education-item">
+            <h4>Master of Cybersecurity</h4>
+            <p class="small">
+                <em>Illinois Institute of Technology, 2023 - 2025</em>
+            </p>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS SECTION -->
+    <section id="certifications" class="container my-5" data-aos="fade-up">
+        <h2>Certifications</h2>
+        <div class="certification-item mb-3">
+            <h4>CompTIA Security+</h4>
+            <p class="small"><em>CompTIA</em></p>
+        </div>
+        <div class="certification-item mb-3">
+            <h4>Fortinet Network Security Expert 2</h4>
+            <p class="small"><em>Fortinet</em></p>
+        </div>
+        <div class="certification-item mb-3">
+            <h4>Certified Network Security Specialist</h4>
+            <p class="small"><em>International Cybersecurity Institute</em></p>
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS SECTION -->
+    <section id="achievements" class="container my-5" data-aos="fade-up">
+        <h2>Achievements & Awards</h2>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <strong>Dean’s List (RIT)</strong>
+                – Recognized for academic excellence, maintaining a high GPA.
+            </li>
+            <li class="list-group-item">
+                <strong>2020 Collegiate Penetration Testing Competition (Regional
+                    Winners)</strong>
+                – Led a team that excelled in simulated real-world pentesting
+                challenges.
+            </li>
+            <li class="list-group-item">
+                <strong>Research Assistant in Intelligent Security Systems
+                    (RIT)</strong>
+                – Contributed to advanced security research, focusing on
+                AI-driven threat detection.
+            </li>
+            <li class="list-group-item">
+                <strong>Consultant at International Consulting Network (ICON)</strong>
+                – Provided strategic IT security guidance to businesses.
+            </li>
+        </ul>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="container my-5" data-aos="fade-up">
+        <h2>Contact Me</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <p>
+                    If you'd like to get in touch, please email me at:
+                    <a href="mailto:steve.sibi@gmail.com" class="text-primary fw-bold">steve.sibi@gmail.com</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-center text-white py-3">
+        <div class="container">
+            <p class="m-0">
+                &copy; 2025 <strong>Steve Joseph Sibi</strong>. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scroll Arrow (Optional) -->
     <div id="scroll-arrow">
         <i class="fas fa-chevron-down"></i>
     </div>
@@ -521,87 +658,103 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- AOS JS -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- Typed.js + Custom JS -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Initialize Typed.js
+            // Typed.js
             var typed = new Typed(".typed-text", {
                 strings: [
                     "Secure Software Engineering",
                     "Penetration Testing",
                     "Cloud Solutions",
-                    "Data Privacy & Encryption"
+                    "Data Privacy and Encryption",
                 ],
                 typeSpeed: 50,
-                backSpeed: 25,
+                backSpeed: 50,
                 backDelay: 2000,
-                loop: true
+                loop: true,
             });
-            // Initialize AOS with disable always false (even on small screens)
+
+            // AOS
             AOS.init({ disable: false });
 
-            // DARK MODE TOGGLE
-            const themeToggleBtn = document.getElementById('themeToggle');
+            // THEME TOGGLE
+            const themeToggleBtn = document.getElementById("themeToggle");
             const htmlElement = document.documentElement;
-            const savedTheme = localStorage.getItem('theme');
+            const savedTheme = localStorage.getItem("theme");
+
             if (savedTheme) {
-                htmlElement.setAttribute('data-theme', savedTheme);
+                htmlElement.setAttribute("data-theme", savedTheme);
                 updateToggleIcon(savedTheme);
             }
-            themeToggleBtn.addEventListener('click', () => {
-                let currentTheme = htmlElement.getAttribute('data-theme');
-                if (currentTheme === 'dark') {
-                    htmlElement.setAttribute('data-theme', 'light');
-                    localStorage.setItem('theme', 'light');
-                    updateToggleIcon('light');
+
+            themeToggleBtn.addEventListener("click", () => {
+                let currentTheme = htmlElement.getAttribute("data-theme");
+                if (currentTheme === "dark") {
+                    htmlElement.setAttribute("data-theme", "light");
+                    localStorage.setItem("theme", "light");
+                    updateToggleIcon("light");
                 } else {
-                    htmlElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                    updateToggleIcon('dark');
+                    htmlElement.setAttribute("data-theme", "dark");
+                    localStorage.setItem("theme", "dark");
+                    updateToggleIcon("dark");
                 }
             });
+
             function updateToggleIcon(theme) {
-                if (theme === 'dark') {
+                if (theme === "dark") {
                     themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
                 } else {
                     themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
                 }
             }
 
-            // Skill Tabs Switching
+            // SKILL TABS
             const skillTabs = document.querySelectorAll(".skill-tab");
             const skillCategories = document.querySelectorAll(".skills-category");
-            skillTabs.forEach(tab => {
+
+            skillTabs.forEach((tab) => {
                 tab.addEventListener("click", function () {
-                    skillTabs.forEach(t => t.classList.remove("active"));
-                    skillCategories.forEach(cat => cat.style.display = "none");
+                    skillTabs.forEach((t) => t.classList.remove("active"));
+                    skillCategories.forEach((cat) => (cat.style.display = "none"));
+
                     this.classList.add("active");
                     const target = this.getAttribute("data-target");
                     document.getElementById(target).style.display = "block";
                 });
             });
 
-            // Scroll Arrow Functionality
-            const arrow = document.getElementById('scroll-arrow');
-
-            // Update arrow icon on scroll
+            // SCROLL ARROW
+            const arrow = document.getElementById("scroll-arrow");
             window.addEventListener("scroll", function () {
-                if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 5) {
+                // Change arrow direction if near bottom
+                if (
+                    window.innerHeight + window.pageYOffset >=
+                    document.body.offsetHeight - 5
+                ) {
                     arrow.innerHTML = '<i class="fas fa-chevron-up"></i>';
                 } else {
                     arrow.innerHTML = '<i class="fas fa-chevron-down"></i>';
                 }
             });
 
-            // On click, scroll to next section or top if at bottom
-            arrow.addEventListener('click', function () {
-                if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 5) {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+            arrow.addEventListener("click", function () {
+                if (
+                    window.innerHeight + window.pageYOffset >=
+                    document.body.offsetHeight - 5
+                ) {
+                    // Scroll to top if already at bottom
+                    window.scrollTo({ top: 0, behavior: "smooth" });
                 } else {
-                    const sections = Array.from(document.querySelectorAll('section'));
+                    // Otherwise scroll to next section
+                    const sections = Array.from(document.querySelectorAll("section"));
                     const currentScroll = window.pageYOffset;
-                    const nextSection = sections.find(section => section.offsetTop > currentScroll + 10);
+                    const nextSection = sections.find(
+                        (section) => section.offsetTop > currentScroll + 10
+                    );
                     if (nextSection) {
-                        nextSection.scrollIntoView({ behavior: 'smooth' });
+                        nextSection.scrollIntoView({ behavior: "smooth" });
                     }
                 }
             });
