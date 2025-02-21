@@ -174,31 +174,17 @@
                         <span class="text-muted">| Software Engineer</span>
                     </h4>
                     <ul>
-                        <li>
-                            Developed a Smart Asset Management System with Django and JavaScript, emphasizing responsive
-                            design and maintainable code.
-                        </li>
-                        <li>
-                            Strengthened platform security by 30% by adopting robust coding practices that meet industry
-                            standards.
-                        </li>
-                        <li>
-                            Directed the web platform’s transition to AWS, improving scalability, monitoring, and
-                            reliability.
-                        </li>
-                        <li>
-                            Oversaw server maintenance and PostgreSQL optimization in Linux environments.
-                        </li>
-                        <li>
-                            Innovated advanced Python modules, boosting real-time data processing efficiency.
-                        </li>
-                        <li>
-                            Deployed Ansible for automated server and network security configurations.
-                        </li>
-                        <li>
-                            Monitored web traffic using AWS CloudWatch, implementing load-balancing for consistent
-                            responsiveness.
-                        </li>
+                        <li>Developed a Smart Asset Management System with Django and JavaScript, emphasizing responsive
+                            design and maintainable code.</li>
+                        <li>Strengthened platform security by 30% by adopting robust coding practices that meet industry
+                            standards.</li>
+                        <li>Directed the web platform’s transition to AWS, improving scalability, monitoring, and
+                            reliability.</li>
+                        <li>Oversaw server maintenance and PostgreSQL optimization in Linux environments.</li>
+                        <li>Innovated advanced Python modules, boosting real-time data processing efficiency.</li>
+                        <li>Deployed Ansible for automated server and network security configurations.</li>
+                        <li>Monitored web traffic using AWS CloudWatch, implementing load-balancing for consistent
+                            responsiveness.</li>
                     </ul>
                 </div>
             </div>
@@ -215,34 +201,18 @@
                         <span class="text-muted">| Technical Support/Infrastructure Engineer</span>
                     </h4>
                     <ul>
-                        <li>
-                            Directed the company-wide shift to Microsoft 365 Business and Microsoft Exchange, boosting
-                            email infrastructure and productivity by 70%.
-                        </li>
-                        <li>
-                            Enforced mail rules and quarantine inboxes for spam/phishing email analysis.
-                        </li>
-                        <li>
-                            Migrated emails of 200+ users to Microsoft Exchange seamlessly.
-                        </li>
-                        <li>
-                            Architected a Wireless Mesh Network using Cisco Business Wireless APs, overseeing network
-                            security and efficiency.
-                        </li>
-                        <li>
-                            Formulated IT policies, securing devices via JumpCloud, SureMDM, and Microsoft Intune.
-                        </li>
-                        <li>
-                            Drove cybersecurity efforts, initiating MFA and Azure Conditional Access policies for
-                            Corporate/BYOD devices.
-                        </li>
-                        <li>
-                            Established a helpdesk for 50+ users, streamlining support and documentation.
-                        </li>
-                        <li>
-                            Enhanced IT security solutions with continuous maintenance, development, and improvement of
-                            organizational security.
-                        </li>
+                        <li>Directed the company-wide shift to Microsoft 365 Business and Microsoft Exchange, boosting
+                            email infrastructure and productivity by 70%.</li>
+                        <li>Enforced mail rules and quarantine inboxes for spam/phishing email analysis.</li>
+                        <li>Migrated emails of 200+ users to Microsoft Exchange seamlessly.</li>
+                        <li>Architected a Wireless Mesh Network using Cisco Business Wireless APs, overseeing network
+                            security and efficiency.</li>
+                        <li>Formulated IT policies, securing devices via JumpCloud, SureMDM, and Microsoft Intune.</li>
+                        <li>Drove cybersecurity efforts, initiating MFA and Azure Conditional Access policies for
+                            Corporate/BYOD devices.</li>
+                        <li>Established a helpdesk for 50+ users, streamlining support and documentation.</li>
+                        <li>Enhanced IT security solutions with continuous maintenance, development, and improvement of
+                            organizational security.</li>
                     </ul>
                 </div>
             </div>
@@ -259,17 +229,12 @@
                         <span class="text-muted">| Cybersecurity Intern</span>
                     </h4>
                     <ul>
-                        <li>
-                            Set up administrative controls for customer systems, tailoring solutions to unique security
-                            requirements.
+                        <li>Set up administrative controls for customer systems, tailoring solutions to unique security
+                            requirements.</li>
+                        <li>Completed extensive ICS cybersecurity training, contributing to improved system security.
                         </li>
-                        <li>
-                            Completed extensive ICS cybersecurity training, contributing to improved system security.
-                        </li>
-                        <li>
-                            Formulated and delivered cybersecurity strategies for IoT devices, addressing emerging
-                            digital threats.
-                        </li>
+                        <li>Formulated and delivered cybersecurity strategies for IoT devices, addressing emerging
+                            digital threats.</li>
                     </ul>
                 </div>
             </div>
@@ -441,7 +406,7 @@
             </div>
             <!-- Programming -->
             <div class="skills-category" id="prog" style="display: none;">
-                <h5>Programming Languages & Frameworks</h5>
+                <h5>Programming Languages &amp; Frameworks</h5>
                 <div class="progress mb-3">
                     <div class="progress-bar" role="progressbar" style="width: 90%">
                         Python
@@ -610,7 +575,7 @@
 
     <!-- ACHIEVEMENTS SECTION -->
     <section id="achievements" class="container my-5" data-aos="fade-up">
-        <h2>Achievements & Awards</h2>
+        <h2>Achievements &amp; Awards</h2>
         <ul class="list-group">
             <li class="list-group-item">
                 <strong>Dean’s List (RIT)</strong>
@@ -684,8 +649,11 @@
             // AOS
             AOS.init({ disable: false });
 
-            // Initialize GitHub Calendar
-            GitHubCalendar("#github-calendar", "steve-sibi", { responsive: true });
+            // Initialize GitHub Calendar with summary hidden
+            GitHubCalendar("#github-calendar", "steve-sibi", {
+                responsive: true,
+                summary: false
+            });
 
             // THEME TOGGLE
             const themeToggleBtn = document.getElementById("themeToggle");
@@ -736,11 +704,7 @@
             // SCROLL ARROW
             const arrow = document.getElementById("scroll-arrow");
             window.addEventListener("scroll", function () {
-                // Change arrow direction if near bottom
-                if (
-                    window.innerHeight + window.pageYOffset >=
-                    document.body.offsetHeight - 5
-                ) {
+                if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 5) {
                     arrow.innerHTML = '<i class="fas fa-chevron-up"></i>';
                 } else {
                     arrow.innerHTML = '<i class="fas fa-chevron-down"></i>';
@@ -748,14 +712,9 @@
             });
 
             arrow.addEventListener("click", function () {
-                if (
-                    window.innerHeight + window.pageYOffset >=
-                    document.body.offsetHeight - 5
-                ) {
-                    // Scroll to top if already at bottom
+                if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 5) {
                     window.scrollTo({ top: 0, behavior: "smooth" });
                 } else {
-                    // Otherwise scroll to next section
                     const sections = Array.from(document.querySelectorAll("section"));
                     const currentScroll = window.pageYOffset;
                     const nextSection = sections.find(

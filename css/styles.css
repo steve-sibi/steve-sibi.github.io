@@ -199,7 +199,7 @@ section h2::after {
     border: 3px solid var(--navbar-hover);
 }
 
-/* UPDATED VERTICAL TIMELINE (EXPERIENCE) */
+/* VERTICAL TIMELINE (EXPERIENCE) */
 .vertical-timeline {
     position: relative;
     margin: 0 auto;
@@ -225,13 +225,11 @@ section h2::after {
     box-sizing: border-box;
 }
 
-/* Left side items (odd-numbered): left positioned with left-aligned text */
 .vt-item:nth-child(odd) {
     left: 0;
     text-align: left;
 }
 
-/* Right side items (even-numbered): right positioned with left-aligned text */
 .vt-item:nth-child(even) {
     left: 50%;
     text-align: left;
@@ -245,7 +243,6 @@ section h2::after {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Arrow pointers connecting boxes to the vertical line */
 .vt-item:nth-child(odd) .vt-content::before {
     content: "";
     position: absolute;
@@ -266,7 +263,6 @@ section h2::after {
     border-color: transparent var(--timeline-item-bg) transparent transparent;
 }
 
-/* Timeline icons - centered on the vertical line */
 .vt-item .vt-icon {
     position: absolute;
     top: 20px;
@@ -383,6 +379,37 @@ section h2::after {
     border-top-right-radius: 8px;
     height: 200px;
     object-fit: cover;
+}
+
+/* GITHUB CALENDAR STYLES */
+/* Override the default GitHub Calendar colors to mimic GitHub’s own graph */
+.github-calendar-container .contrib-graph rect {
+    stroke: none;
+}
+
+.github-calendar-container .contrib-graph rect.level-0 {
+    fill: #ebedf0;
+}
+
+.github-calendar-container .contrib-graph rect.level-1 {
+    fill: #c6e48b;
+}
+
+.github-calendar-container .contrib-graph rect.level-2 {
+    fill: #7bc96f;
+}
+
+.github-calendar-container .contrib-graph rect.level-3 {
+    fill: #239a3b;
+}
+
+.github-calendar-container .contrib-graph rect.level-4 {
+    fill: #196127;
+}
+
+/* Hide the legend/stats below the graph */
+#github-calendar .contrib-column {
+    display: none !important;
 }
 
 /* SCROLL ARROW */
