@@ -32,82 +32,80 @@
 
 <body>
     <!-- NAVIGATION BAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="#home">Steve Sibi</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="mainNavbar">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">
-                            <i class="fas fa-home me-1"></i>Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">
-                            <i class="fas fa-user me-1"></i>About
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#experience">
-                            <i class="fas fa-briefcase me-1"></i>Experience
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#projects">
-                            <i class="fas fa-project-diagram me-1"></i>Projects
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#skills">
-                            <i class="fas fa-code me-1"></i>Skills
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#education">
-                            <i class="fas fa-graduation-cap me-1"></i>Education
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#certifications">
-                            <i class="fas fa-certificate me-1"></i>Certifications
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#achievements">
-                            <i class="fas fa-trophy me-1"></i>Achievements
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">
-                            <i class="fas fa-envelope me-1"></i>Contact
-                        </a>
-                    </li>
-                </ul>
-
-                <!-- Social icons in nav (optional) -->
-                <div class="d-none d-lg-flex ms-3">
-                    <a href="https://www.linkedin.com/in/steve-sibi" class="text-light mx-2" target="_blank"><i
-                            class="fab fa-linkedin fa-lg"></i></a>
-                    <a href="https://twitter.com/steve_sibi" class="text-light mx-2" target="_blank"><i
-                            class="fab fa-twitter fa-lg"></i></a>
-                    <a href="https://www.instagram.com/stevesibi_" class="text-light mx-2" target="_blank"><i
-                            class="fab fa-instagram fa-lg"></i></a>
-                    <a href="https://www.github.com/steve-sibi" class="text-light ms-2" target="_blank"><i
-                            class="fab fa-github fa-lg"></i></a>
+    <!-- SIDEBAR NAVIGATION -->
+    <nav class="navbar navbar-dark sidebar shadow-sm">
+        <div class="container-fluid flex-column">
+            <a class="navbar-brand fw-bold mb-4" href="#home">Steve Sibi</a>
+            <ul class="navbar-nav text-center flex-column w-100">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">
+                        <i class="fas fa-home me-1"></i>Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">
+                        <i class="fas fa-user me-1"></i>About
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#experience">
+                        <i class="fas fa-briefcase me-1"></i>Experience
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#projects">
+                        <i class="fas fa-project-diagram me-1"></i>Projects
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#skills">
+                        <i class="fas fa-code me-1"></i>Skills
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#education">
+                        <i class="fas fa-graduation-cap me-1"></i>Education
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#certifications">
+                        <i class="fas fa-certificate me-1"></i>Certifications
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#achievements">
+                        <i class="fas fa-trophy me-1"></i>Achievements
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">
+                        <i class="fas fa-envelope me-1"></i>Contact
+                    </a>
+                </li>
+            </ul>
+            <!-- Social Icons & Dark Mode Toggle (optional) -->
+            <div class="d-flex mt-auto flex-column align-items-center">
+                <div class="mb-3">
+                    <a href="https://www.linkedin.com/in/steve-sibi" class="text-light mx-2" target="_blank">
+                        <i class="fab fa-linkedin fa-lg"></i>
+                    </a>
+                    <a href="https://twitter.com/steve_sibi" class="text-light mx-2" target="_blank">
+                        <i class="fab fa-twitter fa-lg"></i>
+                    </a>
+                    <a href="https://www.instagram.com/stevesibi_" class="text-light mx-2" target="_blank">
+                        <i class="fab fa-instagram fa-lg"></i>
+                    </a>
+                    <a href="https://www.github.com/steve-sibi" class="text-light ms-2" target="_blank">
+                        <i class="fab fa-github fa-lg"></i>
+                    </a>
                 </div>
-
-                <!-- Dark/Light Mode Toggle -->
-                <button class="btn btn-sm btn-outline-light ms-3" id="themeToggle" aria-label="Toggle Dark Mode">
+                <button class="btn btn-sm btn-outline-light" id="themeToggle" aria-label="Toggle Dark Mode">
                     <i class="fas fa-moon"></i>
                 </button>
             </div>
         </div>
     </nav>
+
 
     <!-- HERO SECTION -->
     <section class="hero" id="home">
