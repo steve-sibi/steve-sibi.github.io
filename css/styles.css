@@ -431,7 +431,7 @@ section h2::after {
 }
 
 /* 
-  NEW: SIDEBAR STYLES 
+  SIDEBAR STYLES 
   These rules fix the menu bar to the left and create space for the main content.
 */
 .sidebar {
@@ -468,8 +468,8 @@ section h2::after {
 /* MAIN CONTENT STYLES */
 .content {
     margin-left: 250px;
-    /* Same width as sidebar */
-    padding: 2rem;
+    /* Previously was padding: 2rem; now set to 0 to remove the gap */
+    padding: 0;
 }
 
 /* Responsive adjustments for sidebar */
