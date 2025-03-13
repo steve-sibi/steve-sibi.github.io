@@ -76,7 +76,7 @@ a {
     color: inherit;
 }
 
-/* NAVBAR OVERRIDES (for top nav elements if used elsewhere) */
+/* NAVBAR (SIDEBAR) */
 .navbar {
     background-color: var(--navbar-bg) !important;
 }
@@ -129,6 +129,22 @@ a {
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+/* Decrease hero text sizes a bit on smaller devices */
+@media (max-width: 576px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p.fs-4 {
+        font-size: 1.1rem;
+    }
+
+    .hero-buttons .btn {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+    }
 }
 
 .hero h1 {
@@ -199,7 +215,7 @@ section h2::after {
     border: 3px solid var(--navbar-hover);
 }
 
-/* VERTICAL TIMELINE (EXPERIENCE) */
+/* VERTICAL TIMELINE */
 .vertical-timeline {
     position: relative;
     margin: 0 auto;
@@ -295,22 +311,22 @@ section h2::after {
     margin: 0.8rem 0 0;
 }
 
-/* Responsive adjustments for the timeline */
+/* Timeline: full-width stacking on smaller screens */
 @media (max-width: 768px) {
+    .vertical-timeline::before {
+        left: 20px;
+    }
+
     .vt-item {
         width: 100%;
         left: 0 !important;
         text-align: left;
-        padding-left: 70px;
+        padding-left: 50px;
         margin-bottom: 2rem;
     }
 
-    .vertical-timeline::before {
-        left: 35px;
-    }
-
     .vt-item .vt-icon {
-        left: 35px;
+        left: 20px;
         transform: translate(-50%, -50%);
     }
 
@@ -381,8 +397,7 @@ section h2::after {
     object-fit: cover;
 }
 
-/* GITHUB CALENDAR STYLES */
-/* Override the default GitHub Calendar colors to mimic GitHub’s own graph */
+/* GITHUB CALENDAR */
 .github-calendar-container .contrib-graph rect {
     stroke: none;
 }
@@ -407,7 +422,6 @@ section h2::after {
     fill: #196127;
 }
 
-/* Hide the legend/stats below the graph */
 #github-calendar .contrib-column {
     display: none !important;
 }
@@ -430,16 +444,13 @@ section h2::after {
     opacity: 0.8;
 }
 
-/* 
-  SIDEBAR STYLES 
-  These rules fix the menu bar to the left and create space for the main content.
-*/
+/* SIDEBAR STYLES */
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
     width: 250px;
-    /* Adjust width as needed */
+    /* Desktop sidebar width */
     height: 100vh;
     background-color: var(--navbar-bg);
     padding: 1rem;
@@ -465,20 +476,26 @@ section h2::after {
     color: var(--navbar-hover);
 }
 
-/* MAIN CONTENT STYLES */
+/* MAIN CONTENT */
 .content {
     margin-left: 250px;
-    /* Previously was padding: 2rem; now set to 0 to remove the gap */
     padding: 0;
 }
 
-/* Responsive adjustments for sidebar */
+/* On smaller screens, convert sidebar to a top nav area (not fixed) */
 @media (max-width: 768px) {
     .sidebar {
-        width: 200px;
+        position: static;
+        width: 100%;
+        height: auto;
+        padding: 1rem 0.5rem;
+    }
+
+    .sidebar .nav-link {
+        padding: 0.5rem 1rem;
     }
 
     .content {
-        margin-left: 200px;
+        margin-left: 0;
     }
 }
