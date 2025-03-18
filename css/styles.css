@@ -27,9 +27,9 @@
     --timeline-dot: #3498db;
     /* Accent color for timeline icons */
     --progress-bg: #dfe6e9;
-    /* Subtle background for progress bars */
+    /* Subtle background for skill bars */
     --progress-bar-color: #3498db;
-    /* Matching accent */
+    /* Matching accent for skill fill */
     --footer-bg: #2c3e50;
     --footer-text: #ecf0f1;
     --timeline-item-bg: #ffffff;
@@ -131,7 +131,6 @@ a {
     text-align: center;
 }
 
-/* Decrease hero text sizes a bit on smaller devices */
 @media (max-width: 576px) {
     .hero h1 {
         font-size: 2rem;
@@ -243,12 +242,10 @@ section h2::after {
 
 .vt-item:nth-child(odd) {
     left: 0;
-    text-align: left;
 }
 
 .vt-item:nth-child(even) {
     left: 50%;
-    text-align: left;
 }
 
 .vt-item .vt-content {
@@ -320,9 +317,8 @@ section h2::after {
     .vt-item {
         width: 100%;
         left: 0 !important;
-        text-align: left;
-        padding-left: 50px;
         margin-bottom: 2rem;
+        padding-left: 50px;
     }
 
     .vt-item .vt-icon {
@@ -355,46 +351,58 @@ section h2::after {
     object-fit: cover;
 }
 
-/* SKILL BARS */
-.progress {
-    height: 1rem;
+/* SKILL BARS (UPDATED) */
+.skill-category-heading {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.skill-bar {
     background-color: var(--progress-bg);
-    border-radius: 0.5rem;
+    border-radius: 4px;
+    position: relative;
+    height: 2.2rem;
     overflow: hidden;
 }
 
-.progress-bar {
+.skill-bar::after {
+    /* Animated background behind the fill (subtle diagonal stripes) */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(45deg,
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.08) 10px,
+            transparent 10px,
+            transparent 20px);
+    pointer-events: none;
+}
+
+.skill-fill {
     background: linear-gradient(90deg, var(--progress-bar-color), #1f6feb);
-    transition: width 1s ease;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    width: 0;
+    height: 100%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    transition: width 2s ease-in-out;
+}
+
+/* Use custom property to set the skill level on the container */
+.skill-bar[style*="--skill-level"] .skill-fill {
+    /* “Parsing” the inline style’s custom property for the fill width */
+    width: var(--skill-level);
 }
 
 /* SKILL TABS */
 .skill-tab.active {
     background-color: var(--navbar-hover) !important;
     color: #fff !important;
-}
-
-/* BLOG / NEWS CARDS */
-.blog-card {
-    background: var(--bg-color);
-    border: 1px solid #eee;
-    border-radius: 8px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.blog-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-.blog-card img {
-    width: 100%;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    height: 200px;
-    object-fit: cover;
 }
 
 /* GITHUB CALENDAR */
@@ -482,7 +490,6 @@ section h2::after {
     padding: 0;
 }
 
-/* On smaller screens, convert sidebar to a top nav area (not fixed) */
 @media (max-width: 768px) {
     .sidebar {
         position: static;
