@@ -6,33 +6,38 @@
 /* 
   LIGHT & DARK THEME VARIABLES 
 */
+
+/* Default (light) mode variables */
 :root {
-    --bg-color: #f0f0f0;
+    --bg-color: #f7f7f7;
+    /* slightly off-white background */
     --text-color: #111;
     --section-heading-color: #222;
-    --navbar-bg: #999;
-    --navbar-text: #fff;
+    --navbar-bg: #ccc;
+    /* lighter gray for the navbar */
+    --navbar-text: #000;
+    /* black text in the navbar */
     --navbar-hover: #008f11;
-    /* A bright green for hover in light mode */
+    /* bright green for hover in light mode */
     --hero-bg: #008f11;
     --hero-text: #fff;
     --hero-typed-bg: rgba(0, 0, 0, 0.1);
     --hero-typed-text: #111;
-    --timeline-line: #ccc;
+    --timeline-line: #999;
     --timeline-dot: #008f11;
-    --progress-bg: #d0d0d0;
+    --progress-bg: #dfdfdf;
     --progress-bar-color: #008f11;
     --footer-bg: #444;
     --footer-text: #fff;
-    --timeline-item-bg: #fefefe;
+    --timeline-item-bg: #fff;
 
-    /* Font families */
     --base-font: 'Share Tech Mono', monospace;
 
     /* Smooth theme transition */
     transition: background-color 0.3s, color 0.3s;
 }
 
+/* Dark (night) mode overrides */
 [data-theme="dark"] {
     --bg-color: #000000;
     --text-color: #00ff9f;
@@ -44,7 +49,6 @@
     --hero-bg: #000000;
     --hero-text: #00ff9f;
     --hero-typed-bg: #002b36;
-    /* A subdued navy/teal background behind typed text */
     --hero-typed-text: #00ff9f;
     --timeline-line: #00cc66;
     --timeline-dot: #00ff9f;
@@ -54,7 +58,6 @@
     --footer-text: #00ff9f;
     --timeline-item-bg: #1a1a1a;
 
-    /* Smooth theme transition for dark mode too */
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -68,7 +71,6 @@ body {
     color: var(--text-color);
     scroll-behavior: smooth;
     box-sizing: border-box;
-    /* Smooth theme toggle transition */
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -101,7 +103,6 @@ a {
     padding: 0;
     background: var(--hero-bg);
     background-image:
-        /* Make a subtle repeating 'code' overlay */
         linear-gradient(rgba(0, 0, 0, 0.6) 2px,
             transparent 2px),
         linear-gradient(90deg,
@@ -137,7 +138,6 @@ a {
     text-align: center;
 }
 
-/* Smaller screens */
 @media (max-width: 576px) {
     .hero h1 {
         font-size: 1.8rem;
@@ -170,7 +170,7 @@ a {
     border-radius: 0.3rem;
 }
 
-/* Glitch effect for the tagline (p.tagline) */
+/* Glitch effect for tagline */
 .glitch-text {
     position: relative;
     display: inline-block;
@@ -253,7 +253,7 @@ a {
     }
 }
 
-/* Subtle scan-line effect for the main hero heading */
+/* Subtle scan-line effect for main hero heading */
 .scanline-text {
     position: relative;
 }
@@ -290,7 +290,7 @@ a {
     transform: translateY(-3px);
 }
 
-/* Section Headings (just normal now, no glitch overlay) */
+/* Section Headings (no glitch overlay) */
 section h2 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
@@ -300,7 +300,7 @@ section h2 {
     text-transform: uppercase;
 }
 
-/* Profile Image */
+/* About Image */
 #about .profile-img {
     max-width: 200px;
     border-radius: 50%;

@@ -124,7 +124,7 @@
                     I'm passionate about <span class="typed-text"></span>
                 </p>
 
-                <!-- glitch-text + data-text for the tagline only -->
+                <!-- glitch-text + data-text for the tagline -->
                 <p class="tagline glitch-text" data-text="Securing the Digital Frontier">
                     Securing the Digital Frontier
                 </p>
@@ -139,7 +139,6 @@
         </section>
 
         <!-- ABOUT SECTION -->
-        <!-- Removed `data-text="About Me"` -->
         <section id="about" class="container my-5" data-aos="fade-up">
             <h2>About Me</h2>
             <div class="row align-items-center mt-4">
@@ -177,7 +176,6 @@
         </section>
 
         <!-- EXPERIENCE SECTION -->
-        <!-- Removed data-text="Experience" -->
         <section id="experience" class="container my-5" data-aos="fade-up">
             <h2>Experience</h2>
             <div class="vertical-timeline">
@@ -305,7 +303,6 @@
         </section>
 
         <!-- PROJECTS SECTION -->
-        <!-- Removed data-text="Projects" -->
         <section id="projects" class="container my-5" data-aos="fade-up">
             <h2>Projects</h2>
             <div class="row g-4">
@@ -408,14 +405,12 @@
         </section>
 
         <!-- GITHUB ACTIVITY SECTION -->
-        <!-- Removed data-text="GitHub Activity" -->
         <section id="github-activity" class="container my-5" data-aos="fade-up">
             <h2>GitHub Activity</h2>
             <div id="github-calendar"></div>
         </section>
 
         <!-- SKILLS SECTION -->
-        <!-- Removed data-text="Skills" -->
         <section id="skills" class="container my-5" data-aos="fade-up">
             <h2>Skills</h2>
             <div class="skill-tabs mb-4 d-flex flex-wrap">
@@ -576,7 +571,6 @@
         </section>
 
         <!-- EDUCATION SECTION -->
-        <!-- Removed data-text="Education" -->
         <section id="education" class="container my-5" data-aos="fade-up">
             <h2>Education</h2>
             <div class="education-item mb-4">
@@ -596,7 +590,6 @@
         </section>
 
         <!-- CERTIFICATIONS SECTION -->
-        <!-- Removed data-text="Certifications" -->
         <section id="certifications" class="container my-5" data-aos="fade-up">
             <h2>Certifications</h2>
             <div class="row g-4">
@@ -636,7 +629,6 @@
         </section>
 
         <!-- ACHIEVEMENTS SECTION -->
-        <!-- Removed data-text="Achievements" -->
         <section id="achievements" class="container my-5" data-aos="fade-up">
             <h2>Achievements &amp; Awards</h2>
             <ul class="list-group">
@@ -663,7 +655,6 @@
         </section>
 
         <!-- CONTACT SECTION -->
-        <!-- Removed data-text="Contact Me" -->
         <section id="contact" class="container my-5" data-aos="fade-up">
             <h2>Contact Me</h2>
             <div class="row justify-content-center">
@@ -730,11 +721,11 @@
             const savedTheme = localStorage.getItem("theme");
 
             // If user previously selected a theme, apply it
+            // Otherwise default to dark
             if (savedTheme) {
                 htmlElement.setAttribute("data-theme", savedTheme);
                 updateToggleIcon(savedTheme);
             } else {
-                // Default to "dark" (hacker style)
                 htmlElement.setAttribute("data-theme", "dark");
                 localStorage.setItem("theme", "dark");
             }
