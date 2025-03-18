@@ -1,74 +1,75 @@
-/* 
-  LIGHT/DARK THEME VARIABLES
-  Toggle the "data-theme" attribute on <html> to switch themes.
+/*
+  Hacker-esque theme with neon green, black background, 
+  glitch text, and scanline aesthetic. 
 */
 
-/* LIGHT MODE VARIABLES */
+/* 
+  LIGHT & DARK THEME VARIABLES 
+*/
 :root {
-    --bg-color: #f5f5f5;
-    /* Soft off-white background */
-    --text-color: #333333;
-    --section-heading-color: #2c3e50;
-    /* Dark slate for headings */
-    --navbar-bg: #2c3e50;
-    /* Dark blue-grey for navbar */
-    --navbar-text: #ecf0f1;
-    /* Light text on navbar */
-    --navbar-hover: #3498db;
-    /* Light blue for hover */
-    --hero-bg: #2980b9;
-    /* Calm blue for hero background */
-    --hero-text: #ffffff;
-    --hero-typed-bg: #ecf0f1;
-    /* Soft grey behind typed text */
-    --hero-typed-text: #2c3e50;
-    --timeline-line: #bdc3c7;
-    /* Light grey for the vertical line */
-    --timeline-dot: #3498db;
-    /* Accent color for timeline icons */
-    --progress-bg: #dfe6e9;
-    /* Subtle background for skill bars */
-    --progress-bar-color: #3498db;
-    /* Matching accent for skill fill */
-    --footer-bg: #2c3e50;
-    --footer-text: #ecf0f1;
-    --timeline-item-bg: #ffffff;
-    /* Background for timeline boxes */
+    --bg-color: #f0f0f0;
+    --text-color: #111;
+    --section-heading-color: #222;
+    --navbar-bg: #999;
+    --navbar-text: #fff;
+    --navbar-hover: #008f11;
+    /* A bright green for hover in light mode */
+    --hero-bg: #008f11;
+    --hero-text: #fff;
+    --hero-typed-bg: rgba(0, 0, 0, 0.1);
+    --hero-typed-text: #111;
+    --timeline-line: #ccc;
+    --timeline-dot: #008f11;
+    --progress-bg: #d0d0d0;
+    --progress-bar-color: #008f11;
+    --footer-bg: #444;
+    --footer-text: #fff;
+    --timeline-item-bg: #fefefe;
+
+    /* Font families */
+    --base-font: 'Share Tech Mono', monospace;
+
+    /* Smooth theme transition */
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* DARK MODE VARIABLES */
 [data-theme="dark"] {
-    --bg-color: #121212;
-    /* Deep dark background */
-    --text-color: #c9d1d9;
-    --section-heading-color: #c9d1d9;
-    --navbar-bg: #1f1f1f;
-    --navbar-text: #c9d1d9;
-    --navbar-hover: #2980b9;
-    --hero-bg: #1f2a44;
-    /* Deep navy for hero background */
-    --hero-text: #ffffff;
-    --hero-typed-bg: #3a3a3a;
-    --hero-typed-text: #c9d1d9;
-    --timeline-line: #444444;
-    --timeline-dot: #2980b9;
-    --progress-bg: #2d333b;
-    --progress-bar-color: #2980b9;
-    --footer-bg: #1f1f1f;
-    --footer-text: #c9d1d9;
-    --timeline-item-bg: #1b1b1b;
+    --bg-color: #000000;
+    --text-color: #00ff9f;
+    /* Slightly pale green text */
+    --section-heading-color: #00ff9f;
+    --navbar-bg: #111111;
+    --navbar-text: #00ff9f;
+    --navbar-hover: #00cc66;
+    --hero-bg: #000000;
+    --hero-text: #00ff9f;
+    --hero-typed-bg: #002b36;
+    /* A subdued navy/teal background behind typed text */
+    --hero-typed-text: #00ff9f;
+    --timeline-line: #00cc66;
+    --timeline-dot: #00ff9f;
+    --progress-bg: #0f0f0f;
+    --progress-bar-color: #00cc66;
+    --footer-bg: #111111;
+    --footer-text: #00ff9f;
+    --timeline-item-bg: #1a1a1a;
+
+    /* Smooth theme transition for dark mode too */
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* GLOBAL STYLES */
+/* Global resets and styles */
 html,
 body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-    scroll-behavior: smooth;
+    font-family: var(--base-font);
     background-color: var(--bg-color);
     color: var(--text-color);
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    /* Smooth theme toggle transition */
+    transition: background-color 0.3s, color 0.3s;
 }
 
 a {
@@ -76,7 +77,7 @@ a {
     color: inherit;
 }
 
-/* NAVBAR (SIDEBAR) */
+/* Sidebar Navigation */
 .navbar {
     background-color: var(--navbar-bg) !important;
 }
@@ -91,21 +92,24 @@ a {
     color: var(--navbar-hover) !important;
 }
 
-.navbar-toggler-icon {
-    background-image: none;
-    color: var(--navbar-text) !important;
-}
-
-/* HERO SECTION */
+/* Hero Section */
 .hero {
     position: relative;
-    background: url('images/hero-bg.jpg') center/cover no-repeat,
-        linear-gradient(135deg, var(--hero-bg), #0f2a57);
-    color: var(--hero-text);
     width: 100%;
     height: 100vh;
     margin: 0;
     padding: 0;
+    background: var(--hero-bg);
+    background-image:
+        /* Make a subtle repeating 'code' overlay */
+        linear-gradient(rgba(0, 0, 0, 0.6) 2px,
+            transparent 2px),
+        linear-gradient(90deg,
+            rgba(0, 0, 0, 0.6) 2px,
+            transparent 2px);
+    background-size: 3px 3px, 3px 3px;
+    background-blend-mode: multiply;
+    color: var(--hero-text);
 }
 
 .hero .hero-overlay {
@@ -114,7 +118,7 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.3);
     z-index: 1;
 }
 
@@ -124,6 +128,8 @@ a {
     padding: 2rem;
     width: 100%;
     height: 100%;
+    max-width: 700px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -131,30 +137,30 @@ a {
     text-align: center;
 }
 
+/* Smaller screens */
 @media (max-width: 576px) {
     .hero h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .hero p.fs-4 {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .hero-buttons .btn {
-        font-size: 0.9rem;
-        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+        padding: 0.5rem 0.8rem;
     }
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     margin-bottom: 1rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .hero p {
-    font-size: 1.5rem;
-    margin: 0.5rem 0;
+    font-size: 1.3rem;
+    margin: 0.4rem 0;
 }
 
 .typed-text {
@@ -162,59 +168,147 @@ a {
     background-color: var(--hero-typed-bg);
     padding: 0.3rem 0.6rem;
     border-radius: 0.3rem;
-    text-shadow: 0 0 8px var(--hero-typed-bg);
 }
 
-.tagline {
-    margin-top: 1rem;
-    font-style: italic;
-    font-size: 1.3rem;
-    opacity: 0.9;
+/* Glitch effect for the tagline (p.tagline) */
+.glitch-text {
+    position: relative;
+    display: inline-block;
 }
 
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+}
+
+.glitch-text::before {
+    text-shadow: 2px 0 var(--navbar-hover);
+    top: 0;
+    left: 2px;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-anim 3s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    text-shadow: -2px 0 var(--navbar-hover);
+    left: -2px;
+    top: 0;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-anim2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(44px, 9999px, 56px, 0);
+    }
+
+    5% {
+        clip: rect(2px, 9999px, 25px, 0);
+    }
+
+    10% {
+        clip: rect(94px, 9999px, 45px, 0);
+    }
+
+    15% {
+        clip: rect(75px, 9999px, 110px, 0);
+    }
+
+    20% {
+        clip: rect(34px, 9999px, 90px, 0);
+    }
+
+    100% {
+        clip: rect(18px, 9999px, 40px, 0);
+    }
+}
+
+@keyframes glitch-anim2 {
+    0% {
+        clip: rect(10px, 9999px, 130px, 0);
+    }
+
+    5% {
+        clip: rect(14px, 9999px, 90px, 0);
+    }
+
+    10% {
+        clip: rect(44px, 9999px, 56px, 0);
+    }
+
+    15% {
+        clip: rect(70px, 9999px, 45px, 0);
+    }
+
+    20% {
+        clip: rect(12px, 9999px, 75px, 0);
+    }
+
+    100% {
+        clip: rect(15px, 9999px, 60px, 0);
+    }
+}
+
+/* Subtle scan-line effect for the main hero heading */
+.scanline-text {
+    position: relative;
+}
+
+.scanline-text::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        repeating-linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.05) 0px,
+            transparent 1px,
+            transparent 2px);
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.2;
+}
+
+/* Hero Buttons */
 .hero-buttons {
     margin-top: 2rem;
 }
 
 .hero-buttons .btn {
-    padding: 0.85rem 1.75rem;
-    font-size: 1.1rem;
-    transition: transform 0.3s, background 0.3s;
+    padding: 0.8rem 1.6rem;
+    font-size: 1rem;
+    transition: transform 0.3s;
 }
 
 .hero-buttons .btn:hover {
     transform: translateY(-3px);
 }
 
-/* SECTION HEADINGS */
+/* Section Headings (just normal now, no glitch overlay) */
 section h2 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin-bottom: 1.5rem;
-    color: var(--section-heading-color);
     text-align: center;
     font-weight: 700;
     position: relative;
+    text-transform: uppercase;
 }
 
-section h2::after {
-    content: "";
-    display: block;
-    width: 60px;
-    height: 4px;
-    background-color: var(--navbar-hover);
-    margin: 0.5rem auto 0;
-    border-radius: 2px;
-}
-
-/* ABOUT SECTION */
+/* Profile Image */
 #about .profile-img {
     max-width: 200px;
     border-radius: 50%;
     margin-bottom: 1rem;
-    border: 3px solid var(--navbar-hover);
+    border: 2px solid var(--navbar-hover);
 }
 
-/* VERTICAL TIMELINE */
+/* Vertical Timeline */
 .vertical-timeline {
     position: relative;
     margin: 0 auto;
@@ -228,7 +322,7 @@ section h2::after {
     top: 0;
     bottom: 0;
     left: 50%;
-    width: 4px;
+    width: 2px;
     background: var(--timeline-line);
     transform: translateX(-50%);
 }
@@ -248,12 +342,30 @@ section h2::after {
     left: 50%;
 }
 
-.vt-item .vt-content {
+.vt-icon {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: 34px;
+    height: 34px;
+    background: var(--bg-color);
+    border: 2px solid var(--timeline-dot);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    z-index: 1;
+    color: var(--timeline-dot);
+}
+
+.vt-content {
     background: var(--timeline-item-bg);
-    padding: 1.5rem;
-    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    border-radius: 5px;
     position: relative;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .vt-item:nth-child(odd) .vt-content::before {
@@ -276,39 +388,12 @@ section h2::after {
     border-color: transparent var(--timeline-item-bg) transparent transparent;
 }
 
-.vt-item .vt-icon {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    width: 40px;
-    height: 40px;
-    background: var(--bg-color);
-    border: 3px solid var(--timeline-dot);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    z-index: 1;
-}
-
 .vt-date {
     font-weight: 600;
     margin-bottom: 0.5rem;
     color: var(--navbar-hover);
 }
 
-.vt-item h4 {
-    margin-bottom: 0.5rem;
-}
-
-.vt-item ul {
-    padding-left: 1.2rem;
-    margin: 0.8rem 0 0;
-}
-
-/* Timeline: full-width stacking on smaller screens */
 @media (max-width: 768px) {
     .vertical-timeline::before {
         left: 20px;
@@ -317,23 +402,23 @@ section h2::after {
     .vt-item {
         width: 100%;
         left: 0 !important;
-        margin-bottom: 2rem;
         padding-left: 50px;
+        margin-bottom: 2rem;
     }
 
-    .vt-item .vt-icon {
+    .vt-icon {
         left: 20px;
         transform: translate(-50%, -50%);
     }
 
-    .vt-item .vt-content::before {
+    .vt-content::before {
         display: none;
     }
 }
 
-/* PROJECT CARDS */
+/* Project Cards */
 .project-card {
-    border: 1px solid #eee;
+    border: 1px solid var(--navbar-hover);
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -342,19 +427,18 @@ section h2::after {
 
 .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 255, 159, 0.2);
 }
 
-.project-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
+.project-card h5 {
+    color: var(--navbar-hover);
 }
 
-/* SKILL BARS (UPDATED) */
+/* Skills Bars */
 .skill-category-heading {
     font-weight: 600;
     font-size: 1.1rem;
+    color: var(--navbar-hover);
 }
 
 .skill-bar {
@@ -363,10 +447,11 @@ section h2::after {
     position: relative;
     height: 2.2rem;
     overflow: hidden;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .skill-bar::after {
-    /* Animated background behind the fill (subtle diagonal stripes) */
     content: "";
     position: absolute;
     top: 0;
@@ -374,15 +459,15 @@ section h2::after {
     right: 0;
     bottom: 0;
     background: repeating-linear-gradient(45deg,
-            rgba(255, 255, 255, 0.08),
-            rgba(255, 255, 255, 0.08) 10px,
+            rgba(255, 255, 255, 0.05),
+            rgba(255, 255, 255, 0.05) 10px,
             transparent 10px,
             transparent 20px);
     pointer-events: none;
 }
 
 .skill-fill {
-    background: linear-gradient(90deg, var(--progress-bar-color), #1f6feb);
+    background: linear-gradient(90deg, var(--progress-bar-color), #006633);
     width: 0;
     height: 100%;
     color: #fff;
@@ -393,19 +478,17 @@ section h2::after {
     transition: width 2s ease-in-out;
 }
 
-/* Use custom property to set the skill level on the container */
 .skill-bar[style*="--skill-level"] .skill-fill {
-    /* “Parsing” the inline style’s custom property for the fill width */
     width: var(--skill-level);
 }
 
-/* SKILL TABS */
+/* Skill Tabs */
 .skill-tab.active {
     background-color: var(--navbar-hover) !important;
     color: #fff !important;
 }
 
-/* GITHUB CALENDAR */
+/* GitHub Calendar */
 .github-calendar-container .contrib-graph rect {
     stroke: none;
 }
@@ -434,7 +517,7 @@ section h2::after {
     display: none !important;
 }
 
-/* SCROLL ARROW */
+/* Scroll Arrow */
 #scroll-arrow {
     position: fixed;
     bottom: 20px;
@@ -452,13 +535,12 @@ section h2::after {
     opacity: 0.8;
 }
 
-/* SIDEBAR STYLES */
+/* Sidebar Styles */
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
     width: 250px;
-    /* Desktop sidebar width */
     height: 100vh;
     background-color: var(--navbar-bg);
     padding: 1rem;
@@ -484,7 +566,7 @@ section h2::after {
     color: var(--navbar-hover);
 }
 
-/* MAIN CONTENT */
+/* Main Content */
 .content {
     margin-left: 250px;
     padding: 0;
@@ -505,4 +587,10 @@ section h2::after {
     .content {
         margin-left: 0;
     }
+}
+
+/* Footer */
+footer.bg-dark {
+    background-color: var(--footer-bg) !important;
+    color: var(--footer-text) !important;
 }

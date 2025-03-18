@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8" />
     <title>Steve Joseph Sibi – Cybersecurity Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- SEO Meta Description -->
+    <meta name="description"
+        content="Cybersecurity Portfolio of Steve Joseph Sibi: Projects, skills, and experience in penetration testing, software engineering, and data privacy." />
+
     <!-- Bootstrap CSS (v5) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts (Monospace "Share Tech Mono") -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css" />
@@ -86,21 +90,25 @@
             <!-- Social Icons & Dark Mode Toggle -->
             <div class="d-flex mt-auto flex-column align-items-center">
                 <div class="mb-3">
-                    <a href="https://www.linkedin.com/in/steve-sibi" class="text-light mx-2" target="_blank">
+                    <a href="https://www.linkedin.com/in/steve-sibi" class="text-light mx-2" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn Profile">
                         <i class="fab fa-linkedin fa-lg"></i>
                     </a>
-                    <a href="https://twitter.com/steve_sibi" class="text-light mx-2" target="_blank">
+                    <a href="https://twitter.com/steve_sibi" class="text-light mx-2" target="_blank"
+                        rel="noopener noreferrer" aria-label="Twitter Profile">
                         <i class="fab fa-twitter fa-lg"></i>
                     </a>
-                    <a href="https://www.instagram.com/stevesibi_" class="text-light mx-2" target="_blank">
+                    <a href="https://www.instagram.com/stevesibi_" class="text-light mx-2" target="_blank"
+                        rel="noopener noreferrer" aria-label="Instagram Profile">
                         <i class="fab fa-instagram fa-lg"></i>
                     </a>
-                    <a href="https://www.github.com/steve-sibi" class="text-light ms-2" target="_blank">
+                    <a href="https://www.github.com/steve-sibi" class="text-light ms-2" target="_blank"
+                        rel="noopener noreferrer" aria-label="GitHub Profile">
                         <i class="fab fa-github fa-lg"></i>
                     </a>
                 </div>
                 <button class="btn btn-sm btn-outline-light" id="themeToggle" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
                 </button>
             </div>
         </div>
@@ -111,24 +119,33 @@
         <section class="hero" id="home">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1>Hi, I'm Steve!</h1>
+                <h1 class="scanline-text">Hi, I'm Steve!</h1>
                 <p class="fs-4">
                     I'm passionate about <span class="typed-text"></span>
                 </p>
-                <p class="tagline">Securing the Digital Frontier</p>
+
+                <!-- glitch-text + data-text for the tagline only -->
+                <p class="tagline glitch-text" data-text="Securing the Digital Frontier">
+                    Securing the Digital Frontier
+                </p>
+
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-outline-light me-2">View Projects</a>
+                    <a href="#projects" class="btn btn-outline-light me-2">
+                        View Projects
+                    </a>
                     <a href="#contact" class="btn btn-primary">Contact Me</a>
                 </div>
             </div>
         </section>
 
         <!-- ABOUT SECTION -->
+        <!-- Removed `data-text="About Me"` -->
         <section id="about" class="container my-5" data-aos="fade-up">
             <h2>About Me</h2>
             <div class="row align-items-center mt-4">
                 <div class="col-md-4 text-center">
-                    <img src="images/profile.jpg" alt="Steve's Photo" class="profile-img mb-3" />
+                    <img src="images/profile.jpg" alt="Photo of Steve Sibi, cybersecurity professional"
+                        class="profile-img mb-3" />
                 </div>
                 <div class="col-md-8">
                     <p>
@@ -152,12 +169,15 @@
                         algorithms, container orchestration, and contributing to
                         open-source projects that make cybersecurity accessible to all.
                     </p>
-                    <a href="#contact" class="btn btn-primary mt-3">Hire Me</a>
+                    <a href="#contact" class="btn btn-primary mt-3">
+                        Hire Me
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- EXPERIENCE SECTION (TIMELINE GRAPH) -->
+        <!-- EXPERIENCE SECTION -->
+        <!-- Removed data-text="Experience" -->
         <section id="experience" class="container my-5" data-aos="fade-up">
             <h2>Experience</h2>
             <div class="vertical-timeline">
@@ -187,8 +207,8 @@
                                 scalability, monitoring, and reliability.
                             </li>
                             <li>
-                                Oversaw server maintenance and PostgreSQL optimization in Linux
-                                environments.
+                                Oversaw server maintenance and PostgreSQL optimization in
+                                Linux environments.
                             </li>
                             <li>
                                 Innovated advanced Python modules, boosting real-time data
@@ -219,31 +239,32 @@
                         </h4>
                         <ul>
                             <li>
-                                Directed the company-wide shift to Microsoft 365, boosting email
-                                infrastructure and productivity by 70%.
+                                Directed the company-wide shift to Microsoft 365, boosting
+                                email infrastructure and productivity by 70%.
                             </li>
                             <li>
-                                Enforced mail rules and quarantine inboxes for spam/phishing
-                                analysis.
+                                Enforced mail rules and quarantine inboxes for
+                                spam/phishing analysis.
                             </li>
                             <li>
-                                Migrated emails of 200+ users to Microsoft Exchange seamlessly.
+                                Migrated emails of 200+ users to Microsoft Exchange
+                                seamlessly.
                             </li>
                             <li>
                                 Architected a Wireless Mesh Network using Cisco Business
                                 Wireless APs, overseeing security and efficiency.
                             </li>
                             <li>
-                                Formulated IT policies, securing devices via JumpCloud, SureMDM,
-                                and Microsoft Intune.
+                                Formulated IT policies, securing devices via JumpCloud,
+                                SureMDM, and Microsoft Intune.
                             </li>
                             <li>
                                 Drove cybersecurity efforts, initiating MFA and Azure
                                 Conditional Access for corporate/BYOD devices.
                             </li>
                             <li>
-                                Established a helpdesk for 200+ users, streamlining support and
-                                documentation.
+                                Established a helpdesk for 200+ users, streamlining support
+                                and documentation.
                             </li>
                             <li>
                                 Enhanced IT security solutions with continuous maintenance,
@@ -266,16 +287,16 @@
                         </h4>
                         <ul>
                             <li>
-                                Set up administrative controls for customer systems, tailoring
-                                solutions to unique security requirements.
+                                Set up administrative controls for customer systems,
+                                tailoring solutions to unique security requirements.
                             </li>
                             <li>
-                                Completed extensive ICS cybersecurity training, contributing to
-                                improved system security.
+                                Completed extensive ICS cybersecurity training, contributing
+                                to improved system security.
                             </li>
                             <li>
-                                Delivered cybersecurity strategies for IoT devices, addressing
-                                emerging digital threats.
+                                Delivered cybersecurity strategies for IoT devices,
+                                addressing emerging digital threats.
                             </li>
                         </ul>
                     </div>
@@ -284,6 +305,7 @@
         </section>
 
         <!-- PROJECTS SECTION -->
+        <!-- Removed data-text="Projects" -->
         <section id="projects" class="container my-5" data-aos="fade-up">
             <h2>Projects</h2>
             <div class="row g-4">
@@ -296,11 +318,13 @@
                             </h5>
                             <p class="mb-1">
                                 A PyQt-based toolkit integrating
-                                <strong>Diffprivlib</strong> and <strong>TenSEAL</strong> for
-                                differential privacy &amp; homomorphic encryption solutions.
+                                <strong>Diffprivlib</strong> and <strong>TenSEAL</strong>
+                                for differential privacy &amp; homomorphic encryption
+                                solutions.
                             </p>
                             <a href="https://github.com/steve-sibi/DataPriv-Encryptor" target="_blank"
-                                class="text-primary">View Project</a>
+                                rel="noopener noreferrer" class="text-primary"
+                                aria-label="PrivacyFusion GitHub Repository">View Project</a>
                         </div>
                     </div>
                 </div>
@@ -309,14 +333,17 @@
                     <div class="project-card p-3">
                         <div class="p-2">
                             <h5 class="mt-2">
-                                <i class="fas fa-bug me-2"></i>Automated Vulnerability Scanner
+                                <i class="fas fa-bug me-2"></i>Automated Vulnerability
+                                Scanner
                             </h5>
                             <p class="mb-1">
-                                A <strong>Flask</strong> app that performs concurrent network
-                                scans and displays results in an interactive interface.
+                                A <strong>Flask</strong> app that performs concurrent
+                                network scans and displays results in an interactive
+                                interface.
                             </p>
                             <a href="https://github.com/steve-sibi/Automated-Vulnerability-Scanner" target="_blank"
-                                class="text-primary">View Project</a>
+                                rel="noopener noreferrer" class="text-primary"
+                                aria-label="Automated Vulnerability Scanner GitHub Repository">View Project</a>
                         </div>
                     </div>
                 </div>
@@ -325,16 +352,18 @@
                     <div class="project-card p-3">
                         <div class="p-2">
                             <h5 class="mt-2">
-                                <i class="fas fa-shield-alt me-2"></i>Server Hardening Script
-                                Suite
+                                <i class="fas fa-shield-alt me-2"></i>Server Hardening
+                                Script Suite
                             </h5>
                             <p class="mb-1">
-                                An automated Linux server hardening script that performs system
-                                updates, disables unnecessary services, configures firewalls
-                                &amp; SSH, enforces strong password policies, and manages logs.
+                                An automated Linux server hardening script that performs
+                                system updates, disables unnecessary services, configures
+                                firewalls &amp; SSH, enforces strong password policies,
+                                and manages logs.
                             </p>
                             <a href="https://github.com/steve-sibi/Server-Hardening-Script" target="_blank"
-                                class="text-primary">View Project</a>
+                                rel="noopener noreferrer" class="text-primary"
+                                aria-label="Server Hardening Script Suite GitHub Repository">View Project</a>
                         </div>
                     </div>
                 </div>
@@ -343,16 +372,17 @@
                     <div class="project-card p-3">
                         <div class="p-2">
                             <h5 class="mt-2">
-                                <i class="fas fa-lock me-2"></i>Exploring Differential Privacy
-                                in Machine Learning
+                                <i class="fas fa-lock me-2"></i>Exploring Differential
+                                Privacy in Machine Learning
                             </h5>
                             <p class="mb-1">
-                                Demonstrates how to integrate TensorFlow Privacy to compare
-                                standard vs. differentially private logistic regression on the
-                                Iris dataset.
+                                Demonstrates how to integrate TensorFlow Privacy to
+                                compare standard vs. differentially private logistic
+                                regression on the Iris dataset.
                             </p>
                             <a href="https://github.com/steve-sibi/differential-privacy-ml" target="_blank"
-                                class="text-primary">View Project</a>
+                                rel="noopener noreferrer" class="text-primary"
+                                aria-label="Exploring Differential Privacy in ML GitHub Repository">View Project</a>
                         </div>
                     </div>
                 </div>
@@ -364,11 +394,13 @@
                                 <i class="fas fa-clock me-2"></i>Mactime Beautifier
                             </h5>
                             <p class="mb-1">
-                                Automates and cleans up forensic Mactime data, parsing logs to
-                                streamline forensic timelines in Linux environments.
+                                Automates and cleans up forensic Mactime data, parsing
+                                logs to streamline forensic timelines in Linux
+                                environments.
                             </p>
                             <a href="https://github.com/steve-sibi/mactimebeautifier" target="_blank"
-                                class="text-primary">View Project</a>
+                                rel="noopener noreferrer" class="text-primary"
+                                aria-label="Mactime Beautifier GitHub Repository">View Project</a>
                         </div>
                     </div>
                 </div>
@@ -376,12 +408,14 @@
         </section>
 
         <!-- GITHUB ACTIVITY SECTION -->
+        <!-- Removed data-text="GitHub Activity" -->
         <section id="github-activity" class="container my-5" data-aos="fade-up">
             <h2>GitHub Activity</h2>
             <div id="github-calendar"></div>
         </section>
 
-        <!-- SKILLS SECTION (UPDATED) -->
+        <!-- SKILLS SECTION -->
+        <!-- Removed data-text="Skills" -->
         <section id="skills" class="container my-5" data-aos="fade-up">
             <h2>Skills</h2>
             <div class="skill-tabs mb-4 d-flex flex-wrap">
@@ -398,7 +432,6 @@
                     Cloud Services
                 </button>
             </div>
-
             <div class="skill-content">
                 <!-- Cybersecurity -->
                 <div class="skills-category" id="cyber">
@@ -440,7 +473,6 @@
                         <div class="skill-fill">Terraform (80%)</div>
                     </div>
                 </div>
-
                 <!-- Programming -->
                 <div class="skills-category" id="prog" style="display: none;">
                     <div class="skill-category-heading d-flex align-items-center mb-3">
@@ -475,7 +507,6 @@
                         <div class="skill-fill">CSS (80%)</div>
                     </div>
                 </div>
-
                 <!-- Operating Systems -->
                 <div class="skills-category" id="os" style="display: none;">
                     <div class="skill-category-heading d-flex align-items-center mb-3">
@@ -489,13 +520,14 @@
                         <div class="skill-fill">Windows 10/11 (75%)</div>
                     </div>
                     <div class="skill-bar mb-3" style="--skill-level: 75%;">
-                        <div class="skill-fill">Windows Server 2012/2016/2019 (75%)</div>
+                        <div class="skill-fill">
+                            Windows Server 2012/2016/2019 (75%)
+                        </div>
                     </div>
                     <div class="skill-bar mb-3" style="--skill-level: 75%;">
                         <div class="skill-fill">MacOS (75%)</div>
                     </div>
                 </div>
-
                 <!-- Cloud Services -->
                 <div class="skills-category" id="cloud" style="display: none;">
                     <div class="skill-category-heading d-flex align-items-center mb-3">
@@ -509,7 +541,9 @@
                         <div class="skill-fill">Azure (80%)</div>
                     </div>
                     <div class="skill-bar mb-3" style="--skill-level: 80%;">
-                        <div class="skill-fill">Azure Security &amp; Compliance (80%)</div>
+                        <div class="skill-fill">
+                            Azure Security &amp; Compliance (80%)
+                        </div>
                     </div>
                     <div class="skill-bar mb-3" style="--skill-level: 80%;">
                         <div class="skill-fill">Azure DevOps (80%)</div>
@@ -533,30 +567,36 @@
                         <div class="skill-fill">Microsoft Intune (80%)</div>
                     </div>
                     <div class="skill-bar mb-3" style="--skill-level: 80%;">
-                        <div class="skill-fill">Microsoft Sharepoint (80%)</div>
+                        <div class="skill-fill">
+                            Microsoft Sharepoint (80%)
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- EDUCATION SECTION -->
+        <!-- Removed data-text="Education" -->
         <section id="education" class="container my-5" data-aos="fade-up">
             <h2>Education</h2>
             <div class="education-item mb-4">
                 <h4>B.Sc. in Computing Security</h4>
                 <p class="small">
-                    <em>Rochester Institute of Technology, New York, U.S., 2017 - 2022</em>
+                    <em>Rochester Institute of Technology, New York, U.S., 2017 -
+                        2022</em>
                 </p>
             </div>
             <div class="education-item">
                 <h4>Master of Cybersecurity</h4>
                 <p class="small">
-                    <em>Illinois Institute of Technology, Chicago, U.S., 2023 - 2025</em>
+                    <em>Illinois Institute of Technology, Chicago, U.S., 2023 -
+                        2025</em>
                 </p>
             </div>
         </section>
 
         <!-- CERTIFICATIONS SECTION -->
+        <!-- Removed data-text="Certifications" -->
         <section id="certifications" class="container my-5" data-aos="fade-up">
             <h2>Certifications</h2>
             <div class="row g-4">
@@ -565,7 +605,8 @@
                         <div class="card-body">
                             <h4 class="card-title">
                                 <a href="https://www.credly.com/badges/e776b530-851b-4786-b304-77a2043ab26e"
-                                    target="_blank" class="text-decoration-none text-primary">Security+</a>
+                                    target="_blank" rel="noopener noreferrer" class="text-decoration-none text-primary"
+                                    aria-label="Security+ Credly Badge">Security+</a>
                             </h4>
                             <p class="card-text small"><em>CompTIA</em></p>
                         </div>
@@ -582,7 +623,9 @@
                 <div class="col-md-4">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body">
-                            <h4 class="card-title">Certified Network Security Specialist</h4>
+                            <h4 class="card-title">
+                                Certified Network Security Specialist
+                            </h4>
                             <p class="card-text small">
                                 <em>International Cybersecurity Institute</em>
                             </p>
@@ -593,20 +636,24 @@
         </section>
 
         <!-- ACHIEVEMENTS SECTION -->
+        <!-- Removed data-text="Achievements" -->
         <section id="achievements" class="container my-5" data-aos="fade-up">
             <h2>Achievements &amp; Awards</h2>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <strong>Dean’s List (RIT)</strong> – Recognized for academic excellence.
+                    <strong>Dean’s List (RIT)</strong> – Recognized for academic
+                    excellence.
                 </li>
                 <li class="list-group-item">
-                    <strong>2020 Collegiate Penetration Testing Competition (Regional Winners)</strong>
-                    – Led a team that excelled in real-world pentesting challenges.
+                    <strong>2020 Collegiate Penetration Testing Competition (Regional
+                        Winners)</strong>
+                    – Led a team that excelled in real-world pentesting
+                    challenges.
                 </li>
                 <li class="list-group-item">
                     <strong>Research Assistant (RIT)</strong>
-                    – Contributed to advanced security research, focusing on AI-driven threat
-                    detection.
+                    – Contributed to advanced security research, focusing on
+                    AI-driven threat detection.
                 </li>
                 <li class="list-group-item">
                     <strong>Consultant at International Consulting Network (ICON)</strong>
@@ -616,6 +663,7 @@
         </section>
 
         <!-- CONTACT SECTION -->
+        <!-- Removed data-text="Contact Me" -->
         <section id="contact" class="container my-5" data-aos="fade-up">
             <h2>Contact Me</h2>
             <div class="row justify-content-center">
@@ -656,10 +704,10 @@
             // Typed.js
             var typed = new Typed(".typed-text", {
                 strings: [
-                    "Secure Software Engineering",
                     "Penetration Testing",
-                    "Cloud Solutions",
-                    "Data Privacy and Encryption",
+                    "Reverse Engineering",
+                    "Secure Software Engineering",
+                    "Data Privacy & Encryption",
                 ],
                 typeSpeed: 50,
                 backSpeed: 50,
@@ -673,7 +721,7 @@
             // GitHub Calendar
             GitHubCalendar("#github-calendar", "steve-sibi", {
                 responsive: true,
-                summary: false
+                summary: false,
             });
 
             // THEME TOGGLE
@@ -681,9 +729,14 @@
             const htmlElement = document.documentElement;
             const savedTheme = localStorage.getItem("theme");
 
+            // If user previously selected a theme, apply it
             if (savedTheme) {
                 htmlElement.setAttribute("data-theme", savedTheme);
                 updateToggleIcon(savedTheme);
+            } else {
+                // Default to "dark" (hacker style)
+                htmlElement.setAttribute("data-theme", "dark");
+                localStorage.setItem("theme", "dark");
             }
 
             themeToggleBtn.addEventListener("click", () => {
