@@ -434,6 +434,19 @@ section h2 {
     color: var(--navbar-hover);
 }
 
+/* Custom GitHub Card */
+.custom-github-card {
+    border: 1px solid var(--navbar-hover);
+    background: var(--bg-color);
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.custom-github-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 255, 159, 0.2);
+}
+
 /* Skills Bars */
 .skill-category-heading {
     font-weight: 600;
