@@ -89,7 +89,7 @@
       scroll-behavior: smooth;
     }
 
-    /* Custom CSS that's not easily handled by Tailwind */
+    /* Custom CSS */
     .glitch-text {
       position: relative;
       display: inline-block;
@@ -134,10 +134,7 @@
       pointer-events: none;
       opacity: 0.2;
       mix-blend-mode: overlay;
-      background: repeating-linear-gradient(to bottom,
-          rgba(255, 255, 255, 0.05) 0px,
-          transparent 1px,
-          transparent 2px);
+      background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0px, transparent 1px, transparent 2px);
     }
 
     .skill-bar {
@@ -157,11 +154,7 @@
       right: 0;
       bottom: 0;
       pointer-events: none;
-      background: repeating-linear-gradient(45deg,
-          rgba(255, 255, 255, 0.05),
-          rgba(255, 255, 255, 0.05) 10px,
-          transparent 10px,
-          transparent 20px);
+      background: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05) 10px, transparent 10px, transparent 20px);
     }
 
     .skill-fill {
@@ -196,54 +189,60 @@
   </style>
 </head>
 
-<body class="bg-cyber-black text-cyber-green font-share-tech">
+<body class="bg-white text-black dark:bg-cyber-black dark:text-cyber-green font-share-tech">
   <!-- Sidebar Navigation -->
   <nav role="navigation"
-    class="fixed top-0 left-0 z-40 h-full w-64 bg-cyber-black border-r border-cyber-green transform transition-transform duration-300 ease-in-out md:shadow-lg md:translate-x-0 -translate-x-full"
+    class="fixed top-0 left-0 z-40 h-full w-64 bg-white dark:bg-cyber-black border-r border-gray-200 dark:border-cyber-green transition-transform duration-300 ease-in-out md:shadow-lg md:translate-x-0 -translate-x-full"
     id="sidebar">
     <div class="flex flex-col h-full p-4">
       <div class="mb-8 mt-4 text-center">
-        <h1 class="text-xl font-bold text-cyber-green">Steve Sibi</h1>
-        <p class="text-xs text-cyber-green-dark">Cybersecurity Engineer</p>
+        <h1 class="text-xl font-bold text-black dark:text-cyber-green">Steve Sibi</h1>
+        <p class="text-xs text-gray-600 dark:text-cyber-green-dark">Cybersecurity Engineer</p>
       </div>
 
       <div class="flex flex-col space-y-1">
-        <a href="#home" class="flex items-center gap-2 py-3 px-4 hover:bg-cyber-dark rounded-md transition-colors">
+        <a href="#home"
+          class="flex items-center gap-2 py-3 px-4 hover:bg-gray-100 dark:hover:bg-cyber-dark rounded-md transition-colors">
           <i class="fas fa-home"></i>
           <span>Home</span>
         </a>
-        <a href="#about" class="flex items-center gap-2 py-3 px-4 hover:bg-cyber-dark rounded-md transition-colors">
+        <a href="#about"
+          class="flex items-center gap-2 py-3 px-4 hover:bg-gray-100 dark:hover:bg-cyber-dark rounded-md transition-colors">
           <i class="fas fa-user"></i>
           <span>About</span>
         </a>
         <a href="#experience"
-          class="flex items-center gap-2 py-3 px-4 hover:bg-cyber-dark rounded-md transition-colors">
+          class="flex items-center gap-2 py-3 px-4 hover:bg-gray-100 dark:hover:bg-cyber-dark rounded-md transition-colors">
           <i class="fas fa-briefcase"></i>
           <span>Experience</span>
         </a>
-        <a href="#projects" class="flex items-center gap-2 py-3 px-4 hover:bg-cyber-dark rounded-md transition-colors">
+        <a href="#projects"
+          class="flex items-center gap-2 py-3 px-4 hover:bg-gray-100 dark:hover:bg-cyber-dark rounded-md transition-colors">
           <i class="fas fa-project-diagram"></i>
           <span>Projects</span>
         </a>
-        <a href="#skills" class="flex items-center gap-2 py-3 px-4 hover:bg-cyber-dark rounded-md transition-colors">
+        <a href="#skills"
+          class="flex items-center gap-2 py-3 px-4 hover:bg-gray-100 dark:hover:bg-cyber-dark rounded-md transition-colors">
           <i class="fas fa-code"></i>
           <span>Skills</span>
         </a>
-        <a href="#education" class="flex items-center gap-2 py-3 px-4 hover:bg-cyber-dark rounded-md transition-colors">
+        <a href="#education"
+          class="flex items-center gap-2 py-3 px-4 hover:bg-gray-100 dark:hover:bg-cyber-dark rounded-md transition-colors">
           <i class="fas fa-graduation-cap"></i>
           <span>Education</span>
         </a>
         <a href="#certifications"
-          class="flex items-center gap-2 py-3 px-4 hover:bg-cyber-dark rounded-md transition-colors">
+          class="flex items-center gap-2 py-3 px-4 hover:bg-gray-100 dark:hover:bg-cyber-dark rounded-md transition-colors">
           <i class="fas fa-certificate"></i>
           <span>Certifications</span>
         </a>
         <a href="#achievements"
-          class="flex items-center gap-2 py-3 px-4 hover:bg-cyber-dark rounded-md transition-colors">
+          class="flex items-center gap-2 py-3 px-4 hover:bg-gray-100 dark:hover:bg-cyber-dark rounded-md transition-colors">
           <i class="fas fa-trophy"></i>
           <span>Achievements</span>
         </a>
-        <a href="#contact" class="flex items-center gap-2 py-3 px-4 hover:bg-cyber-dark rounded-md transition-colors">
+        <a href="#contact"
+          class="flex items-center gap-2 py-3 px-4 hover:bg-gray-100 dark:hover:bg-cyber-dark rounded-md transition-colors">
           <i class="fas fa-envelope"></i>
           <span>Contact</span>
         </a>
@@ -274,14 +273,14 @@
   </nav>
 
   <!-- Mobile menu button -->
-  <div class="fixed top-4 right-4 z-50 md:hidden bg-cyber-dark p-2 rounded-full" id="menuToggle">
+  <div class="fixed top-4 right-4 z-50 md:hidden bg-gray-100 dark:bg-cyber-dark p-2 rounded-full" id="menuToggle">
     <button aria-label="Toggle menu">
       <i class="fas fa-bars text-cyber-green" id="menuIcon"></i>
     </button>
   </div>
 
-  <!-- Dark/Light Mode Toggle Button (visible on all devices) -->
-  <div class="fixed top-4 right-16 z-50 bg-cyber-dark p-2 rounded-full">
+  <!-- Dark/Light Mode Toggle Button -->
+  <div class="fixed top-4 right-16 z-50 bg-gray-100 dark:bg-cyber-dark p-2 rounded-full">
     <button id="themeToggle" aria-label="Toggle dark/light mode">
       <i class="fas fa-sun"></i>
     </button>
@@ -291,8 +290,8 @@
   <div class="ml-0 md:ml-64 relative">
     <!-- Hero Section -->
     <section id="home"
-      class="h-screen flex items-center justify-center relative bg-cyber-grid bg-[size:15px_15px] overflow-hidden">
-      <div class="absolute inset-0 bg-cyber-black bg-opacity-60 z-0"></div>
+      class="h-screen flex items-center justify-center relative bg-gray-100 dark:bg-cyber-grid bg-[size:15px_15px] overflow-hidden">
+      <div class="absolute inset-0 bg-gray-200 dark:bg-cyber-black bg-opacity-60 z-0"></div>
       <div class="scanline-effect absolute inset-0 z-0"></div>
 
       <div class="container px-6 z-10 text-center">
@@ -302,12 +301,13 @@
           <div class="w-2 h-2 bg-cyber-green"></div>
         </div>
 
-        <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 text-black dark:text-white">
           Hi, I'm <span class="text-cyber-green">Steve!</span>
         </h1>
 
-        <p class="text-xl md:text-2xl mb-6">
-          I'm passionate about <span id="typed-text" class="bg-cyber-dark bg-opacity-40 p-1 rounded"></span>
+        <p class="text-xl md:text-2xl mb-6 text-gray-800 dark:text-gray-300">
+          I'm passionate about <span id="typed-text"
+            class="bg-gray-200 dark:bg-cyber-dark bg-opacity-40 p-1 rounded"></span>
         </p>
 
         <p class="glitch-text text-lg md:text-xl mb-8" data-text="Securing the Digital Frontier">
@@ -329,12 +329,11 @@
     <!-- About Section -->
     <section id="about" class="py-20 px-6">
       <div class="container mx-auto max-w-5xl">
-        <div class="flex items-center pb-6 mb-6 border-b border-cyber-green-dark relative">
-          <h2 class="text-2xl md:text-3xl font-bold text-cyber-green">About Me</h2>
-
-          <div class="h-px flex-1 ml-4 bg-gradient-to-r from-cyber-green to-transparent"></div>
-
-          <!-- Cyberpunk decorative elements -->
+        <div class="flex items-center pb-6 mb-6 border-b border-gray-200 dark:border-cyber-green-dark relative">
+          <h2 class="text-2xl md:text-3xl font-bold text-black dark:text-cyber-green">About Me</h2>
+          <div
+            class="h-px flex-1 ml-4 bg-gradient-to-r from-gray-400 to-transparent dark:from-cyber-green to-transparent">
+          </div>
           <div class="absolute -bottom-px left-0 w-20 h-px bg-cyber-green"></div>
           <div class="absolute -bottom-px left-0 w-1 h-3 bg-cyber-green"></div>
           <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
@@ -347,26 +346,22 @@
             </div>
           </div>
           <div class="md:col-span-3">
-            <p class="mb-4 text-gray-300">
-              I'm a <strong class="text-cyber-green">Master of Cybersecurity</strong> student at
-              <em> Illinois Institute of Technology</em> (graduating May 2025).
-              With a B.Sc in Computing Security from Rochester Institute of
-              Technology, I've developed a robust understanding of penetration
-              testing, forensics, and secure system design.
+            <p class="mb-4 text-gray-800 dark:text-gray-300">
+              I'm a <strong class="text-cyber-green">Master of Cybersecurity</strong> student at <em>Illinois Institute
+                of Technology</em> (graduating May 2025). With a B.Sc in Computing Security from Rochester Institute of
+              Technology, I've developed a robust understanding of penetration testing, forensics, and secure system
+              design.
             </p>
-            <p class="mb-4 text-gray-300">
-              My professional experience spans
-              <strong class="text-cyber-green"> web development</strong> using
-              <strong class="text-cyber-green"> Django, JavaScript, and AWS</strong>, to
-              <strong class="text-cyber-green"> infrastructure security</strong> with tools like
-              <strong class="text-cyber-green"> Ansible, Terraform, and Docker</strong>. I'm passionate
-              about bridging software engineering with cutting-edge security
-              practices to build resilient, scalable systems.
+            <p class="mb-4 text-gray-800 dark:text-gray-300">
+              My professional experience spans <strong class="text-cyber-green">web development</strong> using <strong
+                class="text-cyber-green">Django, JavaScript, and AWS</strong>, to <strong
+                class="text-cyber-green">infrastructure security</strong> with tools like <strong
+                class="text-cyber-green">Ansible, Terraform, and Docker</strong>. I'm passionate about bridging software
+              engineering with cutting-edge security practices to build resilient, scalable systems.
             </p>
-            <p class="mb-6 text-gray-300">
-              Outside of work, I love experimenting with cryptographic
-              algorithms, container orchestration, and contributing to
-              open-source projects that make cybersecurity accessible to all.
+            <p class="mb-6 text-gray-800 dark:text-gray-300">
+              Outside of work, I love experimenting with cryptographic algorithms, container orchestration, and
+              contributing to open-source projects that make cybersecurity accessible to all.
             </p>
             <a href="#contact"
               class="px-6 py-3 bg-cyber-green text-black rounded-md hover:bg-opacity-80 transition-all inline-block">
@@ -378,11 +373,13 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 px-6 bg-cyber-dark bg-opacity-30">
+    <section id="experience" class="py-20 px-6 bg-gray-50 dark:bg-cyber-dark dark:bg-opacity-30">
       <div class="container mx-auto max-w-5xl">
-        <div class="flex items-center pb-6 mb-6 border-b border-cyber-green-dark relative">
-          <h2 class="text-2xl md:text-3xl font-bold text-cyber-green">Experience</h2>
-          <div class="h-px flex-1 ml-4 bg-gradient-to-r from-cyber-green to-transparent"></div>
+        <div class="flex items-center pb-6 mb-6 border-b border-gray-200 dark:border-cyber-green-dark relative">
+          <h2 class="text-2xl md:text-3xl font-bold text-black dark:text-cyber-green">Experience</h2>
+          <div
+            class="h-px flex-1 ml-4 bg-gradient-to-r from-gray-400 to-transparent dark:from-cyber-green to-transparent">
+          </div>
           <div class="absolute -bottom-px left-0 w-20 h-px bg-cyber-green"></div>
           <div class="absolute -bottom-px left-0 w-1 h-3 bg-cyber-green"></div>
           <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
@@ -390,10 +387,10 @@
 
         <div class="space-y-6">
           <div class="timeline-item">
-            <div class="timeline-date text-cyber-green-dark font-bold mb-1">May 2022 – Oct 2023</div>
-            <h3 class="text-lg font-bold text-cyber-green">James Fisher Strainstall, Dubai, UAE</h3>
-            <p class="text-cyber-green-dark mb-4">Software Engineer</p>
-            <div class="text-gray-300 space-y-1.5">
+            <div class="timeline-date text-gray-700 dark:text-cyber-green-dark font-bold mb-1">May 2022 – Oct 2023</div>
+            <h3 class="text-lg font-bold text-black dark:text-cyber-green">James Fisher Strainstall, Dubai, UAE</h3>
+            <p class="text-gray-700 dark:text-cyber-green-dark mb-4">Software Engineer</p>
+            <div class="text-gray-600 dark:text-gray-300 space-y-1.5">
               <ul class="list-disc list-inside space-y-2">
                 <li>Developed a Smart Asset Management System using Django and JavaScript, integrating security controls
                   and REST APIs to improve asset tracking efficiency for 150+ assets while adhering to SDLC best
@@ -411,10 +408,10 @@
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-date text-cyber-green-dark font-bold mb-1">Jun 2021 – Mar 2022</div>
-            <h3 class="text-lg font-bold text-cyber-green">Neutral Fuels Holdings Ltd, Dubai, UAE</h3>
-            <p class="text-cyber-green-dark mb-4">Technical Support/Infrastructure Engineer</p>
-            <div class="text-gray-300 space-y-1.5">
+            <div class="timeline-date text-gray-700 dark:text-cyber-green-dark font-bold mb-1">Jun 2021 – Mar 2022</div>
+            <h3 class="text-lg font-bold text-black dark:text-cyber-green">Neutral Fuels Holdings Ltd, Dubai, UAE</h3>
+            <p class="text-gray-700 dark:text-cyber-green-dark mb-4">Technical Support/Infrastructure Engineer</p>
+            <div class="text-gray-600 dark:text-gray-300 space-y-1.5">
               <ul class="list-disc list-inside space-y-2">
                 <li>Directed the company-wide shift to Microsoft 365, boosting email infrastructure and productivity by
                   70%.</li>
@@ -433,10 +430,10 @@
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-date text-cyber-green-dark font-bold mb-1">Jun 2020 – Sep 2020</div>
-            <h3 class="text-lg font-bold text-cyber-green">Schneider Electric, Dubai, UAE</h3>
-            <p class="text-cyber-green-dark mb-4">Cybersecurity Intern</p>
-            <div class="text-gray-300 space-y-1.5">
+            <div class="timeline-date text-gray-700 dark:text-cyber-green-dark font-bold mb-1">Jun 2020 – Sep 2020</div>
+            <h3 class="text-lg font-bold text-black dark:text-cyber-green">Schneider Electric, Dubai, UAE</h3>
+            <p class="text-gray-700 dark:text-cyber-green-dark mb-4">Cybersecurity Intern</p>
+            <div class="text-gray-600 dark:text-gray-300 space-y-1.5">
               <ul class="list-disc list-inside space-y-2">
                 <li>Set up administrative controls for customer systems, tailoring solutions to unique security
                   requirements.</li>
@@ -452,9 +449,11 @@
     <!-- Projects Section -->
     <section id="projects" class="py-20 px-6">
       <div class="container mx-auto max-w-5xl">
-        <div class="flex items-center pb-6 mb-6 border-b border-cyber-green-dark relative">
-          <h2 class="text-2xl md:text-3xl font-bold text-cyber-green">Projects</h2>
-          <div class="h-px flex-1 ml-4 bg-gradient-to-r from-cyber-green to-transparent"></div>
+        <div class="flex items-center pb-6 mb-6 border-b border-gray-200 dark:border-cyber-green-dark relative">
+          <h2 class="text-2xl md:text-3xl font-bold text-black dark:text-cyber-green">Projects</h2>
+          <div
+            class="h-px flex-1 ml-4 bg-gradient-to-r from-gray-400 to-transparent dark:from-cyber-green to-transparent">
+          </div>
           <div class="absolute -bottom-px left-0 w-20 h-px bg-cyber-green"></div>
           <div class="absolute -bottom-px left-0 w-1 h-3 bg-cyber-green"></div>
           <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
@@ -462,17 +461,17 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div
-            class="border border-cyber-green p-5 rounded-lg bg-cyber-dark bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
+            class="border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
             <div class="flex items-start gap-3">
               <div class="text-cyber-green mt-1">
                 <i class="fas fa-user-secret"></i>
               </div>
               <div>
-                <h3 class="font-bold text-lg mb-2 text-cyber-green">PrivacyFusion</h3>
-                <p class="text-sm text-gray-300 mb-4">A PyQt-based toolkit integrating Diffprivlib and TenSEAL for
-                  differential privacy &amp; homomorphic encryption solutions.</p>
+                <h3 class="font-bold text-lg mb-2 text-black dark:text-cyber-green">PrivacyFusion</h3>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">A PyQt-based toolkit integrating Diffprivlib
+                  and TenSEAL for differential privacy &amp; homomorphic encryption solutions.</p>
                 <a href="https://github.com/steve-sibi/DataPriv-Encryptor" target="_blank" rel="noopener noreferrer"
-                  class="text-cyber-green-dark hover:text-cyber-green transition-colors inline-flex items-center gap-1">
+                  class="text-cyber-green hover:text-cyber-green-dark transition-colors inline-flex items-center gap-1">
                   <span>View Project</span>
                   <i class="fas fa-external-link-alt text-xs"></i>
                 </a>
@@ -481,18 +480,18 @@
           </div>
 
           <div
-            class="border border-cyber-green p-5 rounded-lg bg-cyber-dark bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
+            class="border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
             <div class="flex items-start gap-3">
               <div class="text-cyber-green mt-1">
                 <i class="fas fa-bug"></i>
               </div>
               <div>
-                <h3 class="font-bold text-lg mb-2 text-cyber-green">Automated Vulnerability Scanner</h3>
-                <p class="text-sm text-gray-300 mb-4">A Flask app that performs concurrent network scans and displays
-                  results in an interactive interface.</p>
+                <h3 class="font-bold text-lg mb-2 text-black dark:text-cyber-green">Automated Vulnerability Scanner</h3>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">A Flask app that performs concurrent network
+                  scans and displays results in an interactive interface.</p>
                 <a href="https://github.com/steve-sibi/Automated-Vulnerability-Scanner" target="_blank"
                   rel="noopener noreferrer"
-                  class="text-cyber-green-dark hover:text-cyber-green transition-colors inline-flex items-center gap-1">
+                  class="text-cyber-green hover:text-cyber-green-dark transition-colors inline-flex items-center gap-1">
                   <span>View Project</span>
                   <i class="fas fa-external-link-alt text-xs"></i>
                 </a>
@@ -501,19 +500,19 @@
           </div>
 
           <div
-            class="border border-cyber-green p-5 rounded-lg bg-cyber-dark bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
+            class="border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
             <div class="flex items-start gap-3">
               <div class="text-cyber-green mt-1">
                 <i class="fas fa-shield-alt"></i>
               </div>
               <div>
-                <h3 class="font-bold text-lg mb-2 text-cyber-green">Server Hardening Script Suite</h3>
-                <p class="text-sm text-gray-300 mb-4">An automated Linux server hardening script that performs system
-                  updates, disables unnecessary services, configures firewalls &amp; SSH, enforces strong password
-                  policies, and manages logs.</p>
+                <h3 class="font-bold text-lg mb-2 text-black dark:text-cyber-green">Server Hardening Script Suite</h3>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">An automated Linux server hardening script that
+                  performs system updates, disables unnecessary services, configures firewalls &amp; SSH, enforces
+                  strong password policies, and manages logs.</p>
                 <a href="https://github.com/steve-sibi/Server-Hardening-Script" target="_blank"
                   rel="noopener noreferrer"
-                  class="text-cyber-green-dark hover:text-cyber-green transition-colors inline-flex items-center gap-1">
+                  class="text-cyber-green hover:text-cyber-green-dark transition-colors inline-flex items-center gap-1">
                   <span>View Project</span>
                   <i class="fas fa-external-link-alt text-xs"></i>
                 </a>
@@ -522,18 +521,19 @@
           </div>
 
           <div
-            class="border border-cyber-green p-5 rounded-lg bg-cyber-dark bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
+            class="border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
             <div class="flex items-start gap-3">
               <div class="text-cyber-green mt-1">
                 <i class="fas fa-lock"></i>
               </div>
               <div>
-                <h3 class="font-bold text-lg mb-2 text-cyber-green">Exploring Differential Privacy in ML</h3>
-                <p class="text-sm text-gray-300 mb-4">Demonstrates how to integrate TensorFlow Privacy to compare
-                  standard vs. differentially private logistic regression on the Iris dataset.</p>
+                <h3 class="font-bold text-lg mb-2 text-black dark:text-cyber-green">Exploring Differential Privacy in ML
+                </h3>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">Demonstrates how to integrate TensorFlow
+                  Privacy to compare standard vs. differentially private logistic regression on the Iris dataset.</p>
                 <a href="https://github.com/steve-sibi/differential-privacy-ml" target="_blank"
                   rel="noopener noreferrer"
-                  class="text-cyber-green-dark hover:text-cyber-green transition-colors inline-flex items-center gap-1">
+                  class="text-cyber-green hover:text-cyber-green-dark transition-colors inline-flex items-center gap-1">
                   <span>View Project</span>
                   <i class="fas fa-external-link-alt text-xs"></i>
                 </a>
@@ -542,17 +542,17 @@
           </div>
 
           <div
-            class="border border-cyber-green p-5 rounded-lg bg-cyber-dark bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
+            class="border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
             <div class="flex items-start gap-3">
               <div class="text-cyber-green mt-1">
                 <i class="fas fa-clock"></i>
               </div>
               <div>
-                <h3 class="font-bold text-lg mb-2 text-cyber-green">Mactime Beautifier</h3>
-                <p class="text-sm text-gray-300 mb-4">Automates and cleans up forensic Mactime data, parsing logs to
-                  streamline forensic timelines in Linux environments.</p>
+                <h3 class="font-bold text-lg mb-2 text-black dark:text-cyber-green">Mactime Beautifier</h3>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">Automates and cleans up forensic Mactime data,
+                  parsing logs to streamline forensic timelines in Linux environments.</p>
                 <a href="https://github.com/steve-sibi/mactimebeautifier" target="_blank" rel="noopener noreferrer"
-                  class="text-cyber-green-dark hover:text-cyber-green transition-colors inline-flex items-center gap-1">
+                  class="text-cyber-green hover:text-cyber-green-dark transition-colors inline-flex items-center gap-1">
                   <span>View Project</span>
                   <i class="fas fa-external-link-alt text-xs"></i>
                 </a>
@@ -561,16 +561,17 @@
           </div>
 
           <div
-            class="border border-cyber-green p-5 rounded-lg bg-cyber-dark bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
+            class="border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
             <div class="flex items-start gap-3">
               <div class="text-cyber-green mt-1">
                 <i class="fas fa-server"></i>
               </div>
               <div>
-                <h3 class="font-bold text-lg mb-2 text-cyber-green">Splunk Enterprise + Splunk SOAR Lab</h3>
-                <p class="text-sm text-gray-300 mb-4">Built a homelab using Splunk Enterprise to ingest logs from
-                  Windows and Linux endpoints, created custom dashboards and correlation searches in SPL, and integrated
-                  Splunk SOAR to automate incident response playbooks.</p>
+                <h3 class="font-bold text-lg mb-2 text-black dark:text-cyber-green">Splunk Enterprise + Splunk SOAR Lab
+                </h3>
+                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">Built a homelab using Splunk Enterprise to
+                  ingest logs from Windows and Linux endpoints, created custom dashboards and correlation searches in
+                  SPL, and integrated Splunk SOAR to automate incident response playbooks.</p>
               </div>
             </div>
           </div>
@@ -579,26 +580,27 @@
     </section>
 
     <!-- GitHub Activity Section -->
-    <section id="github-activity" class="py-20 px-6 bg-cyber-dark bg-opacity-30">
+    <section id="github-activity" class="py-20 px-6 bg-gray-50 dark:bg-cyber-dark dark:bg-opacity-30">
       <div class="container mx-auto max-w-5xl">
-        <div class="flex items-center pb-6 mb-6 border-b border-cyber-green-dark relative">
-          <h2 class="text-2xl md:text-3xl font-bold text-cyber-green">GitHub Activity</h2>
-          <div class="h-px flex-1 ml-4 bg-gradient-to-r from-cyber-green to-transparent"></div>
+        <div class="flex items-center pb-6 mb-6 border-b border-gray-200 dark:border-cyber-green-dark relative">
+          <h2 class="text-2xl md:text-3xl font-bold text-black dark:text-cyber-green">GitHub Activity</h2>
+          <div
+            class="h-px flex-1 ml-4 bg-gradient-to-r from-gray-400 to-transparent dark:from-cyber-green to-transparent">
+          </div>
           <div class="absolute -bottom-px left-0 w-20 h-px bg-cyber-green"></div>
           <div class="absolute -bottom-px left-0 w-1 h-3 bg-cyber-green"></div>
           <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
         </div>
 
-        <div class="border border-cyber-green-dark rounded-lg p-6 backdrop-blur-sm bg-black bg-opacity-30">
-          <h3 class="text-xl font-bold mb-6 text-center text-cyber-green">Recent Contributions</h3>
-
+        <div
+          class="border border-gray-200 dark:border-cyber-green-dark rounded-lg p-6 backdrop-blur-sm bg-white dark:bg-black dark:bg-opacity-30">
+          <h3 class="text-xl font-bold mb-6 text-center text-black dark:text-cyber-green">Recent Contributions</h3>
           <div id="github-calendar" class="mb-8">
             <!-- GitHub calendar will be loaded here -->
-            <div class="text-center py-8 text-gray-400">
+            <div class="text-center py-8 text-gray-600 dark:text-gray-400">
               <p>Loading GitHub contribution data...</p>
             </div>
           </div>
-
           <div class="text-center">
             <a href="https://github.com/steve-sibi" target="_blank" rel="noopener noreferrer"
               class="px-6 py-3 border border-cyber-green text-cyber-green rounded-md hover:bg-cyber-green hover:bg-opacity-20 transition-all">
@@ -612,9 +614,11 @@
     <!-- Skills Section -->
     <section id="skills" class="py-20 px-6">
       <div class="container mx-auto max-w-5xl">
-        <div class="flex items-center pb-6 mb-6 border-b border-cyber-green-dark relative">
-          <h2 class="text-2xl md:text-3xl font-bold text-cyber-green">Skills</h2>
-          <div class="h-px flex-1 ml-4 bg-gradient-to-r from-cyber-green to-transparent"></div>
+        <div class="flex items-center pb-6 mb-6 border-b border-gray-200 dark:border-cyber-green-dark relative">
+          <h2 class="text-2xl md:text-3xl font-bold text-black dark:text-cyber-green">Skills</h2>
+          <div
+            class="h-px flex-1 ml-4 bg-gradient-to-r from-gray-400 to-transparent dark:from-cyber-green to-transparent">
+          </div>
           <div class="absolute -bottom-px left-0 w-20 h-px bg-cyber-green"></div>
           <div class="absolute -bottom-px left-0 w-1 h-3 bg-cyber-green"></div>
           <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
@@ -626,34 +630,31 @@
             data-skill="cyber">
             Cybersecurity
           </button>
-
           <button
-            class="py-2 px-4 mr-2 mb-3 rounded-md transition-all border bg-transparent border-cyber-green-dark hover:border-cyber-green text-cyber-green-dark hover:text-cyber-green"
+            class="py-2 px-4 mr-2 mb-3 rounded-md transition-all border bg-transparent border-gray-400 dark:border-cyber-green-dark hover:border-cyber-green text-gray-800 dark:text-cyber-green-dark hover:text-cyber-green"
             data-skill="prog">
             Programming Languages
           </button>
-
           <button
-            class="py-2 px-4 mr-2 mb-3 rounded-md transition-all border bg-transparent border-cyber-green-dark hover:border-cyber-green text-cyber-green-dark hover:text-cyber-green"
+            class="py-2 px-4 mr-2 mb-3 rounded-md transition-all border bg-transparent border-gray-400 dark:border-cyber-green-dark hover:border-cyber-green text-gray-800 dark:text-cyber-green-dark hover:text-cyber-green"
             data-skill="os">
             Operating Systems
           </button>
-
           <button
-            class="py-2 px-4 mr-2 mb-3 rounded-md transition-all border bg-transparent border-cyber-green-dark hover:border-cyber-green text-cyber-green-dark hover:text-cyber-green"
+            class="py-2 px-4 mr-2 mb-3 rounded-md transition-all border bg-transparent border-gray-400 dark:border-cyber-green-dark hover:border-cyber-green text-gray-800 dark:text-cyber-green-dark hover:text-cyber-green"
             data-skill="cloud">
             Cloud Services
           </button>
         </div>
 
-        <div class="bg-cyber-dark bg-opacity-30 border border-cyber-green-dark rounded-lg p-6">
+        <div
+          class="bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 border border-gray-200 dark:border-cyber-green-dark rounded-lg p-6">
           <!-- Cybersecurity Skills -->
           <div class="skill-content" id="cyber-skills">
             <div class="flex items-center mb-4">
               <i class="fas fa-shield-halved mr-2 text-cyber-green"></i>
               <h3 class="text-lg font-bold">Cybersecurity Tools</h3>
             </div>
-
             <div class="skill-bar">
               <div class="skill-fill" style="width: 90%">nmap</div>
             </div>
@@ -695,7 +696,6 @@
               <i class="fas fa-code mr-2 text-cyber-green"></i>
               <h3 class="text-lg font-bold">Programming Languages & Frameworks</h3>
             </div>
-
             <div class="skill-bar">
               <div class="skill-fill" style="width: 90%">Python</div>
             </div>
@@ -731,7 +731,6 @@
               <i class="fas fa-desktop mr-2 text-cyber-green"></i>
               <h3 class="text-lg font-bold">Operating Systems</h3>
             </div>
-
             <div class="skill-bar">
               <div class="skill-fill" style="width: 85%">Linux</div>
             </div>
@@ -752,7 +751,6 @@
               <i class="fas fa-cloud mr-2 text-cyber-green"></i>
               <h3 class="text-lg font-bold">Cloud Services</h3>
             </div>
-
             <div class="skill-bar">
               <div class="skill-fill" style="width: 90%">AWS</div>
             </div>
@@ -792,36 +790,38 @@
     </section>
 
     <!-- Education Section -->
-    <section id="education" class="py-20 px-6 bg-cyber-dark bg-opacity-30">
+    <section id="education" class="py-20 px-6 bg-gray-50 dark:bg-cyber-dark dark:bg-opacity-30">
       <div class="container mx-auto max-w-5xl">
-        <div class="flex items-center pb-6 mb-6 border-b border-cyber-green-dark relative">
-          <h2 class="text-2xl md:text-3xl font-bold text-cyber-green">Education</h2>
-          <div class="h-px flex-1 ml-4 bg-gradient-to-r from-cyber-green to-transparent"></div>
+        <div class="flex items-center pb-6 mb-6 border-b border-gray-200 dark:border-cyber-green-dark relative">
+          <h2 class="text-2xl md:text-3xl font-bold text-black dark:text-cyber-green">Education</h2>
+          <div
+            class="h-px flex-1 ml-4 bg-gradient-to-r from-gray-400 to-transparent dark:from-cyber-green to-transparent">
+          </div>
           <div class="absolute -bottom-px left-0 w-20 h-px bg-cyber-green"></div>
           <div class="absolute -bottom-px left-0 w-1 h-3 bg-cyber-green"></div>
           <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="border border-cyber-green-dark p-6 rounded-lg bg-black bg-opacity-40">
-            <h3 class="text-xl font-bold mb-2 text-cyber-green">B.Sc. in Computing Security</h3>
-            <p class="text-gray-400">
+          <div
+            class="border border-gray-200 dark:border-cyber-green-dark p-6 rounded-lg bg-white dark:bg-black dark:bg-opacity-40">
+            <h3 class="text-xl font-bold mb-2 text-black dark:text-cyber-green">B.Sc. in Computing Security</h3>
+            <p class="text-gray-600 dark:text-gray-400">
               <i class="fas fa-university mr-2"></i>
               Rochester Institute of Technology, New York, U.S.
             </p>
-            <p class="text-gray-400">
+            <p class="text-gray-600 dark:text-gray-400">
               <i class="fas fa-calendar-alt mr-2"></i>
               Sep 2017 - Dec 2021
             </p>
           </div>
-
-          <div class="border border-cyber-green-dark p-6 rounded-lg bg-black bg-opacity-40">
-            <h3 class="text-xl font-bold mb-2 text-cyber-green">Master of Cybersecurity</h3>
-            <p class="text-gray-400">
+          <div
+            class="border border-gray-200 dark:border-cyber-green-dark p-6 rounded-lg bg-white dark:bg-black dark:bg-opacity-40">
+            <h3 class="text-xl font-bold mb-2 text-black dark:text-cyber-green">Master of Cybersecurity</h3>
+            <p class="text-gray-600 dark:text-gray-400">
               <i class="fas fa-university mr-2"></i>
               Illinois Institute of Technology, Chicago, U.S.
             </p>
-            <p class="text-gray-400">
+            <p class="text-gray-600 dark:text-gray-400">
               <i class="fas fa-calendar-alt mr-2"></i>
               Sep 2023 - May 2025
             </p>
@@ -833,69 +833,69 @@
     <!-- Certifications Section -->
     <section id="certifications" class="py-20 px-6">
       <div class="container mx-auto max-w-5xl">
-        <div class="flex items-center pb-6 mb-6 border-b border-cyber-green-dark relative">
-          <h2 class="text-2xl md:text-3xl font-bold text-cyber-green">Certifications</h2>
-          <div class="h-px flex-1 ml-4 bg-gradient-to-r from-cyber-green to-transparent"></div>
+        <div class="flex items-center pb-6 mb-6 border-b border-gray-200 dark:border-cyber-green-dark relative">
+          <h2 class="text-2xl md:text-3xl font-bold text-black dark:text-cyber-green">Certifications</h2>
+          <div
+            class="h-px flex-1 ml-4 bg-gradient-to-r from-gray-400 to-transparent dark:from-cyber-green to-transparent">
+          </div>
           <div class="absolute -bottom-px left-0 w-20 h-px bg-cyber-green"></div>
           <div class="absolute -bottom-px left-0 w-1 h-3 bg-cyber-green"></div>
           <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <a href="https://www.credly.com/badges/e776b530-851b-4786-b304-77a2043ab26e" target="_blank"
             rel="noopener noreferrer"
-            class="block p-4 border border-cyber-green-dark rounded-lg bg-cyber-dark bg-opacity-30 transition-all duration-300 hover:border-cyber-green hover:shadow-[0_0_10px_rgba(0,255,159,0.2)] cursor-pointer">
-            <h3 class="font-bold text-lg mb-1 text-cyber-green">Security+</h3>
-            <p class="text-sm text-cyber-green-dark">CompTIA</p>
+            class="block p-4 border border-cyber-green-dark dark:border-cyber-green rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 transition-all duration-300 hover:border-cyber-green hover:shadow-[0_0_10px_rgba(0,255,159,0.2)] cursor-pointer">
+            <h3 class="font-bold text-lg mb-1 text-black dark:text-cyber-green">Security+</h3>
+            <p class="text-sm text-gray-600 dark:text-cyber-green-dark">CompTIA</p>
           </a>
-
           <div
-            class="block p-4 border border-cyber-green-dark rounded-lg bg-cyber-dark bg-opacity-30 transition-all duration-300 hover:border-cyber-green hover:shadow-[0_0_10px_rgba(0,255,159,0.2)]">
-            <h3 class="font-bold text-lg mb-1 text-cyber-green">Network Security Expert 2</h3>
-            <p class="text-sm text-cyber-green-dark">Fortinet</p>
+            class="block p-4 border border-cyber-green-dark dark:border-cyber-green rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 transition-all duration-300 hover:border-cyber-green hover:shadow-[0_0_10px_rgba(0,255,159,0.2)]">
+            <h3 class="font-bold text-lg mb-1 text-black dark:text-cyber-green">Network Security Expert 2</h3>
+            <p class="text-sm text-gray-600 dark:text-cyber-green-dark">Fortinet</p>
           </div>
-
           <div
-            class="block p-4 border border-cyber-green-dark rounded-lg bg-cyber-dark bg-opacity-30 transition-all duration-300 hover:border-cyber-green hover:shadow-[0_0_10px_rgba(0,255,159,0.2)]">
-            <h3 class="font-bold text-lg mb-1 text-cyber-green">Certified Network Security Specialist</h3>
-            <p class="text-sm text-cyber-green-dark">International Cybersecurity Institute</p>
+            class="block p-4 border border-cyber-green-dark dark:border-cyber-green rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 transition-all duration-300 hover:border-cyber-green hover:shadow-[0_0_10px_rgba(0,255,159,0.2)]">
+            <h3 class="font-bold text-lg mb-1 text-black dark:text-cyber-green">Certified Network Security Specialist
+            </h3>
+            <p class="text-sm text-gray-600 dark:text-cyber-green-dark">International Cybersecurity Institute</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Achievements Section -->
-    <section id="achievements" class="py-20 px-6 bg-cyber-dark bg-opacity-30">
+    <section id="achievements" class="py-20 px-6 bg-gray-50 dark:bg-cyber-dark dark:bg-opacity-30">
       <div class="container mx-auto max-w-5xl">
-        <div class="flex items-center pb-6 mb-6 border-b border-cyber-green-dark relative">
-          <h2 class="text-2xl md:text-3xl font-bold text-cyber-green">Achievements & Awards</h2>
-          <div class="h-px flex-1 ml-4 bg-gradient-to-r from-cyber-green to-transparent"></div>
+        <div class="flex items-center pb-6 mb-6 border-b border-gray-200 dark:border-cyber-green-dark relative">
+          <h2 class="text-2xl md:text-3xl font-bold text-black dark:text-cyber-green">Achievements & Awards</h2>
+          <div
+            class="h-px flex-1 ml-4 bg-gradient-to-r from-gray-400 to-transparent dark:from-cyber-green to-transparent">
+          </div>
           <div class="absolute -bottom-px left-0 w-20 h-px bg-cyber-green"></div>
           <div class="absolute -bottom-px left-0 w-1 h-3 bg-cyber-green"></div>
           <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
         </div>
-
         <div class="space-y-4">
           <div class="border-l-2 border-cyber-green pl-4 py-2">
-            <h3 class="text-lg font-bold text-cyber-green">Dean's List (RIT)</h3>
-            <p class="text-gray-300">Recognized for academic excellence.</p>
+            <h3 class="text-lg font-bold text-black dark:text-cyber-green">Dean's List (RIT)</h3>
+            <p class="text-gray-600 dark:text-gray-300">Recognized for academic excellence.</p>
           </div>
-
           <div class="border-l-2 border-cyber-green pl-4 py-2">
-            <h3 class="text-lg font-bold text-cyber-green">2020 Collegiate Penetration Testing Competition (Regional
-              Winners)</h3>
-            <p class="text-gray-300">Led a team that excelled in real-world pentesting challenges.</p>
-          </div>
-
-          <div class="border-l-2 border-cyber-green pl-4 py-2">
-            <h3 class="text-lg font-bold text-cyber-green">Research Assistant (RIT)</h3>
-            <p class="text-gray-300">Contributed to advanced security research, focusing on AI-driven threat detection.
+            <h3 class="text-lg font-bold text-black dark:text-cyber-green">2020 Collegiate Penetration Testing
+              Competition (Regional Winners)</h3>
+            <p class="text-gray-600 dark:text-gray-300">Led a team that excelled in real-world pentesting challenges.
             </p>
           </div>
-
           <div class="border-l-2 border-cyber-green pl-4 py-2">
-            <h3 class="text-lg font-bold text-cyber-green">Consultant at International Consulting Network (ICON)</h3>
-            <p class="text-gray-300">Provided strategic IT security guidance to businesses.</p>
+            <h3 class="text-lg font-bold text-black dark:text-cyber-green">Research Assistant (RIT)</h3>
+            <p class="text-gray-600 dark:text-gray-300">Contributed to advanced security research, focusing on AI-driven
+              threat detection.</p>
+          </div>
+          <div class="border-l-2 border-cyber-green pl-4 py-2">
+            <h3 class="text-lg font-bold text-black dark:text-cyber-green">Consultant at International Consulting
+              Network (ICON)</h3>
+            <p class="text-gray-600 dark:text-gray-300">Provided strategic IT security guidance to businesses.</p>
           </div>
         </div>
       </div>
@@ -904,42 +904,38 @@
     <!-- Contact Section -->
     <section id="contact" class="py-20 px-6">
       <div class="container mx-auto max-w-5xl">
-        <div class="flex items-center pb-6 mb-6 border-b border-cyber-green-dark relative">
-          <h2 class="text-2xl md:text-3xl font-bold text-cyber-green">Contact Me</h2>
-          <div class="h-px flex-1 ml-4 bg-gradient-to-r from-cyber-green to-transparent"></div>
+        <div class="flex items-center pb-6 mb-6 border-b border-gray-200 dark:border-cyber-green-dark relative">
+          <h2 class="text-2xl md:text-3xl font-bold text-black dark:text-cyber-green">Contact Me</h2>
+          <div
+            class="h-px flex-1 ml-4 bg-gradient-to-r from-gray-400 to-transparent dark:from-cyber-green to-transparent">
+          </div>
           <div class="absolute -bottom-px left-0 w-20 h-px bg-cyber-green"></div>
           <div class="absolute -bottom-px left-0 w-1 h-3 bg-cyber-green"></div>
           <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
         </div>
-
         <div class="text-center max-w-2xl mx-auto">
-          <p class="text-gray-300 mb-6">
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
             If you'd like to get in touch, please email me at:
           </p>
-
           <a href="mailto:steve.sibi@gmail.com"
             class="text-cyber-green text-xl hover:text-opacity-80 transition-colors font-bold">
             steve.sibi@gmail.com
           </a>
-
           <div class="mt-8 flex justify-center space-x-6">
             <a href="https://www.linkedin.com/in/steve-sibi" target="_blank" rel="noopener noreferrer"
-              class="text-gray-400 hover:text-cyber-green transition-colors" aria-label="LinkedIn">
+              class="text-gray-600 dark:text-gray-300 hover:text-cyber-green transition-colors" aria-label="LinkedIn">
               <i class="fab fa-linkedin fa-2x"></i>
             </a>
-
             <a href="https://twitter.com/steve_sibi" target="_blank" rel="noopener noreferrer"
-              class="text-gray-400 hover:text-cyber-green transition-colors" aria-label="Twitter">
+              class="text-gray-600 dark:text-gray-300 hover:text-cyber-green transition-colors" aria-label="Twitter">
               <i class="fab fa-twitter fa-2x"></i>
             </a>
-
             <a href="https://www.github.com/steve-sibi" target="_blank" rel="noopener noreferrer"
-              class="text-gray-400 hover:text-cyber-green transition-colors" aria-label="GitHub">
+              class="text-gray-600 dark:text-gray-300 hover:text-cyber-green transition-colors" aria-label="GitHub">
               <i class="fab fa-github fa-2x"></i>
             </a>
-
             <a href="https://www.instagram.com/stevesibi_" target="_blank" rel="noopener noreferrer"
-              class="text-gray-400 hover:text-cyber-green transition-colors" aria-label="Instagram">
+              class="text-gray-600 dark:text-gray-300 hover:text-cyber-green transition-colors" aria-label="Instagram">
               <i class="fab fa-instagram fa-2x"></i>
             </a>
           </div>
@@ -948,9 +944,9 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-cyber-dark py-6 px-6 text-center">
+    <footer class="bg-gray-200 dark:bg-cyber-dark py-6 px-6 text-center">
       <div class="container mx-auto">
-        <p class="text-gray-400">
+        <p class="text-gray-600 dark:text-gray-400">
           &copy; 2025 <span class="text-cyber-green font-bold">Steve Joseph Sibi - A fellow Cybersecurity
             enthusiast</span>
         </p>
@@ -960,7 +956,7 @@
 
   <!-- Scroll arrow -->
   <button id="scroll-arrow"
-    class="fixed bottom-6 right-6 w-12 h-12 bg-cyber-dark border border-cyber-green rounded-full flex items-center justify-center z-50 hover:bg-cyber-green hover:bg-opacity-20 transition-all opacity-0">
+    class="fixed bottom-6 right-6 w-12 h-12 bg-gray-200 dark:bg-cyber-dark border border-cyber-green rounded-full flex items-center justify-center z-50 hover:bg-cyber-green hover:bg-opacity-20 transition-all opacity-0">
     <i class="fas fa-chevron-down text-cyber-green"></i>
   </button>
 
@@ -997,7 +993,6 @@
       const themeToggle = document.getElementById('themeToggle');
       themeToggle.addEventListener('click', function () {
         document.documentElement.classList.toggle('dark');
-        // Toggle icon based on current theme
         if (document.documentElement.classList.contains('dark')) {
           themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         } else {
@@ -1033,25 +1028,20 @@
       skillButtons.forEach(button => {
         button.addEventListener('click', function () {
           const skill = this.getAttribute('data-skill');
-
-          // Update active button
           skillButtons.forEach(btn => {
             btn.classList.remove('bg-cyber-green');
             btn.classList.remove('text-black');
             btn.classList.add('bg-transparent');
-            btn.classList.add('text-cyber-green-dark');
+            btn.classList.add('text-gray-800');
           });
-
           this.classList.remove('bg-transparent');
-          this.classList.remove('text-cyber-green-dark');
+          this.classList.remove('text-gray-800');
           this.classList.add('bg-cyber-green');
           this.classList.add('text-black');
 
-          // Update visible content
           skillContents.forEach(content => {
             content.classList.add('hidden');
           });
-
           document.getElementById(`${skill}-skills`).classList.remove('hidden');
         });
       });
@@ -1059,15 +1049,12 @@
       // Scroll Arrow
       const scrollArrow = document.getElementById('scroll-arrow');
 
-      // Show arrow after scrolling down a bit
       window.addEventListener('scroll', function () {
         if (window.scrollY > 300) {
           scrollArrow.classList.remove('opacity-0');
         } else {
           scrollArrow.classList.add('opacity-0');
         }
-
-        // Change direction at bottom of page
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
           scrollArrow.querySelector('i').classList.remove('fa-chevron-down');
           scrollArrow.querySelector('i').classList.add('fa-chevron-up');
@@ -1079,19 +1066,13 @@
         }
       });
 
-      // Scroll arrow click behavior
       scrollArrow.addEventListener('click', function () {
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
-          // At bottom, scroll to top
           window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
-          // Not at bottom, scroll to next section
           const sections = document.querySelectorAll('section');
           const currentScroll = window.scrollY + 50;
-          const nextSection = Array.from(sections).find(section =>
-            section.offsetTop > currentScroll
-          );
-
+          const nextSection = Array.from(sections).find(section => section.offsetTop > currentScroll);
           if (nextSection) {
             nextSection.scrollIntoView({ behavior: 'smooth' });
           }
