@@ -84,6 +84,11 @@
   </script>
 
   <style>
+    /* Enable smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
     /* Custom CSS that's not easily handled by Tailwind */
     .glitch-text {
       position: relative;
@@ -193,7 +198,7 @@
 
 <body class="bg-cyber-black text-cyber-green font-share-tech">
   <!-- Sidebar Navigation -->
-  <nav
+  <nav role="navigation"
     class="fixed top-0 left-0 z-40 h-full w-64 bg-cyber-black border-r border-cyber-green transform transition-transform duration-300 ease-in-out md:shadow-lg md:translate-x-0 -translate-x-full"
     id="sidebar">
     <div class="flex flex-col h-full p-4">
@@ -275,6 +280,13 @@
     </button>
   </div>
 
+  <!-- Dark/Light Mode Toggle Button (visible on all devices) -->
+  <div class="fixed top-4 right-16 z-50 bg-cyber-dark p-2 rounded-full">
+    <button id="themeToggle" aria-label="Toggle dark/light mode">
+      <i class="fas fa-sun"></i>
+    </button>
+  </div>
+
   <!-- Main content area -->
   <div class="ml-0 md:ml-64 relative">
     <!-- Hero Section -->
@@ -331,7 +343,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
           <div class="md:col-span-1 flex justify-center">
             <div class="w-48 h-48 rounded-full border-4 border-cyber-green overflow-hidden relative">
-              <img src="images/profile.jpg" alt="Steve Sibi" class="w-full h-full object-cover" />
+              <img src="images/profile.jpg" alt="Steve Sibi" class="w-full h-full object-cover" loading="lazy" />
             </div>
           </div>
           <div class="md:col-span-3">
@@ -384,8 +396,8 @@
             <div class="text-gray-300 space-y-1.5">
               <ul class="list-disc list-inside space-y-2">
                 <li>Developed a Smart Asset Management System using Django and JavaScript, integrating security controls
-                  and REST APIs to improve asset
-                  tracking efficiency for 150+ assets while adhering to SDLC best practices.</li>
+                  and REST APIs to improve asset tracking efficiency for 150+ assets while adhering to SDLC best
+                  practices.</li>
                 <li>Strengthened platform security by 30% via robust coding practices.</li>
                 <li>Directed the web platform's transition to AWS, improving scalability, monitoring, and reliability.
                 </li>
@@ -458,7 +470,7 @@
               <div>
                 <h3 class="font-bold text-lg mb-2 text-cyber-green">PrivacyFusion</h3>
                 <p class="text-sm text-gray-300 mb-4">A PyQt-based toolkit integrating Diffprivlib and TenSEAL for
-                  differential privacy & homomorphic encryption solutions.</p>
+                  differential privacy &amp; homomorphic encryption solutions.</p>
                 <a href="https://github.com/steve-sibi/DataPriv-Encryptor" target="_blank" rel="noopener noreferrer"
                   class="text-cyber-green-dark hover:text-cyber-green transition-colors inline-flex items-center gap-1">
                   <span>View Project</span>
@@ -497,8 +509,8 @@
               <div>
                 <h3 class="font-bold text-lg mb-2 text-cyber-green">Server Hardening Script Suite</h3>
                 <p class="text-sm text-gray-300 mb-4">An automated Linux server hardening script that performs system
-                  updates, disables unnecessary services, configures firewalls & SSH, enforces strong password policies,
-                  and manages logs.</p>
+                  updates, disables unnecessary services, configures firewalls &amp; SSH, enforces strong password
+                  policies, and manages logs.</p>
                 <a href="https://github.com/steve-sibi/Server-Hardening-Script" target="_blank"
                   rel="noopener noreferrer"
                   class="text-cyber-green-dark hover:text-cyber-green transition-colors inline-flex items-center gap-1">
@@ -979,6 +991,18 @@
             menuIcon.classList.add('fa-bars');
           }
         });
+      });
+
+      // Dark/Light Mode Toggle
+      const themeToggle = document.getElementById('themeToggle');
+      themeToggle.addEventListener('click', function () {
+        document.documentElement.classList.toggle('dark');
+        // Toggle icon based on current theme
+        if (document.documentElement.classList.contains('dark')) {
+          themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+          themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
       });
 
       // TypedJS
