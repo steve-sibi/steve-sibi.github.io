@@ -10,7 +10,6 @@
   <meta name="author" content="Steve Joseph Sibi" />
 
   <!-- --------------  Google Analytics 4  -------------- -->
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-F499NLV8V2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -21,16 +20,12 @@
   </script>
   <!-- --------------  End Google Analytics -------------- -->
 
-
   <meta property="og:title" content="Steve Joseph Sibi - Cybersecurity Portfolio" />
   <meta property="og:description"
     content="Cybersecurity Portfolio of Steve Joseph Sibi: Projects, skills, and experience in penetration testing, software engineering, and data privacy." />
-  <!-- <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@steve_sibi" />
-  <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" /> -->
+  <!-- Pre‑load résumé for snappy download -->
+  <link rel="preload" href="assets/Steve_Joseph_Sibi_Resume.pdf" as="document" type="application/pdf">
 
   <!-- Google Font - Share Tech Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -176,7 +171,6 @@
       align-items: center;
       padding: 0 1rem;
       color: #222;
-      /* <-- Changed from white to a dark gray */
       font-weight: bold;
       transition: width 1s ease-out;
       background: linear-gradient(90deg, #00ff9f, #006633);
@@ -215,6 +209,12 @@
       </div>
 
       <div class="flex flex-col space-y-1">
+        <!-- Résumé download link in sidebar -->
+        <a href="assets/Steve_Joseph_Sibi_Resume.pdf" download target="_blank" data-resume-download
+          class="flex items-center gap-2 py-3 px-4 hover:bg-gray-100 dark:hover:bg-cyber-dark rounded-md transition-colors">
+          <i class="fas fa-file-download"></i>
+          <span>Résumé</span>
+        </a>
         <a href="#home"
           class="flex items-center gap-2 py-3 px-4 hover:bg-gray-100 dark:hover:bg-cyber-dark rounded-md transition-colors">
           <i class="fas fa-home"></i>
@@ -336,10 +336,20 @@
           <a href="#contact" class="px-6 py-3 bg-cyber-green text-black rounded-md hover:bg-opacity-80 transition-all">
             Contact Me
           </a>
+          <!-- Creative résumé download button -->
+          <a href="assets/Steve_Joseph_Sibi_Resume.pdf" data-resume-download download target="_blank"
+            class="relative group px-6 py-3 border-2 border-cyber-green text-cyber-green rounded-md overflow-hidden">
+            <span class="relative z-10 flex items-center gap-2">
+              <i class="fas fa-file-download"></i>
+              Download Résumé
+            </span>
+            <!-- Neon sweep animation -->
+            <span class="absolute inset-0 bg-cyber-green opacity-0 group-hover:opacity-20 transition-opacity"></span>
+            <span class="absolute left-0 top-0 h-full w-1 bg-cyber-green animate-pulse"></span>
+          </a>
         </div>
       </div>
     </section>
-    <!-- Adding a section for viewing my resume here... -->
 
     <!-- About Section -->
     <section id="about" class="py-20 px-6">
@@ -1063,7 +1073,7 @@
           "Reverse Engineering",
           "Secure Software Engineering",
           "SIEM",
-          "Data Privacy &amp; Encryption",
+          "Data Privacy & Encryption",
         ],
         typeSpeed: 50,
         backSpeed: 50,
@@ -1085,20 +1095,14 @@
         button.addEventListener('click', function () {
           const skill = this.getAttribute('data-skill');
           skillButtons.forEach(btn => {
-            btn.classList.remove('bg-cyber-green');
-            btn.classList.remove('text-black');
-            btn.classList.add('bg-transparent');
-            btn.classList.add('text-gray-800');
+            btn.classList.remove('bg-cyber-green', 'text-black');
+            btn.classList.add('bg-transparent', 'text-gray-800');
           });
-          this.classList.remove('bg-transparent');
-          this.classList.remove('text-gray-800');
-          this.classList.add('bg-cyber-green');
-          this.classList.add('text-black');
+          this.classList.remove('bg-transparent', 'text-gray-800');
+          this.classList.add('bg-cyber-green', 'text-black');
 
-          skillContents.forEach(content => {
-            content.classList.add('hidden');
-          });
-          document.getElementById(`${skill}-skills`).classList.remove('hidden');
+          skillContents.forEach(content => content.classList.add('hidden'));
+          document.getElementById(skill + '-skills').classList.remove('hidden');
         });
       });
 
@@ -1112,12 +1116,10 @@
           scrollArrow.classList.add('opacity-0');
         }
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-          scrollArrow.querySelector('i').classList.remove('fa-chevron-down');
-          scrollArrow.querySelector('i').classList.add('fa-chevron-up');
+          scrollArrow.querySelector('i').classList.replace('fa-chevron-down', 'fa-chevron-up');
           scrollArrow.setAttribute('aria-label', 'Scroll to top');
         } else {
-          scrollArrow.querySelector('i').classList.remove('fa-chevron-up');
-          scrollArrow.querySelector('i').classList.add('fa-chevron-down');
+          scrollArrow.querySelector('i').classList.replace('fa-chevron-up', 'fa-chevron-down');
           scrollArrow.setAttribute('aria-label', 'Scroll down');
         }
       });
@@ -1133,6 +1135,18 @@
             nextSection.scrollIntoView({ behavior: 'smooth' });
           }
         }
+      });
+
+      // Résumé download analytics tracking
+      document.querySelectorAll('[data-resume-download]').forEach(link => {
+        link.addEventListener('click', () => {
+          if (typeof gtag === 'function') {
+            gtag('event', 'download_resume', {
+              'event_category': 'engagement',
+              'event_label': 'resume_pdf'
+            });
+          }
+        });
       });
     });
   </script>
