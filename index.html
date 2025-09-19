@@ -8,6 +8,7 @@
   <meta name="description"
     content="Cybersecurity Portfolio of Steve Joseph Sibi: Projects, skills, and experience in penetration testing, software engineering, and data privacy." />
   <meta name="author" content="Steve Joseph Sibi" />
+  <meta name="color-scheme" content="light dark">
 
   <!-- Ensure correct theme before paint -->
   <script>
@@ -81,10 +82,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Typed.js for text animation -->
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
   <!-- GitHub Calendar JavaScript -->
-  <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
+  <script defer src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
 
   <script>
     tailwind.config = {
@@ -258,6 +259,16 @@
         animation: none !important;
       }
     }
+
+    :where(a, button, input, textarea, select, [role="tab"])::moz-focus-inner {
+      border: 0
+    }
+
+    :where(a, button, input, textarea, select, [role="tab"]):focus-visible {
+      outline: 2px solid #00ff9f;
+      outline-offset: 3px;
+      border-radius: .25rem;
+    }
   </style>
 
   <script type="application/ld+json">
@@ -302,7 +313,7 @@
 
       <div class="flex flex-col space-y-1">
         <!-- Résumé download link in sidebar -->
-        <a href="assets/Resume_Steve_Sibi_Cyber.pdf" download target="_blank" data-resume-download
+        <a href="assets/Resume_Steve_Sibi_Cyber.pdf" download target="_blank" rel="noopener"
           class="flex items-center gap-2 py-3 px-4 hover:bg-gray-100 dark:hover:bg-cyber-dark rounded-md transition-colors">
           <i class="fas fa-file-download" aria-hidden="true"></i>
           <span>Résumé</span>
@@ -427,7 +438,7 @@
             Contact Me
           </a>
           <!-- Creative résumé download button -->
-          <a href="assets/Resume_Steve_Sibi_Cyber.pdf" data-resume-download download target="_blank"
+          <a href="assets/Resume_Steve_Sibi_Cyber.pdf" data-resume-download download target="_blank" rel="noopener"
             class="relative group px-6 py-3 border-2 border-cyber-green text-cyber-green rounded-md overflow-hidden">
             <span class="relative z-10 flex items-center gap-2">
               <i class="fas fa-file-download" aria-hidden="true"></i>
@@ -456,8 +467,8 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
           <div class="md:col-span-1 flex justify-center">
             <div class="w-48 h-48 rounded-full border-4 border-cyber-green overflow-hidden relative">
-              <img src="images/profile_pic_steve.jpg" alt="Portrait of Steve Sibi" class="w-full h-full object-cover"
-                loading="lazy" />
+              <img src="images/profile_pic_steve.jpg" alt="Portrait of Steve Sibi" width="192" height="192"
+                class="w-full h-full object-cover" loading="lazy" />
             </div>
           </div>
           <div class="md:col-span-3">
@@ -764,12 +775,17 @@
           <div class="absolute -bottom-px left-0 w-1 h-3 bg-cyber-green"></div>
           <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
         </div>
-
-        <div class="border-l-2 border-cyber-green pl-4 py-2 overflow-hidden">
+        <div class="border-l-2 border-cyber-green pl-4 py-2">
           <h3 class="text-lg font-bold text-black dark:text-cyber-green">Placed top 7% on TryHackMe</h3>
-          <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=20923" class="w-full"
-            style="border:none; overflow:hidden;" scrolling="no"></iframe>
+
+          <a href="https://tryhackme.com/p/DankKnight" target="_blank" rel="noopener"
+            class="inline-block mt-3 rounded-lg ring-1 ring-cyber-green/30 hover:ring-cyber-green transition">
+            <img src="https://tryhackme-badges.s3.amazonaws.com/DankKnight.png"
+              alt="TryHackMe badge for user DankKnight" width="420" height="90" loading="lazy" decoding="async"
+              class="block h-auto w-[360px] md:w-[420px] rounded-lg" />
+          </a>
         </div>
+
       </div>
     </section>
 
@@ -1285,6 +1301,24 @@
           }
         });
       });
+
+      // Active nav link (aria-current) as you scroll
+      const sections = document.querySelectorAll('main section[id]');
+      const navLinks = Array.from(document.querySelectorAll('#sidebar a[href^="#"]'));
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const id = entry.target.id;
+          const link = navLinks.find(a => a.getAttribute('href') === `#${id}`);
+          if (!link) return;
+          if (entry.isIntersecting) {
+            navLinks.forEach(a => a.removeAttribute('aria-current'));
+            link.setAttribute('aria-current', 'true');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+
+      sections.forEach(s => io.observe(s));
     });
   </script>
 </body>
