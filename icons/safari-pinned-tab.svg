@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Safari tints this monochrome icon using the link color -->
+  <g fill="none" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Rounded square -->
+    <rect x="10" y="10" width="108" height="108" rx="18" ry="18"/>
+    <!-- Circuit accents -->
+    <path d="M24 24 L24 52 L48 52" />
+    <circle cx="24" cy="24" r="4" fill="#000"/>
+    <path d="M80 76 L104 76 L104 104" />
+    <circle cx="104" cy="104" r="4" fill="#000"/>
+    <!-- Terminal >_ -->
+    <path d="M44 62 L56 50 M44 62 L56 74" />
+    <line x1="64" y1="78" x2="92" y2="78" />
+  </g>
+</svg>
