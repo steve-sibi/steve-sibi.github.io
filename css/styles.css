@@ -116,6 +116,12 @@ html {
     top: 0.25rem;
 }
 
+.dark .bg-cyber-grid {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.6) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.6) 2px, transparent 2px);
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
     html {

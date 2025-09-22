@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+/* Tell Tailwind what files to scan for class names */
+@source "./index.html";
+@source "./js/**/*.js";
+
+/* Define your custom design tokens (replaces the old JS theme.extend) */
+@theme {
+    --color-cyber-black: #000000;
+    --color-cyber-dark: #111111;
+    --color-cyber-green: #00ff9f;
+    --color-cyber-green-dark: #00cc66;
+
+    /* custom font family -> generates the `font-share-tech` utility */
+    --font-share-tech: "Share Tech Mono", monospace;
+}
