@@ -4,7 +4,9 @@
 @source "./index.html";
 @source "./js/**/*.js";
 
-/* Define your custom design tokens (replaces the old JS theme.extend) */
+/* Make dark: utilities respond to a .dark class on <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
     --color-cyber-black: #000000;
     --color-cyber-dark: #111111;
