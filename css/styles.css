@@ -1,0 +1,201 @@
+/* Enable smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Skip link */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: #00ff9f;
+    color: #000;
+    padding: .5rem 1rem;
+    z-index: 10000;
+    border-radius: .25rem;
+}
+
+.skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+}
+
+/* Glitch text */
+.glitch-text {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.glitch-text::before {
+    text-shadow: 2px 0 #00ff9f;
+    left: 2px;
+    overflow: hidden;
+    animation: glitch 3s infinite linear alternate-reverse;
+    clip: rect(0, 900px, 0, 0);
+}
+
+.glitch-text::after {
+    text-shadow: -2px 0 #00ff9f;
+    left: -2px;
+    overflow: hidden;
+    animation: glitch-2 2s infinite linear alternate-reverse;
+    clip: rect(0, 900px, 0, 0);
+}
+
+/* Scanline effect */
+.scanline-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.scanline-effect::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.2;
+    mix-blend-mode: overlay;
+    background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, .05) 0px, transparent 1px, transparent 2px);
+}
+
+/* Skill bars */
+.skill-bar {
+    position: relative;
+    height: 2rem;
+    background-color: #111111;
+    border-radius: .25rem;
+    overflow: hidden;
+    margin: .5rem 0;
+}
+
+.skill-bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(45deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .05) 10px, transparent 10px, transparent 20px);
+}
+
+.skill-fill {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    color: #222;
+    font-weight: bold;
+    transition: width 1s ease-out;
+    background: linear-gradient(90deg, #00ff9f, #006633);
+}
+
+/* Timeline */
+.timeline-item {
+    position: relative;
+    padding-left: 2rem;
+    padding-bottom: 2.5rem;
+    border-left: 1px solid #00cc66;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    background-color: #000000;
+    border: 2px solid #00ff9f;
+    border-radius: 50%;
+    left: -0.5625rem;
+    top: 0.25rem;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .glitch-text::before,
+    .glitch-text::after,
+    .scanline-effect::after {
+        animation: none !important;
+    }
+}
+
+/* Focus styles */
+:where(a, button, input, textarea, select, [role="tab"])::moz-focus-inner {
+    border: 0;
+}
+
+:where(a, button, input, textarea, select, [role="tab"]):focus-visible {
+    outline: 2px solid #00ff9f;
+    outline-offset: 3px;
+    border-radius: .25rem;
+}
+
+/* Active sidebar link */
+#sidebar a[aria-current="true"] {
+    background: rgba(0, 255, 159, .12);
+    color: #00ff9f;
+    font-weight: 700;
+}
+
+/* Glitch keyframes */
+@keyframes glitch {
+    0% {
+        clip: rect(44px, 9999px, 56px, 0)
+    }
+
+    5% {
+        clip: rect(2px, 9999px, 25px, 0)
+    }
+
+    10% {
+        clip: rect(94px, 9999px, 45px, 0)
+    }
+
+    15% {
+        clip: rect(75px, 9999px, 110px, 0)
+    }
+
+    20% {
+        clip: rect(34px, 9999px, 90px, 0)
+    }
+
+    100% {
+        clip: rect(18px, 9999px, 40px, 0)
+    }
+}
+
+@keyframes glitch-2 {
+    0% {
+        clip: rect(10px, 9999px, 130px, 0)
+    }
+
+    5% {
+        clip: rect(14px, 9999px, 90px, 0)
+    }
+
+    10% {
+        clip: rect(44px, 9999px, 56px, 0)
+    }
+
+    15% {
+        clip: rect(70px, 9999px, 45px, 0)
+    }
+
+    20% {
+        clip: rect(12px, 9999px, 75px, 0)
+    }
+
+    100% {
+        clip: rect(15px, 9999px, 60px, 0)
+    }
+}

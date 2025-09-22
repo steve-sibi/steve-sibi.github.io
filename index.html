@@ -10,20 +10,19 @@
   <meta name="author" content="Steve Joseph Sibi" />
   <meta name="color-scheme" content="light dark">
 
-  <!-- Ensure correct theme before paint -->
+  <!-- Ensure correct theme before paint (keep inline to avoid FOUC) -->
   <script>
     (function () {
       try {
         const ls = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const useDark = ls ? ls === 'dark' : prefersDark;
-        if (useDark) document.documentElement.classList.add('dark');
-        else document.documentElement.classList.remove('dark');
+        document.documentElement.classList.toggle('dark', useDark);
       } catch (e) { }
     })();
   </script>
 
-  <!-- --------------  Google Analytics 4  -------------- -->
+  <!-- --------------  Google Analytics 4 (keep inline as recommended) -------------- -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-F499NLV8V2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -40,7 +39,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
   <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#00ff9f">
   <link rel="manifest" href="icons/site.webmanifest">
-
   <link rel="shortcut icon" href="icons/favicon.ico">
 
   <!-- SEO / Social -->
@@ -78,205 +76,14 @@
   <!-- GitHub Calendar CSS -->
   <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
 
-  <!-- Tailwind CSS -->
+  <!-- Site styles -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Tailwind CDN + your config (config must load AFTER CDN, not deferred) -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind-config.js"></script>
 
-  <!-- Typed.js for text animation -->
-  <script defer src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
-  <!-- GitHub Calendar JavaScript -->
-  <script defer src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            'cyber-black': '#000000',
-            'cyber-dark': '#111111',
-            'cyber-green': '#00ff9f',
-            'cyber-green-dark': '#00cc66',
-          },
-          fontFamily: { 'share-tech': ['"Share Tech Mono"', 'monospace'] },
-          keyframes: {
-            'glitch': {
-              '0%': { clip: 'rect(44px, 9999px, 56px, 0)' },
-              '5%': { clip: 'rect(2px, 9999px, 25px, 0)' },
-              '10%': { clip: 'rect(94px, 9999px, 45px, 0)' },
-              '15%': { clip: 'rect(75px, 9999px, 110px, 0)' },
-              '20%': { clip: 'rect(34px, 9999px, 90px, 0)' },
-              '100%': { clip: 'rect(18px, 9999px, 40px, 0)' },
-            },
-            'glitch-2': {
-              '0%': { clip: 'rect(10px, 9999px, 130px, 0)' },
-              '5%': { clip: 'rect(14px, 9999px, 90px, 0)' },
-              '10%': { clip: 'rect(44px, 9999px, 56px, 0)' },
-              '15%': { clip: 'rect(70px, 9999px, 45px, 0)' },
-              '20%': { clip: 'rect(12px, 9999px, 75px, 0)' },
-              '100%': { clip: 'rect(15px, 9999px, 60px, 0)' },
-            }
-          },
-          animation: {
-            'glitch': 'glitch 3s infinite linear alternate-reverse',
-            'glitch-2': 'glitch-2 2s infinite linear alternate-reverse',
-          },
-          backgroundImage: {
-            'cyber-grid': "linear-gradient(rgba(0, 0, 0, 0.6) 2px, transparent 2px), linear-gradient(90deg, rgba(0, 0, 0, 0.6) 2px, transparent 2px)"
-          }
-        }
-      }
-    }
-  </script>
-
-  <style>
-    /* Enable smooth scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Skip link */
-    .skip-link {
-      position: absolute;
-      left: -9999px;
-      top: 0;
-      background: #00ff9f;
-      color: #000;
-      padding: .5rem 1rem;
-      z-index: 10000;
-      border-radius: .25rem;
-    }
-
-    .skip-link:focus {
-      left: 1rem;
-      top: 1rem;
-    }
-
-    /* Custom CSS */
-    .glitch-text {
-      position: relative;
-      display: inline-block;
-    }
-
-    .glitch-text::before,
-    .glitch-text::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    .glitch-text::before {
-      text-shadow: 2px 0 #00ff9f;
-      left: 2px;
-      overflow: hidden;
-      animation: glitch 3s infinite linear alternate-reverse;
-      clip: rect(0, 900px, 0, 0);
-    }
-
-    .glitch-text::after {
-      text-shadow: -2px 0 #00ff9f;
-      left: -2px;
-      overflow: hidden;
-      animation: glitch-2 2s infinite linear alternate-reverse;
-      clip: rect(0, 900px, 0, 0);
-    }
-
-    .scanline-effect {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .scanline-effect::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      opacity: 0.2;
-      mix-blend-mode: overlay;
-      background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, .05) 0px, transparent 1px, transparent 2px);
-    }
-
-    .skill-bar {
-      position: relative;
-      height: 2rem;
-      background-color: #111111;
-      border-radius: .25rem;
-      overflow: hidden;
-      margin: .5rem 0;
-    }
-
-    .skill-bar::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: repeating-linear-gradient(45deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .05) 10px, transparent 10px, transparent 20px);
-    }
-
-    .skill-fill {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      padding: 0 1rem;
-      color: #222;
-      font-weight: bold;
-      transition: width 1s ease-out;
-      background: linear-gradient(90deg, #00ff9f, #006633);
-    }
-
-    .timeline-item {
-      position: relative;
-      padding-left: 2rem;
-      padding-bottom: 2.5rem;
-      border-left: 1px solid #00cc66;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      width: 1rem;
-      height: 1rem;
-      background-color: #000000;
-      border: 2px solid #00ff9f;
-      border-radius: 50%;
-      left: -0.5625rem;
-      top: 0.25rem;
-    }
-
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      .glitch-text::before,
-      .glitch-text::after,
-      .scanline-effect::after {
-        animation: none !important;
-      }
-    }
-
-    :where(a, button, input, textarea, select, [role="tab"])::moz-focus-inner {
-      border: 0
-    }
-
-    :where(a, button, input, textarea, select, [role="tab"]):focus-visible {
-      outline: 2px solid #00ff9f;
-      outline-offset: 3px;
-      border-radius: .25rem;
-    }
-
-    #sidebar a[aria-current="true"] {
-      background: rgba(0, 255, 159, .12);
-      color: #00ff9f;
-      font-weight: 700;
-    }
-  </style>
-
+  <!-- Structured data -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -874,7 +681,7 @@
             </div>
           </div>
 
-          <!-- Programming (hidden) -->
+          <!-- Programming -->
           <div class="skill-content hidden" id="prog-skills" role="tabpanel" aria-labelledby="tab-prog" tabindex="0"
             hidden>
             <div class="flex items-center mb-4">
@@ -913,7 +720,7 @@
             </div>
           </div>
 
-          <!-- Operating Systems (hidden) -->
+          <!-- Operating Systems -->
           <div class="skill-content hidden" id="os-skills" role="tabpanel" aria-labelledby="tab-os" tabindex="0" hidden>
             <div class="flex items-center mb-4">
               <i class="fas fa-desktop mr-2 text-cyber-green" aria-hidden="true"></i>
@@ -933,7 +740,7 @@
             </div>
           </div>
 
-          <!-- Cloud (hidden) -->
+          <!-- Cloud -->
           <div class="skill-content hidden" id="cloud-skills" role="tabpanel" aria-labelledby="tab-cloud" tabindex="0"
             hidden>
             <div class="flex items-center mb-4">
@@ -1142,191 +949,12 @@
     <i class="fas fa-chevron-down text-cyber-green" aria-hidden="true"></i>
   </button>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Dark/Light Mode Toggle (with persistence)
-      const themeToggle = document.getElementById('themeToggle');
-      const setThemeIcon = () => {
-        const isDark = document.documentElement.classList.contains('dark');
-        themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-        themeToggle.setAttribute('aria-pressed', String(isDark));
-      };
-      setThemeIcon();
-      themeToggle.addEventListener('click', function () {
-        document.documentElement.classList.toggle('dark');
-        const isDark = document.documentElement.classList.contains('dark');
-        try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) { }
-        setThemeIcon();
-      });
+  <!-- Vendor libraries -->
+  <script defer src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script defer src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
 
-      // Accessible Mobile menu (drawer)
-      const sidebar = document.getElementById('sidebar');
-      const menuButton = document.getElementById('menuButton');
-      const menuIcon = document.getElementById('menuIcon');
-      const overlay = document.getElementById('sidebarOverlay');
-      let lastFocused;
-      const isOpen = () => !sidebar.classList.contains('-translate-x-full');
-
-      function openSidebar() {
-        lastFocused = document.activeElement;
-        sidebar.classList.remove('-translate-x-full');
-        overlay.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-        menuButton.setAttribute('aria-expanded', 'true');
-        menuIcon.classList.replace('fa-bars', 'fa-times');
-        sidebar.focus({ preventScroll: true });
-      }
-      function closeSidebar() {
-        sidebar.classList.add('-translate-x-full');
-        overlay.classList.add('hidden');
-        document.body.style.overflow = '';
-        menuButton.setAttribute('aria-expanded', 'false');
-        menuIcon.classList.replace('fa-times', 'fa-bars');
-        if (lastFocused) lastFocused.focus();
-      }
-      menuButton.addEventListener('click', () => (isOpen() ? closeSidebar() : openSidebar()));
-      overlay.addEventListener('click', closeSidebar);
-
-      // Close on Esc & trap focus while open
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && isOpen()) { e.preventDefault(); closeSidebar(); }
-        if (e.key === 'Tab' && isOpen()) {
-          const focusables = sidebar.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
-          if (!focusables.length) return;
-          const first = focusables[0];
-          const last = focusables[focusables.length - 1];
-          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-        }
-      });
-      // Close when clicking a nav link on mobile
-      sidebar.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          if (window.innerWidth < 768 && isOpen()) closeSidebar();
-        });
-      });
-
-      // TypedJS (respect reduced motion)
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!prefersReduced) {
-        var typed = new Typed("#typed-text", {
-          strings: [
-            "Penetration Testing",
-            "Reverse Engineering",
-            "Secure Software Engineering",
-            "SIEM",
-            "Data Privacy &amp; Encryption",
-          ],
-          typeSpeed: 50,
-          backSpeed: 50,
-          backDelay: 2000,
-          loop: true,
-        });
-      } else {
-        const typedEl = document.getElementById('typed-text');
-        if (typedEl) typedEl.textContent = "Cybersecurity";
-      }
-
-
-      // GitHub Calendar
-      GitHubCalendar("#github-calendar", "steve-sibi", { responsive: true, summary: false });
-
-      // Accessible tabs for Skills
-      const tablist = document.querySelector('[role="tablist"]');
-      const tabs = tablist ? tablist.querySelectorAll('[role="tab"]') : [];
-      const panels = document.querySelectorAll('[role="tabpanel"]');
-
-      function activateTab(tab) {
-        tabs.forEach(t => {
-          const selected = t === tab;
-          t.setAttribute('aria-selected', selected ? 'true' : 'false');
-          t.tabIndex = selected ? 0 : -1;
-          t.classList.toggle('bg-cyber-green', selected);
-          t.classList.toggle('text-black', selected);
-          t.classList.toggle('bg-transparent', !selected);
-          t.classList.toggle('text-gray-800', !selected);
-        });
-        panels.forEach(p => {
-          const match = p.id === tab.getAttribute('aria-controls');
-          p.hidden = !match;
-          p.classList.toggle('hidden', !match);
-        });
-        tab.focus();
-      }
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => activateTab(tab));
-        tab.addEventListener('keydown', (e) => {
-          const i = Array.prototype.indexOf.call(tabs, tab);
-          let newIndex = i;
-          switch (e.key) {
-            case 'ArrowRight':
-            case 'ArrowDown': newIndex = (i + 1) % tabs.length; break;
-            case 'ArrowLeft':
-            case 'ArrowUp': newIndex = (i - 1 + tabs.length) % tabs.length; break;
-            case 'Home': newIndex = 0; break;
-            case 'End': newIndex = tabs.length - 1; break;
-            default: return;
-          }
-          e.preventDefault();
-          activateTab(tabs[newIndex]);
-        });
-      });
-
-      // Scroll Arrow
-      const scrollArrow = document.getElementById('scroll-arrow');
-      window.addEventListener('scroll', function () {
-        if (window.scrollY > 300) scrollArrow.classList.remove('opacity-0');
-        else scrollArrow.classList.add('opacity-0');
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-          scrollArrow.querySelector('i').classList.replace('fa-chevron-down', 'fa-chevron-up');
-          scrollArrow.setAttribute('aria-label', 'Scroll to top');
-        } else {
-          scrollArrow.querySelector('i').classList.replace('fa-chevron-up', 'fa-chevron-down');
-          scrollArrow.setAttribute('aria-label', 'Scroll down');
-        }
-      });
-      scrollArrow.addEventListener('click', function () {
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          const sections = document.querySelectorAll('section');
-          const currentScroll = window.scrollY + 50;
-          const nextSection = Array.from(sections).find(section => section.offsetTop > currentScroll);
-          if (nextSection) nextSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-
-      // Résumé download analytics tracking
-      document.querySelectorAll('[data-resume-download]').forEach(link => {
-        link.addEventListener('click', () => {
-          if (typeof gtag === 'function') {
-            gtag('event', 'download_resume', {
-              'event_category': 'engagement',
-              'event_label': 'resume_pdf'
-            });
-          }
-        });
-      });
-
-      // Active nav link (aria-current) as you scroll
-      const sections = document.querySelectorAll('main section[id]');
-      const navLinks = Array.from(document.querySelectorAll('#sidebar a[href^="#"]'));
-
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const id = entry.target.id;
-          const link = navLinks.find(a => a.getAttribute('href') === `#${id}`);
-          if (!link) return;
-          if (entry.isIntersecting) {
-            navLinks.forEach(a => a.removeAttribute('aria-current'));
-            link.setAttribute('aria-current', 'true');
-          }
-        });
-      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
-
-      sections.forEach(s => io.observe(s));
-    });
-  </script>
+  <!-- JS -->
+  <script defer src="js/main.js"></script>
 </body>
 
 </html>
