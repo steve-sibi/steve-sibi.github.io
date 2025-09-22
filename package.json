@@ -1,0 +1,25 @@
+{
+  "name": "steve-sibi.github.io",
+  "version": "1.0.0",
+  "description": "My Portfolio Website",
+  "homepage": "https://github.com/steve-sibi/steve-sibi.github.io#readme",
+  "bugs": {
+    "url": "https://github.com/steve-sibi/steve-sibi.github.io/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steve-sibi/steve-sibi.github.io.git"
+  },
+  "license": "ISC",
+  "author": "Steve Sibi",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/tailwind.css -o ./css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./src/tailwind.css -o ./css/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.13",
+    "tailwindcss": "^4.1.13"
+  }
+}
