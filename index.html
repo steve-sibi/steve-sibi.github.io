@@ -394,6 +394,7 @@
     <!-- Projects Section -->
     <section id="projects" class="py-20 px-6">
       <div class="container mx-auto max-w-5xl">
+        <!-- Section header -->
         <div class="flex items-center pb-6 mb-6 border-b border-gray-200 dark:border-cyber-green-dark relative">
           <h2 class="text-2xl md:text-3xl font-bold text-black dark:text-cyber-green">Projects</h2>
           <div
@@ -404,148 +405,369 @@
           <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div
-            class="border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
-            <div class="flex items-start gap-3">
+        <!-- Controls -->
+        <div id="projectControls" class="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <!-- Filter chips -->
+          <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter projects by topic">
+            <button
+              class="project-filter px-3 py-1.5 rounded-md border border-gray-300 dark:border-cyber-green-dark text-gray-800 dark:text-cyber-green-dark hover:text-black hover:bg-cyber-green/20 transition"
+              data-filter="all" aria-pressed="true">All</button>
+            <button
+              class="project-filter px-3 py-1.5 rounded-md border border-gray-300 dark:border-cyber-green-dark text-gray-800 dark:text-cyber-green-dark hover:text-black hover:bg-cyber-green/20 transition"
+              data-filter="security" aria-pressed="false">Security</button>
+            <button
+              class="project-filter px-3 py-1.5 rounded-md border border-gray-300 dark:border-cyber-green-dark text-gray-800 dark:text-cyber-green-dark hover:text-black hover:bg-cyber-green/20 transition"
+              data-filter="cloud" aria-pressed="false">Cloud</button>
+            <button
+              class="project-filter px-3 py-1.5 rounded-md border border-gray-300 dark:border-cyber-green-dark text-gray-800 dark:text-cyber-green-dark hover:text-black hover:bg-cyber-green/20 transition"
+              data-filter="privacy" aria-pressed="false">Privacy</button>
+            <button
+              class="project-filter px-3 py-1.5 rounded-md border border-gray-300 dark:border-cyber-green-dark text-gray-800 dark:text-cyber-green-dark hover:text-black hover:bg-cyber-green/20 transition"
+              data-filter="automation" aria-pressed="false">Automation</button>
+            <button
+              class="project-filter px-3 py-1.5 rounded-md border border-gray-300 dark:border-cyber-green-dark text-gray-800 dark:text-cyber-green-dark hover:text-black hover:bg-cyber-green/20 transition"
+              data-filter="forensics" aria-pressed="false">Forensics</button>
+            <button
+              class="project-filter px-3 py-1.5 rounded-md border border-gray-300 dark:border-cyber-green-dark text-gray-800 dark:text-cyber-green-dark hover:text-black hover:bg-cyber-green/20 transition"
+              data-filter="ml" aria-pressed="false">ML</button>
+          </div>
+
+          <!-- Search + sort -->
+          <div class="flex items-center gap-3">
+            <label for="projectSearch" class="sr-only">Search projects</label>
+            <input id="projectSearch" type="search" inputmode="search" autocomplete="off" placeholder="Search projects…"
+              class="w-56 md:w-72 px-3 py-2 rounded-md border border-gray-300 dark:border-cyber-green-dark bg-white dark:bg-cyber-dark text-sm outline-none focus-visible:ring-2 focus-visible:ring-cyber-green" />
+            <label for="projectSort" class="sr-only">Sort projects</label>
+            <select id="projectSort"
+              class="px-3 py-2 rounded-md border border-gray-300 dark:border-cyber-green-dark bg-white dark:bg-cyber-dark text-sm outline-none focus-visible:ring-2 focus-visible:ring-cyber-green">
+              <option value="default">Sort</option>
+              <option value="az">A → Z</option>
+              <option value="za">Z → A</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Live count -->
+        <p id="projectCount" class="text-sm text-gray-600 dark:text-gray-400 mb-3">Showing 8 projects</p>
+
+        <!-- Grid -->
+        <div id="projectGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Card -->
+          <article
+            class="project-card border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 transition-all duration-300"
+            data-title="Account Takeover (ATO) Detection and Response" data-tags="security,cloud,automation"
+            data-tech="Python, Flask, Datadog, Azure, Azure Functions, Signed Webhooks"
+            data-link="https://github.com/steve-sibi/mini-saas-ato"
+            data-readme="https://github.com/steve-sibi/mini-saas-ato#readme"
+            data-clone="https://github.com/steve-sibi/mini-saas-ato.git"
+            data-highlights="Detects brute-force & credential-stuffing with Datadog pipelines;Signed webhooks + Azure Functions invalidate sessions in seconds;Production-like lab with safe ATO flows">
+            <header class="flex items-start gap-3">
               <div class="text-cyber-green mt-1"><i class="fas fa-user-secret" aria-hidden="true"></i></div>
               <div>
-                <h3 class="font-bold text-lg mb-2 text-black dark:text-cyber-green">Account Takeover (ATO) Detection and
+                <h3 class="font-bold text-lg mb-1 text-black dark:text-cyber-green">Account Takeover (ATO) Detection and
                   Response</h3>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">A production-style ATO simulation lab with
-                  Flask, Datadog, Azure Functions, & signed webhooks for real-time session invalidation.</p>
-                <a href="https://github.com/steve-sibi/mini-saas-ato" target="_blank" rel="noopener noreferrer"
-                  class="text-cyber-green hover:text-cyber-green-dark transition-colors inline-flex items-center gap-1">
-                  <span>View Project</span><i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
-                </a>
+                <p class="text-sm text-gray-700 dark:text-gray-300">A production-style ATO simulation lab with Flask,
+                  Datadog, Azure Functions, &amp; signed webhooks for real-time session invalidation.</p>
               </div>
+            </header>
+            <div class="mt-4 flex flex-wrap gap-2" aria-label="Technologies used">
+              <span class="tech-pill">Python</span><span class="tech-pill">Flask</span><span
+                class="tech-pill">Datadog</span><span class="tech-pill">Azure</span>
             </div>
-          </div>
+            <div class="project-actions mt-4">
+              <a class="project-btn project-btn--ghost" href="https://github.com/steve-sibi/mini-saas-ato"
+                target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i><span>Repo</span>
+              </a>
+              <button class="project-btn project-btn--solid quick-view" type="button" aria-haspopup="dialog">
+                <i class="fas fa-eye text-xs" aria-hidden="true"></i><span>Quick View</span>
+              </button>
+            </div>
+          </article>
 
-          <div
-            class="border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
-            <div class="flex items-start gap-3">
-              <div class="text-cyber-green mt-1"><i class="fas fa-user-secret" aria-hidden="true"></i></div>
+          <article
+            class="project-card border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 transition-all duration-300"
+            data-title="Azure Secure Microservice Blueprint" data-tags="cloud,security,automation"
+            data-tech="FastAPI, Python, Azure Container Apps, Terraform, GitHub Actions OIDC, Service Bus, KEDA, Key Vault"
+            data-link="https://github.com/steve-sibi/azure-devsecops-aca"
+            data-readme="https://github.com/steve-sibi/azure-devsecops-aca#readme"
+            data-clone="https://github.com/steve-sibi/azure-devsecops-aca.git"
+            data-highlights="Zero-secrets CI with GitHub OIDC;KEDA autoscaling from queue depth;IaC with Terraform across environments">
+            <header class="flex items-start gap-3">
+              <div class="text-cyber-green mt-1"><i class="fas fa-cloud" aria-hidden="true"></i></div>
               <div>
-                <h3 class="font-bold text-lg mb-2 text-black dark:text-cyber-green">Azure Secure Microservice Blueprint
+                <h3 class="font-bold text-lg mb-1 text-black dark:text-cyber-green">Azure Secure Microservice Blueprint
                 </h3>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">Built a secure, event-driven microservice on
-                  Azure Container Apps (FastAPI + worker) with Terraform and GitHub Actions (OIDC), using Key Vault
-                  secret refs, Service Bus, and KEDA autoscaling.</p>
-                <a href="https://github.com/steve-sibi/azure-devsecops-aca" target="_blank" rel="noopener noreferrer"
-                  class="text-cyber-green hover:text-cyber-green-dark transition-colors inline-flex items-center gap-1">
-                  <span>View Project</span><i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
-                </a>
+                <p class="text-sm text-gray-700 dark:text-gray-300">Event-driven microservice on Azure Container Apps
+                  with Terraform &amp; GitHub Actions (OIDC), KEDA autoscaling, Key Vault refs, and Service Bus.</p>
               </div>
+            </header>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="tech-pill">FastAPI</span><span class="tech-pill">Terraform</span><span
+                class="tech-pill">KEDA</span><span class="tech-pill">Service Bus</span>
             </div>
-          </div>
+            <div class="project-actions mt-4">
+              <a class="project-btn project-btn--ghost" href="https://github.com/steve-sibi/azure-devsecops-aca"
+                target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i><span>Repo</span>
+              </a>
+              <button class="project-btn project-btn--solid quick-view" type="button" aria-haspopup="dialog">
+                <i class="fas fa-eye text-xs" aria-hidden="true"></i><span>Quick View</span>
+              </button>
+            </div>
+          </article>
 
-          <div
-            class="border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
-            <div class="flex items-start gap-3">
+          <article
+            class="project-card border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 transition-all duration-300"
+            data-title="PrivacyFusion" data-tags="privacy,security"
+            data-tech="Python, PyQt, Diffprivlib, TenSEAL, Homomorphic Encryption"
+            data-link="https://github.com/steve-sibi/DataPriv-Encryptor"
+            data-readme="https://github.com/steve-sibi/DataPriv-Encryptor#readme"
+            data-clone="https://github.com/steve-sibi/DataPriv-Encryptor.git"
+            data-highlights="Hands-on differential privacy workflows;Homomorphic encryption transforms with TenSEAL;Desktop UX with PyQt">
+            <header class="flex items-start gap-3">
               <div class="text-cyber-green mt-1"><i class="fas fa-user-secret" aria-hidden="true"></i></div>
               <div>
-                <h3 class="font-bold text-lg mb-2 text-black dark:text-cyber-green">PrivacyFusion</h3>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">A PyQt-based toolkit integrating Diffprivlib
-                  and TenSEAL for differential privacy &amp; homomorphic encryption solutions.</p>
-                <a href="https://github.com/steve-sibi/DataPriv-Encryptor" target="_blank" rel="noopener noreferrer"
-                  class="text-cyber-green hover:text-cyber-green-dark transition-colors inline-flex items-center gap-1">
-                  <span>View Project</span><i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
-                </a>
+                <h3 class="font-bold text-lg mb-1 text-black dark:text-cyber-green">PrivacyFusion</h3>
+                <p class="text-sm text-gray-700 dark:text-gray-300">Toolkit that blends Diffprivlib and TenSEAL to demo
+                  differential privacy &amp; homomorphic encryption workflows.</p>
               </div>
+            </header>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="tech-pill">PyQt</span><span class="tech-pill">Diffprivlib</span><span
+                class="tech-pill">TenSEAL</span>
             </div>
-          </div>
+            <div class="project-actions mt-4">
+              <a class="project-btn project-btn--ghost" href="https://github.com/steve-sibi/DataPriv-Encryptor"
+                target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i><span>Repo</span>
+              </a>
+              <button class="project-btn project-btn--solid quick-view" type="button" aria-haspopup="dialog">
+                <i class="fas fa-eye text-xs" aria-hidden="true"></i><span>Quick View</span>
+              </button>
+            </div>
+          </article>
 
-          <div
-            class="border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
-            <div class="flex items-start gap-3">
+          <article
+            class="project-card border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 transition-all duration-300"
+            data-title="Automated Vulnerability Scanner" data-tags="security,automation"
+            data-tech="Python, Flask, Concurrency, Nmap"
+            data-link="https://github.com/steve-sibi/Automated-Vulnerability-Scanner"
+            data-readme="https://github.com/steve-sibi/Automated-Vulnerability-Scanner#readme"
+            data-clone="https://github.com/steve-sibi/Automated-Vulnerability-Scanner.git"
+            data-highlights="Concurrent network scans (async workers);Interactive Flask results UI;Built-in Nmap parsing">
+            <header class="flex items-start gap-3">
               <div class="text-cyber-green mt-1"><i class="fas fa-bug" aria-hidden="true"></i></div>
               <div>
-                <h3 class="font-bold text-lg mb-2 text-black dark:text-cyber-green">Automated Vulnerability Scanner</h3>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">A Flask app that performs concurrent network
-                  scans and displays results in an interactive interface.</p>
-                <a href="https://github.com/steve-sibi/Automated-Vulnerability-Scanner" target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-cyber-green hover:text-cyber-green-dark transition-colors inline-flex items-center gap-1">
-                  <span>View Project</span><i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
-                </a>
+                <h3 class="font-bold text-lg mb-1 text-black dark:text-cyber-green">Automated Vulnerability Scanner</h3>
+                <p class="text-sm text-gray-700 dark:text-gray-300">Concurrent network scans with an interactive Flask
+                  UI.</p>
               </div>
+            </header>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="tech-pill">Flask</span><span class="tech-pill">Nmap</span><span
+                class="tech-pill">Concurrency</span>
             </div>
-          </div>
+            <div class="project-actions mt-4">
+              <a class="project-btn project-btn--ghost"
+                href="https://github.com/steve-sibi/Automated-Vulnerability-Scanner" target="_blank"
+                rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i><span>Repo</span>
+              </a>
+              <button class="project-btn project-btn--solid quick-view" type="button" aria-haspopup="dialog">
+                <i class="fas fa-eye text-xs" aria-hidden="true"></i><span>Quick View</span>
+              </button>
+            </div>
+          </article>
 
-          <div
-            class="border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
-            <div class="flex items-start gap-3">
+          <article
+            class="project-card border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 transition-all duration-300"
+            data-title="Server Hardening Script Suite" data-tags="security,automation"
+            data-tech="Bash, Linux, SSH, Firewall, Password Policy"
+            data-link="https://github.com/steve-sibi/Server-Hardening-Script"
+            data-readme="https://github.com/steve-sibi/Server-Hardening-Script#readme"
+            data-clone="https://github.com/steve-sibi/Server-Hardening-Script.git"
+            data-highlights="Baseline hardening aligned with CIS-style controls;Auto-configures firewall & SSH;Enforces password & logging policies">
+            <header class="flex items-start gap-3">
               <div class="text-cyber-green mt-1"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
               <div>
-                <h3 class="font-bold text-lg mb-2 text-black dark:text-cyber-green">Server Hardening Script Suite</h3>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">An automated Linux server hardening script that
-                  performs system updates, disables unnecessary services, configures firewalls &amp; SSH, enforces
-                  strong password policies, and manages logs.</p>
-                <a href="https://github.com/steve-sibi/Server-Hardening-Script" target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-cyber-green hover:text-cyber-green-dark transition-colors inline-flex items-center gap-1">
-                  <span>View Project</span><i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
-                </a>
+                <h3 class="font-bold text-lg mb-1 text-black dark:text-cyber-green">Server Hardening Script Suite</h3>
+                <p class="text-sm text-gray-700 dark:text-gray-300">Automated Linux hardening (updates, services,
+                  firewalls &amp; SSH, strong passwords, logging).</p>
               </div>
+            </header>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="tech-pill">Bash</span><span class="tech-pill">Linux</span><span
+                class="tech-pill">Security</span>
             </div>
-          </div>
+            <div class="project-actions mt-4">
+              <a class="project-btn project-btn--ghost" href="https://github.com/steve-sibi/Server-Hardening-Script"
+                target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i><span>Repo</span>
+              </a>
+              <button class="project-btn project-btn--solid quick-view" type="button" aria-haspopup="dialog">
+                <i class="fas fa-eye text-xs" aria-hidden="true"></i><span>Quick View</span>
+              </button>
+            </div>
+          </article>
 
-          <div
-            class="border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
-            <div class="flex items-start gap-3">
+          <article
+            class="project-card border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 transition-all duration-300"
+            data-title="Exploring Differential Privacy in ML" data-tags="privacy,ml"
+            data-tech="TensorFlow Privacy, Logistic Regression, Python"
+            data-link="https://github.com/steve-sibi/differential-privacy-ml"
+            data-readme="https://github.com/steve-sibi/differential-privacy-ml#readme"
+            data-clone="https://github.com/steve-sibi/differential-privacy-ml.git"
+            data-highlights="Compare standard vs DP logistic regression;Track accuracy vs privacy (ε) tradeoffs;Clear, reproducible notebook">
+            <header class="flex items-start gap-3">
               <div class="text-cyber-green mt-1"><i class="fas fa-lock" aria-hidden="true"></i></div>
               <div>
-                <h3 class="font-bold text-lg mb-2 text-black dark:text-cyber-green">Exploring Differential Privacy in ML
+                <h3 class="font-bold text-lg mb-1 text-black dark:text-cyber-green">Exploring Differential Privacy in ML
                 </h3>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">Demonstrates how to integrate TensorFlow
-                  Privacy to compare standard vs. differentially private logistic regression on the Iris dataset.</p>
-                <a href="https://github.com/steve-sibi/differential-privacy-ml" target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-cyber-green hover:text-cyber-green-dark transition-colors inline-flex items-center gap-1">
-                  <span>View Project</span><i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
-                </a>
+                <p class="text-sm text-gray-700 dark:text-gray-300">Standard vs. differentially private logistic
+                  regression using TensorFlow Privacy.</p>
               </div>
+            </header>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="tech-pill">TensorFlow Privacy</span><span class="tech-pill">Python</span>
             </div>
-          </div>
+            <div class="project-actions mt-4">
+              <a class="project-btn project-btn--ghost" href="https://github.com/steve-sibi/differential-privacy-ml"
+                target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i><span>Repo</span>
+              </a>
+              <button class="project-btn project-btn--solid quick-view" type="button" aria-haspopup="dialog">
+                <i class="fas fa-eye text-xs" aria-hidden="true"></i><span>Quick View</span>
+              </button>
+            </div>
+          </article>
 
-          <div
-            class="border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
-            <div class="flex items-start gap-3">
+          <article
+            class="project-card border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 transition-all duration-300"
+            data-title="Mactime Beautifier" data-tags="forensics,automation"
+            data-tech="Python, Linux, Forensics, Log Parsing"
+            data-link="https://github.com/steve-sibi/mactimebeautifier"
+            data-readme="https://github.com/steve-sibi/mactimebeautifier#readme"
+            data-clone="https://github.com/steve-sibi/mactimebeautifier.git"
+            data-highlights="Parses & normalizes mactime CSV;Filters & exports clean timelines;CLI-first, scriptable">
+            <header class="flex items-start gap-3">
               <div class="text-cyber-green mt-1"><i class="fas fa-clock" aria-hidden="true"></i></div>
               <div>
-                <h3 class="font-bold text-lg mb-2 text-black dark:text-cyber-green">Mactime Beautifier</h3>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">Automates and cleans up forensic Mactime data,
-                  parsing logs to streamline forensic timelines in Linux environments.</p>
-                <a href="https://github.com/steve-sibi/mactimebeautifier" target="_blank" rel="noopener noreferrer"
-                  class="text-cyber-green hover:text-cyber-green-dark transition-colors inline-flex items-center gap-1">
-                  <span>View Project</span><i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
-                </a>
+                <h3 class="font-bold text-lg mb-1 text-black dark:text-cyber-green">Mactime Beautifier</h3>
+                <p class="text-sm text-gray-700 dark:text-gray-300">Cleans and formats Mactime data to streamline
+                  forensic timelines.</p>
               </div>
+            </header>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="tech-pill">Forensics</span><span class="tech-pill">Parsing</span><span
+                class="tech-pill">Linux</span>
             </div>
-          </div>
+            <div class="project-actions mt-4">
+              <a class="project-btn project-btn--ghost" href="https://github.com/steve-sibi/mactimebeautifier"
+                target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i><span>Repo</span>
+              </a>
+              <button class="project-btn project-btn--solid quick-view" type="button" aria-haspopup="dialog">
+                <i class="fas fa-eye text-xs" aria-hidden="true"></i><span>Quick View</span>
+              </button>
+            </div>
+          </article>
 
-          <div
-            class="border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 h-full transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,255,159,0.3)]">
-            <div class="flex items-start gap-3">
+          <article
+            class="project-card border border-cyber-green p-5 rounded-lg bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-30 transition-all duration-300"
+            data-title="Splunk Enterprise + Splunk SOAR Lab" data-tags="security,automation"
+            data-tech="Splunk, SOAR, Dashboards, Correlation Searches, Playbooks"
+            data-link="https://github.com/steve-sibi/splunk-siem-homelab"
+            data-readme="https://github.com/steve-sibi/splunk-siem-homelab#readme"
+            data-clone="https://github.com/steve-sibi/splunk-siem-homelab.git"
+            data-highlights="Ingests Windows & Linux logs;Custom SPL correlation searches;Automated SOAR playbooks">
+            <header class="flex items-start gap-3">
               <div class="text-cyber-green mt-1"><i class="fas fa-server" aria-hidden="true"></i></div>
               <div>
-                <h3 class="font-bold text-lg mb-2 text-black dark:text-cyber-green">Splunk Enterprise + Splunk SOAR Lab
+                <h3 class="font-bold text-lg mb-1 text-black dark:text-cyber-green">Splunk Enterprise + Splunk SOAR Lab
                 </h3>
-                <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">Built a homelab using Splunk Enterprise to
-                  ingest logs from Windows and Linux endpoints, created custom dashboards and correlation searches in
-                  SPL, and integrated Splunk SOAR to automate incident response playbooks.</p>
-                <a href="https://github.com/steve-sibi/splunk-siem-homelab" target="_blank" rel="noopener noreferrer"
-                  class="text-cyber-green hover:text-cyber-green-dark transition-colors inline-flex items-center gap-1">
-                  <span>View Project</span><i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
-                </a>
+                <p class="text-sm text-gray-700 dark:text-gray-300">Homelab ingesting logs, custom dashboards and SPL
+                  rules, with SOAR playbooks for response automation.</p>
               </div>
+            </header>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="tech-pill">Splunk</span><span class="tech-pill">SOAR</span><span
+                class="tech-pill">Automation</span>
             </div>
-          </div>
+            <div class="project-actions mt-4">
+              <a class="project-btn project-btn--ghost" href="https://github.com/steve-sibi/splunk-siem-homelab"
+                target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i><span>Repo</span>
+              </a>
+              <button class="project-btn project-btn--solid quick-view" type="button" aria-haspopup="dialog">
+                <i class="fas fa-eye text-xs" aria-hidden="true"></i><span>Quick View</span>
+              </button>
+            </div>
+          </article>
+        </div>
 
+        <!-- Empty state -->
+        <p id="projectEmpty" class="hidden mt-8 text-center text-gray-600 dark:text-gray-400">No projects match your
+          filters.</p>
+
+        <!-- Footer link -->
+        <div class="text-center mt-8">
+          <a href="https://github.com/steve-sibi" target="_blank" rel="noopener noreferrer"
+            class="px-6 py-3 border border-cyber-green text-cyber-green rounded-md hover:bg-cyber-green hover:bg-opacity-20 transition-all">
+            View All on GitHub
+          </a>
         </div>
       </div>
     </section>
+
+    <!-- Reusable Quick-View Modal -->
+    <div id="projectModal" class="fixed inset-0 z-[60] hidden">
+      <button class="absolute inset-0 bg-black/70" data-close-modal aria-label="Close"></button>
+      <div
+        class="relative mx-auto my-12 w-[92%] max-w-2xl rounded-xl border border-cyber-green bg-gray-100 dark:bg-cyber-dark dark:bg-opacity-90 p-6 shadow-[0_0_30px_rgba(0,255,159,0.15)]">
+        <div class="flex items-start justify-between gap-4">
+          <h3 id="modalTitle" class="text-xl font-bold text-black dark:text-cyber-green">Project</h3>
+          <button class="rounded-md px-2 py-1 border border-cyber-green text-cyber-green hover:bg-cyber-green/20"
+            data-close-modal aria-label="Close dialog">
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- optional image preview (shown only if data-img is present) -->
+        <div id="modalMedia" class="mt-4 hidden">
+          <img id="modalImg" src="" alt=""
+            class="w-full aspect-video object-cover rounded-lg border border-cyber-green/40">
+        </div>
+
+        <p id="modalDesc" class="mt-4 text-gray-700 dark:text-gray-300"></p>
+
+        <div class="modal-section mt-4">
+          <h4 class="modal-h4">Key Highlights</h4>
+          <ul id="modalHighlights" class="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300"></ul>
+        </div>
+
+        <div class="modal-section mt-4">
+          <h4 class="modal-h4">Stack</h4>
+          <div id="modalTech" class="mt-2 flex flex-wrap gap-2"></div>
+        </div>
+
+        <div class="modal-section mt-4">
+          <h4 class="modal-h4">Links</h4>
+          <div class="flex flex-wrap gap-2">
+            <a id="modalLink" href="#" target="_blank" rel="noopener noreferrer"
+              class="project-btn project-btn--solid"><i class="fas fa-external-link-alt text-xs"></i><span>Open
+                Repo</span></a>
+            <a id="modalReadme" href="#" target="_blank" rel="noopener noreferrer"
+              class="project-btn project-btn--ghost"><i class="fas fa-book text-xs"></i><span>README</span></a>
+            <button id="modalCopy" type="button" class="project-btn project-btn--ghost">
+              <i class="fas fa-copy text-xs"></i><span>Copy <code>git clone</code></span>
+            </button>
+          </div>
+          <p id="modalToast" class="mt-2 text-xs text-cyber-green hidden">Copied to clipboard</p>
+        </div>
+      </div>
+    </div>
+
 
     <!-- GitHub Activity Section -->
     <section id="github-activity" class="py-20 px-6 bg-gray-50 dark:bg-cyber-dark dark:bg-opacity-30">

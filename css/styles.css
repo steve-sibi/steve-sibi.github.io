@@ -280,3 +280,93 @@ html {
         animation: none !important;
     }
 }
+
+/* === Projects: roomier buttons & layout === */
+:root {
+    --color-cyber-green: #00ff9f;
+}
+
+.project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem .6rem;
+    /* tighter vertical gap on wrap */
+}
+
+.project-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .6rem .9rem;
+    /* more breathing room */
+    min-height: 2.5rem;
+    /* consistent touch target */
+    line-height: 1;
+    border-radius: .6rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.project-btn i {
+    position: relative;
+    top: -0.5px;
+}
+
+.project-btn--ghost {
+    border: 1px solid var(--color-cyber-green);
+    color: var(--color-cyber-green);
+    background: transparent;
+}
+
+.project-btn--ghost:hover {
+    background: rgba(0, 255, 159, .12);
+}
+
+.project-btn--solid {
+    background: var(--color-cyber-green);
+    color: #000;
+    border: 1px solid var(--color-cyber-green);
+}
+
+.project-btn--solid:hover {
+    filter: brightness(.95);
+}
+
+/* keep hover lift */
+.project-card {
+    will-change: transform, box-shadow;
+}
+
+.project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 18px rgba(0, 255, 159, .25);
+}
+
+/* pills */
+.tech-pill {
+    display: inline-block;
+    padding: .22rem .6rem;
+    border-radius: 9999px;
+    font-size: .72rem;
+    line-height: 1;
+    border: 1px solid rgba(0, 255, 159, .35);
+    color: #00ff9f;
+    background: rgba(0, 255, 159, .06);
+}
+
+/* active filter chip */
+.project-filter[aria-pressed="true"] {
+    background: #00ff9f;
+    color: #000;
+    border-color: #00ff9f;
+    font-weight: 700;
+}
+
+/* modal headings */
+.modal-h4 {
+    font-weight: 800;
+    font-size: .9rem;
+    color: #00ff9f;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}

@@ -180,5 +180,162 @@
             });
         }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
         sections.forEach(s => io.observe(s));
+
+        // =====================================================================
+        // === Projects: filters, search, sort, and enhanced quick-view =========
+        // =====================================================================
+        const grid = document.getElementById('projectGrid');
+        const cards = grid ? Array.from(grid.querySelectorAll('.project-card')) : [];
+        const searchInput = document.getElementById('projectSearch');
+        const sortSelect = document.getElementById('projectSort');
+        const countEl = document.getElementById('projectCount');
+        const emptyEl = document.getElementById('projectEmpty');
+        const filterButtons = Array.from(document.querySelectorAll('.project-filter'));
+
+        const originalOrder = cards.slice();
+        let activeFilter = 'all';
+        let searchTerm = '';
+        let sortMode = 'default';
+
+        function setFilter(btn) {
+            activeFilter = btn.dataset.filter || 'all';
+            filterButtons.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+            applyProjectState();
+        }
+        function matchesFilter(card) {
+            if (activeFilter === 'all') return true;
+            const tags = (card.dataset.tags || '').toLowerCase().split(',').map(s => s.trim());
+            return tags.includes(activeFilter);
+        }
+        function matchesSearch(card) {
+            if (!searchTerm) return true;
+            const hay = ((card.dataset.title || '') + ' ' + (card.dataset.tech || '') + ' ' + (card.textContent || '')).toLowerCase();
+            return hay.includes(searchTerm);
+        }
+        function doSort(list) {
+            if (sortMode === 'az') list.sort((a, b) => a.dataset.title.localeCompare(b.dataset.title));
+            else if (sortMode === 'za') list.sort((a, b) => b.dataset.title.localeCompare(a.dataset.title));
+            else list.sort((a, b) => originalOrder.indexOf(a) - originalOrder.indexOf(b));
+            list.forEach(node => grid.appendChild(node));
+        }
+        function applyProjectState() {
+            let visible = 0;
+            cards.forEach(card => {
+                const show = matchesFilter(card) && matchesSearch(card);
+                card.classList.toggle('hidden', !show);
+                card.setAttribute('aria-hidden', String(!show));
+                if (show) visible++;
+            });
+            if (countEl) countEl.textContent = `Showing ${visible} project${visible === 1 ? '' : 's'}`;
+            if (emptyEl) emptyEl.classList.toggle('hidden', visible !== 0);
+            // keep order stable but push hidden to the end
+            doSort(cards.filter(c => !c.classList.contains('hidden')).concat(cards.filter(c => c.classList.contains('hidden'))));
+        }
+        filterButtons.forEach(btn => btn.addEventListener('click', () => setFilter(btn)));
+        if (searchInput) searchInput.addEventListener('input', () => { searchTerm = searchInput.value.trim().toLowerCase(); applyProjectState(); });
+        if (sortSelect) sortSelect.addEventListener('change', () => { sortMode = sortSelect.value; applyProjectState(); });
+        applyProjectState();
+
+        // --- Enhanced Quick View modal ---
+        const modal = document.getElementById('projectModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalTech = document.getElementById('modalTech');
+        const modalLink = document.getElementById('modalLink');
+        const modalReadme = document.getElementById('modalReadme');
+        const modalCopy = document.getElementById('modalCopy');
+        const modalToast = document.getElementById('modalToast');
+        const modalMedia = document.getElementById('modalMedia');
+        const modalImg = document.getElementById('modalImg');
+        let modalReturnFocus = null;
+
+        function openModalFromCard(card) {
+            modalReturnFocus = document.activeElement;
+
+            modalTitle.textContent = card.dataset.title || 'Project';
+
+            const p = card.querySelector('p');
+            modalDesc.textContent = p ? p.textContent.trim() : '';
+
+            // Media (optional)
+            const img = card.dataset.img || '';
+            if (img) {
+                modalImg.src = img;
+                modalImg.alt = `${card.dataset.title} preview`;
+                modalMedia.classList.remove('hidden');
+            } else {
+                modalImg.removeAttribute('src');
+                modalMedia.classList.add('hidden');
+            }
+
+            // Highlights
+            const ul = document.getElementById('modalHighlights');
+            ul.innerHTML = '';
+            const points = (card.dataset.highlights || '').split(';').map(s => s.trim()).filter(Boolean);
+            points.forEach(pt => {
+                const li = document.createElement('li');
+                li.textContent = pt;
+                ul.appendChild(li);
+            });
+
+            // Stack
+            modalTech.innerHTML = '';
+            (card.dataset.tech || '').split(',').map(s => s.trim()).filter(Boolean).forEach(t => {
+                const span = document.createElement('span');
+                span.className = 'tech-pill';
+                span.textContent = t;
+                modalTech.appendChild(span);
+            });
+
+            // Links
+            const repo = card.dataset.link || '#';
+            const readme = card.dataset.readme || repo + '#readme';
+            const clone = card.dataset.clone || (repo.endsWith('.git') ? repo : repo + '.git');
+
+            modalLink.href = repo;
+            modalReadme.href = readme;
+            modalCopy.dataset.clipboard = clone;
+            modalToast.classList.add('hidden');
+
+            // show
+            modal.classList.remove('hidden');
+            const closer = modal.querySelector('[data-close-modal]');
+            closer && closer.focus();
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+            if (modalReturnFocus) modalReturnFocus.focus();
+        }
+        document.querySelectorAll('.quick-view').forEach(btn => {
+            btn.addEventListener('click', e => {
+                const card = e.currentTarget.closest('.project-card');
+                if (card) openModalFromCard(card);
+            });
+        });
+        modal.querySelectorAll('[data-close-modal]').forEach(el => el.addEventListener('click', closeModal));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal(); });
+        const panel = modal.querySelector('div.relative');
+        if (panel) panel.addEventListener('click', e => e.stopPropagation());
+
+        // Copy clone
+        if (modalCopy) {
+            modalCopy.addEventListener('click', async () => {
+                const text = modalCopy.dataset.clipboard || '';
+                try {
+                    await navigator.clipboard.writeText(text);
+                    modalToast.textContent = 'Copied to clipboard';
+                    modalToast.classList.remove('hidden');
+                    setTimeout(() => modalToast.classList.add('hidden'), 1600);
+                } catch {
+                    modalToast.textContent = 'Press ⌘/Ctrl+C to copy';
+                    modalToast.classList.remove('hidden');
+                    setTimeout(() => modalToast.classList.add('hidden'), 2000);
+                }
+            });
+        }
+
     });
-})();
+}
+)();
