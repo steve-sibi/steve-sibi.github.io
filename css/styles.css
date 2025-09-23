@@ -205,3 +205,78 @@ html {
         clip: rect(15px, 9999px, 60px, 0)
     }
 }
+
+/* --- Scroll arrow animations --- */
+#scroll-arrow {
+    position: fixed;
+    /* already set via classes, here just for clarity */
+}
+
+/* Soft ripple ring that pulses outward */
+#scroll-arrow::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    pointer-events: none;
+    box-shadow: 0 0 0 0 rgba(0, 255, 159, 0.35);
+    animation: scroll-ring 2.4s ease-out infinite;
+}
+
+/* Chevron: gentle vertical bob to suggest scrolling */
+#scroll-arrow i {
+    animation: scroll-bob 1.6s ease-in-out infinite;
+    will-change: transform;
+}
+
+/* On hover/focus: pause idle animations and show a crisp outline, no fill */
+#scroll-arrow:hover::before,
+#scroll-arrow:focus-visible::before {
+    animation: none;
+    /* Inner inset outline; tweak thickness if you like */
+    box-shadow:
+        0 0 0 2px var(--color-cyber-green) inset,
+        0 0 0 0 rgba(0, 255, 159, 0);
+}
+
+#scroll-arrow:hover i,
+#scroll-arrow:focus-visible i {
+    animation: none;
+    transform: translateY(1px);
+}
+
+/* Keyframes */
+@keyframes scroll-ring {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 159, 0.35);
+    }
+
+    70% {
+        box-shadow: 0 0 0 12px rgba(0, 255, 159, 0.00);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 159, 0.00);
+    }
+}
+
+@keyframes scroll-bob {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(3px);
+    }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    #scroll-arrow::before,
+    #scroll-arrow i {
+        animation: none !important;
+    }
+}

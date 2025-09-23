@@ -946,10 +946,12 @@
   </main>
 
   <!-- Scroll arrow -->
-  <button id="scroll-arrow"
-    class="fixed bottom-6 right-6 w-12 h-12 bg-gray-200 dark:bg-cyber-dark border border-cyber-green rounded-full flex items-center justify-center z-50 hover:bg-cyber-green hover:bg-opacity-20 transition-all opacity-0">
+  <button id="scroll-arrow" class="fixed bottom-6 right-6 w-12 h-12 bg-gray-200 dark:bg-cyber-dark border border-cyber-green rounded-full
+         flex items-center justify-center z-50 transition-[box-shadow,transform,background-color] duration-300 opacity-0
+         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-green focus-visible:ring-offset-2">
     <i class="fas fa-chevron-down text-cyber-green" aria-hidden="true"></i>
   </button>
+
 
   <!-- Vendor libraries -->
   <script defer src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
