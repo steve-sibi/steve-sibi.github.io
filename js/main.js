@@ -13,7 +13,7 @@
         themeToggle.addEventListener('click', () => {
             document.documentElement.classList.toggle('dark');
             const isDark = document.documentElement.classList.contains('dark');
-            try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) { }
+            try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (_) { }
             setThemeIcon();
         });
 
@@ -65,69 +65,309 @@
         // --- TypedJS (respect reduced motion) ---
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (!prefersReduced && typeof Typed !== 'undefined') {
-            new Typed("#typed-text", {
+            new Typed('#typed-text', {
                 strings: [
-                    "Penetration Testing",
-                    "Reverse Engineering",
-                    "Secure Software Engineering",
-                    "SIEM",
-                    "Data Privacy &amp; Encryption",
+                    'Penetration Testing',
+                    'Reverse Engineering',
+                    'Secure Software Engineering',
+                    'SIEM',
+                    'Data Privacy & Encryption'
                 ],
                 typeSpeed: 50,
                 backSpeed: 50,
                 backDelay: 2000,
-                loop: true,
+                loop: true
             });
         } else {
             const typedEl = document.getElementById('typed-text');
-            if (typedEl) typedEl.textContent = "Cybersecurity";
+            if (typedEl) typedEl.textContent = 'Cybersecurity';
         }
 
         // --- GitHub Calendar ---
         if (typeof GitHubCalendar !== 'undefined') {
-            GitHubCalendar("#github-calendar", "steve-sibi", { responsive: true, summary: false });
+            GitHubCalendar('#github-calendar', 'steve-sibi', { responsive: true, summary: false });
         }
 
-        // --- Skills tabs (ARIA) ---
-        const tablist = document.querySelector('[role="tablist"]');
-        const tabs = tablist ? tablist.querySelectorAll('[role="tab"]') : [];
-        const panels = document.querySelectorAll('[role="tabpanel"]');
+        // =====================================================================
+        // === Skills Explorer: Overview (Radar) + Matrix =======================
+        // =====================================================================
+        (function () {
+            const DATA_EL = document.getElementById('skillsData');
+            if (!DATA_EL) return;
 
-        function activateTab(tab) {
-            tabs.forEach(t => {
-                const selected = t === tab;
-                t.setAttribute('aria-selected', selected ? 'true' : 'false');
-                t.tabIndex = selected ? 0 : -1;
-                t.classList.toggle('bg-cyber-green', selected);
-                t.classList.toggle('text-black', selected);
-                t.classList.toggle('bg-transparent', !selected);
-                t.classList.toggle('text-gray-800', !selected);
-            });
-            panels.forEach(p => {
-                const match = p.id === tab.getAttribute('aria-controls');
-                p.hidden = !match;
-                p.classList.toggle('hidden', !match);
-            });
-            tab.focus();
-        }
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => activateTab(tab));
-            tab.addEventListener('keydown', (e) => {
-                const i = Array.prototype.indexOf.call(tabs, tab);
-                let newIndex = i;
-                switch (e.key) {
-                    case 'ArrowRight':
-                    case 'ArrowDown': newIndex = (i + 1) % tabs.length; break;
-                    case 'ArrowLeft':
-                    case 'ArrowUp': newIndex = (i - 1 + tabs.length) % tabs.length; break;
-                    case 'Home': newIndex = 0; break;
-                    case 'End': newIndex = tabs.length - 1; break;
-                    default: return;
+            const skills = JSON.parse(DATA_EL.textContent || '[]');
+
+            const catLabels = {
+                all: 'All',
+                cyber: 'Cybersecurity',
+                prog: 'Programming',
+                os: 'Operating Systems',
+                cloud: 'Cloud & DevOps'
+            };
+
+            const viewOverviewBtn = document.getElementById('skillsViewOverview');
+            const viewMatrixBtn = document.getElementById('skillsViewMatrix');
+            const overviewWrap = document.getElementById('skillsOverview');
+            const matrixWrap = document.getElementById('skillsMatrix');
+            const searchInput = document.getElementById('skillsSearch');
+            const chips = Array.from(document.querySelectorAll('.chip'));
+            const topList = document.getElementById('skillsTopList');
+
+            const densityCompactBtn = document.getElementById('skillsDensityCompact');
+            const densityCozyBtn = document.getElementById('skillsDensityCozy');
+            const moreBtn = document.getElementById('skillsMore');
+
+            // ---------- helpers ----------
+            const press = (btn, active) => {
+                if (!btn) return;
+                btn.setAttribute('aria-pressed', String(active));
+                btn.classList.toggle('is-active', active);
+            };
+            const isDark = () => document.documentElement.classList.contains('dark');
+            const niceAgo = (ym) => {
+                if (!ym) return 'recently';
+                const [y, m] = ym.split('-').map(Number);
+                const d = new Date(y, (m || 1) - 1, 1);
+                const now = new Date();
+                const months = (now.getFullYear() - d.getFullYear()) * 12 + (now.getMonth() - d.getMonth());
+                if (months <= 0) return 'recently';
+                if (months < 12) return `${months} mo ago`;
+                const yrs = Math.floor(months / 12);
+                return `${yrs} yr${yrs > 1 ? 's' : ''} ago`;
+            };
+            const wrapLabel = (s) => {
+                if (!s) return s;
+                // Try to break on " & " first, otherwise on spaces
+                if (s.length > 12 && s.includes(' & ')) return s.replace(' & ', ' &\n');
+                if (s.length > 14) return s.replace(/\s+/g, '\n');
+                return s;
+            };
+
+            // ---------- state ----------
+            let activeCat = 'all';
+            let query = '';
+            let radar = null;
+            let density = 'compact';
+            let page = 1;
+            const pageSize = 9;
+
+            matrixWrap.dataset.density = density;
+
+            function filtered() {
+                return skills.filter(s =>
+                    (activeCat === 'all' || s.cat === activeCat) &&
+                    (!query || s.name.toLowerCase().includes(query))
+                );
+            }
+
+            // ---------- view toggle ----------
+            function setView(which) {
+                const overview = which === 'overview';
+                overviewWrap.hidden = !overview;
+                matrixWrap.hidden = overview;
+
+                press(viewOverviewBtn, overview);
+                press(viewMatrixBtn, !overview);
+
+                page = 1; // reset paging on switch
+                if (overview) {
+                    if (moreBtn) moreBtn.classList.add('hidden');  // hide "Show more" in Overview
+                    renderRadar();
+                } else {
+                    renderMatrix();
                 }
-                e.preventDefault();
-                activateTab(tabs[newIndex]);
+            }
+            viewOverviewBtn.addEventListener('click', () => setView('overview'));
+            viewMatrixBtn.addEventListener('click', () => setView('matrix'));
+
+            // ---------- chips ----------
+            chips.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    activeCat = btn.dataset.cat || 'all';
+                    chips.forEach(c => press(c, c === btn));
+                    page = 1;
+                    if (matrixWrap.hidden) renderRadar(); else renderMatrix();
+                });
             });
-        });
+
+            // ---------- search ----------
+            if (searchInput) {
+                searchInput.addEventListener('input', () => {
+                    query = (searchInput.value || '').trim().toLowerCase();
+                    page = 1;
+                    if (matrixWrap.hidden) renderRadar(); else renderMatrix();
+                });
+            }
+
+            // ---------- density ----------
+            function setDensity(mode) {
+                density = mode;
+                matrixWrap.dataset.density = density;
+                press(densityCompactBtn, mode === 'compact');
+                press(densityCozyBtn, mode === 'cozy');
+                if (!matrixWrap.hidden) renderMatrix();
+            }
+            densityCompactBtn?.addEventListener('click', () => setDensity('compact'));
+            densityCozyBtn?.addEventListener('click', () => setDensity('cozy'));
+
+            // ---------- show more ----------
+            moreBtn?.addEventListener('click', () => { page += 1; renderMatrix(); });
+
+            // ---------- matrix ----------
+            function renderMatrix() {
+                matrixWrap.innerHTML = '';
+                const all = filtered().sort((a, b) => b.level - a.level);
+                const slice = all.slice(0, page * pageSize);
+
+                if (!slice.length) {
+                    matrixWrap.innerHTML = `<p class="col-span-full text-center text-gray-600 dark:text-gray-400">No skills match your filters.</p>`;
+                    moreBtn?.classList.add('hidden');
+                    return;
+                }
+
+                slice.forEach(s => {
+                    const card = document.createElement('article');
+                    card.className = 'skill-card';
+                    card.innerHTML = `
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h4 class="skill-name text-black dark:text-cyber-green">${s.name}</h4>
+                <p class="text-xs text-gray-600 dark:text-gray-400">${catLabels[s.cat] || ''}</p>
+              </div>
+              <div class="skill-pill">${s.level}%</div>
+            </div>
+            <div class="skill-meter mt-3"><span style="width:${s.level}%"></span></div>
+            <div class="mt-3 flex flex-wrap items-center gap-2">
+              <span class="skill-pill">Last used: ${niceAgo(s.lastUsed)}</span>
+              <span class="skill-pill">${s.years} yr${s.years > 1 ? 's' : ''} exp</span>
+              ${s.proof ? `<a class="project-btn project-btn--ghost ml-auto" href="${s.proof}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt text-xs"></i><span>Repo</span></a>` : ''}
+            </div>`;
+                    matrixWrap.appendChild(card);
+                });
+
+                // Pager visibility + label
+                if (moreBtn) {
+                    const remaining = all.length - slice.length;
+                    if (remaining > 0) {
+                        const next = Math.min(pageSize, remaining);
+                        moreBtn.textContent = `Show ${next} more`;
+                        moreBtn.classList.remove('hidden');
+                    } else {
+                        moreBtn.classList.add('hidden');
+                    }
+                }
+            }
+
+            // ---------- radar ----------
+            function radarColors() {
+                const grid = isDark() ? 'rgba(0,255,159,0.15)' : 'rgba(0,0,0,0.18)';
+                const tick = isDark() ? '#a7f3d0' : '#111';
+                const label = isDark() ? '#d1fae5' : '#111';
+                const fill = 'rgba(0,255,159,0.20)';
+                const line = 'rgba(0,255,159,0.9)';
+                const point = '#00ff9f';
+                return { grid, tick, label, fill, line, point };
+            }
+
+            // tint + value labels
+            const neonPlugin = {
+                id: 'neonPlugin',
+                beforeDraw(chart) {
+                    const { ctx, chartArea } = chart;
+                    if (!chartArea) return;
+                    ctx.save();
+                    ctx.globalCompositeOperation = 'destination-over';
+                    ctx.fillStyle = isDark() ? 'rgba(0,255,159,.05)' : 'rgba(0,0,0,.03)';
+                    ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+                    ctx.restore();
+                },
+                afterDatasetsDraw(chart) {
+                    const { ctx, data } = chart;
+                    const meta = chart.getDatasetMeta(0);
+                    ctx.save();
+                    ctx.font = '12px ui-sans-serif, system-ui, -apple-system';
+                    ctx.fillStyle = isDark() ? '#9ae6c1' : '#111';
+                    meta.data.forEach((pt, i) => {
+                        const val = data.datasets[0].data[i];
+                        if (typeof val === 'number') ctx.fillText(String(val), pt.x + 6, pt.y - 6);
+                    });
+                    ctx.restore();
+                }
+            };
+
+            function renderRadar() {
+                if (typeof Chart === 'undefined') return;
+
+                const top = filtered().sort((a, b) => b.level - a.level).slice(0, 6);
+                renderTopList(top);
+
+                const ctx = document.getElementById('skillsRadar');
+                const { grid, tick, label, fill, line, point } = radarColors();
+
+                if (radar) radar.destroy();
+                radar = new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: top.map(s => s.name),
+                        datasets: [{
+                            label: 'Proficiency',
+                            data: top.map(s => s.level),
+                            backgroundColor: fill,
+                            borderColor: line,
+                            pointBackgroundColor: point,
+                            pointBorderColor: line,
+                            borderWidth: 2,
+                            pointRadius: 3,
+                            pointHoverRadius: 5,
+                            tension: .2
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        layout: { padding: 12 },
+                        animation: { duration: 400 },
+                        scales: {
+                            r: {
+                                suggestedMin: 0, suggestedMax: 100,
+                                grid: { color: grid },
+                                angleLines: { color: grid },
+                                pointLabels: {
+                                    color: label,
+                                    font: { weight: '700', size: 12 },
+                                    padding: 4,
+                                    centerPointLabels: true,
+                                    callback: (v) => wrapLabel(v)
+                                },
+                                ticks: { color: tick, showLabelBackdrop: false, stepSize: 20 }
+                            }
+                        },
+                        plugins: { legend: { display: false }, tooltip: { enabled: true } }
+                    },
+                    plugins: [neonPlugin]
+                });
+            }
+
+            function renderTopList(top) {
+                topList.innerHTML = '';
+                top.forEach(s => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span class="font-semibold text-black dark:text-cyber-green">${s.name}</span> — ${s.level}% • ${s.years}y • ${niceAgo(s.lastUsed)}`;
+                    topList.appendChild(li);
+                });
+            }
+
+            // keep chart theme in sync
+            const themeBtn = document.getElementById('themeToggle');
+            themeBtn?.addEventListener('click', () => {
+                setTimeout(() => { if (!matrixWrap.hidden) return; renderRadar(); }, 0);
+            });
+
+            // Initial view
+            setView('overview');
+            // Make initial pressed styles correct
+            press(chips.find(c => c.dataset.cat === 'all'), true);
+            press(densityCompactBtn, true);
+        })();
 
         // --- Scroll arrow ---
         const scrollArrow = document.getElementById('scroll-arrow');
@@ -157,10 +397,7 @@
         document.querySelectorAll('[data-resume-download]').forEach(link => {
             link.addEventListener('click', () => {
                 if (typeof gtag === 'function') {
-                    gtag('event', 'download_resume', {
-                        event_category: 'engagement',
-                        event_label: 'resume_pdf'
-                    });
+                    gtag('event', 'download_resume', { event_category: 'engagement', event_label: 'resume_pdf' });
                 }
             });
         });
@@ -182,11 +419,11 @@
         sections.forEach(s => io.observe(s));
 
         // =====================================================================
-        // === Projects: filters, search, sort, and enhanced quick-view =========
+        // === Projects (filters/search/sort + quick view) ======================
         // =====================================================================
         const grid = document.getElementById('projectGrid');
         const cards = grid ? Array.from(grid.querySelectorAll('.project-card')) : [];
-        const searchInput = document.getElementById('projectSearch');
+        const projectSearchInput = document.getElementById('projectSearch');
         const sortSelect = document.getElementById('projectSort');
         const countEl = document.getElementById('projectCount');
         const emptyEl = document.getElementById('projectEmpty');
@@ -228,12 +465,11 @@
             });
             if (countEl) countEl.textContent = `Showing ${visible} project${visible === 1 ? '' : 's'}`;
             if (emptyEl) emptyEl.classList.toggle('hidden', visible !== 0);
-            // keep order stable but push hidden to the end
             doSort(cards.filter(c => !c.classList.contains('hidden')).concat(cards.filter(c => c.classList.contains('hidden'))));
         }
         filterButtons.forEach(btn => btn.addEventListener('click', () => setFilter(btn)));
-        if (searchInput) searchInput.addEventListener('input', () => { searchTerm = searchInput.value.trim().toLowerCase(); applyProjectState(); });
-        if (sortSelect) sortSelect.addEventListener('change', () => { sortMode = sortSelect.value; applyProjectState(); });
+        projectSearchInput?.addEventListener('input', () => { searchTerm = projectSearchInput.value.trim().toLowerCase(); applyProjectState(); });
+        sortSelect?.addEventListener('change', () => { sortMode = sortSelect.value; applyProjectState(); });
         applyProjectState();
 
         // --- Enhanced Quick View modal ---
@@ -251,13 +487,11 @@
 
         function openModalFromCard(card) {
             modalReturnFocus = document.activeElement;
-
             modalTitle.textContent = card.dataset.title || 'Project';
 
             const p = card.querySelector('p');
             modalDesc.textContent = p ? p.textContent.trim() : '';
 
-            // Media (optional)
             const img = card.dataset.img || '';
             if (img) {
                 modalImg.src = img;
@@ -268,7 +502,6 @@
                 modalMedia.classList.add('hidden');
             }
 
-            // Highlights
             const ul = document.getElementById('modalHighlights');
             ul.innerHTML = '';
             const points = (card.dataset.highlights || '').split(';').map(s => s.trim()).filter(Boolean);
@@ -278,7 +511,6 @@
                 ul.appendChild(li);
             });
 
-            // Stack
             modalTech.innerHTML = '';
             (card.dataset.tech || '').split(',').map(s => s.trim()).filter(Boolean).forEach(t => {
                 const span = document.createElement('span');
@@ -287,7 +519,6 @@
                 modalTech.appendChild(span);
             });
 
-            // Links
             const repo = card.dataset.link || '#';
             const readme = card.dataset.readme || repo + '#readme';
             const clone = card.dataset.clone || (repo.endsWith('.git') ? repo : repo + '.git');
@@ -297,7 +528,6 @@
             modalCopy.dataset.clipboard = clone;
             modalToast.classList.add('hidden');
 
-            // show
             modal.classList.remove('hidden');
             const closer = modal.querySelector('[data-close-modal]');
             closer && closer.focus();
@@ -319,7 +549,6 @@
         const panel = modal.querySelector('div.relative');
         if (panel) panel.addEventListener('click', e => e.stopPropagation());
 
-        // Copy clone
         if (modalCopy) {
             modalCopy.addEventListener('click', async () => {
                 const text = modalCopy.dataset.clipboard || '';
@@ -335,7 +564,5 @@
                 }
             });
         }
-
     });
-}
-)();
+})();

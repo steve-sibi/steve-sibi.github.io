@@ -17,14 +17,14 @@ html {
 
 .skip-link:focus {
     left: 1rem;
-    top: 1rem;
+    top: 1rem
 }
 
 /* Glitch text */
 .glitch-text {
     position: relative;
     display: inline-block;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .glitch-text::before,
@@ -32,7 +32,7 @@ html {
     content: attr(data-text);
     position: absolute;
     top: 0;
-    left: 0;
+    left: 0
 }
 
 .glitch-text::before {
@@ -40,7 +40,7 @@ html {
     left: 2px;
     overflow: hidden;
     animation: glitch 3s infinite linear alternate-reverse;
-    clip: rect(0, 900px, 0, 0);
+    clip: rect(0, 900px, 0, 0)
 }
 
 .glitch-text::after {
@@ -48,13 +48,13 @@ html {
     left: -2px;
     overflow: hidden;
     animation: glitch-2 2s infinite linear alternate-reverse;
-    clip: rect(0, 900px, 0, 0);
+    clip: rect(0, 900px, 0, 0)
 }
 
 /* Scanline effect */
 .scanline-effect {
     position: relative;
-    overflow: hidden;
+    overflow: hidden
 }
 
 .scanline-effect::after {
@@ -62,19 +62,19 @@ html {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.2;
+    opacity: .2;
     mix-blend-mode: overlay;
-    background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, .05) 0px, transparent 1px, transparent 2px);
+    background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, .05) 0px, transparent 1px, transparent 2px)
 }
 
-/* Skill bars */
+/* Legacy skill bars (kept) */
 .skill-bar {
     position: relative;
     height: 2rem;
-    background-color: #111111;
+    background: #111;
     border-radius: .25rem;
     overflow: hidden;
-    margin: .5rem 0;
+    margin: .5rem 0
 }
 
 .skill-bar::after {
@@ -82,7 +82,7 @@ html {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: repeating-linear-gradient(45deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .05) 10px, transparent 10px, transparent 20px);
+    background: repeating-linear-gradient(45deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .05) 10px, transparent 10px, transparent 20px)
 }
 
 .skill-fill {
@@ -93,7 +93,7 @@ html {
     color: #222;
     font-weight: bold;
     transition: width 1s ease-out;
-    background: linear-gradient(90deg, #00ff9f, #006633);
+    background: linear-gradient(90deg, #00ff9f, #006633)
 }
 
 /* Timeline */
@@ -101,7 +101,7 @@ html {
     position: relative;
     padding-left: 2rem;
     padding-bottom: 2.5rem;
-    border-left: 1px solid #00cc66;
+    border-left: 1px solid #00cc66
 }
 
 .timeline-item::before {
@@ -109,48 +109,48 @@ html {
     position: absolute;
     width: 1rem;
     height: 1rem;
-    background-color: #000000;
+    background: #000;
     border: 2px solid #00ff9f;
     border-radius: 50%;
     left: -0.5625rem;
-    top: 0.25rem;
+    top: .25rem
 }
 
+/* Grid background for hero (dark) */
 .dark .bg-cyber-grid {
-    background-image:
-        linear-gradient(rgba(0, 0, 0, 0.6) 2px, transparent 2px),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.6) 2px, transparent 2px);
+    background-image: linear-gradient(rgba(0, 0, 0, .6) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(0, 0, 0, .6) 2px, transparent 2px)
 }
 
 /* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion:reduce) {
     html {
-        scroll-behavior: auto;
+        scroll-behavior: auto
     }
 
     .glitch-text::before,
     .glitch-text::after,
     .scanline-effect::after {
-        animation: none !important;
+        animation: none !important
     }
 }
 
 /* Focus styles */
 :where(a, button, input, textarea, select, [role="tab"])::moz-focus-inner {
-    border: 0;
+    border: 0
 }
 
 :where(a, button, input, textarea, select, [role="tab"]):focus-visible {
     outline: 2px solid #00ff9f;
     outline-offset: 3px;
-    border-radius: .25rem;
+    border-radius: .25rem
 }
 
 /* Active sidebar link */
 #sidebar a[aria-current="true"] {
     background: rgba(0, 255, 159, .12);
     color: #00ff9f;
-    font-weight: 700;
+    font-weight: 700
 }
 
 /* Glitch keyframes */
@@ -206,57 +206,49 @@ html {
     }
 }
 
-/* --- Scroll arrow animations --- */
+/* --- Scroll arrow --- */
 #scroll-arrow {
-    position: fixed;
-    /* already set via classes, here just for clarity */
+    position: fixed
 }
 
-/* Soft ripple ring that pulses outward */
 #scroll-arrow::before {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: 9999px;
     pointer-events: none;
-    box-shadow: 0 0 0 0 rgba(0, 255, 159, 0.35);
-    animation: scroll-ring 2.4s ease-out infinite;
+    box-shadow: 0 0 0 0 rgba(0, 255, 159, .35);
+    animation: scroll-ring 2.4s ease-out infinite
 }
 
-/* Chevron: gentle vertical bob to suggest scrolling */
 #scroll-arrow i {
     animation: scroll-bob 1.6s ease-in-out infinite;
-    will-change: transform;
+    will-change: transform
 }
 
-/* On hover/focus: pause idle animations and show a crisp outline, no fill */
 #scroll-arrow:hover::before,
 #scroll-arrow:focus-visible::before {
     animation: none;
-    /* Inner inset outline; tweak thickness if you like */
-    box-shadow:
-        0 0 0 2px var(--color-cyber-green) inset,
-        0 0 0 0 rgba(0, 255, 159, 0);
+    box-shadow: 0 0 0 2px var(--color-cyber-green) inset, 0 0 0 0 rgba(0, 255, 159, 0)
 }
 
 #scroll-arrow:hover i,
 #scroll-arrow:focus-visible i {
     animation: none;
-    transform: translateY(1px);
+    transform: translateY(1px)
 }
 
-/* Keyframes */
 @keyframes scroll-ring {
     0% {
-        box-shadow: 0 0 0 0 rgba(0, 255, 159, 0.35);
+        box-shadow: 0 0 0 0 rgba(0, 255, 159, .35)
     }
 
     70% {
-        box-shadow: 0 0 0 12px rgba(0, 255, 159, 0.00);
+        box-shadow: 0 0 0 12px rgba(0, 255, 159, 0)
     }
 
     100% {
-        box-shadow: 0 0 0 0 rgba(0, 255, 159, 0.00);
+        box-shadow: 0 0 0 0 rgba(0, 255, 159, 0)
     }
 }
 
@@ -264,33 +256,31 @@ html {
 
     0%,
     100% {
-        transform: translateY(0);
+        transform: translateY(0)
     }
 
     50% {
-        transform: translateY(3px);
+        transform: translateY(3px)
     }
 }
 
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion:reduce) {
 
     #scroll-arrow::before,
     #scroll-arrow i {
-        animation: none !important;
+        animation: none !important
     }
 }
 
-/* === Projects: roomier buttons & layout === */
+/* === Projects UI === */
 :root {
-    --color-cyber-green: #00ff9f;
+    --color-cyber-green: #00ff9f
 }
 
 .project-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: .5rem .6rem;
-    /* tighter vertical gap on wrap */
+    gap: .5rem .6rem
 }
 
 .project-btn {
@@ -298,51 +288,47 @@ html {
     align-items: center;
     gap: .5rem;
     padding: .6rem .9rem;
-    /* more breathing room */
     min-height: 2.5rem;
-    /* consistent touch target */
     line-height: 1;
     border-radius: .6rem;
     font-weight: 600;
-    white-space: nowrap;
+    white-space: nowrap
 }
 
 .project-btn i {
     position: relative;
-    top: -0.5px;
+    top: -.5px
 }
 
 .project-btn--ghost {
     border: 1px solid var(--color-cyber-green);
     color: var(--color-cyber-green);
-    background: transparent;
+    background: transparent
 }
 
 .project-btn--ghost:hover {
-    background: rgba(0, 255, 159, .12);
+    background: rgba(0, 255, 159, .12)
 }
 
 .project-btn--solid {
     background: var(--color-cyber-green);
     color: #000;
-    border: 1px solid var(--color-cyber-green);
+    border: 1px solid var(--color-cyber-green)
 }
 
 .project-btn--solid:hover {
-    filter: brightness(.95);
+    filter: brightness(.95)
 }
 
-/* keep hover lift */
 .project-card {
-    will-change: transform, box-shadow;
+    will-change: transform, box-shadow
 }
 
 .project-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 0 18px rgba(0, 255, 159, .25);
+    box-shadow: 0 0 18px rgba(0, 255, 159, .25)
 }
 
-/* pills */
 .tech-pill {
     display: inline-block;
     padding: .22rem .6rem;
@@ -351,22 +337,214 @@ html {
     line-height: 1;
     border: 1px solid rgba(0, 255, 159, .35);
     color: #00ff9f;
-    background: rgba(0, 255, 159, .06);
+    background: rgba(0, 255, 159, .06)
 }
 
-/* active filter chip */
 .project-filter[aria-pressed="true"] {
     background: #00ff9f;
     color: #000;
     border-color: #00ff9f;
-    font-weight: 700;
+    font-weight: 700
 }
 
-/* modal headings */
 .modal-h4 {
     font-weight: 800;
     font-size: .9rem;
     color: #00ff9f;
     text-transform: uppercase;
-    letter-spacing: .04em;
+    letter-spacing: .04em
+}
+
+/* === Skills Explorer — chips & toggles === */
+.chip {
+    padding: .4rem .7rem;
+    border-radius: .6rem;
+    border: 1px solid rgba(0, 255, 159, .35);
+    color: #00ff9f;
+    background: rgba(0, 255, 159, .06);
+    font-weight: 600;
+    transition: background .2s, color .2s, border-color .2s
+}
+
+.chip:hover {
+    background: rgba(0, 255, 159, .12)
+}
+
+.chip[aria-pressed="true"] {
+    background: #00ff9f;
+    color: #000;
+    border-color: #00ff9f
+}
+
+.skills-toggle {
+    border: 1px solid rgba(0, 255, 159, .5);
+    padding: .5rem .9rem;
+    font-weight: 700;
+    border-radius: .6rem;
+    color: #00ff9f;
+    background: transparent;
+    transition: background .15s, color .15s, border-color .15s
+}
+
+.skills-toggle[aria-pressed="true"] {
+    background: #00ff9f;
+    color: #000
+}
+
+.skills-toggle[aria-pressed="false"] {
+    background: transparent;
+    color: #00ff9f
+}
+
+/* === Skills controls layout (uses :has for robust targeting) === */
+/* Arrange: Left = view+density groups, Center = category chips, Right = search */
+#skills .container>.flex:has(#skillsViewOverview) {
+    display: grid;
+    gap: 1rem 1.25rem;
+    align-items: center;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+#skills .container>.flex:has(#skillsViewOverview)> :has(#skillsViewOverview) {
+    order: 1;
+    justify-self: start
+}
+
+#skills .container>.flex:has(#skillsViewOverview)>[role="group"][aria-label="Filter skills by category"] {
+    order: 2;
+    justify-content: center
+}
+
+#skills .container>.flex:has(#skillsViewOverview)> :has(#skillsSearch) {
+    order: 3;
+    justify-self: end
+}
+
+@media (max-width:1024px) {
+    #skills .container>.flex:has(#skillsViewOverview) {
+        grid-template-columns: 1fr;
+    }
+
+    #skills .container>.flex:has(#skillsViewOverview)>* {
+        justify-self: stretch
+    }
+
+    #skills .container>.flex:has(#skillsViewOverview)>[role="group"][aria-label="Filter skills by category"] {
+        justify-content: flex-start
+    }
+}
+
+/* Search input – dark theme match */
+.dark #skills #skillsSearch {
+    background: #0b0f0d !important;
+    color: #e9fff5 !important;
+    border-color: rgba(0, 255, 159, .35) !important;
+}
+
+.dark #skills #skillsSearch::placeholder {
+    color: #8fe7c8
+}
+
+/* === Skills cards (Matrix) === */
+.skill-card {
+    border: 1px solid #00ff9f;
+    background: rgba(0, 0, 0, .25);
+    backdrop-filter: blur(2px);
+    border-radius: .9rem;
+    padding: 1rem;
+    transition: transform .2s ease, box-shadow .2s ease
+}
+
+.skill-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 16px rgba(0, 255, 159, .2)
+}
+
+.skill-name {
+    font-weight: 800
+}
+
+.skill-pill {
+    display: inline-block;
+    font-size: .72rem;
+    border: 1px solid rgba(0, 255, 159, .35);
+    color: #00ff9f;
+    background: rgba(0, 255, 159, .06);
+    padding: .18rem .5rem;
+    border-radius: 9999px;
+    white-space: nowrap
+}
+
+.skill-meter {
+    height: .75rem;
+    border-radius: .5rem;
+    background: #111;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(0, 255, 159, .35)
+}
+
+.skill-meter>span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #00ff9f, #006633);
+    width: 0%;
+    transition: width .8s ease
+}
+
+/* Density variants (JS sets data-density on #skillsMatrix) */
+#skillsMatrix[data-density="cozy"] .skill-card {
+    padding: 1.15rem
+}
+
+#skillsMatrix[data-density="cozy"] .skill-meter {
+    height: .9rem
+}
+
+#skillsMatrix[data-density="compact"] .skill-card {
+    padding: .95rem
+}
+
+/* Matrix grid – show cards side-by-side */
+#skillsMatrix {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem
+}
+
+@media (min-width:768px) {
+    #skillsMatrix {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+    }
+}
+
+@media (min-width:1280px) {
+    #skillsMatrix {
+        grid-template-columns: repeat(4, minmax(0, 1fr))
+    }
+}
+
+/* === Skills Overview panel — dark theme match & radar sizing === */
+.dark #skillsOverview {
+    background: rgba(5, 12, 10, .82) !important;
+    border-color: rgba(0, 255, 159, .35) !important;
+    box-shadow: 0 0 30px rgba(0, 255, 159, .08) inset;
+}
+
+.dark #skillsOverview h3,
+.dark #skillsOverview p,
+.dark #skillsOverview li {
+    color: #cfeee0
+}
+
+#skillsOverview canvas {
+    width: 100% !important;
+    height: 360px !important;
+    /* give Chart.js room so labels don't clip */
+}
+
+@media (max-width:768px) {
+    #skillsOverview canvas {
+        height: 320px !important
+    }
 }
