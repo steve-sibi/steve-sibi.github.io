@@ -67,11 +67,15 @@
         if (!prefersReduced && typeof Typed !== 'undefined') {
             new Typed('#typed-text', {
                 strings: [
+                    'Data Privacy &amp; Encryption',
+                    'Network Security',
+                    'Cloud Security',
+                    'Incident Response',
+                    'Threat Hunting',
                     'Penetration Testing',
                     'Reverse Engineering',
                     'Secure Software Engineering',
                     'SIEM',
-                    'Data Privacy & Encryption'
                 ],
                 typeSpeed: 50,
                 backSpeed: 50,
