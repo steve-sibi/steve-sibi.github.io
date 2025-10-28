@@ -318,32 +318,28 @@
             <p class="text-gray-700 dark:text-cyber-green-dark mb-4">DevSecOps Engineer</p>
             <div class="text-gray-600 dark:text-gray-300 space-y-1.5">
               <ul class="list-disc list-inside space-y-2">
-                <li>Engineered a secure virtualized platform by deploying Proxmox with OPNsense (VLANs, NAT, ACLs, CIS
-                  hardening) to segment workloads,
-                  achieving zero cross-segment incidents and reducing infrastructure costs by 25%.</li>
-                <li>Automated infrastructure provisioning by developing reusable Terraform modules and idempotent
-                  Ansible roles (hardening, users, patching),
-                  cutting environment build time by 80% and eliminating configuration drift.</li>
-                <li>Implemented a WireGuard VPN solution across OPNsense/Proxmox with routed subnets, peer rotation, and
-                  rate limits, enabling shorter
-                  client onboarding and greater tunnel uptime.</li>
-                <li>Built shift-left CI/CD security pipelines with GitHub Actions + OIDC, integrating SAST (CodeQL), IaC
-                  scans (tfsec/Checkov), container
-                  scans (Trivy), and SBOM/signature gates to block 30+ high/critical issues pre-production and improve
-                  deployment lead time by 40%.</li>
-                <li>Hardened secrets and identity management by migrating credentials to Azure Key Vault/Vault,
-                  implementing short-lived tokens and service-level RBAC, removing long-lived secrets from pipelines,and
-                  achieving 0 critical findings in the
-                  latest security audit.</li>
-                <li>Enhanced observability and incident readiness by centralizing telemetry via Log Analytics, Splunk,
-                  and Datadog, creating alerts/runbooks
-                  for auth anomalies and VPN health, resulting in 45% MTTR reduction and 30% fewer false positives.</li>
-                <li>Embedded compliance-as-code using CIS/NIST baselines via Ansible and OPA/Conftest for
-                  Terraform/Kubernetes, automating vulnerability reviews and patch windows to reach up to 95% policy
-                  compliance and 60% CVE backlog reduction.</li>
-                <li>Authored detailed operational documentation including architecture diagrams, runbooks, onboarding,
-                  and “break-glass” procedures, driving
-                  35% fewer how-to support tickets and faster cross-team handoffs.</li>
+                <li>Engineered a secure virtual platform on Proxmox with OPNsense firewall (VLAN segmentation, NAT,
+                  ACLs, CIS hardening), resulting in zero cross-segment incidents and 25% lower infrastructure costs.
+                </li>
+                <li>Automated cloud infrastructure provisioning using reusable Terraform modules and Ansible playbooks,
+                  cutting environment setup time by 80% and eliminating configuration drift.</li>
+                <li>Implemented a WireGuard VPN across the Proxmox cluster (routed subnets, peer rotation, rate
+                  limiting), improving tunnel uptime and accelerating client onboarding.</li>
+                <li>Built shift-left security into CI/CD pipelines (GitHub Actions + OIDC), integrating CodeQL SAST,
+                  Terraform/Checkov IaC scans, and container image scans (Trivy). This blocked 30+ critical
+                  vulnerabilities pre-production and improved deployment speed by 40%.</li>
+                <li>Hardened secrets management by migrating credentials to Azure Key Vault and HashiCorp Vault.
+                  Introduced short-lived tokens and strict role-based access controls, eliminating hard-coded secrets
+                  and yielding 0 critical findings in the latest security audit.</li>
+                <li>Centralized logging and monitoring via Azure Log Analytics, Splunk, and Datadog. Created alerting
+                  and runbooks for authentication anomalies and VPN health, cutting mean time to recovery (MTTR) by 45%
+                  and reducing false positives by 30%.</li>
+                <li>Embedded compliance-as-code (CIS/NIST baselines) using Ansible and OPA/Conftest for Terraform and
+                  Kubernetes configurations. Automated patching and vulnerability scans to achieve 95% policy compliance
+                  and reduce the open CVE backlog by 60%.</li>
+                <li>Authored comprehensive documentation (architecture diagrams, runbooks, onboarding guides,
+                  break-glass procedures), reducing support ticket volume by 35% and enabling faster cross-team
+                  handoffs.</li>
               </ul>
             </div>
           </div>
