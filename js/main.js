@@ -406,6 +406,27 @@
             });
         });
 
+        // --- Copy email helper for recruiters ---
+        const copyEmailBtn = document.getElementById('copyEmail');
+        const copyEmailToast = document.getElementById('copyEmailToast');
+        if (copyEmailBtn && copyEmailToast) {
+            let toastTimer;
+            copyEmailBtn.addEventListener('click', async () => {
+                const email = copyEmailBtn.dataset.email || 'steve.sibi@gmail.com';
+                try {
+                    await navigator.clipboard.writeText(email);
+                    copyEmailToast.textContent = 'Email copied — talk soon!';
+                } catch (err) {
+                    copyEmailToast.textContent = 'Copy not supported on this browser. Use the link above.';
+                }
+                copyEmailToast.classList.remove('hidden');
+                if (toastTimer) clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => {
+                    copyEmailToast.classList.add('hidden');
+                }, 2800);
+            });
+        }
+
         // --- Active nav link highlight on scroll ---
         const sections = document.querySelectorAll('main section[id]');
         const navLinks = Array.from(document.querySelectorAll('#sidebar a[href^="#"]'));
