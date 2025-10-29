@@ -563,196 +563,161 @@ html {
     letter-spacing: .04em
 }
 
-/* === Skills Explorer — chips & toggles === */
-.chip {
-    padding: .4rem .7rem;
-    border-radius: .6rem;
-    border: 1px solid rgba(0, 255, 159, .35);
-    color: #00ff9f;
-    background: rgba(0, 255, 159, .06);
-    font-weight: 600;
-    transition: background .2s, color .2s, border-color .2s
+/* === Skills Matrix view === */
+.skills-lede {
+    max-width: 42rem;
 }
 
-.chip:hover {
-    background: rgba(0, 255, 159, .12)
-}
-
-.chip[aria-pressed="true"] {
-    background: #00ff9f;
-    color: #000;
-    border-color: #00ff9f
-}
-
-.skills-toggle {
-    border: 1px solid rgba(0, 255, 159, .5);
-    padding: .5rem .9rem;
-    font-weight: 700;
-    border-radius: .6rem;
-    color: #00ff9f;
-    background: transparent;
-    transition: background .15s, color .15s, border-color .15s
-}
-
-.skills-toggle[aria-pressed="true"] {
-    background: #00ff9f;
-    color: #000
-}
-
-.skills-toggle[aria-pressed="false"] {
-    background: transparent;
-    color: #00ff9f
-}
-
-/* === Skills controls layout (uses :has for robust targeting) === */
-/* Arrange: Left = view+density groups, Center = category chips, Right = search */
-#skills .container>.flex:has(#skillsViewOverview) {
-    display: grid;
-    gap: 1rem 1.25rem;
-    align-items: center;
-    grid-template-columns: 1fr 2fr 1fr;
-}
-
-#skills .container>.flex:has(#skillsViewOverview)> :has(#skillsViewOverview) {
-    order: 1;
-    justify-self: start
-}
-
-#skills .container>.flex:has(#skillsViewOverview)>[role="group"][aria-label="Filter skills by category"] {
-    order: 2;
-    justify-content: center
-}
-
-#skills .container>.flex:has(#skillsViewOverview)> :has(#skillsSearch) {
-    order: 3;
-    justify-self: end
-}
-
-@media (max-width:1024px) {
-    #skills .container>.flex:has(#skillsViewOverview) {
-        grid-template-columns: 1fr;
-    }
-
-    #skills .container>.flex:has(#skillsViewOverview)>* {
-        justify-self: stretch
-    }
-
-    #skills .container>.flex:has(#skillsViewOverview)>[role="group"][aria-label="Filter skills by category"] {
-        justify-content: flex-start
-    }
-}
-
-/* Search input – dark theme match */
-.dark #skills #skillsSearch {
-    background: #0b0f0d !important;
-    color: #e9fff5 !important;
-    border-color: rgba(0, 255, 159, .35) !important;
-}
-
-.dark #skills #skillsSearch::placeholder {
-    color: #8fe7c8
-}
-
-/* === Skills cards (Matrix) === */
-.skill-card {
-    border: 1px solid #00ff9f;
-    background: rgba(0, 0, 0, .25);
-    backdrop-filter: blur(2px);
-    border-radius: .9rem;
-    padding: 1rem;
-    transition: transform .2s ease, box-shadow .2s ease
-}
-
-.skill-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 16px rgba(0, 255, 159, .2)
-}
-
-.skill-name {
-    font-weight: 800
-}
-
-.skill-pill {
-    display: inline-block;
-    font-size: .72rem;
-    border: 1px solid rgba(0, 255, 159, .35);
-    color: #00ff9f;
-    background: rgba(0, 255, 159, .06);
-    padding: .18rem .5rem;
-    border-radius: 9999px;
-    white-space: nowrap
-}
-
-.skill-meter {
-    height: .75rem;
-    border-radius: .5rem;
-    background: #111;
+.skills-table-wrap {
+    border: 1px solid rgba(0, 255, 159, .25);
+    border-radius: 1rem;
     overflow: hidden;
-    position: relative;
-    border: 1px solid rgba(0, 255, 159, .35)
+    background: rgba(255, 255, 255, .85);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
 }
 
-.skill-meter>span {
-    display: block;
-    height: 100%;
-    background: linear-gradient(90deg, #00ff9f, #006633);
-    width: 0%;
-    transition: width .8s ease
+.dark .skills-table-wrap {
+    background: rgba(5, 12, 10, .85);
+    border-color: rgba(0, 255, 159, .35);
+    box-shadow: 0 10px 30px rgba(0, 255, 159, .08);
 }
 
-/* Density variants (JS sets data-density on #skillsMatrix) */
-#skillsMatrix[data-density="cozy"] .skill-card {
-    padding: 1.15rem
+.skills-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    line-height: 1.5;
+    opacity: 1;
+    will-change: opacity, transform;
+    transition: opacity .3s ease, transform .3s ease;
 }
 
-#skillsMatrix[data-density="cozy"] .skill-meter {
-    height: .9rem
+.skills-table.is-filtering {
+    opacity: 0;
+    transform: translateY(6px);
 }
 
-#skillsMatrix[data-density="compact"] .skill-card {
-    padding: .95rem
+.skills-table thead {
+    background: rgba(0, 255, 159, .12);
+    color: #004d33;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    font-size: .8rem;
 }
 
-/* Matrix grid – show cards side-by-side */
-#skillsMatrix {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem
+.dark .skills-table thead {
+    background: rgba(0, 255, 159, .12);
+    color: #9fffd6;
 }
 
-@media (min-width:768px) {
-    #skillsMatrix {
-        grid-template-columns: repeat(3, minmax(0, 1fr))
-    }
+.skills-table th,
+.skills-table td {
+    padding: 1.1rem 1.35rem;
+    border-bottom: 1px solid rgba(0, 0, 0, .08);
+    text-align: left;
+    vertical-align: top;
 }
 
-@media (min-width:1280px) {
-    #skillsMatrix {
-        grid-template-columns: repeat(4, minmax(0, 1fr))
-    }
+.skills-table tbody tr:last-child th,
+.skills-table tbody tr:last-child td {
+    border-bottom: none;
 }
 
-/* === Skills Overview panel — dark theme match & radar sizing === */
-.dark #skillsOverview {
-    background: rgba(5, 12, 10, .82) !important;
-    border-color: rgba(0, 255, 159, .35) !important;
-    box-shadow: 0 0 30px rgba(0, 255, 159, .08) inset;
+.dark .skills-table th,
+.dark .skills-table td {
+    border-bottom-color: rgba(0, 255, 159, .15);
 }
 
-.dark #skillsOverview h3,
-.dark #skillsOverview p,
-.dark #skillsOverview li {
-    color: #cfeee0
+.skills-table .skills-category-row th {
+    background: rgba(0, 0, 0, .05);
+    font-size: .85rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #006633;
 }
 
-#skillsOverview canvas {
-    width: 100% !important;
-    height: 360px !important;
-    /* give Chart.js room so labels don't clip */
+.dark .skills-table .skills-category-row th {
+    background: rgba(0, 255, 159, .08);
+    color: #9fffd6;
 }
 
-@media (max-width:768px) {
-    #skillsOverview canvas {
-        height: 320px !important
-    }
+.skills-table .skills-level {
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.skills-table .skills-experience {
+    color: rgba(0, 0, 0, .65);
+    font-weight: 500;
+}
+
+.dark .skills-table .skills-experience {
+    color: rgba(207, 238, 224, .7);
+}
+
+.skills-proof-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-weight: 600;
+    color: #006633;
+    font-size: .95rem;
+}
+
+.skills-proof-link:hover {
+    text-decoration: underline;
+}
+
+.dark .skills-proof-link {
+    color: #00ff9f;
+}
+
+.skills-note {
+    max-width: 40rem;
+}
+
+.skills-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin-bottom: 1.25rem;
+}
+
+.skills-filter {
+    border: 1px solid rgba(0, 255, 159, .35);
+    background: rgba(0, 255, 159, .08);
+    color: #006633;
+    font-weight: 600;
+    padding: .45rem .95rem;
+    border-radius: 9999px;
+    transition: background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.skills-filter:hover {
+    background: rgba(0, 255, 159, .18);
+}
+
+.skills-filter.is-active,
+.skills-filter.is-active:hover {
+    background: #00ff9f;
+    color: #002d1d;
+    border-color: #00ff9f;
+    box-shadow: 0 0 12px rgba(0, 255, 159, .35);
+}
+
+.dark .skills-filter {
+    color: #9fffd6;
+    border-color: rgba(0, 255, 159, .4);
+    background: rgba(0, 255, 159, .1);
+}
+
+.dark .skills-filter:hover {
+    background: rgba(0, 255, 159, .18);
+}
+
+.dark .skills-filter.is-active,
+.dark .skills-filter.is-active:hover {
+    color: #002d1d;
+    background: #00ff9f;
+    border-color: #00ff9f;
 }

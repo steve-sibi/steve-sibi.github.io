@@ -946,69 +946,43 @@
           <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
         </div>
 
-        <!-- Controls -->
-        <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-6">
-          <!-- Left: view + density -->
-          <div class="flex items-center gap-2">
-            <!-- View toggle (styled via aria-pressed) -->
-            <div class="inline-flex rounded-lg overflow-hidden">
-              <button id="skillsViewOverview" class="skills-toggle" aria-pressed="true">Overview</button>
-              <button id="skillsViewMatrix" class="skills-toggle" aria-pressed="false">Matrix</button>
-            </div>
-            <!-- Density toggle -->
-            <div class="inline-flex rounded-lg overflow-hidden">
-              <button id="skillsDensityCompact" class="skills-toggle" aria-pressed="true">Compact</button>
-              <button id="skillsDensityCozy" class="skills-toggle" aria-pressed="false">Comfortable</button>
-            </div>
-          </div>
+        <!-- Summary -->
+        <p class="skills-lede text-gray-700 dark:text-gray-300 mb-6">
+          A quick snapshot of the tools, languages, and platforms I rely on most. Grouped by discipline so you can jump
+          straight to what matters.
+        </p>
 
-          <!-- Category chips -->
-          <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter skills by category">
-            <button class="chip" data-cat="all" aria-pressed="true">All</button>
-            <button class="chip" data-cat="cyber" aria-pressed="false">Cybersecurity</button>
-            <button class="chip" data-cat="prog" aria-pressed="false">Programming</button>
-            <button class="chip" data-cat="os" aria-pressed="false">Operating Systems</button>
-            <button class="chip" data-cat="cloud" aria-pressed="false">Cloud &amp; DevOps</button>
-          </div>
-
-          <!-- Search -->
-          <div class="flex items-center gap-3">
-            <label for="skillsSearch" class="sr-only">Search skills</label>
-            <input id="skillsSearch" type="search" inputmode="search" autocomplete="off" placeholder="Search skills…"
-              class="w-56 md:w-72 px-3 py-2 rounded-md border border-gray-300 dark:border-cyber-green-dark bg-white dark:bg-cyber-dark text-sm outline-none focus-visible:ring-2 focus-visible:ring-cyber-green" />
-          </div>
+        <div class="skills-filters" role="group" aria-label="Filter skills by discipline">
+          <button type="button" class="skills-filter is-active" data-cat="cyber">Cybersecurity</button>
+          <button type="button" class="skills-filter" data-cat="prog">Programming</button>
+          <button type="button" class="skills-filter" data-cat="os">Operating Systems</button>
+          <button type="button" class="skills-filter" data-cat="cloud">Cloud &amp; DevOps</button>
         </div>
 
-        <!-- Overview -->
-        <div id="skillsOverview"
-          class="rounded-lg border border-gray-200 dark:border-cyber-green-dark p-6 bg-gray-100 dark:bg-cyber-dark/30">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-            <div class="md:col-span-2">
-              <div class="chart-box">
-                <canvas id="skillsRadar" aria-label="Radar chart of top skills" role="img"></canvas>
-              </div>
-            </div>
-            <div>
-              <h3 class="text-lg font-bold text-black dark:text-cyber-green mb-3">What this shows</h3>
-              <p class="text-gray-700 dark:text-gray-300 text-sm leading-6">
-                This radar highlights my top skills (by proficiency) for the current filter.
-                Switch categories or search to update it.
-              </p>
-              <ul id="skillsTopList" class="mt-4 text-sm space-y-2 text-gray-700 dark:text-gray-300"></ul>
-            </div>
-          </div>
+        <div class="skills-table-wrap">
+          <table id="skillsTable" class="skills-table">
+            <caption class="sr-only">Skills grouped by discipline with proficiency, experience, and proof links.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Skill</th>
+                <th scope="col">Proficiency</th>
+                <th scope="col">Experience</th>
+                <th scope="col">Proof</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="4" class="text-center text-sm text-gray-500 dark:text-gray-400 py-6">
+                  Loading skills…
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <!-- Matrix -->
-        <div id="skillsMatrix" class="mt-6" hidden></div>
-
-        <!-- Show more (only visible in Matrix) -->
-        <div class="mt-4 text-center">
-          <button id="skillsMore"
-            class="hidden px-5 py-2 border border-cyber-green text-cyber-green rounded-md hover:bg-cyber-green/10">
-            Show more
-          </button>
-        </div>
+        <p class="skills-note text-sm text-gray-500 dark:text-gray-400 mt-4">
+          Proficiency is self-assessed on a 100-point scale. Experience reflects the number of years I’ve maintained hands-on use.
+        </p>
 
         <!-- Data -->
         <script id="skillsData" type="application/json">

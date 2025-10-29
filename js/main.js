@@ -93,284 +93,197 @@
         }
 
         // =====================================================================
-        // === Skills Explorer: Overview (Radar) + Matrix =======================
+        // === Skills Explorer: Matrix =========================================
         // =====================================================================
         (function () {
             const DATA_EL = document.getElementById('skillsData');
-            if (!DATA_EL) return;
+            const table = document.getElementById('skillsTable');
+            if (!DATA_EL || !table) return;
+
+            const tbody = table.querySelector('tbody');
+            if (!tbody) return;
 
             const skills = JSON.parse(DATA_EL.textContent || '[]');
 
-            const catLabels = {
-                all: 'All',
-                cyber: 'Cybersecurity',
-                prog: 'Programming',
-                os: 'Operating Systems',
-                cloud: 'Cloud & DevOps'
+            const categories = [
+                { id: 'cyber', label: 'Cybersecurity' },
+                { id: 'prog', label: 'Programming' },
+                { id: 'os', label: 'Operating Systems' },
+                { id: 'cloud', label: 'Cloud & DevOps' }
+            ];
+            const filterButtons = Array.from(document.querySelectorAll('.skills-filter'));
+            let activeFilter = null;
+            let emptyRow = null;
+            let animationTimer = null;
+
+            const formatYears = (years) => {
+                if (!years) return 'Under 1 yr';
+                return `${years} yr${years > 1 ? 's' : ''}`;
             };
 
-            const viewOverviewBtn = document.getElementById('skillsViewOverview');
-            const viewMatrixBtn = document.getElementById('skillsViewMatrix');
-            const overviewWrap = document.getElementById('skillsOverview');
-            const matrixWrap = document.getElementById('skillsMatrix');
-            const searchInput = document.getElementById('skillsSearch');
-            const chips = Array.from(document.querySelectorAll('.chip'));
-            const topList = document.getElementById('skillsTopList');
-
-            const densityCompactBtn = document.getElementById('skillsDensityCompact');
-            const densityCozyBtn = document.getElementById('skillsDensityCozy');
-            const moreBtn = document.getElementById('skillsMore');
-
-            // ---------- helpers ----------
-            const press = (btn, active) => {
-                if (!btn) return;
-                btn.setAttribute('aria-pressed', String(active));
-                btn.classList.toggle('is-active', active);
-            };
-            const isDark = () => document.documentElement.classList.contains('dark');
-            const niceAgo = (ym) => {
-                if (!ym) return 'recently';
-                const [y, m] = ym.split('-').map(Number);
-                const d = new Date(y, (m || 1) - 1, 1);
-                const now = new Date();
-                const months = (now.getFullYear() - d.getFullYear()) * 12 + (now.getMonth() - d.getMonth());
-                if (months <= 0) return 'recently';
-                if (months < 12) return `${months} mo ago`;
-                const yrs = Math.floor(months / 12);
-                return `${yrs} yr${yrs > 1 ? 's' : ''} ago`;
-            };
-            const wrapLabel = (s) => {
-                if (!s) return s;
-                // Try to break on " & " first, otherwise on spaces
-                if (s.length > 12 && s.includes(' & ')) return s.replace(' & ', ' &\n');
-                if (s.length > 14) return s.replace(/\s+/g, '\n');
-                return s;
+            const renderCategory = (category) => {
+                const row = document.createElement('tr');
+                row.className = 'skills-category-row';
+                row.dataset.cat = category.id;
+                row.dataset.header = 'true';
+                const cell = document.createElement('th');
+                cell.setAttribute('scope', 'rowgroup');
+                cell.colSpan = 4;
+                cell.textContent = category.label;
+                row.appendChild(cell);
+                tbody.appendChild(row);
             };
 
-            // ---------- state ----------
-            let activeCat = 'all';
-            let query = '';
-            let radar = null;
-            let density = 'compact';
-            let page = 1;
-            const pageSize = 9;
+            const renderSkill = (skill) => {
+                const row = document.createElement('tr');
+                row.dataset.cat = skill.cat || 'other';
 
-            matrixWrap.dataset.density = density;
+                const name = document.createElement('th');
+                name.scope = 'row';
+                name.textContent = skill.name;
+                row.appendChild(name);
 
-            function filtered() {
-                return skills.filter(s =>
-                    (activeCat === 'all' || s.cat === activeCat) &&
-                    (!query || s.name.toLowerCase().includes(query))
-                );
-            }
+                const level = document.createElement('td');
+                level.className = 'skills-level';
+                level.textContent = typeof skill.level === 'number' ? `${skill.level}%` : '—';
+                row.appendChild(level);
 
-            // ---------- view toggle ----------
-            function setView(which) {
-                const overview = which === 'overview';
-                overviewWrap.hidden = !overview;
-                matrixWrap.hidden = overview;
+                const experience = document.createElement('td');
+                experience.className = 'skills-experience';
+                experience.textContent = formatYears(skill.years);
+                row.appendChild(experience);
 
-                press(viewOverviewBtn, overview);
-                press(viewMatrixBtn, !overview);
-
-                page = 1; // reset paging on switch
-                if (overview) {
-                    if (moreBtn) moreBtn.classList.add('hidden');  // hide "Show more" in Overview
-                    renderRadar();
+                const proof = document.createElement('td');
+                if (skill.proof) {
+                    const link = document.createElement('a');
+                    link.className = 'skills-proof-link';
+                    link.href = skill.proof;
+                    link.target = '_blank';
+                    link.rel = 'noopener';
+                    link.innerHTML = `View <i class="fas fa-external-link-alt text-xs"></i>`;
+                    proof.appendChild(link);
                 } else {
-                    renderMatrix();
+                    proof.textContent = '—';
                 }
-            }
-            viewOverviewBtn.addEventListener('click', () => setView('overview'));
-            viewMatrixBtn.addEventListener('click', () => setView('matrix'));
+                row.appendChild(proof);
 
-            // ---------- chips ----------
-            chips.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    activeCat = btn.dataset.cat || 'all';
-                    chips.forEach(c => press(c, c === btn));
-                    page = 1;
-                    if (matrixWrap.hidden) renderRadar(); else renderMatrix();
-                });
+                tbody.appendChild(row);
+            };
+
+            tbody.innerHTML = '';
+
+            const categorySet = new Set(categories.map(c => c.id));
+
+            categories.forEach(cat => {
+                const group = skills.filter(skill => skill.cat === cat.id)
+                    .sort((a, b) => b.level - a.level || a.name.localeCompare(b.name));
+                if (!group.length) return;
+                renderCategory(cat);
+                group.forEach(renderSkill);
             });
 
-            // ---------- search ----------
-            if (searchInput) {
-                searchInput.addEventListener('input', () => {
-                    query = (searchInput.value || '').trim().toLowerCase();
-                    page = 1;
-                    if (matrixWrap.hidden) renderRadar(); else renderMatrix();
-                });
+            const remaining = skills.filter(skill => !categorySet.has(skill.cat));
+            if (remaining.length) {
+                const otherCategory = { id: 'other', label: 'Other' };
+                renderCategory(otherCategory);
+                remaining.sort((a, b) => b.level - a.level || a.name.localeCompare(b.name))
+                    .forEach(renderSkill);
             }
 
-            // ---------- density ----------
-            function setDensity(mode) {
-                density = mode;
-                matrixWrap.dataset.density = density;
-                press(densityCompactBtn, mode === 'compact');
-                press(densityCozyBtn, mode === 'cozy');
-                if (!matrixWrap.hidden) renderMatrix();
+            const makeEmptyRow = (text) => {
+                const row = document.createElement('tr');
+                row.dataset.skillsEmpty = 'true';
+                const cell = document.createElement('td');
+                cell.colSpan = 4;
+                cell.className = 'text-center text-sm text-gray-500 dark:text-gray-400 py-6';
+                cell.textContent = text;
+                row.appendChild(cell);
+                return row;
+            };
+
+            const hasSkillRows = tbody.querySelectorAll('tr[data-cat]').length > 0;
+            if (!hasSkillRows) {
+                emptyRow = makeEmptyRow('No skills to show right now.');
+                emptyRow.hidden = false;
+                tbody.appendChild(emptyRow);
+            } else {
+                emptyRow = makeEmptyRow('No skills in this discipline yet.');
+                emptyRow.hidden = true;
+                tbody.appendChild(emptyRow);
             }
-            densityCompactBtn?.addEventListener('click', () => setDensity('compact'));
-            densityCozyBtn?.addEventListener('click', () => setDensity('cozy'));
 
-            // ---------- show more ----------
-            moreBtn?.addEventListener('click', () => { page += 1; renderMatrix(); });
+            const applyFilter = () => {
+                const skillRows = Array.from(tbody.querySelectorAll('tr[data-cat]'))
+                    .filter(row => !row.dataset.header);
+                const headerRows = Array.from(tbody.querySelectorAll('tr.skills-category-row'));
+                const hasSkills = skillRows.length > 0;
 
-            // ---------- matrix ----------
-            function renderMatrix() {
-                matrixWrap.innerHTML = '';
-                const all = filtered().sort((a, b) => b.level - a.level);
-                const slice = all.slice(0, page * pageSize);
-
-                if (!slice.length) {
-                    matrixWrap.innerHTML = `<p class="col-span-full text-center text-gray-600 dark:text-gray-400">No skills match your filters.</p>`;
-                    moreBtn?.classList.add('hidden');
+                if (!hasSkills) {
+                    headerRows.forEach(row => { row.hidden = true; });
+                    if (emptyRow) emptyRow.hidden = false;
                     return;
                 }
 
-                slice.forEach(s => {
-                    const card = document.createElement('article');
-                    card.className = 'skill-card';
-                    card.innerHTML = `
-            <div class="flex items-start justify-between gap-3">
-              <div>
-                <h4 class="skill-name text-black dark:text-cyber-green">${s.name}</h4>
-                <p class="text-xs text-gray-600 dark:text-gray-400">${catLabels[s.cat] || ''}</p>
-              </div>
-              <div class="skill-pill">${s.level}%</div>
-            </div>
-            <div class="skill-meter mt-3"><span style="width:${s.level}%"></span></div>
-            <div class="mt-3 flex flex-wrap items-center gap-2">
-              <span class="skill-pill">Last used: ${niceAgo(s.lastUsed)}</span>
-              <span class="skill-pill">${s.years} yr${s.years > 1 ? 's' : ''} exp</span>
-              ${s.proof ? `<a class="project-btn project-btn--ghost ml-auto" href="${s.proof}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt text-xs"></i><span>Repo</span></a>` : ''}
-            </div>`;
-                    matrixWrap.appendChild(card);
+                let visibleCount = 0;
+
+                skillRows.forEach(row => {
+                    const match = !activeFilter || row.dataset.cat === activeFilter;
+                    row.hidden = !match;
+                    if (match) {
+                        visibleCount += 1;
+                    }
                 });
 
-                // Pager visibility + label
-                if (moreBtn) {
-                    const remaining = all.length - slice.length;
-                    if (remaining > 0) {
-                        const next = Math.min(pageSize, remaining);
-                        moreBtn.textContent = `Show ${next} more`;
-                        moreBtn.classList.remove('hidden');
-                    } else {
-                        moreBtn.classList.add('hidden');
-                    }
-                }
-            }
+                headerRows.forEach(row => {
+                    const cat = row.dataset.cat;
+                    const show = !activeFilter || cat === activeFilter;
+                    row.hidden = !show;
+                });
 
-            // ---------- radar ----------
-            function radarColors() {
-                const grid = isDark() ? 'rgba(0,255,159,0.15)' : 'rgba(0,0,0,0.18)';
-                const tick = isDark() ? '#a7f3d0' : '#111';
-                const label = isDark() ? '#d1fae5' : '#111';
-                const fill = 'rgba(0,255,159,0.20)';
-                const line = 'rgba(0,255,159,0.9)';
-                const point = '#00ff9f';
-                return { grid, tick, label, fill, line, point };
-            }
-
-            // tint + value labels
-            const neonPlugin = {
-                id: 'neonPlugin',
-                beforeDraw(chart) {
-                    const { ctx, chartArea } = chart;
-                    if (!chartArea) return;
-                    ctx.save();
-                    ctx.globalCompositeOperation = 'destination-over';
-                    ctx.fillStyle = isDark() ? 'rgba(0,255,159,.05)' : 'rgba(0,0,0,.03)';
-                    ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
-                    ctx.restore();
-                },
-                afterDatasetsDraw(chart) {
-                    const { ctx, data } = chart;
-                    const meta = chart.getDatasetMeta(0);
-                    ctx.save();
-                    ctx.font = '12px ui-sans-serif, system-ui, -apple-system';
-                    ctx.fillStyle = isDark() ? '#9ae6c1' : '#111';
-                    meta.data.forEach((pt, i) => {
-                        const val = data.datasets[0].data[i];
-                        if (typeof val === 'number') ctx.fillText(String(val), pt.x + 6, pt.y - 6);
-                    });
-                    ctx.restore();
+                if (emptyRow) {
+                    emptyRow.hidden = visibleCount !== 0;
                 }
             };
 
-            function renderRadar() {
-                if (typeof Chart === 'undefined') return;
+            const setActiveFilter = (cat, { animate = true, force = false } = {}) => {
+                const target = cat || categories[0]?.id || filterButtons[0]?.dataset.cat;
+                if (!target) return;
+                if (!force && target === activeFilter) return;
 
-                const top = filtered().sort((a, b) => b.level - a.level).slice(0, 6);
-                renderTopList(top);
-
-                const ctx = document.getElementById('skillsRadar');
-                const { grid, tick, label, fill, line, point } = radarColors();
-
-                if (radar) radar.destroy();
-                radar = new Chart(ctx, {
-                    type: 'radar',
-                    data: {
-                        labels: top.map(s => s.name),
-                        datasets: [{
-                            label: 'Proficiency',
-                            data: top.map(s => s.level),
-                            backgroundColor: fill,
-                            borderColor: line,
-                            pointBackgroundColor: point,
-                            pointBorderColor: line,
-                            borderWidth: 2,
-                            pointRadius: 3,
-                            pointHoverRadius: 5,
-                            tension: .2
-                        }]
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        layout: { padding: 12 },
-                        animation: { duration: 400 },
-                        scales: {
-                            r: {
-                                suggestedMin: 0, suggestedMax: 100,
-                                grid: { color: grid },
-                                angleLines: { color: grid },
-                                pointLabels: {
-                                    color: label,
-                                    font: { weight: '700', size: 12 },
-                                    padding: 4,
-                                    centerPointLabels: true,
-                                    callback: (v) => wrapLabel(v)
-                                },
-                                ticks: { color: tick, showLabelBackdrop: false, stepSize: 20 }
-                            }
-                        },
-                        plugins: { legend: { display: false }, tooltip: { enabled: true } }
-                    },
-                    plugins: [neonPlugin]
+                activeFilter = target;
+                filterButtons.forEach(btn => {
+                    const isActive = btn.dataset.cat === target;
+                    btn.classList.toggle('is-active', isActive);
+                    btn.setAttribute('aria-pressed', String(isActive));
                 });
-            }
 
-            function renderTopList(top) {
-                topList.innerHTML = '';
-                top.forEach(s => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<span class="font-semibold text-black dark:text-cyber-green">${s.name}</span> — ${s.level}% • ${s.years}y • ${niceAgo(s.lastUsed)}`;
-                    topList.appendChild(li);
+                if (animationTimer) {
+                    clearTimeout(animationTimer);
+                    animationTimer = null;
+                }
+
+                if (animate) {
+                    table.classList.add('is-filtering');
+                    animationTimer = setTimeout(() => {
+                        applyFilter();
+                        requestAnimationFrame(() => table.classList.remove('is-filtering'));
+                        animationTimer = null;
+                    }, 140);
+                } else {
+                    applyFilter();
+                    table.classList.remove('is-filtering');
+                    animationTimer = null;
+                }
+            };
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const cat = btn.dataset.cat || null;
+                    setActiveFilter(cat);
                 });
-            }
-
-            // keep chart theme in sync
-            const themeBtn = document.getElementById('themeToggle');
-            themeBtn?.addEventListener('click', () => {
-                setTimeout(() => { if (!matrixWrap.hidden) return; renderRadar(); }, 0);
             });
 
-            // Initial view
-            setView('overview');
-            // Make initial pressed styles correct
-            press(chips.find(c => c.dataset.cat === 'all'), true);
-            press(densityCompactBtn, true);
+            setActiveFilter(filterButtons[0]?.dataset.cat || categories[0]?.id || null, { animate: false, force: true });
         })();
 
         // --- Scroll arrow ---
