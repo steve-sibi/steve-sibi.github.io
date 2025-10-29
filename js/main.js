@@ -112,6 +112,9 @@
                 { id: 'cloud', label: 'Cloud & DevOps' }
             ];
             const filterButtons = Array.from(document.querySelectorAll('.skills-filter'));
+            const headingEl = document.getElementById('skillsDisciplineHeading');
+            const categoryLabels = Object.fromEntries(categories.map(c => [c.id, c.label]));
+            categoryLabels.other = 'Other';
             let activeFilter = null;
             let emptyRow = null;
             let animationTimer = null;
@@ -119,19 +122,6 @@
             const formatYears = (years) => {
                 if (!years) return 'Under 1 yr';
                 return `${years} yr${years > 1 ? 's' : ''}`;
-            };
-
-            const renderCategory = (category) => {
-                const row = document.createElement('tr');
-                row.className = 'skills-category-row';
-                row.dataset.cat = category.id;
-                row.dataset.header = 'true';
-                const cell = document.createElement('th');
-                cell.setAttribute('scope', 'rowgroup');
-                cell.colSpan = 4;
-                cell.textContent = category.label;
-                row.appendChild(cell);
-                tbody.appendChild(row);
             };
 
             const renderSkill = (skill) => {
@@ -143,9 +133,39 @@
                 name.textContent = skill.name;
                 row.appendChild(name);
 
+                const levelValRaw = typeof skill.level === 'number' && !Number.isNaN(skill.level) ? Math.round(skill.level) : null;
                 const level = document.createElement('td');
                 level.className = 'skills-level';
-                level.textContent = typeof skill.level === 'number' ? `${skill.level}%` : '—';
+
+                if (levelValRaw == null) {
+                    level.textContent = '—';
+                    level.classList.add('skills-level-text');
+                } else {
+                    const value = Math.min(100, Math.max(0, levelValRaw));
+                    const progress = document.createElement('div');
+                    progress.className = 'skills-progress';
+                    progress.dataset.level = String(value);
+                    progress.setAttribute('role', 'progressbar');
+                    progress.setAttribute('aria-valuemin', '0');
+                    progress.setAttribute('aria-valuemax', '100');
+                    progress.setAttribute('aria-valuenow', String(value));
+                    progress.setAttribute('aria-valuetext', `${value}% proficiency`);
+
+                    const fill = document.createElement('div');
+                    fill.className = 'skills-progress-fill';
+                    fill.style.width = `${value}%`;
+                    progress.appendChild(fill);
+
+                    const label = document.createElement('span');
+                    label.className = 'skills-progress-label';
+                    label.textContent = `${value}%`;
+                    if (value < 15) label.classList.add('is-low');
+                    progress.appendChild(label);
+
+                    if (value <= 0) progress.classList.add('is-empty');
+
+                    level.appendChild(progress);
+                }
                 row.appendChild(level);
 
                 const experience = document.createElement('td');
@@ -178,14 +198,12 @@
                 const group = skills.filter(skill => skill.cat === cat.id)
                     .sort((a, b) => b.level - a.level || a.name.localeCompare(b.name));
                 if (!group.length) return;
-                renderCategory(cat);
                 group.forEach(renderSkill);
             });
 
             const remaining = skills.filter(skill => !categorySet.has(skill.cat));
             if (remaining.length) {
                 const otherCategory = { id: 'other', label: 'Other' };
-                renderCategory(otherCategory);
                 remaining.sort((a, b) => b.level - a.level || a.name.localeCompare(b.name))
                     .forEach(renderSkill);
             }
@@ -214,12 +232,10 @@
 
             const applyFilter = () => {
                 const skillRows = Array.from(tbody.querySelectorAll('tr[data-cat]'))
-                    .filter(row => !row.dataset.header);
-                const headerRows = Array.from(tbody.querySelectorAll('tr.skills-category-row'));
+                    .filter(row => !row.dataset.skillsEmpty);
                 const hasSkills = skillRows.length > 0;
 
                 if (!hasSkills) {
-                    headerRows.forEach(row => { row.hidden = true; });
                     if (emptyRow) emptyRow.hidden = false;
                     return;
                 }
@@ -232,12 +248,6 @@
                     if (match) {
                         visibleCount += 1;
                     }
-                });
-
-                headerRows.forEach(row => {
-                    const cat = row.dataset.cat;
-                    const show = !activeFilter || cat === activeFilter;
-                    row.hidden = !show;
                 });
 
                 if (emptyRow) {
@@ -256,6 +266,10 @@
                     btn.classList.toggle('is-active', isActive);
                     btn.setAttribute('aria-pressed', String(isActive));
                 });
+
+                if (headingEl) {
+                    headingEl.textContent = categoryLabels[target] || categoryLabels.other;
+                }
 
                 if (animationTimer) {
                     clearTimeout(animationTimer);

@@ -588,6 +588,7 @@ html {
     font-size: 1rem;
     line-height: 1.5;
     opacity: 1;
+    table-layout: fixed;
     will-change: opacity, transform;
     transition: opacity .3s ease, transform .3s ease;
 }
@@ -614,8 +615,9 @@ html {
 .skills-table td {
     padding: 1.1rem 1.35rem;
     border-bottom: 1px solid rgba(0, 0, 0, .08);
-    text-align: left;
+    text-align: center;
     vertical-align: top;
+    word-wrap: break-word;
 }
 
 .skills-table tbody tr:last-child th,
@@ -634,6 +636,7 @@ html {
     letter-spacing: .08em;
     text-transform: uppercase;
     color: #006633;
+    text-align: center;
 }
 
 .dark .skills-table .skills-category-row th {
@@ -642,8 +645,57 @@ html {
 }
 
 .skills-table .skills-level {
+    width: 28%;
+    min-width: 11.5rem;
+}
+
+.skills-level-text {
+    font-weight: 600;
+    font-size: .95rem;
+}
+
+.skills-progress {
+    position: relative;
+    width: 100%;
+    height: 1.05rem;
+    border-radius: .6rem;
+    overflow: hidden;
+    background: rgba(0, 0, 0, .08);
+    border: 1px solid rgba(0, 0, 0, .05);
+}
+
+.skills-progress-fill {
+    position: absolute;
+    inset: 0;
+    width: 0%;
+    background: linear-gradient(90deg, #00ff9f, #00c07a);
+    transition: width .35s ease;
+}
+
+.skills-progress-label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: .9rem;
     font-weight: 700;
-    font-size: 1.05rem;
+    color: #013f28;
+    letter-spacing: .01em;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, .65);
+    pointer-events: none;
+}
+
+.skills-progress-label.is-low {
+    color: #065237;
+}
+
+.skills-progress.is-empty {
+    background: rgba(0, 0, 0, .05);
+    border-style: dashed;
+}
+
+.skills-progress.is-empty .skills-progress-label {
+    color: rgba(0, 0, 0, .45);
 }
 
 .skills-table .skills-experience {
@@ -655,6 +707,33 @@ html {
     color: rgba(207, 238, 224, .7);
 }
 
+.dark .skills-progress {
+    background: rgba(0, 255, 159, .18);
+    border-color: rgba(0, 255, 159, .12);
+}
+
+.dark .skills-progress-fill {
+    background: linear-gradient(90deg, #00ff9f, #04d38c);
+}
+
+.dark .skills-progress-label {
+    color: #002819;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, .35);
+}
+
+.dark .skills-progress-label.is-low {
+    color: #013b26;
+}
+
+.dark .skills-progress.is-empty {
+    background: rgba(0, 255, 159, .08);
+    border-color: rgba(0, 255, 159, .18);
+}
+
+.dark .skills-progress.is-empty .skills-progress-label {
+    color: rgba(173, 255, 223, .8);
+}
+
 .skills-proof-link {
     display: inline-flex;
     align-items: center;
@@ -662,6 +741,28 @@ html {
     font-weight: 600;
     color: #006633;
     font-size: .95rem;
+}
+
+.skills-table th:nth-child(1),
+.skills-table td:nth-child(1) {
+    width: 32%;
+}
+
+.skills-table th:nth-child(2),
+.skills-table td:nth-child(2) {
+    width: 28%;
+}
+
+.skills-table th:nth-child(3),
+.skills-table td:nth-child(3) {
+    width: 20%;
+    white-space: nowrap;
+}
+
+.skills-table th:nth-child(4),
+.skills-table td:nth-child(4) {
+    width: 20%;
+    white-space: nowrap;
 }
 
 .skills-proof-link:hover {
@@ -681,6 +782,12 @@ html {
     flex-wrap: wrap;
     gap: .6rem;
     margin-bottom: 1.25rem;
+}
+
+.skills-discipline-heading {
+    letter-spacing: .25em;
+    font-size: .95rem;
+    text-transform: uppercase;
 }
 
 .skills-filter {
@@ -720,4 +827,18 @@ html {
     color: #002d1d;
     background: #00ff9f;
     border-color: #00ff9f;
+}
+
+@media (max-width:768px) {
+    .skills-table .skills-level {
+        min-width: 9.5rem;
+        width: 9.5rem;
+    }
+}
+
+@media (max-width:640px) {
+    .skills-table .skills-level {
+        min-width: 8.25rem;
+        width: 8.25rem;
+    }
 }
