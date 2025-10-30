@@ -325,6 +325,22 @@ html {
     color: #34d399;
 }
 
+#github-calendar .calendar h2,
+#github-calendar .calendar .contrib-footer,
+#github-calendar .calendar > :not(.position-relative),
+#github-calendar .calendar .sr-only {
+    display: none !important;
+}
+
+#github-calendar .calendar .calendar-graph-only {
+    display: block;
+}
+
+#github-calendar .calendar .calendar-graph-only svg {
+    width: 100%;
+    height: auto;
+}
+
 @media (max-width: 40rem) {
     .experience-grid {
         --timeline-left: 1rem;

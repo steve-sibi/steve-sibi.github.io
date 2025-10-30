@@ -88,8 +88,55 @@
         }
 
         // --- GitHub Calendar ---
+        const pruneCalendar = () => {
+            const calendar = document.querySelector('#github-calendar .calendar');
+            if (!calendar) return false;
+
+            const graphSection = calendar.querySelector('.position-relative');
+            const svg = graphSection ? graphSection.querySelector('svg') : calendar.querySelector('svg');
+            if (!svg) return false;
+
+            let replacement;
+            if (graphSection) {
+                replacement = graphSection.cloneNode(true);
+                replacement.classList.add('calendar-graph-only');
+            } else {
+                replacement = document.createElement('div');
+                replacement.className = 'position-relative calendar-graph-only';
+                replacement.appendChild(svg.cloneNode(true));
+            }
+
+            calendar.replaceChildren(replacement);
+            return true;
+        };
+
+        const observeCalendar = () => {
+            const target = document.getElementById('github-calendar');
+            if (!target) return;
+
+            const observer = new MutationObserver(() => {
+                if (pruneCalendar()) {
+                    observer.disconnect();
+                }
+            });
+
+            observer.observe(target, { childList: true, subtree: true });
+        };
+
+        observeCalendar();
+
         if (typeof GitHubCalendar !== 'undefined') {
-            GitHubCalendar('#github-calendar', 'steve-sibi', { responsive: true, summary: false });
+            try {
+                const result = GitHubCalendar('#github-calendar', 'steve-sibi', { responsive: true, summary: false });
+                if (result && typeof result.then === 'function') {
+                    result.then(() => pruneCalendar()).catch(() => { });
+                }
+            } catch (err) {
+                console.error('GitHubCalendar failed', err);
+            }
+
+            // Fallback cleanup in case rendering happens before observer attaches
+            setTimeout(() => pruneCalendar(), 2500);
         }
 
         // =====================================================================
