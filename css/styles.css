@@ -313,6 +313,16 @@ html {
     padding-left: 1.1rem;
     display: grid;
     gap: .5rem;
+    list-style: disc;
+    list-style-position: outside;
+}
+
+.experience-list li::marker {
+    color: #047857;
+}
+
+.dark .experience-list li::marker {
+    color: #34d399;
 }
 
 @media (max-width: 40rem) {
