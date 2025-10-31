@@ -356,6 +356,57 @@ html {
         linear-gradient(90deg, rgba(0, 0, 0, .6) 2px, transparent 2px)
 }
 
+.hero-cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: .75rem 1.5rem;
+    border: 2px solid var(--color-cyber-green, #00ff9f);
+    border-radius: .75rem;
+    color: var(--color-cyber-green, #00ff9f);
+    font-weight: 600;
+    text-decoration: none;
+    overflow: hidden;
+    transition: color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    isolation: isolate;
+}
+
+.hero-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 255, 159, .85);
+    opacity: 0;
+    transition: opacity .2s ease;
+    z-index: 0;
+}
+
+.hero-cta span {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-cta:hover,
+.hero-cta:focus-visible {
+    color: #002d1d;
+    border-color: var(--color-cyber-green, #00ff9f);
+    box-shadow: 0 12px 30px -10px rgba(0, 255, 159, .45);
+}
+
+.hero-cta:hover::before,
+.hero-cta:focus-visible::before {
+    opacity: 1;
+}
+
+.hero-cta:focus-visible {
+    outline: none;
+}
+
+.hero-cta:active {
+    transform: translateY(1px);
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion:reduce) {
     html {
@@ -515,6 +566,53 @@ html {
     display: flex;
     flex-wrap: wrap;
     gap: .5rem .6rem
+}
+
+#projectControls .project-filter {
+    border: 1px solid rgba(0, 255, 159, .35);
+    background: rgba(0, 255, 159, .08);
+    color: #006633;
+    font-weight: 600;
+    padding: .45rem .95rem;
+    border-radius: 9999px;
+    transition: background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+#projectControls .project-filter:hover,
+#projectControls .project-filter:focus-visible {
+    background: rgba(0, 255, 159, .18);
+    color: #006633;
+    outline: none;
+}
+
+#projectControls .project-filter[aria-pressed="true"],
+#projectControls .project-filter[aria-pressed="true"]:hover,
+#projectControls .project-filter[aria-pressed="true"]:focus-visible {
+    background: #00ff9f;
+    color: #002d1d;
+    border-color: var(--color-cyber-green, #00ff9f);
+    box-shadow: 0 0 12px rgba(0, 255, 159, .35);
+}
+
+.dark #projectControls .project-filter {
+    color: #9fffd6;
+    border-color: rgba(0, 255, 159, .4);
+    background: rgba(0, 255, 159, .1);
+}
+
+.dark #projectControls .project-filter:hover,
+.dark #projectControls .project-filter:focus-visible {
+    background: rgba(0, 255, 159, .18);
+    color: #9fffd6;
+}
+
+.dark #projectControls .project-filter[aria-pressed="true"],
+.dark #projectControls .project-filter[aria-pressed="true"]:hover,
+.dark #projectControls .project-filter[aria-pressed="true"]:focus-visible {
+    color: #002d1d;
+    background: #00ff9f;
+    border-color: #00ff9f;
+    box-shadow: 0 0 12px rgba(0, 255, 159, .35);
 }
 
 .project-btn {
