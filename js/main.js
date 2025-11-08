@@ -150,7 +150,7 @@
             if (!tbody) return;
 
             let skills = [];
-            
+
             // Try to load from external JSON first, fallback to embedded data
             try {
                 const response = await fetch('data/skills.json');
@@ -585,11 +585,11 @@
 
             contactForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
+
                 // Hide any previous messages
                 successMsg?.classList.add('hidden');
                 errorMsg?.classList.add('hidden');
-                
+
                 // Disable submit button
                 if (submitBtn) {
                     submitBtn.disabled = true;
@@ -614,7 +614,7 @@
                         // Success
                         successMsg?.classList.remove('hidden');
                         contactForm.reset();
-                        
+
                         // Track with GA
                         if (typeof gtag === 'function') {
                             gtag('event', 'form_submission', {
@@ -655,17 +655,17 @@
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 const windowHeight = window.innerHeight;
                 const documentHeight = document.documentElement.scrollHeight;
-                
+
                 // Show arrow after scrolling down a bit
                 if (scrollTop > 300) {
                     scrollArrow.classList.add('visible');
                 } else {
                     scrollArrow.classList.remove('visible');
                 }
-                
+
                 // Check if near bottom (within 100px)
                 const nearBottom = scrollTop + windowHeight >= documentHeight - 100;
-                
+
                 if (nearBottom && !isAtBottom) {
                     isAtBottom = true;
                     scrollArrow.classList.add('at-bottom');

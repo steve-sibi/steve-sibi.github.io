@@ -327,7 +327,7 @@ html {
 
 #github-calendar .calendar h2,
 #github-calendar .calendar .contrib-footer,
-#github-calendar .calendar > :not(.position-relative),
+#github-calendar .calendar> :not(.position-relative),
 #github-calendar .calendar .sr-only {
     display: none !important;
 }
@@ -975,6 +975,7 @@ html {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -985,6 +986,7 @@ html {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -1045,6 +1047,7 @@ html {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

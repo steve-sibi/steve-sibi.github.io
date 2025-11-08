@@ -1,258 +1,258 @@
 [
-  {
-    "name": "nmap",
-    "cat": "cyber",
-    "level": 90,
-    "years": 5,
-    "lastUsed": "2025-09",
-    "proof": "https://github.com/steve-sibi/Automated-Vulnerability-Scanner"
-  },
-  {
-    "name": "Wireshark",
-    "cat": "cyber",
-    "level": 80,
-    "years": 4,
-    "lastUsed": "2025-08"
-  },
-  {
-    "name": "Nessus",
-    "cat": "cyber",
-    "level": 80,
-    "years": 3,
-    "lastUsed": "2025-07"
-  },
-  {
-    "name": "Burp Suite",
-    "cat": "cyber",
-    "level": 80,
-    "years": 3,
-    "lastUsed": "2025-06"
-  },
-  {
-    "name": "Splunk",
-    "cat": "cyber",
-    "level": 80,
-    "years": 2,
-    "lastUsed": "2025-05",
-    "proof": "https://github.com/steve-sibi/splunk-siem-homelab"
-  },
-  {
-    "name": "Volatility",
-    "cat": "cyber",
-    "level": 75,
-    "years": 2,
-    "lastUsed": "2025-04"
-  },
-  {
-    "name": "Autopsy",
-    "cat": "cyber",
-    "level": 75,
-    "years": 2,
-    "lastUsed": "2024-12"
-  },
-  {
-    "name": "Docker",
-    "cat": "cyber",
-    "level": 85,
-    "years": 4,
-    "lastUsed": "2025-09",
-    "proof": "https://github.com/steve-sibi/azure-devsecops-aca"
-  },
-  {
-    "name": "Ansible",
-    "cat": "cyber",
-    "level": 80,
-    "years": 3,
-    "lastUsed": "2025-09",
-    "proof": "https://github.com/steve-sibi/azure-devsecops-aca"
-  },
-  {
-    "name": "VMware",
-    "cat": "cyber",
-    "level": 75,
-    "years": 4,
-    "lastUsed": "2024-11"
-  },
-  {
-    "name": "Terraform",
-    "cat": "cyber",
-    "level": 75,
-    "years": 3,
-    "lastUsed": "2025-08",
-    "proof": "https://github.com/steve-sibi/azure-devsecops-aca"
-  },
-  {
-    "name": "Python",
-    "cat": "prog",
-    "level": 90,
-    "years": 6,
-    "lastUsed": "2025-09",
-    "proof": "https://github.com/steve-sibi/mini-saas-ato"
-  },
-  {
-    "name": "Django",
-    "cat": "prog",
-    "level": 85,
-    "years": 4,
-    "lastUsed": "2025-06",
-    "proof": "https://github.com/steve-sibi/mini-saas-ato"
-  },
-  {
-    "name": "C",
-    "cat": "prog",
-    "level": 80,
-    "years": 3,
-    "lastUsed": "2024-12"
-  },
-  {
-    "name": "JavaScript",
-    "cat": "prog",
-    "level": 80,
-    "years": 4,
-    "lastUsed": "2025-09"
-  },
-  {
-    "name": "Bash",
-    "cat": "prog",
-    "level": 85,
-    "years": 5,
-    "lastUsed": "2025-08",
-    "proof": "https://github.com/steve-sibi/Server-Hardening-Script"
-  },
-  {
-    "name": "PowerShell",
-    "cat": "prog",
-    "level": 75,
-    "years": 3,
-    "lastUsed": "2025-03"
-  },
-  {
-    "name": "SQL",
-    "cat": "prog",
-    "level": 80,
-    "years": 4,
-    "lastUsed": "2025-07"
-  },
-  {
-    "name": "HTML",
-    "cat": "prog",
-    "level": 85,
-    "years": 6,
-    "lastUsed": "2025-09"
-  },
-  {
-    "name": "CSS",
-    "cat": "prog",
-    "level": 80,
-    "years": 6,
-    "lastUsed": "2025-09"
-  },
-  {
-    "name": "Ruby",
-    "cat": "prog",
-    "level": 60,
-    "years": 1,
-    "lastUsed": "2023-10"
-  },
-  {
-    "name": "macOS",
-    "cat": "os",
-    "level": 95,
-    "years": 8,
-    "lastUsed": "2025-09"
-  },
-  {
-    "name": "Windows 10/11",
-    "cat": "os",
-    "level": 90,
-    "years": 7,
-    "lastUsed": "2025-09"
-  },
-  {
-    "name": "Linux",
-    "cat": "os",
-    "level": 85,
-    "years": 5,
-    "lastUsed": "2025-09",
-    "proof": "https://github.com/steve-sibi/Server-Hardening-Script"
-  },
-  {
-    "name": "Windows Server 2012/2019",
-    "cat": "os",
-    "level": 75,
-    "years": 3,
-    "lastUsed": "2024-09"
-  },
-  {
-    "name": "AWS",
-    "cat": "cloud",
-    "level": 90,
-    "years": 3,
-    "lastUsed": "2025-05"
-  },
-  {
-    "name": "Azure",
-    "cat": "cloud",
-    "level": 80,
-    "years": 3,
-    "lastUsed": "2025-08",
-    "proof": "https://github.com/steve-sibi/azure-devsecops-aca"
-  },
-  {
-    "name": "Azure Security & Compliance",
-    "cat": "cloud",
-    "level": 80,
-    "years": 2,
-    "lastUsed": "2025-07"
-  },
-  {
-    "name": "Azure DevOps",
-    "cat": "cloud",
-    "level": 75,
-    "years": 2,
-    "lastUsed": "2025-08"
-  },
-  {
-    "name": "GitHub",
-    "cat": "cloud",
-    "level": 85,
-    "years": 6,
-    "lastUsed": "2025-09",
-    "proof": "https://github.com/steve-sibi"
-  },
-  {
-    "name": "Bitbucket",
-    "cat": "cloud",
-    "level": 80,
-    "years": 2,
-    "lastUsed": "2024-06"
-  },
-  {
-    "name": "Jira",
-    "cat": "cloud",
-    "level": 80,
-    "years": 2,
-    "lastUsed": "2024-08"
-  },
-  {
-    "name": "GCP",
-    "cat": "cloud",
-    "level": 75,
-    "years": 1,
-    "lastUsed": "2023-12"
-  },
-  {
-    "name": "Microsoft 365",
-    "cat": "cloud",
-    "level": 85,
-    "years": 4,
-    "lastUsed": "2025-05"
-  },
-  {
-    "name": "Microsoft Intune",
-    "cat": "cloud",
-    "level": 80,
-    "years": 2,
-    "lastUsed": "2025-01"
-  }
+    {
+        "name": "nmap",
+        "cat": "cyber",
+        "level": 90,
+        "years": 5,
+        "lastUsed": "2025-09",
+        "proof": "https://github.com/steve-sibi/Automated-Vulnerability-Scanner"
+    },
+    {
+        "name": "Wireshark",
+        "cat": "cyber",
+        "level": 80,
+        "years": 4,
+        "lastUsed": "2025-08"
+    },
+    {
+        "name": "Nessus",
+        "cat": "cyber",
+        "level": 80,
+        "years": 3,
+        "lastUsed": "2025-07"
+    },
+    {
+        "name": "Burp Suite",
+        "cat": "cyber",
+        "level": 80,
+        "years": 3,
+        "lastUsed": "2025-06"
+    },
+    {
+        "name": "Splunk",
+        "cat": "cyber",
+        "level": 80,
+        "years": 2,
+        "lastUsed": "2025-05",
+        "proof": "https://github.com/steve-sibi/splunk-siem-homelab"
+    },
+    {
+        "name": "Volatility",
+        "cat": "cyber",
+        "level": 75,
+        "years": 2,
+        "lastUsed": "2025-04"
+    },
+    {
+        "name": "Autopsy",
+        "cat": "cyber",
+        "level": 75,
+        "years": 2,
+        "lastUsed": "2024-12"
+    },
+    {
+        "name": "Docker",
+        "cat": "cyber",
+        "level": 85,
+        "years": 4,
+        "lastUsed": "2025-09",
+        "proof": "https://github.com/steve-sibi/azure-devsecops-aca"
+    },
+    {
+        "name": "Ansible",
+        "cat": "cyber",
+        "level": 80,
+        "years": 3,
+        "lastUsed": "2025-09",
+        "proof": "https://github.com/steve-sibi/azure-devsecops-aca"
+    },
+    {
+        "name": "VMware",
+        "cat": "cyber",
+        "level": 75,
+        "years": 4,
+        "lastUsed": "2024-11"
+    },
+    {
+        "name": "Terraform",
+        "cat": "cyber",
+        "level": 75,
+        "years": 3,
+        "lastUsed": "2025-08",
+        "proof": "https://github.com/steve-sibi/azure-devsecops-aca"
+    },
+    {
+        "name": "Python",
+        "cat": "prog",
+        "level": 90,
+        "years": 6,
+        "lastUsed": "2025-09",
+        "proof": "https://github.com/steve-sibi/mini-saas-ato"
+    },
+    {
+        "name": "Django",
+        "cat": "prog",
+        "level": 85,
+        "years": 4,
+        "lastUsed": "2025-06",
+        "proof": "https://github.com/steve-sibi/mini-saas-ato"
+    },
+    {
+        "name": "C",
+        "cat": "prog",
+        "level": 80,
+        "years": 3,
+        "lastUsed": "2024-12"
+    },
+    {
+        "name": "JavaScript",
+        "cat": "prog",
+        "level": 80,
+        "years": 4,
+        "lastUsed": "2025-09"
+    },
+    {
+        "name": "Bash",
+        "cat": "prog",
+        "level": 85,
+        "years": 5,
+        "lastUsed": "2025-08",
+        "proof": "https://github.com/steve-sibi/Server-Hardening-Script"
+    },
+    {
+        "name": "PowerShell",
+        "cat": "prog",
+        "level": 75,
+        "years": 3,
+        "lastUsed": "2025-03"
+    },
+    {
+        "name": "SQL",
+        "cat": "prog",
+        "level": 80,
+        "years": 4,
+        "lastUsed": "2025-07"
+    },
+    {
+        "name": "HTML",
+        "cat": "prog",
+        "level": 85,
+        "years": 6,
+        "lastUsed": "2025-09"
+    },
+    {
+        "name": "CSS",
+        "cat": "prog",
+        "level": 80,
+        "years": 6,
+        "lastUsed": "2025-09"
+    },
+    {
+        "name": "Ruby",
+        "cat": "prog",
+        "level": 60,
+        "years": 1,
+        "lastUsed": "2023-10"
+    },
+    {
+        "name": "macOS",
+        "cat": "os",
+        "level": 95,
+        "years": 8,
+        "lastUsed": "2025-09"
+    },
+    {
+        "name": "Windows 10/11",
+        "cat": "os",
+        "level": 90,
+        "years": 7,
+        "lastUsed": "2025-09"
+    },
+    {
+        "name": "Linux",
+        "cat": "os",
+        "level": 85,
+        "years": 5,
+        "lastUsed": "2025-09",
+        "proof": "https://github.com/steve-sibi/Server-Hardening-Script"
+    },
+    {
+        "name": "Windows Server 2012/2019",
+        "cat": "os",
+        "level": 75,
+        "years": 3,
+        "lastUsed": "2024-09"
+    },
+    {
+        "name": "AWS",
+        "cat": "cloud",
+        "level": 90,
+        "years": 3,
+        "lastUsed": "2025-05"
+    },
+    {
+        "name": "Azure",
+        "cat": "cloud",
+        "level": 80,
+        "years": 3,
+        "lastUsed": "2025-08",
+        "proof": "https://github.com/steve-sibi/azure-devsecops-aca"
+    },
+    {
+        "name": "Azure Security & Compliance",
+        "cat": "cloud",
+        "level": 80,
+        "years": 2,
+        "lastUsed": "2025-07"
+    },
+    {
+        "name": "Azure DevOps",
+        "cat": "cloud",
+        "level": 75,
+        "years": 2,
+        "lastUsed": "2025-08"
+    },
+    {
+        "name": "GitHub",
+        "cat": "cloud",
+        "level": 85,
+        "years": 6,
+        "lastUsed": "2025-09",
+        "proof": "https://github.com/steve-sibi"
+    },
+    {
+        "name": "Bitbucket",
+        "cat": "cloud",
+        "level": 80,
+        "years": 2,
+        "lastUsed": "2024-06"
+    },
+    {
+        "name": "Jira",
+        "cat": "cloud",
+        "level": 80,
+        "years": 2,
+        "lastUsed": "2024-08"
+    },
+    {
+        "name": "GCP",
+        "cat": "cloud",
+        "level": 75,
+        "years": 1,
+        "lastUsed": "2023-12"
+    },
+    {
+        "name": "Microsoft 365",
+        "cat": "cloud",
+        "level": 85,
+        "years": 4,
+        "lastUsed": "2025-05"
+    },
+    {
+        "name": "Microsoft Intune",
+        "cat": "cloud",
+        "level": 80,
+        "years": 2,
+        "lastUsed": "2025-01"
+    }
 ]
