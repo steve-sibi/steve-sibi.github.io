@@ -991,49 +991,11 @@
           hands-on use.
         </p>
 
-        <!-- Data -->
+        <!-- Skills data now loaded from data/skills.json -->
+        <!-- Empty fallback - if external file fails, an error message will be shown -->
         <script id="skillsData" type="application/json">
-      [
-        { "name":"nmap","cat":"cyber","level":90,"years":5,"lastUsed":"2025-09","proof":"https://github.com/steve-sibi/Automated-Vulnerability-Scanner" },
-        { "name":"Wireshark","cat":"cyber","level":80,"years":4,"lastUsed":"2025-08" },
-        { "name":"Nessus","cat":"cyber","level":80,"years":3,"lastUsed":"2025-07" },
-        { "name":"Burp Suite","cat":"cyber","level":80,"years":3,"lastUsed":"2025-06" },
-        { "name":"Splunk","cat":"cyber","level":80,"years":2,"lastUsed":"2025-05","proof":"https://github.com/steve-sibi/splunk-siem-homelab" },
-        { "name":"Volatility","cat":"cyber","level":75,"years":2,"lastUsed":"2025-04" },
-        { "name":"Autopsy","cat":"cyber","level":75,"years":2,"lastUsed":"2024-12" },
-        { "name":"Docker","cat":"cyber","level":85,"years":4,"lastUsed":"2025-09","proof":"https://github.com/steve-sibi/azure-devsecops-aca" },
-        { "name":"Ansible","cat":"cyber","level":80,"years":3,"lastUsed":"2025-09","proof":"https://github.com/steve-sibi/azure-devsecops-aca" },
-        { "name":"VMware","cat":"cyber","level":75,"years":4,"lastUsed":"2024-11" },
-        { "name":"Terraform","cat":"cyber","level":75,"years":3,"lastUsed":"2025-08","proof":"https://github.com/steve-sibi/azure-devsecops-aca" },
-
-        { "name":"Python","cat":"prog","level":90,"years":6,"lastUsed":"2025-09","proof":"https://github.com/steve-sibi/mini-saas-ato" },
-        { "name":"Django","cat":"prog","level":85,"years":4,"lastUsed":"2025-06","proof":"https://github.com/steve-sibi/mini-saas-ato" },
-        { "name":"C","cat":"prog","level":80,"years":3,"lastUsed":"2024-12" },
-        { "name":"JavaScript","cat":"prog","level":80,"years":4,"lastUsed":"2025-09" },
-        { "name":"Bash","cat":"prog","level":85,"years":5,"lastUsed":"2025-08","proof":"https://github.com/steve-sibi/Server-Hardening-Script" },
-        { "name":"PowerShell","cat":"prog","level":75,"years":3,"lastUsed":"2025-03" },
-        { "name":"SQL","cat":"prog","level":80,"years":4,"lastUsed":"2025-07" },
-        { "name":"HTML","cat":"prog","level":85,"years":6,"lastUsed":"2025-09" },
-        { "name":"CSS","cat":"prog","level":80,"years":6,"lastUsed":"2025-09" },
-        { "name":"Ruby","cat":"prog","level":60,"years":1,"lastUsed":"2023-10" },
-
-        { "name":"macOS","cat":"os","level":95,"years":8,"lastUsed":"2025-09" },
-        { "name":"Windows 10/11","cat":"os","level":90,"years":7,"lastUsed":"2025-09" },
-        { "name":"Linux","cat":"os","level":85,"years":5,"lastUsed":"2025-09","proof":"https://github.com/steve-sibi/Server-Hardening-Script" },
-        { "name":"Windows Server 2012/2019","cat":"os","level":75,"years":3,"lastUsed":"2024-09" },
-
-        { "name":"AWS","cat":"cloud","level":90,"years":3,"lastUsed":"2025-05" },
-        { "name":"Azure","cat":"cloud","level":80,"years":3,"lastUsed":"2025-08","proof":"https://github.com/steve-sibi/azure-devsecops-aca" },
-        { "name":"Azure Security & Compliance","cat":"cloud","level":80,"years":2,"lastUsed":"2025-07" },
-        { "name":"Azure DevOps","cat":"cloud","level":75,"years":2,"lastUsed":"2025-08" },
-        { "name":"GitHub","cat":"cloud","level":85,"years":6,"lastUsed":"2025-09","proof":"https://github.com/steve-sibi" },
-        { "name":"Bitbucket","cat":"cloud","level":80,"years":2,"lastUsed":"2024-06" },
-        { "name":"Jira","cat":"cloud","level":80,"years":2,"lastUsed":"2024-08" },
-        { "name":"GCP","cat":"cloud","level":75,"years":1,"lastUsed":"2023-12" },
-        { "name":"Microsoft 365","cat":"cloud","level":85,"years":4,"lastUsed":"2025-05" },
-        { "name":"Microsoft Intune","cat":"cloud","level":80,"years":2,"lastUsed":"2025-01" }
-      ]
-    </script>
+[]
+        </script>
       </div>
     </section>
 
@@ -1159,28 +1121,138 @@
           <div class="absolute -bottom-px left-0 w-1 h-3 bg-cyber-green"></div>
           <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
         </div>
-        <div class="text-center max-w-2xl mx-auto">
-          <p class="text-gray-600 dark:text-gray-300 mb-6">If you'd like to get in touch or just want to grab a coffee,
-            please email me at:</p>
-          <a href="mailto:steve.sibi@gmail.com"
-            class="text-cyber-green text-xl hover:text-opacity-80 transition-colors font-bold">steve.sibi@gmail.com</a>
-          <div class="mt-8 flex justify-center space-x-6">
-            <a href="https://www.linkedin.com/in/steve-sibi" target="_blank" rel="noopener noreferrer"
-              class="text-gray-600 dark:text-gray-300 hover:text-cyber-green transition-colors" aria-label="LinkedIn">
-              <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
-            </a>
-            <a href="https://twitter.com/steve_sibi" target="_blank" rel="noopener noreferrer"
-              class="text-gray-600 dark:text-gray-300 hover:text-cyber-green transition-colors" aria-label="Twitter">
-              <i class="fab fa-x-twitter fa-2x" aria-hidden="true"></i>
-            </a>
-            <a href="https://www.github.com/steve-sibi" target="_blank" rel="noopener noreferrer"
-              class="text-gray-600 dark:text-gray-300 hover:text-cyber-green transition-colors" aria-label="GitHub">
-              <i class="fab fa-github fa-2x" aria-hidden="true"></i>
-            </a>
-            <a href="https://www.instagram.com/stevesibi_" target="_blank" rel="noopener noreferrer"
-              class="text-gray-600 dark:text-gray-300 hover:text-cyber-green transition-colors" aria-label="Instagram">
-              <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
-            </a>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <!-- Contact Info -->
+          <div>
+            <h3 class="text-xl font-bold mb-4 text-black dark:text-cyber-green">Get In Touch</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6">
+              I'm always interested in hearing about new opportunities, collaborations, or just having a chat about
+              cybersecurity. Feel free to reach out!
+            </p>
+
+            <div class="space-y-4 mb-8">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-full bg-gray-100 dark:bg-cyber-dark flex items-center justify-center border border-cyber-green">
+                  <i class="fas fa-envelope text-cyber-green" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Email</p>
+                  <a href="mailto:steve.sibi@gmail.com"
+                    class="text-cyber-green hover:text-opacity-80 transition-colors">steve.sibi@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-full bg-gray-100 dark:bg-cyber-dark flex items-center justify-center border border-cyber-green">
+                  <i class="fas fa-map-marker-alt text-cyber-green" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">Location</p>
+                  <p class="text-gray-700 dark:text-gray-300">Chicago, IL, United States</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300 uppercase tracking-wider">Connect
+                With Me</h4>
+              <div class="flex gap-4">
+                <a href="https://www.linkedin.com/in/steve-sibi" target="_blank" rel="noopener noreferrer"
+                  class="w-10 h-10 rounded-full bg-gray-100 dark:bg-cyber-dark flex items-center justify-center border border-gray-300 dark:border-cyber-green-dark hover:border-cyber-green hover:bg-cyber-green hover:bg-opacity-10 transition-all"
+                  aria-label="LinkedIn">
+                  <i class="fab fa-linkedin text-cyber-green" aria-hidden="true"></i>
+                </a>
+                <a href="https://twitter.com/steve_sibi" target="_blank" rel="noopener noreferrer"
+                  class="w-10 h-10 rounded-full bg-gray-100 dark:bg-cyber-dark flex items-center justify-center border border-gray-300 dark:border-cyber-green-dark hover:border-cyber-green hover:bg-cyber-green hover:bg-opacity-10 transition-all"
+                  aria-label="Twitter">
+                  <i class="fab fa-x-twitter text-cyber-green" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.github.com/steve-sibi" target="_blank" rel="noopener noreferrer"
+                  class="w-10 h-10 rounded-full bg-gray-100 dark:bg-cyber-dark flex items-center justify-center border border-gray-300 dark:border-cyber-green-dark hover:border-cyber-green hover:bg-cyber-green hover:bg-opacity-10 transition-all"
+                  aria-label="GitHub">
+                  <i class="fab fa-github text-cyber-green" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.instagram.com/stevesibi_" target="_blank" rel="noopener noreferrer"
+                  class="w-10 h-10 rounded-full bg-gray-100 dark:bg-cyber-dark flex items-center justify-center border border-gray-300 dark:border-cyber-green-dark hover:border-cyber-green hover:bg-cyber-green hover:bg-opacity-10 transition-all"
+                  aria-label="Instagram">
+                  <i class="fab fa-instagram text-cyber-green" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div>
+            <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+              <!-- Web3Forms Access Key - Get yours free at https://web3forms.com -->
+              <input type="hidden" name="access_key" value="cae3a39c-5310-41ac-a494-185231e2823c">
+              <!-- Optional: Redirect after submission -->
+              <input type="hidden" name="redirect" value="https://steve-sibi.github.io/#contact">
+              <!-- Honeypot spam protection -->
+              <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+              <div>
+                <label for="contact-name" class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                  Name <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="contact-name" name="name" required
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-cyber-green-dark rounded-md bg-white dark:bg-cyber-dark text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyber-green focus:border-transparent transition-all"
+                  placeholder="Your name" />
+              </div>
+
+              <div>
+                <label for="contact-email" class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                  Email <span class="text-red-500">*</span>
+                </label>
+                <input type="email" id="contact-email" name="email" required
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-cyber-green-dark rounded-md bg-white dark:bg-cyber-dark text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyber-green focus:border-transparent transition-all"
+                  placeholder="your.email@example.com" />
+              </div>
+
+              <div>
+                <label for="contact-subject" class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                  Subject <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="contact-subject" name="subject" required
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-cyber-green-dark rounded-md bg-white dark:bg-cyber-dark text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyber-green focus:border-transparent transition-all"
+                  placeholder="What's this about?" />
+              </div>
+
+              <div>
+                <label for="contact-message" class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                  Message <span class="text-red-500">*</span>
+                </label>
+                <textarea id="contact-message" name="message" required rows="5"
+                  class="w-full px-4 py-3 border border-gray-300 dark:border-cyber-green-dark rounded-md bg-white dark:bg-cyber-dark text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyber-green focus:border-transparent transition-all resize-none"
+                  placeholder="Your message..."></textarea>
+              </div>
+
+              <button type="submit" id="contactSubmit"
+                class="w-full px-6 py-3 bg-cyber-green text-black font-semibold rounded-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-cyber-green focus:ring-offset-2 dark:focus:ring-offset-cyber-black transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                <span id="contactSubmitText">Send Message</span>
+                <i id="contactSubmitIcon" class="fas fa-paper-plane ml-2" aria-hidden="true"></i>
+              </button>
+
+              <!-- Status Messages -->
+              <div id="contactSuccess"
+                class="hidden p-4 bg-green-100 dark:bg-green-900/30 border border-green-500 rounded-md">
+                <div class="flex items-center gap-2">
+                  <i class="fas fa-check-circle text-green-600 dark:text-green-400" aria-hidden="true"></i>
+                  <p class="text-green-800 dark:text-green-200">Message sent successfully! I'll get back to you soon.
+                  </p>
+                </div>
+              </div>
+
+              <div id="contactError" class="hidden p-4 bg-red-100 dark:bg-red-900/30 border border-red-500 rounded-md">
+                <div class="flex items-center gap-2">
+                  <i class="fas fa-exclamation-circle text-red-600 dark:text-red-400" aria-hidden="true"></i>
+                  <p class="text-red-800 dark:text-red-200">Oops! Something went wrong. Please try again or email me
+                    directly.</p>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

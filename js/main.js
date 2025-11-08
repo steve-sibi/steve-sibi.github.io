@@ -142,15 +142,45 @@
         // =====================================================================
         // === Skills Explorer: Matrix =========================================
         // =====================================================================
-        (function () {
-            const DATA_EL = document.getElementById('skillsData');
+        (async function () {
             const table = document.getElementById('skillsTable');
-            if (!DATA_EL || !table) return;
+            if (!table) return;
 
             const tbody = table.querySelector('tbody');
             if (!tbody) return;
 
-            const skills = JSON.parse(DATA_EL.textContent || '[]');
+            let skills = [];
+            
+            // Try to load from external JSON first, fallback to embedded data
+            try {
+                const response = await fetch('data/skills.json');
+                if (response.ok) {
+                    skills = await response.json();
+                    console.log('✅ Loaded skills from data/skills.json:', skills.length);
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                console.warn('⚠️ Failed to load external skills data:', error.message);
+                console.log('Trying embedded fallback...');
+                // Fallback to embedded data if exists
+                const DATA_EL = document.getElementById('skillsData');
+                if (DATA_EL) {
+                    try {
+                        const text = DATA_EL.textContent || DATA_EL.innerText || '[]';
+                        skills = JSON.parse(text.trim());
+                        console.log('✅ Loaded skills from embedded data:', skills.length);
+                    } catch (parseError) {
+                        console.error('❌ Failed to parse embedded skills data:', parseError);
+                    }
+                }
+            }
+
+            if (skills.length === 0) {
+                console.error('❌ No skills data available from any source');
+                tbody.innerHTML = '<tr><td colspan="4" class="text-center text-gray-500 dark:text-gray-400 py-6">Failed to load skills data. Please check console for details.</td></tr>';
+                return;
+            }
 
             const categories = [
                 { id: 'cyber', label: 'Cybersecurity' },
@@ -347,29 +377,7 @@
             setActiveFilter(filterButtons[0]?.dataset.cat || categories[0]?.id || null, { animate: false, force: true });
         })();
 
-        // --- Scroll arrow ---
-        const scrollArrow = document.getElementById('scroll-arrow');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) scrollArrow.classList.remove('opacity-0');
-            else scrollArrow.classList.add('opacity-0');
-            const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50;
-            const icon = scrollArrow.querySelector('i');
-            if (icon) {
-                if (atBottom) { icon.classList.replace('fa-chevron-down', 'fa-chevron-up'); scrollArrow.setAttribute('aria-label', 'Scroll to top'); }
-                else { icon.classList.replace('fa-chevron-up', 'fa-chevron-down'); scrollArrow.setAttribute('aria-label', 'Scroll down'); }
-            }
-        });
-        scrollArrow.addEventListener('click', () => {
-            const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50;
-            if (atBottom) {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                const sections = document.querySelectorAll('section');
-                const currentScroll = window.scrollY + 50;
-                const nextSection = Array.from(sections).find(s => s.offsetTop > currentScroll);
-                if (nextSection) nextSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
+        // --- Scroll arrow (enhanced version at end of file) ---
 
         // --- Resume download GA event ---
         document.querySelectorAll('[data-resume-download]').forEach(link => {
@@ -562,6 +570,170 @@
                     setTimeout(() => modalToast.classList.add('hidden'), 2000);
                 }
             });
+        }
+
+        // =====================================================================
+        // === Contact Form Handling ==========================================
+        // =====================================================================
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            const submitBtn = document.getElementById('contactSubmit');
+            const submitText = document.getElementById('contactSubmitText');
+            const submitIcon = document.getElementById('contactSubmitIcon');
+            const successMsg = document.getElementById('contactSuccess');
+            const errorMsg = document.getElementById('contactError');
+
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Hide any previous messages
+                successMsg?.classList.add('hidden');
+                errorMsg?.classList.add('hidden');
+                
+                // Disable submit button
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    if (submitText) submitText.textContent = 'Sending...';
+                    if (submitIcon) {
+                        submitIcon.classList.remove('fa-paper-plane');
+                        submitIcon.classList.add('fa-spinner', 'fa-spin');
+                    }
+                }
+
+                try {
+                    const formData = new FormData(contactForm);
+                    const response = await fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        // Success
+                        successMsg?.classList.remove('hidden');
+                        contactForm.reset();
+                        
+                        // Track with GA
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'form_submission', {
+                                event_category: 'Contact',
+                                event_label: 'Contact Form'
+                            });
+                        }
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                } catch (error) {
+                    // Error
+                    errorMsg?.classList.remove('hidden');
+                    console.error('Contact form error:', error);
+                } finally {
+                    // Re-enable submit button
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        if (submitText) submitText.textContent = 'Send Message';
+                        if (submitIcon) {
+                            submitIcon.classList.remove('fa-spinner', 'fa-spin');
+                            submitIcon.classList.add('fa-paper-plane');
+                        }
+                    }
+                }
+            });
+        }
+
+        // =====================================================================
+        // === Improved Scroll Arrow (Bidirectional) ==========================
+        // =====================================================================
+        const scrollArrow = document.getElementById('scroll-arrow');
+        if (scrollArrow) {
+            const icon = scrollArrow.querySelector('i');
+            let isAtBottom = false;
+
+            function updateScrollArrow() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                // Show arrow after scrolling down a bit
+                if (scrollTop > 300) {
+                    scrollArrow.classList.add('visible');
+                } else {
+                    scrollArrow.classList.remove('visible');
+                }
+                
+                // Check if near bottom (within 100px)
+                const nearBottom = scrollTop + windowHeight >= documentHeight - 100;
+                
+                if (nearBottom && !isAtBottom) {
+                    isAtBottom = true;
+                    scrollArrow.classList.add('at-bottom');
+                    if (icon) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                    scrollArrow.setAttribute('aria-label', 'Scroll to top');
+                } else if (!nearBottom && isAtBottom) {
+                    isAtBottom = false;
+                    scrollArrow.classList.remove('at-bottom');
+                    if (icon) {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                    scrollArrow.setAttribute('aria-label', 'Scroll down');
+                }
+            }
+
+            scrollArrow.addEventListener('click', () => {
+                if (isAtBottom) {
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    // Scroll down one viewport
+                    window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+                }
+            });
+
+            window.addEventListener('scroll', updateScrollArrow, { passive: true });
+            updateScrollArrow(); // Initial check
+        }
+
+        // =====================================================================
+        // === Page Load Animations (Intersection Observer) ===================
+        // =====================================================================
+        const fadeInSections = document.querySelectorAll('section');
+        if (fadeInSections.length > 0 && 'IntersectionObserver' in window) {
+            // Add fade-in class to all sections except hero
+            fadeInSections.forEach(section => {
+                if (section.id !== 'home') {
+                    section.classList.add('fade-in-section');
+                }
+            });
+
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        fadeInObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+
+            fadeInSections.forEach(section => {
+                if (section.classList.contains('fade-in-section')) {
+                    fadeInObserver.observe(section);
+                }
+            });
+        }
+
+        // Add hero content animation class
+        const heroContent = document.querySelector('#home .container');
+        if (heroContent) {
+            heroContent.classList.add('hero-content');
         }
     });
 })();

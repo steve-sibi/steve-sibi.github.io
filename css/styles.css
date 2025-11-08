@@ -966,3 +966,92 @@ html {
         width: 8.25rem;
     }
 }
+
+/* ===================================================================
+   Page Load Animations
+   =================================================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Sections fade in when scrolled into view */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hero section initial animation */
+.hero-content {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Scroll arrow animation */
+#scroll-arrow {
+    transition: opacity 0.3s ease, bottom 0.3s ease, transform 0.2s ease;
+}
+
+#scroll-arrow.visible {
+    opacity: 1 !important;
+}
+
+#scroll-arrow:hover {
+    transform: scale(1.1);
+}
+
+#scroll-arrow.at-bottom {
+    transform: rotate(180deg);
+}
+
+#scroll-arrow.at-bottom:hover {
+    transform: rotate(180deg) scale(1.1);
+}
+
+/* Contact form animations */
+#contactForm input:focus,
+#contactForm textarea:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 255, 159, 0.15);
+}
+
+#contactForm button:active {
+    transform: scale(0.98);
+}
+
+/* Status message animations */
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#contactSuccess,
+#contactError {
+    animation: slideInDown 0.3s ease-out forwards;
+}
