@@ -16,7 +16,9 @@
   "main": "index.js",
   "scripts": {
     "build:css": "tailwindcss -i ./src/tailwind.css -o ./css/tailwind.css --minify",
-    "watch:css": "tailwindcss -i ./src/tailwind.css -o ./css/tailwind.css --watch"
+    "watch:css": "tailwindcss -i ./src/tailwind.css -o ./css/tailwind.css --watch",
+    "start": "python3 -m http.server 8000",
+    "dev": "npm run watch:css & python3 -m http.server 8000"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.13",
