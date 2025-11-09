@@ -1,53 +1,26 @@
-(() => {
-    'use strict';
+/**
+ * Portfolio JavaScript - Modularized Architecture
+ * 
+ * This file has been split into logical modules for better maintainability.
+ * All functionality is now loaded via separate module files:
+ * 
+ * - utils.js           : Shared utilities (script loader, helpers)
+ * - theme.js           : Dark/light mode toggle
+ * - navigation.js      : Mobile menu, active nav links
+ * - typed-text.js      : TypedJS integration
+ * - github-calendar.js : GitHub contribution calendar
+ * - skills.js          : Skills matrix with filtering
+ * - projects.js        : Project grid with search/filter
+ * - modal.js           : Project quick-view modal
+ * - contact.js         : Contact form handling
+ * - scroll-arrow.js    : Bidirectional scroll navigation
+ * - animations.js      : Page load animations & misc UI
+ * 
+ * See index.html for module loading order.
+ * Original monolithic code preserved as main.js.backup
+ */
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const loadedScripts = new Map();
-        const loadExternalScript = (src) => {
-            if (loadedScripts.has(src)) {
-                return loadedScripts.get(src);
-            }
-            const promise = new Promise((resolve, reject) => {
-                const script = document.createElement('script');
-                script.src = src;
-                script.async = true;
-                script.onload = () => resolve();
-                script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
-                document.head.appendChild(script);
-            });
-            loadedScripts.set(src, promise);
-            return promise;
-        };
-
-        // --- Theme toggle ---
-        const themeToggle = document.getElementById('themeToggle');
-        function setThemeIcon() {
-            const isDark = document.documentElement.classList.contains('dark');
-            themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-            themeToggle.setAttribute('aria-pressed', String(isDark));
-        }
-        setThemeIcon();
-        themeToggle.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            const isDark = document.documentElement.classList.contains('dark');
-            try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (_) { }
-            setThemeIcon();
-        });
-
-        // --- Mobile drawer ---
-        const sidebar = document.getElementById('sidebar');
-        const menuButton = document.getElementById('menuButton');
-        const menuIcon = document.getElementById('menuIcon');
-        const overlay = document.getElementById('sidebarOverlay');
-        let lastFocused;
-        const isOpen = () => !sidebar.classList.contains('-translate-x-full');
-
-        function openSidebar() {
-            lastFocused = document.activeElement;
-            sidebar.classList.remove('-translate-x-full');
-            overlay.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            menuButton.setAttribute('aria-expanded', 'true');
+console.log('✅ Portfolio JS modules loaded');
             menuIcon.classList.replace('fa-bars', 'fa-times');
             sidebar.focus({ preventScroll: true });
         }
@@ -182,12 +155,36 @@
                 try {
                     const result = GitHubCalendar('#github-calendar', 'steve-sibi', { responsive: true, summary: false });
                     if (result && typeof result.then === 'function') {
-                        result.then(() => pruneCalendar()).catch(() => { });
+                        result.then(() => {
+                            pruneCalendar();
+                            // Hide skeleton and show calendar
+                            const skeleton = document.getElementById('github-calendar-skeleton');
+                            const calendar = document.getElementById('github-calendar');
+                            if (skeleton) skeleton.classList.add('loaded');
+                            if (calendar) calendar.style.display = 'block';
+                        }).catch(() => {
+                            // On error, still hide skeleton
+                            const skeleton = document.getElementById('github-calendar-skeleton');
+                            const calendar = document.getElementById('github-calendar');
+                            if (skeleton) skeleton.classList.add('loaded');
+                            if (calendar) calendar.style.display = 'block';
+                        });
                     }
                 } catch (err) {
                     console.error('GitHubCalendar failed', err);
+                    // On error, hide skeleton
+                    const skeleton = document.getElementById('github-calendar-skeleton');
+                    const calendar = document.getElementById('github-calendar');
+                    if (skeleton) skeleton.classList.add('loaded');
+                    if (calendar) calendar.style.display = 'block';
                 }
-                setTimeout(() => pruneCalendar(), 2500);
+                setTimeout(() => {
+                    pruneCalendar();
+                    const skeleton = document.getElementById('github-calendar-skeleton');
+                    const calendar = document.getElementById('github-calendar');
+                    if (skeleton) skeleton.classList.add('loaded');
+                    if (calendar) calendar.style.display = 'block';
+                }, 2500);
             };
 
             if (typeof GitHubCalendar !== 'undefined') {
@@ -449,6 +446,11 @@
             });
 
             setActiveFilter(filterButtons[0]?.dataset.cat || categories[0]?.id || null, { animate: false, force: true });
+            
+            // Hide skeleton and show table
+            const skeleton = document.getElementById('skills-table-skeleton');
+            if (skeleton) skeleton.classList.add('loaded');
+            if (table) table.style.display = 'table';
         })();
 
         // --- Scroll arrow (enhanced version at end of file) ---

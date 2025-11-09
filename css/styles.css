@@ -1050,3 +1050,91 @@ html {
 #contactError {
     animation: slideInDown 0.3s ease-out forwards;
 }
+
+/* ============================================
+   Loading Skeletons
+   ============================================ */
+
+/* Skeleton base */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        rgba(200, 200, 200, 0.2) 25%,
+        rgba(200, 200, 200, 0.3) 50%,
+        rgba(200, 200, 200, 0.2) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: 4px;
+}
+
+.dark .skeleton {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.05) 25%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.05) 75%
+    );
+    background-size: 200% 100%;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* GitHub Calendar Skeleton */
+.github-calendar-skeleton {
+    display: grid;
+    gap: 0.25rem;
+    padding: 1rem;
+    min-height: 180px;
+}
+
+.github-calendar-skeleton .skeleton-row {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.github-calendar-skeleton .skeleton-cell {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+/* Skills Table Skeleton */
+.skills-table-skeleton {
+    width: 100%;
+}
+
+.skills-table-skeleton .skeleton-row {
+    display: grid;
+    grid-template-columns: 2fr 3fr 1fr 1fr;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(0, 255, 159, 0.1);
+}
+
+.skills-table-skeleton .skeleton-cell {
+    height: 24px;
+    border-radius: 4px;
+}
+
+.skills-table-skeleton .skeleton-progress {
+    height: 8px;
+    border-radius: 4px;
+}
+
+/* Fade out skeleton on load */
+.skeleton-wrapper {
+    position: relative;
+    transition: opacity 0.3s ease;
+}
+
+.skeleton-wrapper.loaded {
+    display: none;
+}

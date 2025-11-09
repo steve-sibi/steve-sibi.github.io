@@ -70,15 +70,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Font Awesome Web Fonts (minimal load for icon glyphs only) -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2"
+    as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2"
+    as="font" type="font/woff2" crossorigin>
 
   <!-- GitHub Calendar CSS -->
   <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
 
   <!-- Site styles -->
+  <link rel="stylesheet" href="css/icons.css">
   <link rel="stylesheet" href="css/styles.css">
   <!-- Tailwind -->
   <link rel="stylesheet" href="css/tailwind.css">
@@ -728,11 +730,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td colspan="4" class="text-center text-sm text-gray-500 dark:text-gray-400 py-6">
-                  Loading skills…
-                </td>
-              </tr>
+              <!-- Skills will be populated by JavaScript -->
             </tbody>
           </table>
         </div>
@@ -1033,8 +1031,18 @@
   <script defer src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script defer src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
 
-  <!-- JS -->
-  <script defer src="js/main.js"></script>
+  <!-- Modular JS - Each module handles a specific feature -->
+  <script src="js/utils.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/navigation.js"></script>
+  <script defer src="js/typed-text.js"></script>
+  <script defer src="js/github-calendar.js"></script>
+  <script defer src="js/skills.js"></script>
+  <script defer src="js/projects.js"></script>
+  <script defer src="js/modal.js"></script>
+  <script defer src="js/contact.js"></script>
+  <script defer src="js/scroll-arrow.js"></script>
+  <script defer src="js/animations.js"></script>
 </body>
 
 </html>
