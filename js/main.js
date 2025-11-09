@@ -2,6 +2,23 @@
     'use strict';
 
     document.addEventListener('DOMContentLoaded', () => {
+        const loadedScripts = new Map();
+        const loadExternalScript = (src) => {
+            if (loadedScripts.has(src)) {
+                return loadedScripts.get(src);
+            }
+            const promise = new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.async = true;
+                script.onload = () => resolve();
+                script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+                document.head.appendChild(script);
+            });
+            loadedScripts.set(src, promise);
+            return promise;
+        };
+
         // --- Theme toggle ---
         const themeToggle = document.getElementById('themeToggle');
         function setThemeIcon() {
@@ -62,9 +79,16 @@
             });
         });
 
-        // --- TypedJS (respect reduced motion) ---
+        // --- TypedJS (lazy-loaded & respects reduced motion) ---
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (!prefersReduced && typeof Typed !== 'undefined') {
+        const typedTarget = document.getElementById('typed-text');
+        const heroSection = document.getElementById('home');
+        const TYPED_SRC = 'https://cdn.jsdelivr.net/npm/typed.js@2.0.12';
+        let typedInitialized = false;
+
+        const startTyped = () => {
+            if (!typedTarget) return;
+            if (typeof Typed === 'undefined') return;
             new Typed('#typed-text', {
                 strings: [
                     'Data Privacy &amp; Encryption',
@@ -82,9 +106,32 @@
                 backDelay: 2000,
                 loop: true
             });
-        } else {
-            const typedEl = document.getElementById('typed-text');
-            if (typedEl) typedEl.textContent = 'Cybersecurity';
+        };
+
+        const initTyped = () => {
+            if (typedInitialized || !typedTarget) return;
+            typedInitialized = true;
+            loadExternalScript(TYPED_SRC)
+                .then(startTyped)
+                .catch(() => {
+                    typedTarget.textContent = 'Cybersecurity';
+                });
+        };
+
+        if (typedTarget) {
+            if (prefersReduced) {
+                typedTarget.textContent = 'Cybersecurity';
+            } else if (heroSection && 'IntersectionObserver' in window) {
+                const typedObserver = new IntersectionObserver((entries, observer) => {
+                    if (entries.some(entry => entry.isIntersecting)) {
+                        initTyped();
+                        observer.disconnect();
+                    }
+                }, { threshold: 0.35 });
+                typedObserver.observe(heroSection);
+            } else {
+                initTyped();
+            }
         }
 
         // --- GitHub Calendar ---
@@ -110,33 +157,61 @@
             return true;
         };
 
-        const observeCalendar = () => {
+        let calendarObserver = null;
+        const attachCalendarObserver = () => {
+            if (calendarObserver) return;
             const target = document.getElementById('github-calendar');
             if (!target) return;
-
-            const observer = new MutationObserver(() => {
+            calendarObserver = new MutationObserver(() => {
                 if (pruneCalendar()) {
-                    observer.disconnect();
+                    calendarObserver.disconnect();
+                    calendarObserver = null;
                 }
             });
-
-            observer.observe(target, { childList: true, subtree: true });
+            calendarObserver.observe(target, { childList: true, subtree: true });
         };
 
-        observeCalendar();
+        const GITHUB_CAL_SRC = 'https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js';
+        let githubCalendarInitialized = false;
+        const initGitHubCalendar = () => {
+            if (githubCalendarInitialized) return;
+            githubCalendarInitialized = true;
+            attachCalendarObserver();
 
-        if (typeof GitHubCalendar !== 'undefined') {
-            try {
-                const result = GitHubCalendar('#github-calendar', 'steve-sibi', { responsive: true, summary: false });
-                if (result && typeof result.then === 'function') {
-                    result.then(() => pruneCalendar()).catch(() => { });
+            const renderCalendar = () => {
+                try {
+                    const result = GitHubCalendar('#github-calendar', 'steve-sibi', { responsive: true, summary: false });
+                    if (result && typeof result.then === 'function') {
+                        result.then(() => pruneCalendar()).catch(() => { });
+                    }
+                } catch (err) {
+                    console.error('GitHubCalendar failed', err);
                 }
-            } catch (err) {
-                console.error('GitHubCalendar failed', err);
-            }
+                setTimeout(() => pruneCalendar(), 2500);
+            };
 
-            // Fallback cleanup in case rendering happens before observer attaches
-            setTimeout(() => pruneCalendar(), 2500);
+            if (typeof GitHubCalendar !== 'undefined') {
+                renderCalendar();
+            } else {
+                loadExternalScript(GITHUB_CAL_SRC)
+                    .then(() => renderCalendar())
+                    .catch(err => console.error('GitHubCalendar script failed to load', err));
+            }
+        };
+
+        const githubActivitySection = document.getElementById('github-activity');
+        if (githubActivitySection) {
+            if ('IntersectionObserver' in window) {
+                const sectionObserver = new IntersectionObserver((entries, observer) => {
+                    if (entries.some(entry => entry.isIntersecting)) {
+                        initGitHubCalendar();
+                        observer.disconnect();
+                    }
+                }, { rootMargin: '0px 0px -20% 0px' });
+                sectionObserver.observe(githubActivitySection);
+            } else {
+                initGitHubCalendar();
+            }
         }
 
         // =====================================================================
@@ -436,6 +511,20 @@
             const projectLoading = document.getElementById('projectLoading');
             const filterButtons = Array.from(document.querySelectorAll('.project-filter'));
 
+            const parseInlineProjects = () => {
+                const dataEl = document.getElementById('projectsData');
+                if (!dataEl) return [];
+                try {
+                    const text = (dataEl.textContent || dataEl.innerText || '[]').trim();
+                    if (!text) return [];
+                    const parsed = JSON.parse(text);
+                    return Array.isArray(parsed) ? parsed : [];
+                } catch (error) {
+                    console.error('Failed to parse inline projects data:', error);
+                    return [];
+                }
+            };
+
             let cards = [];
             let originalOrder = [];
             let activeFilter = 'all';
@@ -559,6 +648,9 @@
             };
 
             const hydrateProjects = (projects) => {
+                if (!Array.isArray(projects) || !projects.length) {
+                    throw new Error('No projects data to render');
+                }
                 const fragment = document.createDocumentFragment();
                 projects.forEach(project => fragment.appendChild(createProjectCard(project)));
                 grid.appendChild(fragment);
@@ -567,6 +659,18 @@
                 grid.setAttribute('aria-busy', 'false');
                 projectLoading?.classList.add('hidden');
                 applyProjectState();
+            };
+
+            const tryInlineProjects = () => {
+                const inlineProjects = parseInlineProjects();
+                if (!inlineProjects.length) return false;
+                try {
+                    hydrateProjects(inlineProjects);
+                    return true;
+                } catch (error) {
+                    console.error('Inline projects data invalid:', error);
+                    return false;
+                }
             };
 
             const showProjectError = (message) => {
@@ -587,11 +691,12 @@
                     const response = await fetch('data/projects.json');
                     if (!response.ok) throw new Error(`HTTP ${response.status}`);
                     const projects = await response.json();
-                    if (!Array.isArray(projects) || !projects.length) throw new Error('No projects found');
                     hydrateProjects(projects);
                 } catch (error) {
                     console.error('Failed to load projects:', error);
-                    showProjectError('Unable to load projects right now. Please check GitHub for the latest work.');
+                    if (!tryInlineProjects()) {
+                        showProjectError('Unable to load projects right now. Please check GitHub for the latest work.');
+                    }
                 }
             };
 
