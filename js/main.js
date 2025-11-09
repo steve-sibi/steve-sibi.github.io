@@ -12,6 +12,7 @@
  * - skills.js          : Skills matrix with filtering
  * - projects.js        : Project grid with search/filter
  * - modal.js           : Project quick-view modal
+ * - resume-preview.js  : Resume PDF preview modal
  * - contact.js         : Contact form handling
  * - scroll-arrow.js    : Bidirectional scroll navigation
  * - animations.js      : Page load animations & misc UI

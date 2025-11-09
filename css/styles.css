@@ -1149,3 +1149,18 @@ html {
 .skeleton-wrapper.loaded {
     display: none;
 }
+
+/* ============================================
+   Resume Modal
+   ============================================ */
+#resumeModal {
+    --resume-panel-max-h: min(99.5vh, 1200px);
+    --resume-panel-width: min(99vw, calc(var(--resume-panel-max-h) * 0.85));
+}
+
+.resume-modal-panel {
+    width: var(--resume-panel-width);
+    max-width: var(--resume-panel-width);
+    height: var(--resume-panel-max-h);
+    max-height: var(--resume-panel-max-h);
+}

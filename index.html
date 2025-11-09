@@ -124,10 +124,10 @@
       </div>
 
       <div class="flex flex-col space-y-1">
-        <a href="assets/Resume_Steve_Sibi_Cyber.pdf" download target="_blank" rel="noopener"
-          class="flex items-center gap-2 py-3 px-4 hover:bg-gray-100 dark:hover:bg-cyber-dark rounded-md transition-colors">
-          <i class="fas fa-file-download" aria-hidden="true"></i><span>Résumé</span>
-        </a>
+        <button data-resume-preview
+          class="flex items-center gap-2 py-3 px-4 hover:bg-gray-100 dark:hover:bg-cyber-dark rounded-md transition-colors text-left w-full">
+          <i class="fas fa-file-pdf" aria-hidden="true"></i><span>Résumé</span>
+        </button>
         <a href="#home"
           class="flex items-center gap-2 py-3 px-4 hover:bg-gray-100 dark:hover:bg-cyber-dark rounded-md transition-colors">
           <i class="fas fa-home" aria-hidden="true"></i><span>Home</span>
@@ -240,15 +240,15 @@
           </a>
           <a href="#contact"
             class="px-6 py-3 bg-cyber-green text-black rounded-md hover:bg-opacity-80 transition-all">Contact Me</a>
-          <a href="assets/Resume_Steve_Sibi_Cyber.pdf" data-resume-download download target="_blank" rel="noopener"
+          <button data-resume-preview data-resume-download
             class="relative group px-6 py-3 border-2 border-cyber-green text-cyber-green rounded-md overflow-hidden">
             <span class="relative z-10 flex items-center gap-2">
-              <i class="fas fa-file-download" aria-hidden="true"></i>
-              Download Résumé
+              <i class="fas fa-file-pdf" aria-hidden="true"></i>
+              View Résumé
             </span>
             <span class="absolute inset-0 bg-cyber-green opacity-0 group-hover:opacity-20 transition-opacity"></span>
             <span class="absolute left-0 top-0 h-full w-1 bg-cyber-green animate-pulse"></span>
-          </a>
+            </a>
         </div>
       </div>
     </section>
@@ -1018,6 +1018,54 @@
         </p>
       </div>
     </footer>
+
+    <!-- Resume Preview Modal -->
+    <div id="resumeModal"
+      class="hidden fixed inset-0 z-[60] overflow-hidden bg-black/70 flex items-center justify-center p-2 sm:p-4"
+      role="dialog" aria-modal="true" aria-labelledby="resumeModalTitle">
+      <div data-resume-modal-panel
+        class="resume-modal-panel relative z-10 bg-white dark:bg-cyber-dark border-2 border-cyber-green rounded-lg shadow-2xl flex flex-col">
+        <!-- Modal Header -->
+        <div
+          class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-cyber-green-dark flex-shrink-0">
+          <h2 id="resumeModalTitle" class="text-xl font-bold text-gray-900 dark:text-cyber-green">
+            <i class="fas fa-file-pdf mr-2" aria-hidden="true"></i>
+            Resume Preview
+          </h2>
+          <button data-close-resume-modal data-resume-modal-initial-focus
+            class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-cyber-green transition-colors"
+            aria-label="Close modal">
+            <i class="fas fa-times text-2xl" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- PDF Viewer -->
+        <div class="flex-1 overflow-auto bg-gray-100 dark:bg-gray-900 min-h-0">
+          <iframe id="resumePdfViewer" class="w-full h-full" frameborder="0" title="Resume PDF Preview"></iframe>
+        </div>
+
+        <!-- Modal Footer with Actions -->
+        <div
+          class="flex-shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3 p-4 border-t border-gray-200 dark:border-cyber-green-dark bg-gray-50 dark:bg-cyber-dark">
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            <i class="fas fa-info-circle mr-1" aria-hidden="true"></i>
+            Preview the resume before downloading
+          </p>
+          <div class="flex gap-3">
+            <button data-close-resume-modal
+              class="px-4 py-2 border border-gray-300 dark:border-cyber-green-dark text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-100 dark:hover:bg-cyber-dark-light transition-all">
+              <i class="fas fa-times mr-2" aria-hidden="true"></i>
+              Close
+            </button>
+            <a id="resumeDownloadBtn" href="assets/Resume_Steve_Sibi_Cyber.pdf" download
+              class="px-4 py-2 bg-cyber-green text-black font-semibold rounded-md hover:bg-opacity-90 transition-all inline-flex items-center">
+              <i class="fas fa-download mr-2" aria-hidden="true"></i>
+              Download PDF
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- Scroll arrow -->
@@ -1040,6 +1088,7 @@
   <script defer src="js/skills.js"></script>
   <script defer src="js/projects.js"></script>
   <script defer src="js/modal.js"></script>
+  <script defer src="js/resume-preview.js"></script>
   <script defer src="js/contact.js"></script>
   <script defer src="js/scroll-arrow.js"></script>
   <script defer src="js/animations.js"></script>
