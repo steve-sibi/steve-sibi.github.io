@@ -3,7 +3,7 @@
 [![Live Site](https://img.shields.io/badge/Live-steve--sibi.github.io-00ff9f?style=for-the-badge)](https://steve-sibi.github.io/)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg?style=for-the-badge)](LICENSE)
 
-> A modern, performant portfolio showcasing cybersecurity projects, skills, and professional experience. Built with vanilla JavaScript, Tailwind CSS 4, and deployed on GitHub Pages.
+> A modern, data-driven cybersecurity portfolio built with vanilla JavaScript modules, Tailwind CSS 4, and deployed on GitHub Pages.
 
 ![Portfolio Preview](images/og-card.png)
 
@@ -11,23 +11,26 @@
 
 ## 🚀 Features
 
-### ✨ Core Features
-- **🎨 Dark/Light Mode** - Persistent theme toggle with system preference detection
-- **📱 Fully Responsive** - Mobile-first design with smooth animations
-- **♿ Accessible** - ARIA labels, keyboard navigation, and semantic HTML
-- **⚡ Performance Optimized** - Lazy loading, intersection observers, and progressive enhancement
-- **🔍 Interactive Projects** - Filterable, searchable project showcase with quick-view modals
-- **📊 Dynamic Skills Matrix** - Category-based skill filtering with proficiency indicators
-- **📬 Contact Form** - Integrated Web3Forms with validation and success/error states
-- **📈 GitHub Activity** - Live contribution calendar via GitHub Calendar API
-- **🎯 Smooth Scrolling** - Bidirectional scroll arrow with section-by-section navigation
+### ✨ Experience-first UI
+- **Dark/Light Theme:** toggle updates the sun/moon icon, respects system defaults, and persists in `localStorage`.
+- **Hero motion cues:** Typed.js headlines, glitch typography, and IntersectionObserver-driven fade-ins keep the narrative lively without overwhelming users.
+- **Responsive layout:** sticky sidebar navigation, experience timeline, cards, and tables adapt cleanly across breakpoints.
+- **Resume preview modal:** inline PDF viewer with download CTA plus analytics tracking.
+- **Bidirectional scroll arrow:** one floating button scrolls down section-by-section and flips to a "back to top" affordance near the footer.
 
-### 🛠️ Technical Highlights
-- **Zero Build Dependencies** - Pure HTML/CSS/JS with Tailwind CLI
-- **Modern ES6+** - Clean, maintainable JavaScript with IIFE pattern
-- **Data-Driven** - External JSON for projects and skills (easy to update)
-- **SEO Optimized** - Structured data, Open Graph tags, and semantic markup
-- **Analytics Ready** - Google Analytics 4 integration with event tracking
+### 🧠 Data & Integrations
+- **Projects grid:** pulls from `data/projects.json`, supports tag filters, instant search, alpha sort, and a quick-view modal with repo/readme links plus copy-to-clipboard clone commands.
+- **Skills matrix:** builds an accessible table with discipline filters, progress bars, experience tags, and proof links with inline JSON fallback.
+- **GitHub activity:** lazy-loads `github-calendar` with a skeleton message and prunes surplus markup for accessibility.
+- **Contact form workflow:** Web3Forms API + honeypot + inline success/error alerts, with GA events emitted from `js/contact.js`.
+- **Social proof:** TryHackMe badge, LinkedIn/GitHub buttons, and a resume download CTA are wired into the UI.
+
+### ⚙️ Performance & Accessibility
+- **Modular vanilla JS:** discrete feature files share helpers via `utils.js` and gate work behind IntersectionObserver.
+- **Lazy vendor loading:** external scripts (Typed.js, GitHub Calendar) load on demand through a cached script loader and respect `prefers-reduced-motion`.
+- **Resilient data:** placeholders for GitHub calendar plus inline JSON fallbacks for projects and skills keep sections useful even on flaky networks.
+- **Keyboard-friendly UX:** focus trapping in the mobile drawer and modals, ARIA labels, and semantic tables keep everything screen-reader friendly.
+- **Tailwind CLI pipeline:** minified `css/tailwind.css`, preloaded fonts/icons, and a sprinkling of custom CSS deliver speed without a heavyweight build system.
 
 ---
 
@@ -44,15 +47,19 @@
 - [Browser Support](#-browser-support)
 - [Contributing](#-contributing)
 - [License](#-license)
+- [Contact](#-contact)
+- [Acknowledgments](#-acknowledgments)
+- [Roadmap](#-roadmap)
 
 ---
 
 ## ⚡ Quick Start
 
 ### Prerequisites
-- **Node.js** 18+ (for Tailwind CLI)
+- **Node.js** 18+
 - **npm** or **yarn**
-- A modern web browser
+- **Python 3** (used by the simple HTTP server)
+- A modern browser with JavaScript enabled
 
 ### Installation
 
@@ -61,17 +68,17 @@
 git clone https://github.com/steve-sibi/steve-sibi.github.io.git
 cd steve-sibi.github.io
 
-# Install dependencies
+# Install Tailwind CLI + tooling
 npm install
 
-# Build Tailwind CSS
+# Optional: build Tailwind once before starting dev work
 npm run build:css
 
-# Start local development server
-npm start
+# Watch Tailwind and serve the site on http://localhost:8000
+npm run dev
 ```
 
-Visit `http://localhost:8000` in your browser.
+`npm run dev` spawns the Tailwind watcher and `python3 -m http.server 8000` in the project root. Use `Ctrl+C` to stop both processes. On Windows, run the watcher (`npm run watch:css`) and server (`npm start`) in separate terminals or use WSL.
 
 ---
 
@@ -81,68 +88,39 @@ Visit `http://localhost:8000` in your browser.
 
 | Command | Description |
 |---------|-------------|
-| `npm run build:css` | Build and minify Tailwind CSS (production) |
-| `npm run watch:css` | Watch Tailwind source and rebuild on changes |
-| `npm start` | Start Python HTTP server on port 8000 |
-| `npm run dev` | Run watch + server concurrently |
+| `npm run build:css` | Compile and minify `src/tailwind.css` → `css/tailwind.css` for production |
+| `npm run watch:css` | Watch Tailwind input and rebuild on every change |
+| `npm start` | Serve the site from the repo root via `python3 -m http.server 8000` |
+| `npm run dev` | Run the Tailwind watcher and Python server together (POSIX shells) |
 
 ### Development Workflow
 
-1. **Start the watch server** for live CSS updates:
-   ```bash
-   npm run dev
-   ```
+1. **Start live reload:** `npm run dev`.
+2. **Edit content:**
+   - Structure & copy: `index.html`
+   - Tailwind utilities / design tokens: `src/tailwind.css`
+   - Component styles & animations: `css/styles.css`
+3. **Update data:** `data/projects.json`, `data/skills.json`, and `assets/Resume_Steve_Sibi_Cyber.pdf`.
+4. **Adjust behavior:** edit the relevant file in `js/` (see module table below).
+5. **Build CSS** before committing: `npm run build:css`.
 
-2. **Edit files**:
-   - HTML: `index.html`
-   - JavaScript: `js/main.js`
-   - Tailwind CSS: `src/tailwind.css`
-   - Custom styles: `css/styles.css`
-   - Data: `data/projects.json`, `data/skills.json`
+### Modular JavaScript
 
-3. **Tailwind changes** are auto-compiled to `css/tailwind.css`
-
-4. **Refresh browser** to see changes
-
-### Making Content Changes
-
-#### Update Projects
-Edit `data/projects.json`:
-```json
-{
-  "title": "My Awesome Project",
-  "description": "A brief description",
-  "tags": ["security", "cloud"],
-  "tech": ["Python", "AWS"],
-  "icon": "fas fa-shield-alt",
-  "link": "https://github.com/user/repo",
-  "highlights": [
-    "Key achievement 1",
-    "Key achievement 2"
-  ]
-}
-```
-
-#### Update Skills
-Edit `data/skills.json`:
-```json
-{
-  "name": "Python",
-  "cat": "prog",
-  "level": 90,
-  "years": 5,
-  "proof": "https://github.com/user/repo"
-}
-```
-
-**Skill categories**: `cyber`, `prog`, `os`, `cloud`, `other`
-
-#### Update Personal Info
-Edit `index.html` sections directly:
-- Hero section (`#home`)
-- About section (`#about`)
-- Experience section (`#experience`)
-- Contact section (`#contact`)
+| Module | Responsibility |
+|--------|----------------|
+| `js/utils.js` | Shared helpers such as `loadExternalScript`, `debounce`, and `prefersReducedMotion`. |
+| `js/theme.js` | Dark/light mode toggle with ARIA updates and `localStorage` persistence. |
+| `js/navigation.js` | Mobile drawer toggling, focus trapping, overlay handling, and active link highlighting. |
+| `js/typed-text.js` | Lazy Typed.js integration for the hero text with reduced-motion fallbacks. |
+| `js/github-calendar.js` | Loads the GitHub contribution calendar on demand, prunes extraneous markup, and coordinates skeleton display. |
+| `js/skills.js` | Fetches skills from `data/skills.json`, renders the table, manages category filters, and falls back to inline JSON if needed. |
+| `js/projects.js` | Hydrates project cards from `data/projects.json`, powers filters/search/sort, and wires up the quick-view modal data attributes. |
+| `js/modal.js` | Handles the project quick-view modal, highlight lists, tech pills, and copy-to-clipboard toast notifications. |
+| `js/resume-preview.js` | Opens/closes the resume preview modal, injects the PDF iframe source, and fires GA events. |
+| `js/contact.js` | Submits the Web3Forms contact form, toggles button states, and shows inline success/error alerts. |
+| `js/scroll-arrow.js` | Controls the bidirectional scroll arrow, including bottom detection and smooth scrolling. |
+| `js/animations.js` | Section fade-ins, hero content animation class, resume download tracking, and (optional) email copy helper. |
+| `js/main.js` | Stub that documents the modular architecture (kept for backwards compatibility). |
 
 ---
 
@@ -151,44 +129,32 @@ Edit `index.html` sections directly:
 ### Production Build
 
 ```bash
-# Build optimized Tailwind CSS
 npm run build:css
 ```
 
-This generates a minified `css/tailwind.css` file.
+This regenerates the minified `css/tailwind.css`. Because the rest of the site is static HTML/JS, no additional bundling is required.
 
 ### Deploy to GitHub Pages
 
-**Automatic Deployment** (recommended):
-1. Push to `main` branch
-2. GitHub Pages auto-deploys from root directory
+1. Commit your changes to `main`.
+2. Push to GitHub.
+3. Ensure GitHub Pages is configured to serve from the repository root (`Settings › Pages`).
 
-**Manual Deployment**:
-```bash
-git add .
-git commit -m "Update portfolio"
-git push origin main
-```
+GitHub Pages will redeploy automatically after every push.
 
 ### Deploy to Other Platforms
 
 #### Netlify
-```bash
-# Build command
-npm run build:css
 
-# Publish directory
-./
-```
+- **Build command**: `npm run build:css`
+- **Publish directory**: `./`
+- You can keep Netlify on "static" mode; no serverless functions required.
 
 #### Vercel
-```bash
-# Build command
-npm run build:css
 
-# Output directory
-./
-```
+- **Build command**: `npm run build:css`
+- **Output directory**: `./`
+- Disable server-side rendering; Vercel just needs to serve the generated static files.
 
 ---
 
@@ -196,218 +162,297 @@ npm run build:css
 
 ```
 steve-sibi.github.io/
-├── assets/              # Static assets (resume PDF, etc.)
+├── assets/
 │   └── Resume_Steve_Sibi_Cyber.pdf
-├── css/                 # Stylesheets
-│   ├── styles.css       # Custom CSS (animations, components)
-│   └── tailwind.css     # Generated Tailwind output (DO NOT EDIT)
-├── data/                # External data files
-│   ├── projects.json    # Projects data
-│   └── skills.json      # Skills matrix data
-├── icons/               # Favicons and PWA manifest
-│   ├── favicon.ico
-│   ├── apple-touch-icon.png
-│   └── site.webmanifest
-├── images/              # Images and media
-│   ├── og-card.png      # Social media preview
+├── css/
+│   ├── styles.css
+│   └── tailwind.css
+├── data/
+│   ├── projects.json
+│   └── skills.json
+├── icons/               # Favicons + PWA manifest
+├── images/
+│   ├── og-card.png
 │   └── profile_pic_steve.jpg
-├── js/                  # JavaScript modules
-│   └── main.js          # Main application logic
-├── src/                 # Source files
-│   └── tailwind.css     # Tailwind input file
-├── .github/             # GitHub configuration
-│   └── copilot-instructions.md
-├── index.html           # Main HTML file
-├── package.json         # Dependencies and scripts
-└── README.md            # This file
+├── js/
+│   ├── animations.js
+│   ├── contact.js
+│   ├── github-calendar.js
+│   ├── main.js
+│   ├── modal.js
+│   ├── navigation.js
+│   ├── projects.js
+│   ├── resume-preview.js
+│   ├── scroll-arrow.js
+│   ├── skills.js
+│   ├── theme.js
+│   ├── typed-text.js
+│   └── utils.js
+├── src/
+│   └── tailwind.css
+├── index.html
+├── package.json
+├── package-lock.json
+└── README.md
 ```
 
-### Key Files
+> Additional directories: `.github/` (repository configuration), `.gitignore`, and `node_modules/` (generated after `npm install`).
 
-| File | Purpose |
+### Key Files & Directories
+
+| Path | Purpose |
 |------|---------|
-| `index.html` | Single-page portfolio markup |
-| `js/main.js` | All interactive behaviors (theme, navigation, projects, skills, forms) |
-| `src/tailwind.css` | Tailwind input (edit this for Tailwind changes) |
-| `css/tailwind.css` | Generated Tailwind output (auto-generated, don't edit) |
-| `css/styles.css` | Custom CSS for animations and components |
-| `data/projects.json` | Projects data (external for easy updates) |
-| `data/skills.json` | Skills data (external for easy updates) |
+| `index.html` | Single-page markup, sections, and script loading order. |
+| `src/tailwind.css` | Tailwind input plus custom `@theme` tokens. |
+| `css/tailwind.css` | Generated (minified) Tailwind output - do not edit directly. |
+| `css/styles.css` | Handwritten component styles, timelines, and animations. |
+| `data/projects.json` | Source of truth for the projects grid. |
+| `data/skills.json` | Source of truth for the skills matrix. |
+| `assets/Resume_Steve_Sibi_Cyber.pdf` | Resume served inside the preview modal and download button. |
+| `icons/` | All favicons and `site.webmanifest`. |
+| `images/og-card.png` | Open Graph / social preview image referenced in `<head>`. |
+| `js/*.js` | Feature-specific JavaScript modules (see table above). |
+| `.github/` | GitHub workflows and documentation helpers (e.g., Copilot instructions). |
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Core Technologies
-- **HTML5** - Semantic markup with ARIA
-- **CSS3** - Custom properties, animations, grid/flexbox
-- **JavaScript (ES6+)** - Vanilla JS, no frameworks
-- **Tailwind CSS 4** - Utility-first CSS framework
+- **HTML5** with semantic sections, ARIA labels, and skip links.
+- **Tailwind CSS 4** (via CLI) plus custom CSS for timelines, pills, and modals.
+- **Vanilla JavaScript (ES6)** split into focused modules; no bundler required.
+- **GitHub Pages** for hosting and HTTPS.
 
 ### Libraries & APIs
-| Library | Purpose | Version |
-|---------|---------|---------|
-| [Tailwind CSS](https://tailwindcss.com/) | Utility-first CSS framework | 4.1.13 |
-| [Font Awesome](https://fontawesome.com/) | Icon library | 7.0.1 |
-| [Typed.js](https://github.com/mattboldt/typed.js/) | Typing animation | 2.0.12 |
-| [GitHub Calendar](https://github.com/Bloggify/github-calendar) | Contribution heatmap | Latest |
-| [Web3Forms](https://web3forms.com/) | Contact form backend | API |
 
-### Development Tools
-- **Tailwind CLI** - CSS compilation
-- **Python HTTP Server** - Local development
-- **GitHub Pages** - Hosting & deployment
-- **Google Analytics 4** - Analytics & tracking
+| Library / API | Purpose | Version |
+|---------------|---------|---------|
+| [Tailwind CSS](https://tailwindcss.com/) | Utility-first styling & theming | 4.1.13 (CLI) |
+| [Font Awesome](https://fontawesome.com/) | Icons (served via CDN) | 6.5.1 |
+| [Typed.js](https://github.com/mattboldt/typed.js) | Hero typing animation | 2.0.12 |
+| [GitHub Calendar](https://github.com/Bloggify/github-calendar) | Contribution heatmap embed | latest (CDN) |
+| [Web3Forms](https://web3forms.com/) | Contact form backend | API |
+| [Google Analytics 4](https://marketingplatform.google.com/about/analytics/) | Analytics & event tracking | `gtag.js` |
+
+### Development Utilities
+- **@tailwindcss/cli** for compilation.
+- **Python 3 `http.server`** as the lightweight dev server.
+- **npm scripts** to orchestrate watch/build tasks.
+- **Lighthouse / browser devtools** for performance checks.
 
 ---
 
 ## ⚙️ Configuration
 
-### Tailwind Configuration
+### Tailwind Theme
 
-Tailwind is configured inline in `src/tailwind.css`:
+`src/tailwind.css` contains Tailwind 4's inline configuration. Update tokens and layers there, then rebuild.
+
 ```css
 @import "tailwindcss";
 
 @theme {
   --color-cyber-green: #00ff9f;
   --color-cyber-dark: #0a0e27;
-  /* ... custom theme variables */
+  --font-family-sans: "Share Tech Mono", system-ui, sans-serif;
+  /* Add tokens here */
 }
 ```
 
-### Analytics
+### Analytics (GA4)
 
-Update Google Analytics ID in `index.html`:
+Replace `G-F499NLV8V2` with your GA4 Measurement ID near the top of `index.html`.
+
 ```html
-<script async src="https://www.googletagmanager.com/gtag/js?id=YOUR-GA-ID"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F499NLV8V2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-F499NLV8V2');
+</script>
 ```
 
-### Contact Form
+### Contact Form (Web3Forms)
 
-Update Web3Forms access key in `index.html`:
+Update your access key and redirect URL inside the contact form in `index.html`.
+
 ```html
-<input type="hidden" name="access_key" value="YOUR-ACCESS-KEY">
+<form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="YOUR-ACCESS-KEY">
+  <input type="hidden" name="redirect" value="https://steve-sibi.github.io/#contact">
+  <input type="checkbox" name="botcheck" class="hidden">
+  <!-- ... -->
+</form>
 ```
 
-Get a free key at [web3forms.com](https://web3forms.com/)
+### GitHub Calendar Username
 
-### GitHub Calendar
+Set your GitHub username in `js/github-calendar.js`.
 
-Update username in `js/main.js`:
 ```javascript
-GitHubCalendar('#github-calendar', 'YOUR-USERNAME', { responsive: true, summary: false });
+GitHubCalendar('#github-calendar', 'steve-sibi', {
+  responsive: true,
+  summary: false
+});
+```
+
+### Hero Typed Headlines
+
+Edit the strings array in `js/typed-text.js` to change the rotating hero skills.
+
+```javascript
+new Typed('#typed-text', {
+  strings: [
+    'Data Privacy &amp; Encryption',
+    'Network Security',
+    'Cloud Security'
+    // ...
+  ],
+  loop: true
+});
+```
+
+### Resume Preview
+
+`js/resume-preview.js` points to `assets/Resume_Steve_Sibi_Cyber.pdf`. Swap the file or update the path:
+
+```javascript
+const resumePath = 'assets/Resume_Steve_Sibi_Cyber.pdf';
+```
+
+Remember to update the download link in `index.html` too.
+
+### TryHackMe Badge
+
+Update the handle and badge URL inside the `#tryhackme` section.
+
+```html
+<a href="https://tryhackme.com/p/DankKnight" target="_blank" rel="noopener">
+  <img src="https://tryhackme-badges.s3.amazonaws.com/DankKnight.png"
+       alt="TryHackMe badge for user DankKnight">
+</a>
 ```
 
 ---
 
 ## 🎨 Customization
 
-### Colors
+### Projects (`data/projects.json`)
 
-Edit custom colors in `src/tailwind.css`:
-```css
-@theme {
-  --color-cyber-green: #00ff9f;      /* Primary accent */
-  --color-cyber-green-dark: #00b377; /* Darker shade */
-  --color-cyber-dark: #0a0e27;       /* Dark mode background */
+Add or edit projects using the extended schema below. Optional fields (`pillTech`, `readme`, `clone`) enrich the quick-view modal.
+
+```json
+{
+  "id": "mini-saas-ato",
+  "title": "Account Takeover (ATO) Detection and Response",
+  "description": "Production-style ATO simulation lab with Flask, Datadog, and Azure Functions.",
+  "icon": "fas fa-user-secret",
+  "tags": ["security", "cloud", "automation"],
+  "pillTech": ["Python", "Flask", "Datadog", "Azure"],
+  "tech": ["Python", "Flask", "Datadog", "Azure Functions", "Signed Webhooks"],
+  "link": "https://github.com/steve-sibi/mini-saas-ato",
+  "readme": "https://github.com/steve-sibi/mini-saas-ato#readme",
+  "clone": "https://github.com/steve-sibi/mini-saas-ato.git",
+  "highlights": [
+    "Detects brute-force & credential-stuffing with Datadog pipelines",
+    "Signed webhooks + Azure Functions invalidate sessions in seconds"
+  ]
 }
 ```
 
-Then rebuild:
-```bash
-npm run build:css
+- Buttons in the UI filter by `tags` (lowercase is safest).
+- The quick-view modal lists `highlights` and renders tech pills from `tech`.
+- If you omit `readme` or `clone`, defaults are derived from `link`.
+
+### Skills (`data/skills.json`)
+
+Each skill entry powers a row in the table.
+
+```json
+{
+  "name": "Nmap",
+  "cat": "cyber",
+  "level": 90,
+  "years": 5,
+  "proof": "https://github.com/steve-sibi/Automated-Vulnerability-Scanner"
+}
 ```
 
-### Fonts
+- `cat` drives the discipline filters (`cyber`, `prog`, `os`, `cloud`, `other`).
+- `level` should be 0-100. Missing values display `-`.
+- `proof` is optional but recommended for credibility.
 
-Current font: **Share Tech Mono** (Google Fonts)
+### Inline Fallback Data (optional)
 
-To change, edit `index.html`:
+If you want the page to work completely offline, embed JSON directly inside `index.html`. The scripts fall back to these nodes when fetching fails.
+
 ```html
-<link href="https://fonts.googleapis.com/css2?family=YOUR-FONT&display=swap" rel="stylesheet">
+<script id="projectsData" type="application/json">
+[
+  { "id": "offline-demo", "title": "Offline Project", "description": "...", "tags": ["security"] }
+]
+</script>
+
+<script id="skillsData" type="application/json">
+[
+  { "name": "Linux", "cat": "os", "level": 85, "years": 5 }
+]
+</script>
 ```
 
-And update `src/tailwind.css`:
-```css
-@theme {
-  --font-family-sans: "YOUR FONT", system-ui, sans-serif;
-}
-```
+### Assets & Visuals
 
-### Animations
-
-Custom animations are in `css/styles.css`. Edit timing, easing, or create new animations:
-```css
-.fade-in-section {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-```
+- Replace `assets/Resume_Steve_Sibi_Cyber.pdf` with your own resume (keep the filename or update references).
+- Update `images/og-card.png` to refresh the Open Graph preview.
+- Favicons and manifest live under `icons/`; regenerate with a favicon generator if you change branding.
 
 ---
 
 ## ⚡ Performance
 
-### Current Metrics
-- **Lighthouse Score**: 95+ (Performance, Accessibility, Best Practices, SEO)
-- **First Contentful Paint**: < 1.5s
-- **Time to Interactive**: < 3.5s
-- **Cumulative Layout Shift**: < 0.1
+Built-in optimizations:
 
-### Optimizations Implemented
-✅ Lazy loading for GitHub Calendar and Typed.js  
-✅ Intersection Observer for animations  
-✅ Minified Tailwind CSS  
-✅ Preconnect to external domains  
-✅ Prefetch resume PDF  
-✅ Inline critical CSS prevention (theme script)  
-✅ Reduced motion support  
+- **Lazy execution** via IntersectionObserver for Typed.js, GitHub Calendar, scroll arrow state, and fade-in animations.
+- **Dynamic script loader** caches vendor scripts to prevent duplicate downloads.
+- **Reduced motion support** swaps the hero animation for static text when users prefer less motion.
+- **Lightweight tooling** because only Tailwind CLI runs at build time; everything else is static assets.
+- **Minimized layout shift** with pre-sized images (TryHackMe badge, OG card) and preloaded Font Awesome fonts.
 
-### Performance Tips
-- Keep images optimized and use WebP when possible
-- Minimize external scripts
-- Use responsive images with `srcset`
-- Defer non-critical JavaScript
-- Enable browser caching
+Before publishing, run your own Lighthouse audits to validate Core Web Vitals for your hardware/network.
 
 ---
 
 ## 🌐 Browser Support
 
-| Browser | Minimum Version |
-|---------|----------------|
-| Chrome | 90+ |
-| Firefox | 88+ |
-| Safari | 14+ |
-| Edge | 90+ |
+| Browser | Minimum Version | Notes |
+|---------|----------------|-------|
+| Chrome | 90+ | IntersectionObserver + CSS custom properties required. |
+| Firefox | 88+ | Tested with reduced-motion preference. |
+| Safari | 14+ | Works with WebKit's `prefers-color-scheme`. |
+| Edge | 90+ | Chromium-based Edge supports all required APIs. |
 
-**Required Features**:
-- CSS Custom Properties
-- ES6+ JavaScript
-- IntersectionObserver API
-- Fetch API
-- CSS Grid & Flexbox
+The experience relies on `fetch`, `IntersectionObserver`, CSS Grid/Flexbox, and `localStorage`.
 
 ---
 
 ## 🤝 Contributing
 
-This is a personal portfolio, but suggestions are welcome!
+This is a personal portfolio, but suggestions and issues are welcome.
 
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Commit** changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request
+1. **Fork** the repo.
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`).
+3. **Commit** with clear messages (`git commit -m "Add amazing feature"`).
+4. **Push** your branch (`git push origin feature/amazing-feature`).
+5. **Open** a Pull Request.
 
 ### Development Guidelines
-- Follow existing code style
-- Test on multiple browsers
-- Ensure accessibility standards
-- Keep dependencies minimal
-- Document major changes
+- Follow the modular JavaScript pattern (one concern per file).
+- Update or add data (`data/*.json`) instead of hard-coding content in HTML when possible.
+- Test across light/dark modes and multiple breakpoints.
+- Keep dependencies minimal; prefer native browser APIs.
+- Document major UI or data changes inside this README.
 
 ---
 
@@ -424,13 +469,13 @@ Permission to use, copy, modify, and/or distribute this software for any purpose
 ## 📬 Contact
 
 **Steve Joseph Sibi**  
-Cybersecurity Engineer | Penetration Tester | Privacy Advocate
+Cybersecurity Engineer · Penetration Tester · Privacy Advocate
 
 - 🌐 Website: [steve-sibi.github.io](https://steve-sibi.github.io/)
 - 💼 LinkedIn: [steve-sibi](https://www.linkedin.com/in/steve-sibi)
 - 🐙 GitHub: [@steve-sibi](https://github.com/steve-sibi)
 - 📧 Email: steve.sibi@gmail.com
-https://www.teleparty.com/movie/1226354/param-sundari?sessionId=1cecc72c6274ab94
+
 ---
 
 ## 🙏 Acknowledgments
@@ -447,32 +492,20 @@ https://www.teleparty.com/movie/1226354/param-sundari?sessionId=1cecc72c6274ab94
 ## 🗺️ Roadmap
 
 ### ✅ Completed
-- [x] Interactive contact form
-- [x] Bidirectional scroll arrow
-- [x] Page load animations
-- [x] External skills/projects data
-- [x] Dark/light mode toggle
-- [x] GitHub activity calendar
+- [x] Modularized JavaScript architecture
+- [x] Project quick-view modal with copy-to-clipboard support
+- [x] Resume preview modal with analytics events
+- [x] Web3Forms-powered contact form with inline alerts
+- [x] Bidirectional scroll arrow and section fade-in animations
+- [x] Lazy-loaded GitHub activity and Typed.js hero text
 
 ### 🚧 In Progress
-- [ ] Performance optimization (Font Awesome subset)
-- [ ] JavaScript modularization
-- [ ] Enhanced project screenshots
+- [ ] Performance optimization (Font Awesome subset loading)
+- [ ] Enhanced project screenshots / media slots
 
 ### 📅 Planned
-- [ ] Image optimization pipeline
-- [ ] GitHub Actions CI/CD
-- [ ] Accessibility audit
-- [ ] Progressive Web App features
-- [ ] Resume viewer modal
-- [ ] Print stylesheet
-
----
-
-<div align="center">
-
-**⭐ Star this repo if you found it helpful!**
-
-Made with ❤️ and ☕ by [Steve Sibi](https://steve-sibi.github.io/)
-
-</div>
+- [ ] Automated image optimization pipeline
+- [ ] GitHub Actions CI/CD for linting + CSS builds
+- [ ] Accessibility audit (axe-core + manual testing)
+- [ ] Progressive Web App enhancements
+- [ ] Print-friendly stylesheet for resume downloads
