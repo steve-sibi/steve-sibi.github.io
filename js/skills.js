@@ -43,7 +43,7 @@
         if (skills.length === 0) {
             console.error('❌ No skills data available from any source');
             tbody.innerHTML = '<tr><td colspan="4" class="text-center text-gray-500 dark:text-gray-400 py-6">Failed to load skills data. Please check console for details.</td></tr>';
-            
+
             // Still show the table even if empty
             const skeleton = document.getElementById('skills-table-skeleton');
             if (skeleton) skeleton.classList.add('loaded');
@@ -243,7 +243,7 @@
         });
 
         setActiveFilter(filterButtons[0]?.dataset.cat || categories[0]?.id || null, { animate: false, force: true });
-        
+
         // Hide skeleton and show table
         const skeleton = document.getElementById('skills-table-skeleton');
         if (skeleton) skeleton.classList.add('loaded');

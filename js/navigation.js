@@ -14,7 +14,7 @@
         const menuButton = document.getElementById('menuButton');
         const menuIcon = document.getElementById('menuIcon');
         const overlay = document.getElementById('sidebarOverlay');
-        
+
         if (!sidebar || !menuButton || !menuIcon || !overlay) return;
 
         let lastFocused;

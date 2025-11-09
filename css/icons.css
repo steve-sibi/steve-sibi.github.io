@@ -6,104 +6,236 @@
 
 /* Font Face Definitions */
 @font-face {
-  font-family: "Font Awesome 6 Free";
-  font-style: normal;
-  font-weight: 900;
-  font-display: swap;
-  src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2") format("woff2");
+    font-family: "Font Awesome 6 Free";
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Font Awesome 6 Brands";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2") format("woff2");
+    font-family: "Font Awesome 6 Brands";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2") format("woff2");
 }
 
 /* Base icon styles */
-.fas, .fab {
-  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands";
-  font-weight: 900;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  display: inline-block;
+.fas,
+.fab {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands";
+    font-weight: 900;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block;
 }
 
 .fab {
-  font-family: "Font Awesome 6 Brands";
-  font-weight: 400;
+    font-family: "Font Awesome 6 Brands";
+    font-weight: 400;
 }
 
 /* Size variants */
 .fa-lg {
-  font-size: 1.33333em;
-  line-height: 0.75em;
-  vertical-align: -0.0667em;
+    font-size: 1.33333em;
+    line-height: 0.75em;
+    vertical-align: -0.0667em;
 }
 
 .fa-xs {
-  font-size: 0.75em;
+    font-size: 0.75em;
 }
 
 /* Animation */
 .fa-spin {
-  animation: fa-spin 2s linear infinite;
+    animation: fa-spin 2s linear infinite;
 }
 
 @keyframes fa-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Solid Icons (fas) */
-.fa-sun::before { content: "\f185"; }
-.fa-moon::before { content: "\f186"; }
-.fa-bars::before { content: "\f0c9"; }
-.fa-times::before { content: "\f00d"; }
-.fa-home::before { content: "\f015"; }
-.fa-user::before { content: "\f007"; }
-.fa-briefcase::before { content: "\f0b1"; }
-.fa-project-diagram::before { content: "\f542"; }
-.fa-code::before { content: "\f121"; }
-.fa-graduation-cap::before { content: "\f19d"; }
-.fa-certificate::before { content: "\f0a3"; }
-.fa-trophy::before { content: "\f091"; }
-.fa-envelope::before { content: "\f0e0"; }
-.fa-file-download::before { content: "\f56d"; }
-.fa-external-link-alt::before { content: "\f35d"; }
-.fa-eye::before { content: "\f06e"; }
-.fa-book::before { content: "\f02d"; }
-.fa-copy::before { content: "\f0c5"; }
-.fa-university::before { content: "\f19c"; }
-.fa-calendar-alt::before { content: "\f073"; }
-.fa-map-marker-alt::before { content: "\f3c5"; }
-.fa-paper-plane::before { content: "\f1d8"; }
-.fa-spinner::before { content: "\f110"; }
-.fa-check-circle::before { content: "\f058"; }
-.fa-exclamation-circle::before { content: "\f06a"; }
-.fa-chevron-down::before { content: "\f078"; }
-.fa-chevron-up::before { content: "\f077"; }
+.fa-sun::before {
+    content: "\f185";
+}
+
+.fa-moon::before {
+    content: "\f186";
+}
+
+.fa-bars::before {
+    content: "\f0c9";
+}
+
+.fa-times::before {
+    content: "\f00d";
+}
+
+.fa-home::before {
+    content: "\f015";
+}
+
+.fa-user::before {
+    content: "\f007";
+}
+
+.fa-briefcase::before {
+    content: "\f0b1";
+}
+
+.fa-project-diagram::before {
+    content: "\f542";
+}
+
+.fa-code::before {
+    content: "\f121";
+}
+
+.fa-graduation-cap::before {
+    content: "\f19d";
+}
+
+.fa-certificate::before {
+    content: "\f0a3";
+}
+
+.fa-trophy::before {
+    content: "\f091";
+}
+
+.fa-envelope::before {
+    content: "\f0e0";
+}
+
+.fa-file-download::before {
+    content: "\f56d";
+}
+
+.fa-external-link-alt::before {
+    content: "\f35d";
+}
+
+.fa-eye::before {
+    content: "\f06e";
+}
+
+.fa-book::before {
+    content: "\f02d";
+}
+
+.fa-copy::before {
+    content: "\f0c5";
+}
+
+.fa-university::before {
+    content: "\f19c";
+}
+
+.fa-calendar-alt::before {
+    content: "\f073";
+}
+
+.fa-map-marker-alt::before {
+    content: "\f3c5";
+}
+
+.fa-paper-plane::before {
+    content: "\f1d8";
+}
+
+.fa-spinner::before {
+    content: "\f110";
+}
+
+.fa-check-circle::before {
+    content: "\f058";
+}
+
+.fa-exclamation-circle::before {
+    content: "\f06a";
+}
+
+.fa-chevron-down::before {
+    content: "\f078";
+}
+
+.fa-chevron-up::before {
+    content: "\f077";
+}
 
 /* Brand Icons (fab) */
-.fa-linkedin::before { content: "\f08c"; }
-.fa-x-twitter::before { content: "\e61b"; }
-.fa-github::before { content: "\f09b"; }
-.fa-instagram::before { content: "\f16d"; }
+.fa-linkedin::before {
+    content: "\f08c";
+}
+
+.fa-x-twitter::before {
+    content: "\e61b";
+}
+
+.fa-github::before {
+    content: "\f09b";
+}
+
+.fa-instagram::before {
+    content: "\f16d";
+}
 
 /* Common project icons (fallback support) */
-.fa-shield-alt::before { content: "\f3ed"; }
-.fa-lock::before { content: "\f023"; }
-.fa-server::before { content: "\f233"; }
-.fa-cloud::before { content: "\f0c2"; }
-.fa-database::before { content: "\f1c0"; }
-.fa-network-wired::before { content: "\f6ff"; }
-.fa-robot::before { content: "\f544"; }
-.fa-search::before { content: "\f002"; }
-.fa-bug::before { content: "\f188"; }
-.fa-terminal::before { content: "\f120"; }
-.fa-key::before { content: "\f084"; }
-.fa-user-shield::before { content: "\f505"; }
+.fa-shield-alt::before {
+    content: "\f3ed";
+}
+
+.fa-lock::before {
+    content: "\f023";
+}
+
+.fa-server::before {
+    content: "\f233";
+}
+
+.fa-cloud::before {
+    content: "\f0c2";
+}
+
+.fa-database::before {
+    content: "\f1c0";
+}
+
+.fa-network-wired::before {
+    content: "\f6ff";
+}
+
+.fa-robot::before {
+    content: "\f544";
+}
+
+.fa-search::before {
+    content: "\f002";
+}
+
+.fa-bug::before {
+    content: "\f188";
+}
+
+.fa-terminal::before {
+    content: "\f120";
+}
+
+.fa-key::before {
+    content: "\f084";
+}
+
+.fa-user-shield::before {
+    content: "\f505";
+}

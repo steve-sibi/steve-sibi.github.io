@@ -1057,24 +1057,20 @@ html {
 
 /* Skeleton base */
 .skeleton {
-    background: linear-gradient(
-        90deg,
-        rgba(200, 200, 200, 0.2) 25%,
-        rgba(200, 200, 200, 0.3) 50%,
-        rgba(200, 200, 200, 0.2) 75%
-    );
+    background: linear-gradient(90deg,
+            rgba(200, 200, 200, 0.2) 25%,
+            rgba(200, 200, 200, 0.3) 50%,
+            rgba(200, 200, 200, 0.2) 75%);
     background-size: 200% 100%;
     animation: skeleton-loading 1.5s ease-in-out infinite;
     border-radius: 4px;
 }
 
 .dark .skeleton {
-    background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0.05) 25%,
-        rgba(255, 255, 255, 0.1) 50%,
-        rgba(255, 255, 255, 0.05) 75%
-    );
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0.05) 25%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(255, 255, 255, 0.05) 75%);
     background-size: 200% 100%;
 }
 
@@ -1082,6 +1078,7 @@ html {
     0% {
         background-position: 200% 0;
     }
+
     100% {
         background-position: -200% 0;
     }

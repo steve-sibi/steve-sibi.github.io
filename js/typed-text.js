@@ -10,7 +10,7 @@
         const typedTarget = document.getElementById('typed-text');
         const heroSection = document.getElementById('home');
         const TYPED_SRC = 'https://cdn.jsdelivr.net/npm/typed.js@2.0.12';
-        
+
         if (!typedTarget) return;
 
         const prefersReduced = window.prefersReducedMotion ? window.prefersReducedMotion() : false;
@@ -18,7 +18,7 @@
 
         const startTyped = () => {
             if (!typedTarget || typeof Typed === 'undefined') return;
-            
+
             new Typed('#typed-text', {
                 strings: [
                     'Data Privacy &amp; Encryption',
@@ -41,7 +41,7 @@
         const initTyped = () => {
             if (typedInitialized || !typedTarget) return;
             typedInitialized = true;
-            
+
             const loader = window.loadExternalScript || ((src) => {
                 return new Promise((resolve, reject) => {
                     const script = document.createElement('script');

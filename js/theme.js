@@ -23,14 +23,14 @@
         themeToggle.addEventListener('click', () => {
             document.documentElement.classList.toggle('dark');
             const isDark = document.documentElement.classList.contains('dark');
-            
+
             // Persist to localStorage
             try {
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
             } catch (_) {
                 console.warn('Failed to save theme preference');
             }
-            
+
             setThemeIcon();
         });
 

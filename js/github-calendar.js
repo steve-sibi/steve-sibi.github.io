@@ -37,7 +37,7 @@
             if (calendarObserver) return;
             const target = document.getElementById('github-calendar');
             if (!target) return;
-            
+
             calendarObserver = new MutationObserver(() => {
                 if (pruneCalendar()) {
                     calendarObserver.disconnect();
@@ -54,11 +54,11 @@
 
             const renderCalendar = () => {
                 try {
-                    const result = GitHubCalendar('#github-calendar', 'steve-sibi', { 
-                        responsive: true, 
-                        summary: false 
+                    const result = GitHubCalendar('#github-calendar', 'steve-sibi', {
+                        responsive: true,
+                        summary: false
                     });
-                    
+
                     if (result && typeof result.then === 'function') {
                         result.then(() => {
                             pruneCalendar();
@@ -71,7 +71,7 @@
                     console.error('GitHubCalendar failed', err);
                     hideSkeletonShowCalendar();
                 }
-                
+
                 setTimeout(() => {
                     pruneCalendar();
                     hideSkeletonShowCalendar();

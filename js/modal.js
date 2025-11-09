@@ -17,12 +17,12 @@
         const modalToast = document.getElementById('modalToast');
         const modalMedia = document.getElementById('modalMedia');
         const modalImg = document.getElementById('modalImg');
-        
+
         if (!modal) return;
 
         let modalReturnFocus = null;
 
-        window.openModalFromCard = function(card) {
+        window.openModalFromCard = function (card) {
             modalReturnFocus = document.activeElement;
             modalTitle.textContent = card.dataset.title || 'Project';
 
