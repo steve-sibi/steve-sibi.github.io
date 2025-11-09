@@ -471,7 +471,11 @@
                 if (show) visible++;
             });
             if (countEl) countEl.textContent = `Showing ${visible} project${visible === 1 ? '' : 's'}`;
-            if (emptyEl) emptyEl.classList.toggle('hidden', visible !== 0);
+            if (emptyEl) {
+                const isHidden = visible !== 0;
+                emptyEl.classList.toggle('hidden', isHidden);
+                emptyEl.setAttribute('aria-hidden', String(isHidden));
+            }
             doSort(cards.filter(c => !c.classList.contains('hidden')).concat(cards.filter(c => c.classList.contains('hidden'))));
         }
         filterButtons.forEach(btn => btn.addEventListener('click', () => setFilter(btn)));
@@ -582,13 +586,28 @@
             const submitIcon = document.getElementById('contactSubmitIcon');
             const successMsg = document.getElementById('contactSuccess');
             const errorMsg = document.getElementById('contactError');
+            const hideMessage = (node) => {
+                if (!node) return;
+                node.classList.add('hidden');
+                node.setAttribute('aria-hidden', 'true');
+            };
+            const showMessage = (node, { focus = false } = {}) => {
+                if (!node) return;
+                node.classList.remove('hidden');
+                node.setAttribute('aria-hidden', 'false');
+                if (focus) {
+                    requestAnimationFrame(() => {
+                        node.focus({ preventScroll: true });
+                    });
+                }
+            };
 
             contactForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
                 // Hide any previous messages
-                successMsg?.classList.add('hidden');
-                errorMsg?.classList.add('hidden');
+                hideMessage(successMsg);
+                hideMessage(errorMsg);
 
                 // Disable submit button
                 if (submitBtn) {
@@ -612,7 +631,7 @@
 
                     if (response.ok) {
                         // Success
-                        successMsg?.classList.remove('hidden');
+                        showMessage(successMsg, { focus: true });
                         contactForm.reset();
 
                         // Track with GA
@@ -627,7 +646,7 @@
                     }
                 } catch (error) {
                     // Error
-                    errorMsg?.classList.remove('hidden');
+                    showMessage(errorMsg, { focus: true });
                     console.error('Contact form error:', error);
                 } finally {
                     // Re-enable submit button
