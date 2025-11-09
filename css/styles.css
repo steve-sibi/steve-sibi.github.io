@@ -407,6 +407,16 @@ html {
     transform: translateY(1px);
 }
 
+/* Social icon buttons - subtle hover */
+.social-icon-btn:hover {
+    border-color: var(--color-cyber-green, #00ff9f);
+    background: rgba(0, 255, 159, .08);
+}
+
+.dark .social-icon-btn:hover {
+    background: rgba(0, 255, 159, .12);
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion:reduce) {
     html {
@@ -581,7 +591,7 @@ html {
 #projectControls .project-filter:hover,
 #projectControls .project-filter:focus-visible {
     background: rgba(0, 255, 159, .18);
-    color: #006633;
+    color: #004d29;
     outline: none;
 }
 
@@ -603,7 +613,7 @@ html {
 .dark #projectControls .project-filter:hover,
 .dark #projectControls .project-filter:focus-visible {
     background: rgba(0, 255, 159, .18);
-    color: #9fffd6;
+    color: #ccffe6;
 }
 
 .dark #projectControls .project-filter[aria-pressed="true"],
@@ -639,7 +649,8 @@ html {
 }
 
 .project-btn--ghost:hover {
-    background: rgba(0, 255, 159, .12)
+    background: rgba(0, 255, 159, .12);
+    color: var(--color-cyber-green);
 }
 
 .project-btn--solid {
@@ -649,7 +660,8 @@ html {
 }
 
 .project-btn--solid:hover {
-    filter: brightness(.95)
+    filter: brightness(.95);
+    color: #000;
 }
 
 .project-card {
@@ -926,6 +938,7 @@ html {
 
 .skills-filter:hover {
     background: rgba(0, 255, 159, .18);
+    color: #004d29;
 }
 
 .skills-filter.is-active,
@@ -944,6 +957,7 @@ html {
 
 .dark .skills-filter:hover {
     background: rgba(0, 255, 159, .18);
+    color: #ccffe6;
 }
 
 .dark .skills-filter.is-active,
