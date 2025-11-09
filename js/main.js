@@ -644,59 +644,115 @@
         }
 
         // =====================================================================
-        // === Improved Scroll Arrow (Bidirectional) ==========================
+        // === Scroll Arrow (Simple & Clean) ==================================
         // =====================================================================
         const scrollArrow = document.getElementById('scroll-arrow');
         if (scrollArrow) {
             const icon = scrollArrow.querySelector('i');
+            const sections = Array.from(document.querySelectorAll('section[id]'));
+            const lastSection = sections[sections.length - 1];
             let isAtBottom = false;
 
-            function updateScrollArrow() {
+            const setArrowDirection = (atBottom) => {
+                if (atBottom === isAtBottom) return;
+                isAtBottom = atBottom;
+
+                if (isAtBottom) {
+                    scrollArrow.classList.add('at-bottom');
+                    scrollArrow.setAttribute('aria-label', 'Scroll to top');
+                    if (icon) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                } else {
+                    scrollArrow.classList.remove('at-bottom');
+                    scrollArrow.setAttribute('aria-label', 'Scroll to next section');
+                    if (icon) {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                }
+            };
+
+            const showOrHideArrow = () => {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 const windowHeight = window.innerHeight;
                 const documentHeight = document.documentElement.scrollHeight;
+                const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
 
-                // Show arrow after scrolling down a bit
                 if (scrollTop > 300) {
                     scrollArrow.classList.add('visible');
                 } else {
                     scrollArrow.classList.remove('visible');
                 }
 
-                // Check if near bottom (within 100px)
-                const nearBottom = scrollTop + windowHeight >= documentHeight - 100;
-
-                if (nearBottom && !isAtBottom) {
-                    isAtBottom = true;
-                    scrollArrow.classList.add('at-bottom');
-                    if (icon) {
-                        icon.classList.remove('fa-chevron-down');
-                        icon.classList.add('fa-chevron-up');
-                    }
-                    scrollArrow.setAttribute('aria-label', 'Scroll to top');
-                } else if (!nearBottom && isAtBottom) {
-                    isAtBottom = false;
-                    scrollArrow.classList.remove('at-bottom');
-                    if (icon) {
-                        icon.classList.remove('fa-chevron-up');
-                        icon.classList.add('fa-chevron-down');
-                    }
-                    scrollArrow.setAttribute('aria-label', 'Scroll down');
+                // Force upwards state when extremely close to bottom
+                if (distanceFromBottom < 60) {
+                    setArrowDirection(true);
+                } else if (!observerAttached) {
+                    setArrowDirection(false);
                 }
+            };
+
+            let observerAttached = false;
+
+            // Use IntersectionObserver for reliable bottom detection
+            if (lastSection && 'IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.target === lastSection) {
+                            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                            const windowHeight = window.innerHeight;
+                            const documentHeight = document.documentElement.scrollHeight;
+                            const reachedActualBottom = scrollTop + windowHeight >= documentHeight - 2;
+                            const mostlyVisible = entry.intersectionRatio >= 0.1;
+                            setArrowDirection(mostlyVisible || reachedActualBottom);
+                        }
+                    });
+                }, { threshold: [0, 0.1, 0.4, 1] });
+
+                observer.observe(lastSection);
+                observerAttached = true;
+            } else {
+                // Fallback: check via scroll position
+                const updateByScroll = () => {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const windowHeight = window.innerHeight;
+                    const documentHeight = document.documentElement.scrollHeight;
+                    const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
+                    setArrowDirection(distanceFromBottom < 120);
+                };
+
+                window.addEventListener('scroll', updateByScroll, { passive: true });
+                updateByScroll();
             }
 
             scrollArrow.addEventListener('click', () => {
                 if (isAtBottom) {
-                    // Scroll to top
                     window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                const offset = 120;
+
+                let nextSection = null;
+                for (const section of sections) {
+                    if (section.offsetTop > currentScroll + offset) {
+                        nextSection = section;
+                        break;
+                    }
+                }
+
+                if (nextSection) {
+                    nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 } else {
-                    // Scroll down one viewport
-                    window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+                    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
                 }
             });
 
-            window.addEventListener('scroll', updateScrollArrow, { passive: true });
-            updateScrollArrow(); // Initial check
+            window.addEventListener('scroll', showOrHideArrow, { passive: true });
+            showOrHideArrow();
         }
 
         // =====================================================================

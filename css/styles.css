@@ -1022,14 +1022,6 @@ html {
     transform: scale(1.1);
 }
 
-#scroll-arrow.at-bottom {
-    transform: rotate(180deg);
-}
-
-#scroll-arrow.at-bottom:hover {
-    transform: rotate(180deg) scale(1.1);
-}
-
 /* Contact form animations */
 #contactForm input:focus,
 #contactForm textarea:focus {
