@@ -181,11 +181,14 @@
 
         const calendar = document.createElement('div');
         calendar.className = 'gh-calendar';
+        const tooltip = createTooltip();
+
         calendar.appendChild(renderMonthsRow(data.monthLabels, data.weeks.length));
-        calendar.appendChild(renderCalendarGrid(data.weeks));
+        calendar.appendChild(renderCalendarGrid(data.weeks, tooltip));
         calendar.appendChild(renderLegend());
 
         canvas.appendChild(calendar);
+        canvas.appendChild(tooltip);
         root.appendChild(canvas);
     }
 
@@ -204,7 +207,7 @@
         return row;
     }
 
-    function renderCalendarGrid(weeks) {
+    function renderCalendarGrid(weeks, tooltip) {
         const layout = document.createElement('div');
         layout.className = 'gh-calendar__layout';
 
@@ -238,6 +241,7 @@
                     cell.title = label;
                     cell.dataset.date = cellData.date;
                     cell.dataset.count = String(cellData.count);
+                    attachTooltipHandlers(cell, cellData, tooltip);
                 }
 
                 grid.appendChild(cell);
@@ -330,5 +334,45 @@
         const contributionText = count === 0 ? 'No contributions' : `${count} contribution${count === 1 ? '' : 's'}`;
         return `${contributionText} on ${DAY_FORMAT.format(date)}.`;
     }
-})();
 
+    function createTooltip() {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'gh-calendar__tooltip';
+        tooltip.setAttribute('aria-hidden', 'true');
+        return tooltip;
+    }
+
+    function attachTooltipHandlers(cell, data, tooltip) {
+        if (!tooltip || !data) return;
+        const show = () => showTooltip(tooltip, cell, data);
+        const hide = () => hideTooltip(tooltip);
+        cell.addEventListener('mouseenter', show);
+        cell.addEventListener('focus', show);
+        cell.addEventListener('mouseleave', hide);
+        cell.addEventListener('blur', hide);
+    }
+
+    function showTooltip(tooltip, trigger, data) {
+        if (!tooltip || !trigger || !data) return;
+        tooltip.textContent = formatTooltipContent(data.count, data.dateObj);
+        const hostRect = tooltip.parentElement.getBoundingClientRect();
+        const triggerRect = trigger.getBoundingClientRect();
+        const left = triggerRect.left - hostRect.left + (triggerRect.width / 2);
+        const top = triggerRect.top - hostRect.top;
+        tooltip.style.left = `${left}px`;
+        tooltip.style.top = `${top}px`;
+        tooltip.classList.add('is-visible');
+        tooltip.setAttribute('aria-hidden', 'false');
+    }
+
+    function hideTooltip(tooltip) {
+        if (!tooltip) return;
+        tooltip.classList.remove('is-visible');
+        tooltip.setAttribute('aria-hidden', 'true');
+    }
+
+    function formatTooltipContent(count, date) {
+        const contributionText = count === 0 ? 'No contributions' : `${count} contribution${count === 1 ? '' : 's'}`;
+        return `${contributionText} • ${DAY_FORMAT.format(date)}`;
+    }
+})();
