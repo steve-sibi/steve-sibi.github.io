@@ -10,8 +10,14 @@
     const USERNAME = 'steve-sibi';
     const API_BASE = 'https://github-contributions-api.jogruber.de/v4/';
     const WEEKDAY_LABELS = ['', 'Mon', '', 'Wed', '', 'Fri', ''];
-    const MONTH_FORMAT = new Intl.DateTimeFormat('en-US', { month: 'short' });
-    const DAY_FORMAT = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    const MONTH_FORMAT = new Intl.DateTimeFormat('en-US', { month: 'short', timeZone: 'UTC' });
+    const DAY_FORMAT = new Intl.DateTimeFormat('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+        timeZone: 'UTC'
+    });
+    const NUMBER_FORMAT = new Intl.NumberFormat('en-US');
 
     document.addEventListener('DOMContentLoaded', () => {
         const section = document.getElementById('github-activity');
@@ -109,15 +115,23 @@
 
         const contributionMap = new Map();
         contributions.forEach(entry => {
-            contributionMap.set(entry.date, {
-                count: entry.count,
-                level: clampLevel(entry.level)
-            });
+            const dateObj = parseISODateUTC(entry.date);
+            const iso = toISODate(dateObj);
+            const level = clampLevel(entry.level);
+            if (contributionMap.has(iso)) {
+                const existing = contributionMap.get(iso);
+                existing.count += entry.count;
+                existing.level = Math.max(existing.level, level);
+            } else {
+                contributionMap.set(iso, {
+                    count: entry.count,
+                    level
+                });
+            }
         });
 
         const weeks = [];
         const monthLabels = [];
-        const seenMonths = new Set();
 
         let cursor = new Date(calendarStart);
         let week = new Array(7).fill(null);
@@ -138,17 +152,6 @@
                 isFuture: cursor > today
             };
 
-            if (cursor.getUTCDate() === 1) {
-                const monthKey = `${cursor.getUTCFullYear()}-${cursor.getUTCMonth()}`;
-                if (!seenMonths.has(monthKey)) {
-                    monthLabels.push({
-                        label: MONTH_FORMAT.format(cursor),
-                        column: weekIndex
-                    });
-                    seenMonths.add(monthKey);
-                }
-            }
-
             if (weekday === 6) {
                 weeks.push(week);
                 week = new Array(7).fill(null);
@@ -158,17 +161,61 @@
             cursor = addDays(cursor, 1);
         }
 
+        // Handle last partial week if any
+        if (week.some(day => day !== null)) {
+            weeks.push(week);
+        }
+
+        // Now calculate month labels based on completed weeks
+        const seenMonths = new Set();
+        weeks.forEach((week, index) => {
+            week.forEach(day => {
+                if (!day || !day.dateObj || !day.inRange) return;
+
+                const monthKey = `${day.dateObj.getUTCFullYear()}-${day.dateObj.getUTCMonth()}`;
+                if (seenMonths.has(monthKey)) return;
+
+                const monthDate = new Date(Date.UTC(
+                    day.dateObj.getUTCFullYear(),
+                    day.dateObj.getUTCMonth(),
+                    1
+                ));
+                monthLabels.push({
+                    label: MONTH_FORMAT.format(monthDate),
+                    column: index,
+                    month: day.dateObj.getUTCMonth(),
+                    year: day.dateObj.getUTCFullYear()
+                });
+                seenMonths.add(monthKey);
+            });
+        });
+
+        // Sort month labels by year and month to ensure they're in order
+        monthLabels.sort((a, b) => {
+            if (a.year !== b.year) return a.year - b.year;
+            return a.month - b.month;
+        });
+
         const totalContributions = contributions.reduce((sum, entry) => {
-            const entryDate = new Date(`${entry.date}T00:00:00Z`);
+            const entryDate = parseISODateUTC(entry.date);
             if (entryDate >= rangeStart && entryDate <= today) {
                 return sum + entry.count;
             }
             return sum;
         }, 0);
 
+        const labelsWithSpan = monthLabels.map((month, index) => {
+            const nextColumn = monthLabels[index + 1]?.column ?? weeks.length;
+            const span = Math.max(1, nextColumn - month.column);
+            return {
+                ...month,
+                span
+            };
+        });
+
         return {
             weeks,
-            monthLabels,
+            monthLabels: labelsWithSpan,
             totalContributions
         };
     }
@@ -179,17 +226,29 @@
         const canvas = document.createElement('div');
         canvas.className = 'github-calendar__canvas';
 
+        const tooltip = createTooltip();
         const calendar = document.createElement('div');
         calendar.className = 'gh-calendar';
-        const tooltip = createTooltip();
 
-        calendar.appendChild(renderMonthsRow(data.monthLabels, data.weeks.length));
-        calendar.appendChild(renderCalendarGrid(data.weeks, tooltip));
+        const viewport = document.createElement('div');
+        viewport.className = 'gh-calendar__viewport';
+
+        const content = document.createElement('div');
+        content.className = 'gh-calendar__content';
+        content.style.setProperty('--weeks', data.weeks.length);
+        content.appendChild(renderMonthsRow(data.monthLabels, data.weeks.length));
+        content.appendChild(renderCalendarGrid(data.weeks, tooltip));
+
+        viewport.appendChild(content);
+        calendar.appendChild(viewport);
         calendar.appendChild(renderLegend());
 
         canvas.appendChild(calendar);
         canvas.appendChild(tooltip);
         root.appendChild(canvas);
+
+        alignMonthLabels(canvas);
+        scaleCalendarCells(canvas);
     }
 
     function renderMonthsRow(labels, weeksCount) {
@@ -197,11 +256,15 @@
         row.className = 'gh-calendar__months';
         row.style.setProperty('--weeks', weeksCount);
 
-        labels.forEach(({ label, column }) => {
-            const span = document.createElement('span');
-            span.textContent = label;
-            span.style.setProperty('--column', column + 1);
-            row.appendChild(span);
+        labels.forEach(({ label, column, span }) => {
+            if (column < 0 || column >= weeksCount) return;
+            const spanEl = document.createElement('span');
+            spanEl.textContent = label.toUpperCase();
+            spanEl.style.setProperty('--column', String(column + 1));
+            if (typeof span === 'number' && span > 0) {
+                spanEl.style.setProperty('--span', String(span));
+            }
+            row.appendChild(spanEl);
         });
 
         return row;
@@ -253,6 +316,84 @@
         return layout;
     }
 
+    function alignMonthLabels(container) {
+        const monthsRow = container.querySelector('.gh-calendar__months');
+        const content = container.querySelector('.gh-calendar__content');
+        const grid = container.querySelector('.gh-calendar__grid');
+
+        if (!monthsRow || !content || !grid) return;
+
+        const updateOffset = () => {
+            if (![monthsRow, content, grid].every(el => el.isConnected)) return;
+            const contentRect = content.getBoundingClientRect();
+            const gridRect = grid.getBoundingClientRect();
+            const offset = Math.max(0, gridRect.left - contentRect.left);
+            monthsRow.style.setProperty('--weekday-offset', `${offset}px`);
+        };
+
+        updateOffset();
+
+        if ('ResizeObserver' in window) {
+            const observer = new ResizeObserver(() => {
+                if (![monthsRow, content, grid].every(el => el.isConnected)) {
+                    observer.disconnect();
+                    return;
+                }
+                updateOffset();
+            });
+            observer.observe(content);
+            observer.observe(grid);
+        }
+    }
+
+    function scaleCalendarCells(container) {
+        const viewport = container.querySelector('.gh-calendar__viewport');
+        const content = container.querySelector('.gh-calendar__content');
+        const layout = container.querySelector('.gh-calendar__layout');
+        const weekdays = container.querySelector('.gh-calendar__weekdays');
+        const grid = container.querySelector('.gh-calendar__grid');
+
+        if (!viewport || !content || !layout || !weekdays || !grid) return;
+
+        const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+        const MIN_DAY_SIZE = 10;
+        const MAX_DAY_SIZE = 28;
+
+        const updateSize = () => {
+            if (![viewport, content, layout, weekdays, grid].every(el => el.isConnected)) return;
+            const viewportWidth = viewport.clientWidth;
+            const weekdayWidth = weekdays.getBoundingClientRect().width;
+            const layoutGap = parseFloat(getComputedStyle(layout).getPropertyValue('column-gap')) || 12;
+            const gridStyles = getComputedStyle(grid);
+            const gap = parseFloat(gridStyles.getPropertyValue('column-gap')) || 3;
+            const weeksValue = content.style.getPropertyValue('--weeks') || getComputedStyle(content).getPropertyValue('--weeks');
+            const weeks = Number((weeksValue || '').trim()) || 53;
+
+            const maxGridWidth = viewportWidth - weekdayWidth - layoutGap;
+            const spacing = gap * Math.max(0, weeks - 1);
+            const rawSize = (maxGridWidth - spacing) / weeks;
+            const daySize = clamp(rawSize, MIN_DAY_SIZE, MAX_DAY_SIZE);
+            const finalSize = Number.isFinite(daySize) && daySize > 0 ? daySize : MIN_DAY_SIZE;
+
+            content.style.setProperty('--calendar-day-size', `${finalSize}px`);
+        };
+
+        updateSize();
+
+        if ('ResizeObserver' in window) {
+            const observer = new ResizeObserver(() => {
+                if (![viewport, content, layout, weekdays, grid].every(el => el.isConnected)) {
+                    observer.disconnect();
+                    return;
+                }
+                updateSize();
+            });
+            observer.observe(viewport);
+        } else {
+            window.addEventListener('resize', updateSize);
+        }
+    }
+
     function renderLegend() {
         const legend = document.createElement('div');
         legend.className = 'gh-calendar__legend';
@@ -280,7 +421,7 @@
         const valueEl = document.getElementById('github-contribution-count');
         if (!card || !valueEl) return;
 
-        valueEl.textContent = new Intl.NumberFormat('en-US').format(total);
+        valueEl.textContent = NUMBER_FORMAT.format(total);
         card.classList.remove('is-placeholder');
         card.setAttribute('data-contributions', String(total));
     }
@@ -328,6 +469,11 @@
 
     function toISODate(date) {
         return date.toISOString().slice(0, 10);
+    }
+
+    function parseISODateUTC(dateString) {
+        const [year, month, day] = dateString.split('-').map(Number);
+        return new Date(Date.UTC(year, month - 1, day));
     }
 
     function formatCellLabel(count, date) {
