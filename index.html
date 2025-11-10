@@ -77,7 +77,6 @@
     as="font" type="font/woff2" crossorigin>
 
   <!-- GitHub Calendar CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
 
   <!-- Site styles -->
   <link rel="stylesheet" href="css/icons.css">
@@ -647,9 +646,27 @@
         <div
           class="border border-gray-200 dark:border-cyber-green-dark rounded-lg p-6 backdrop-blur-sm bg-white dark:bg-black dark:bg-opacity-30">
           <h3 class="text-xl font-bold mb-6 text-center text-black dark:text-cyber-green">Recent Contributions</h3>
-          <div id="github-calendar" class="mb-8">
-            <div class="text-center py-8 text-gray-600 dark:text-gray-400">
-              <p>Loading GitHub contribution data...</p>
+          <div id="github-contribution-card"
+            class="github-activity-summary is-placeholder mb-6 text-center"
+            aria-live="polite">
+            <p class="github-activity-summary__label text-sm uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">
+              Total contributions (last 12 months)
+            </p>
+            <span id="github-contribution-count" class="github-activity-summary__value text-black dark:text-cyber-green">
+              --
+            </span>
+          </div>
+          <div id="github-calendar" class="mb-8 github-calendar">
+            <div id="github-calendar-skeleton" class="github-calendar__loading" aria-live="polite">
+              <div class="github-calendar-skeleton">
+                <div class="github-calendar-skeleton__months"></div>
+                <div class="github-calendar-skeleton__grid">
+                  <div class="github-calendar-skeleton__column"></div>
+                  <div class="github-calendar-skeleton__column"></div>
+                  <div class="github-calendar-skeleton__column"></div>
+                </div>
+              </div>
+              <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">Loading GitHub contribution data...</p>
             </div>
           </div>
           <div class="text-center">
@@ -1077,8 +1094,6 @@
 
   <!-- Vendor libs -->
   <script defer src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <script defer src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
-
   <!-- Modular JS - Each module handles a specific feature -->
   <script src="js/utils.js"></script>
   <script defer src="js/theme.js"></script>

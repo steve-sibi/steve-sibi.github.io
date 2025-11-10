@@ -325,26 +325,247 @@ html {
     color: #34d399;
 }
 
-#github-calendar .calendar h2,
-#github-calendar .calendar .contrib-footer,
-#github-calendar .calendar> :not(.position-relative),
-#github-calendar .calendar .sr-only,
-#github-calendar > h2,
-#github-calendar > .contrib-footer,
-#github-calendar .contrib-column,
-#github-calendar .sr-only {
-    display: none !important;
+.github-calendar {
+    min-height: 220px;
 }
 
-#github-calendar .calendar .calendar-graph-only,
-#github-calendar > .calendar-graph-only {
-    display: block;
+.github-calendar__canvas {
+    border-radius: 0.75rem;
+    border: 1px solid rgba(15, 118, 110, 0.25);
+    padding: 1.25rem 1.5rem 1.5rem;
+    background: #f9fafb;
 }
 
-#github-calendar .calendar .calendar-graph-only svg,
-#github-calendar > .calendar-graph-only svg {
-    width: 100%;
-    height: auto;
+.dark .github-calendar__canvas {
+    border-color: rgba(16, 185, 129, 0.35);
+    background: rgba(0, 0, 0, 0.35);
+    box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.08);
+}
+
+.gh-calendar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.gh-calendar__months {
+    display: grid;
+    grid-template-columns: repeat(var(--weeks, 53), minmax(10px, 1fr));
+    column-gap: 4px;
+    font-size: 0.7rem;
+    color: #6b7280;
+}
+
+.dark .gh-calendar__months {
+    color: #9ca3af;
+}
+
+.gh-calendar__months span {
+    position: relative;
+    grid-column: var(--column, auto);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.gh-calendar__layout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 0.75rem;
+}
+
+.gh-calendar__weekdays {
+    display: grid;
+    grid-template-rows: repeat(7, 12px);
+    align-content: space-between;
+    font-size: 0.7rem;
+    color: #6b7280;
+    padding-top: 2px;
+}
+
+.dark .gh-calendar__weekdays {
+    color: #9ca3af;
+}
+
+.gh-calendar__grid {
+    --day-size: 12px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(var(--day-size), 1fr);
+    grid-template-rows: repeat(7, var(--day-size));
+    column-gap: 3px;
+    row-gap: 3px;
+}
+
+.gh-calendar__day {
+    width: var(--day-size);
+    height: var(--day-size);
+    border-radius: 3px;
+    border: 1px solid rgba(75, 85, 99, 0.15);
+    background: #e5e7eb;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    transition: transform 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.gh-calendar__day:focus-visible {
+    outline: 2px solid #10b981;
+    outline-offset: 2px;
+    z-index: 1;
+}
+
+.gh-calendar__day:hover {
+    transform: scale(1.15);
+    border-color: rgba(16, 185, 129, 0.8);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.35);
+}
+
+.gh-calendar__day.is-empty {
+    pointer-events: none;
+    opacity: 0;
+    border-color: transparent;
+}
+
+.gh-calendar__legend {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.dark .gh-calendar__legend {
+    color: #9ca3af;
+}
+
+.gh-calendar__legend-swatch {
+    width: var(--day-size, 12px);
+    height: var(--day-size, 12px);
+    border-radius: 2px;
+    border: 1px solid rgba(75, 85, 99, 0.2);
+    background: #e5e7eb;
+}
+
+.gh-calendar__legend-swatch.level-1 {
+    background: #c6f6d5;
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+.gh-calendar__legend-swatch.level-2 {
+    background: #6ee7b7;
+    border-color: rgba(16, 185, 129, 0.5);
+}
+
+.gh-calendar__legend-swatch.level-3 {
+    background: #34d399;
+    border-color: rgba(5, 150, 105, 0.6);
+}
+
+.gh-calendar__legend-swatch.level-4 {
+    background: #059669;
+    border-color: rgba(6, 95, 70, 0.8);
+}
+
+.dark .gh-calendar__day {
+    background: #1f2937;
+    border-color: rgba(55, 65, 81, 0.9);
+}
+
+.dark .gh-calendar__day.level-0 {
+    background: #111827;
+    border-color: rgba(55, 65, 81, 0.6);
+}
+
+.gh-calendar__day.level-0 {
+    background: #e5e7eb;
+}
+
+.gh-calendar__day.level-1 {
+    background: #bbf7d0;
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.gh-calendar__day.level-2 {
+    background: #6ee7b7;
+    border-color: rgba(16, 185, 129, 0.6);
+}
+
+.gh-calendar__day.level-3 {
+    background: #34d399;
+    border-color: rgba(5, 150, 105, 0.7);
+}
+
+.gh-calendar__day.level-4 {
+    background: #059669;
+    border-color: rgba(6, 95, 70, 0.9);
+}
+
+.github-calendar__loading {
+    text-align: center;
+}
+
+.github-calendar__loading.loaded {
+    display: none;
+}
+
+.github-calendar__error {
+    text-align: center;
+    padding: 2rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px dashed rgba(239, 68, 68, 0.4);
+    color: #b91c1c;
+    background: rgba(254, 242, 242, 0.65);
+}
+
+.dark .github-calendar__error {
+    color: #fecaca;
+    border-color: rgba(248, 113, 113, 0.5);
+    background: rgba(153, 27, 27, 0.25);
+}
+
+.github-activity-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    border: 1px solid rgba(4, 120, 87, 0.2);
+    border-radius: 0.85rem;
+    padding: 1.25rem;
+    background-color: #f9fafb;
+}
+
+.dark .github-activity-summary {
+    border-color: rgba(16, 185, 129, 0.35);
+    background-color: rgba(17, 24, 39, 0.65);
+}
+
+.github-activity-summary__label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+}
+
+.github-activity-summary__value {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+}
+
+.github-activity-summary.is-placeholder .github-activity-summary__value {
+    width: 8rem;
+    border-radius: 0.5rem;
+    color: transparent;
+    background: linear-gradient(90deg,
+            rgba(4, 120, 87, 0.15) 25%,
+            rgba(16, 185, 129, 0.4) 50%,
+            rgba(4, 120, 87, 0.15) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.6s linear infinite;
 }
 
 @media (max-width: 40rem) {
@@ -1107,20 +1328,36 @@ html {
 /* GitHub Calendar Skeleton */
 .github-calendar-skeleton {
     display: grid;
-    gap: 0.25rem;
-    padding: 1rem;
+    gap: 0.5rem;
+    padding: 0.75rem;
     min-height: 180px;
 }
 
-.github-calendar-skeleton .skeleton-row {
-    display: flex;
-    gap: 0.25rem;
+.github-calendar-skeleton__months {
+    height: 12px;
+    border-radius: 6px;
+    background: linear-gradient(90deg,
+            rgba(4, 120, 87, 0.12) 25%,
+            rgba(16, 185, 129, 0.35) 50%,
+            rgba(4, 120, 87, 0.12) 75%);
+    animation: skeleton-loading 1.4s ease infinite;
+    background-size: 200% 100%;
 }
 
-.github-calendar-skeleton .skeleton-cell {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
+.github-calendar-skeleton__grid {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.github-calendar-skeleton__column {
+    flex: 1;
+    min-width: 36px;
+    border-radius: 8px;
+    background: linear-gradient(160deg,
+            rgba(4, 120, 87, 0.12),
+            rgba(16, 185, 129, 0.3));
+    animation: skeleton-loading 1.4s ease infinite;
+    background-size: 200% 100%;
 }
 
 /* Skills Table Skeleton */
