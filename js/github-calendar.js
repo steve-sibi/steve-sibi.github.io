@@ -12,24 +12,18 @@
         let calendarObserver = null;
 
         const pruneCalendar = () => {
-            const calendar = document.querySelector('#github-calendar .calendar');
-            if (!calendar) return false;
+            const container = document.querySelector('#github-calendar .calendar') || document.getElementById('github-calendar');
+            if (!container) return false;
 
-            const graphSection = calendar.querySelector('.position-relative');
-            const svg = graphSection ? graphSection.querySelector('svg') : calendar.querySelector('svg');
+            const graphSection = container.querySelector('.position-relative');
+            const svg = graphSection ? graphSection.querySelector('svg') : container.querySelector('svg');
             if (!svg) return false;
 
-            let replacement;
-            if (graphSection) {
-                replacement = graphSection.cloneNode(true);
-                replacement.classList.add('calendar-graph-only');
-            } else {
-                replacement = document.createElement('div');
-                replacement.className = 'position-relative calendar-graph-only';
-                replacement.appendChild(svg.cloneNode(true));
-            }
+            const replacement = document.createElement('div');
+            replacement.className = 'position-relative calendar-graph-only';
+            replacement.appendChild(svg.cloneNode(true));
 
-            calendar.replaceChildren(replacement);
+            container.replaceChildren(replacement);
             return true;
         };
 
