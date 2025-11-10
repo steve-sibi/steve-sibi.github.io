@@ -489,7 +489,7 @@
         const handleTooltipTap = event => {
             event.preventDefault();
             event.stopPropagation();
-            hideTooltip(tooltip);
+            hideTooltip(tooltip, { blurTrigger: true });
         };
         if (window.PointerEvent) {
             tooltip.addEventListener('pointerdown', handleTooltipTap);
@@ -514,7 +514,7 @@
             if (!isTouchLike) return;
             event.preventDefault();
             event.stopPropagation();
-            toggleTooltipForCell(cell, data, tooltip);
+            toggleTooltipForCell(cell, data, tooltip, { blurOnHide: true });
         };
         if (window.PointerEvent) {
             cell.addEventListener('pointerup', handlePointerToggle);
@@ -537,21 +537,28 @@
         activeTooltipTrigger = trigger;
     }
 
-    function hideTooltip(tooltip) {
+    function hideTooltip(tooltip, options = {}) {
         if (!tooltip) return;
+        const { blurTrigger = false } = options;
+        const trigger = activeTooltipTrigger;
         tooltip.classList.remove('is-visible');
         tooltip.setAttribute('aria-hidden', 'true');
+        if (blurTrigger && trigger && typeof trigger.blur === 'function') {
+            trigger.blur();
+        }
         activeTooltipTrigger = null;
     }
 
-    function toggleTooltipForCell(cell, data, tooltip) {
-        if (!tooltip || !cell || !data) return;
+    function toggleTooltipForCell(cell, data, tooltip, options = {}) {
+        if (!tooltip || !cell || !data) return false;
+        const { blurOnHide = false } = options;
         const isActive = tooltip.classList.contains('is-visible') && activeTooltipTrigger === cell;
         if (isActive) {
-            hideTooltip(tooltip);
-        } else {
-            showTooltip(tooltip, cell, data);
+            hideTooltip(tooltip, { blurTrigger: blurOnHide });
+            return false;
         }
+        showTooltip(tooltip, cell, data);
+        return true;
     }
 
     function formatTooltipContent(count, date) {
