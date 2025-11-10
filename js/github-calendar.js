@@ -18,6 +18,7 @@
         timeZone: 'UTC'
     });
     const NUMBER_FORMAT = new Intl.NumberFormat('en-US');
+    let activeTooltipTrigger = null;
 
     document.addEventListener('DOMContentLoaded', () => {
         const section = document.getElementById('github-activity');
@@ -485,6 +486,17 @@
         const tooltip = document.createElement('div');
         tooltip.className = 'gh-calendar__tooltip';
         tooltip.setAttribute('aria-hidden', 'true');
+        const handleTooltipTap = event => {
+            event.preventDefault();
+            event.stopPropagation();
+            hideTooltip(tooltip);
+        };
+        if (window.PointerEvent) {
+            tooltip.addEventListener('pointerdown', handleTooltipTap);
+        } else {
+            tooltip.addEventListener('touchstart', handleTooltipTap, { passive: false });
+        }
+        tooltip.addEventListener('click', handleTooltipTap);
         return tooltip;
     }
 
@@ -496,6 +508,19 @@
         cell.addEventListener('focus', show);
         cell.addEventListener('mouseleave', hide);
         cell.addEventListener('blur', hide);
+        const handlePointerToggle = event => {
+            const pointer = event.pointerType;
+            const isTouchLike = pointer === 'touch' || pointer === 'pen' || (!pointer && /^touch/i.test(event.type));
+            if (!isTouchLike) return;
+            event.preventDefault();
+            event.stopPropagation();
+            toggleTooltipForCell(cell, data, tooltip);
+        };
+        if (window.PointerEvent) {
+            cell.addEventListener('pointerup', handlePointerToggle);
+        } else {
+            cell.addEventListener('touchend', handlePointerToggle, { passive: false });
+        }
     }
 
     function showTooltip(tooltip, trigger, data) {
@@ -509,12 +534,24 @@
         tooltip.style.top = `${top}px`;
         tooltip.classList.add('is-visible');
         tooltip.setAttribute('aria-hidden', 'false');
+        activeTooltipTrigger = trigger;
     }
 
     function hideTooltip(tooltip) {
         if (!tooltip) return;
         tooltip.classList.remove('is-visible');
         tooltip.setAttribute('aria-hidden', 'true');
+        activeTooltipTrigger = null;
+    }
+
+    function toggleTooltipForCell(cell, data, tooltip) {
+        if (!tooltip || !cell || !data) return;
+        const isActive = tooltip.classList.contains('is-visible') && activeTooltipTrigger === cell;
+        if (isActive) {
+            hideTooltip(tooltip);
+        } else {
+            showTooltip(tooltip, cell, data);
+        }
     }
 
     function formatTooltipContent(count, date) {
