@@ -11,8 +11,12 @@
         if (!scrollArrow) return;
 
         const icon = scrollArrow.querySelector('i');
-        const sections = Array.from(document.querySelectorAll('section[id]'));
-        const lastSection = sections[sections.length - 1];
+        const scrollTargets = Array.from(document.querySelectorAll('section[id]'));
+        const footer = document.querySelector('footer');
+        if (footer) {
+            scrollTargets.push(footer);
+        }
+        const lastTarget = scrollTargets[scrollTargets.length - 1];
         let isAtBottom = false;
 
         const setArrowDirection = (atBottom) => {
@@ -59,10 +63,10 @@
         let observerAttached = false;
 
         // Use IntersectionObserver for reliable bottom detection
-        if (lastSection && 'IntersectionObserver' in window) {
+        if (lastTarget && 'IntersectionObserver' in window) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.target === lastSection) {
+                    if (entry.target === lastTarget) {
                         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                         const windowHeight = window.innerHeight;
                         const documentHeight = document.documentElement.scrollHeight;
@@ -73,7 +77,7 @@
                 });
             }, { threshold: [0, 0.1, 0.4, 1] });
 
-            observer.observe(lastSection);
+            observer.observe(lastTarget);
             observerAttached = true;
         } else {
             // Fallback: check via scroll position
@@ -99,7 +103,7 @@
             const offset = 120;
 
             let nextSection = null;
-            for (const section of sections) {
+            for (const section of scrollTargets) {
                 if (section.offsetTop > currentScroll + offset) {
                     nextSection = section;
                     break;
