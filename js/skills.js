@@ -82,6 +82,7 @@
             const levelValRaw = typeof skill.level === 'number' && !Number.isNaN(skill.level) ? Math.round(skill.level) : null;
             const level = document.createElement('td');
             level.className = 'skills-level';
+            level.dataset.label = 'Proficiency';
 
             if (levelValRaw == null) {
                 level.textContent = '—';
@@ -116,10 +117,12 @@
 
             const experience = document.createElement('td');
             experience.className = 'skills-experience';
+            experience.dataset.label = 'Experience';
             experience.textContent = formatYears(skill.years);
             row.appendChild(experience);
 
             const proof = document.createElement('td');
+            proof.dataset.label = 'Proof';
             if (skill.proof) {
                 const link = document.createElement('a');
                 link.className = 'skills-proof-link';

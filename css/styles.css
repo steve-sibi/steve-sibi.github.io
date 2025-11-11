@@ -1045,6 +1045,9 @@ html {
     overflow: hidden;
     background: rgba(255, 255, 255, .85);
     box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
 }
 
 .dark .skills-table-wrap {
@@ -1303,6 +1306,11 @@ html {
 }
 
 @media (max-width:768px) {
+    .skills-table th,
+    .skills-table td {
+        padding: .95rem 1rem;
+    }
+
     .skills-table .skills-level {
         min-width: 9.5rem;
         width: 9.5rem;
@@ -1310,9 +1318,87 @@ html {
 }
 
 @media (max-width:640px) {
+    .skills-table {
+        font-size: .88rem;
+        table-layout: auto;
+    }
+
+    .skills-table thead th {
+        font-size: .7rem;
+        letter-spacing: .03em;
+        padding: .65rem .45rem;
+    }
+
+    .skills-table th,
+    .skills-table td {
+        padding: .7rem .55rem;
+    }
+
+    .skills-table th:nth-child(1),
+    .skills-table td:nth-child(1) {
+        width: 40%;
+    }
+
+    .skills-table th:nth-child(2),
+    .skills-table td:nth-child(2) {
+        width: 25%;
+    }
+
+    .skills-table th:nth-child(3),
+    .skills-table td:nth-child(3),
+    .skills-table th:nth-child(4),
+    .skills-table td:nth-child(4) {
+        width: auto;
+        white-space: normal;
+    }
+
     .skills-table .skills-level {
-        min-width: 8.25rem;
-        width: 8.25rem;
+        min-width: 0;
+        width: 7.5rem;
+    }
+
+    .skills-table .skills-progress {
+        height: .8rem;
+    }
+
+    .skills-table .skills-progress-label {
+        font-size: .75rem;
+    }
+
+    .skills-proof-link {
+        font-size: .85rem;
+        gap: .25rem;
+    }
+}
+
+@media (max-width:480px) {
+    .skills-table {
+        font-size: .82rem;
+    }
+
+    .skills-table thead th {
+        font-size: .65rem;
+    }
+
+    .skills-table th,
+    .skills-table td {
+        padding: .55rem .4rem;
+    }
+
+    .skills-table .skills-level {
+        width: 6.5rem;
+    }
+
+    .skills-table .skills-progress {
+        height: .7rem;
+    }
+
+    .skills-table .skills-progress-label {
+        font-size: .65rem;
+    }
+
+    .skills-proof-link {
+        font-size: .8rem;
     }
 }
 
