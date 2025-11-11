@@ -71,10 +71,9 @@
     // Element references
     const outputElement = document.getElementById('heroTerminalOutput');
     const inputElement = document.getElementById('heroTerminalInput');
-    const cursorElement = document.querySelector('.hero-terminal__cursor');
 
-    // Check if terminal elements exist
-    if (!outputElement || !inputElement || !cursorElement) {
+    // Check if essential terminal elements exist
+    if (!outputElement || !inputElement) {
         console.warn('Hero terminal elements not found');
         return;
     }

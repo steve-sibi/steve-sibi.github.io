@@ -108,7 +108,7 @@ npm run dev
 
 | Module | Responsibility |
 |--------|----------------|
-| `js/utils.js` | Shared helpers such as `loadExternalScript`, `debounce`, and `prefersReducedMotion`. |
+| `js/utils.js` | Shared helpers such as `loadExternalScript` and `prefersReducedMotion`. |
 | `js/theme.js` | Dark/light mode toggle with ARIA updates and `localStorage` persistence. |
 | `js/navigation.js` | Mobile drawer toggling, focus trapping, overlay handling, and active link highlighting. |
 | `js/typed-text.js` | Lazy Typed.js integration for the hero text with reduced-motion fallbacks. |
