@@ -208,8 +208,31 @@
     <!-- Hero -->
     <section id="home"
       class="h-screen flex items-center justify-center relative bg-gray-100 dark:bg-cyber-grid bg-[size:15px_15px] overflow-hidden">
-      <div class="absolute inset-0 bg-gray-200 dark:bg-cyber-black bg-opacity-60 z-0"></div>
-      <div class="scanline-effect absolute inset-0 z-0"></div>
+      <div class="hero-animated-bg absolute inset-0" aria-hidden="true"></div>
+      <div class="hero-animated-overlay absolute inset-0 z-0" aria-hidden="true"></div>
+      <div class="scanline-effect absolute inset-0 z-0" aria-hidden="true"></div>
+
+      <!-- 3D Floating Terminal -->
+      <div class="hero-terminal-container">
+        <div class="hero-terminal">
+          <div class="hero-terminal__header">
+            <div class="hero-terminal__buttons">
+              <span class="hero-terminal__button hero-terminal__button--close"></span>
+              <span class="hero-terminal__button hero-terminal__button--minimize"></span>
+              <span class="hero-terminal__button hero-terminal__button--maximize"></span>
+            </div>
+            <div class="hero-terminal__title">steve@security:~</div>
+          </div>
+          <div class="hero-terminal__body">
+            <div id="heroTerminalOutput" class="hero-terminal__output"></div>
+            <div class="hero-terminal__prompt">
+              <span class="hero-terminal__prompt-symbol">$</span>
+              <span id="heroTerminalInput" class="hero-terminal__input"></span>
+              <span class="hero-terminal__cursor"></span>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="container px-6 z-10 text-center">
         <div class="mb-4 inline-flex items-center justify-center">
@@ -646,13 +669,14 @@
         <div
           class="border border-gray-200 dark:border-cyber-green-dark rounded-lg p-6 backdrop-blur-sm bg-white dark:bg-black dark:bg-opacity-30">
           <h3 class="text-xl font-bold mb-6 text-center text-black dark:text-cyber-green">Recent Contributions</h3>
-          <div id="github-contribution-card"
-            class="github-activity-summary is-placeholder mb-6 text-center"
+          <div id="github-contribution-card" class="github-activity-summary is-placeholder mb-6 text-center"
             aria-live="polite">
-            <p class="github-activity-summary__label text-sm uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">
+            <p
+              class="github-activity-summary__label text-sm uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">
               Total contributions (last 12 months)
             </p>
-            <span id="github-contribution-count" class="github-activity-summary__value text-black dark:text-cyber-green">
+            <span id="github-contribution-count"
+              class="github-activity-summary__value text-black dark:text-cyber-green">
               --
             </span>
           </div>
@@ -1099,6 +1123,7 @@
   <script defer src="js/theme.js"></script>
   <script defer src="js/navigation.js"></script>
   <script defer src="js/typed-text.js"></script>
+  <script defer src="js/hero-terminal.js"></script>
   <script defer src="js/github-calendar.js"></script>
   <script defer src="js/skills.js"></script>
   <script defer src="js/projects.js"></script>

@@ -742,6 +742,271 @@ html {
     transform: translateY(1px);
 }
 
+/* Animated hero background */
+.hero-animated-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 18% 32%, rgba(0, 255, 159, 0.18), transparent 45%),
+        radial-gradient(circle at 78% 8%, rgba(0, 155, 255, 0.12), transparent 50%),
+        linear-gradient(135deg, #021912 0%, #010407 45%, #05140e 100%);
+    background-size: 160% 160%;
+    animation: heroBackgroundShift 32s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+    will-change: background-position;
+}
+
+html:not(.dark) .hero-animated-bg {
+    background:
+        radial-gradient(circle at 20% 35%, rgba(0, 122, 93, 0.18), transparent 45%),
+        radial-gradient(circle at 80% 5%, rgba(0, 76, 173, 0.12), transparent 50%),
+        linear-gradient(140deg, #e9fff6 0%, #d9f8f1 45%, #eefdf9 100%);
+}
+
+.hero-animated-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(0, 255, 159, 0.25), transparent 55%);
+    opacity: 0.7;
+    animation: heroGlowPulse 26s ease-in-out infinite alternate;
+    will-change: transform, opacity;
+}
+
+.hero-animated-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 255, 159, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 160, 255, 0.08) 1px, transparent 1px);
+    background-size: 180px 180px;
+    opacity: 0.25;
+    animation: heroGridDrift 38s linear infinite;
+}
+
+.hero-animated-overlay {
+    pointer-events: none;
+    z-index: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.3) 60%, rgba(255, 255, 255, 0.18) 100%);
+    opacity: 0.45;
+}
+
+.dark .hero-animated-overlay {
+    background: linear-gradient(180deg, rgba(0, 27, 22, 0.75) 0%, rgba(0, 15, 12, 0.65) 50%, rgba(0, 8, 6, 0.55) 100%);
+    opacity: 0.55;
+}
+
+@keyframes heroBackgroundShift {
+    0% {
+        background-position: 10% 30%;
+    }
+
+    100% {
+        background-position: 80% 65%;
+    }
+}
+
+@keyframes heroGlowPulse {
+    0% {
+        transform: translate3d(-4%, -4%, 0) scale(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translate3d(5%, 3%, 0) scale(1.08);
+        opacity: 0.85;
+    }
+}
+
+@keyframes heroGridDrift {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 220px 160px;
+    }
+}
+
+/* 3D Floating Terminal */
+.hero-terminal-container {
+    position: absolute;
+    top: 50%;
+    right: clamp(1.5rem, 6vw, 5rem);
+    transform: translate3d(0, -50%, 0);
+    width: min(32rem, 38vw);
+    max-width: 90vw;
+    perspective: 1400px;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.9;
+    filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.45));
+    transition: opacity 0.3s ease;
+}
+
+@media (max-width: 1280px) {
+    .hero-terminal-container {
+        width: min(29rem, 45vw);
+        right: clamp(1rem, 4vw, 3.5rem);
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero-terminal-container {
+        top: 58%;
+        width: min(24rem, 55vw);
+        opacity: 0.75;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-terminal-container {
+        display: none;
+    }
+}
+
+.hero-terminal {
+    background: rgba(20, 20, 30, 0.95);
+    border-radius: 8px;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(0, 255, 159, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    transform: rotateX(8deg) rotateY(-12deg);
+    transition: transform 0.3s ease;
+    animation: terminalFloat 6s ease-in-out infinite;
+}
+
+@keyframes terminalFloat {
+
+    0%,
+    100% {
+        transform: rotateX(8deg) rotateY(-12deg) translateY(0);
+    }
+
+    50% {
+        transform: rotateX(8deg) rotateY(-12deg) translateY(-15px);
+    }
+}
+
+.hero-terminal__header {
+    background: rgba(40, 40, 50, 0.9);
+    border-radius: 8px 8px 0 0;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(0, 255, 159, 0.2);
+}
+
+.hero-terminal__buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.hero-terminal__button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: opacity 0.2s;
+}
+
+.hero-terminal__button--close {
+    background: #ff5f57;
+}
+
+.hero-terminal__button--minimize {
+    background: #ffbd2e;
+}
+
+.hero-terminal__button--maximize {
+    background: #28ca42;
+}
+
+.hero-terminal__title {
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 12px;
+    color: rgba(0, 255, 159, 0.8);
+    flex: 1;
+    text-align: center;
+}
+
+.hero-terminal__body {
+    padding: 16px;
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #00ff9f;
+    min-height: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.hero-terminal__output {
+    margin-bottom: 12px;
+}
+
+.hero-terminal__output div {
+    margin-bottom: 4px;
+}
+
+.hero-terminal__output .terminal-command {
+    color: #00ff9f;
+}
+
+.hero-terminal__output .terminal-result {
+    color: rgba(0, 255, 159, 0.7);
+    padding-left: 8px;
+}
+
+.hero-terminal__output .terminal-success {
+    color: #28ca42;
+}
+
+.hero-terminal__output .terminal-warning {
+    color: #ffbd2e;
+}
+
+.hero-terminal__prompt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hero-terminal__prompt-symbol {
+    color: #00ff9f;
+    font-weight: bold;
+}
+
+.hero-terminal__input {
+    color: rgba(255, 255, 255, 0.9);
+    flex: 1;
+}
+
+.hero-terminal__cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: #00ff9f;
+    animation: terminalCursorBlink 1s step-end infinite;
+}
+
+@keyframes terminalCursorBlink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
 /* Social icon buttons - subtle hover */
 .social-icon-btn:hover {
     border-color: var(--color-cyber-green, #00ff9f);
@@ -760,7 +1025,11 @@ html {
 
     .glitch-text::before,
     .glitch-text::after,
-    .scanline-effect::after {
+    .scanline-effect::after,
+    .hero-animated-bg,
+    .hero-animated-bg::before,
+    .hero-animated-bg::after,
+    .hero-terminal {
         animation: none !important
     }
 }
@@ -1306,6 +1575,7 @@ html {
 }
 
 @media (max-width:768px) {
+
     .skills-table th,
     .skills-table td {
         padding: .95rem 1rem;
