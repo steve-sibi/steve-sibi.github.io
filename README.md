@@ -383,24 +383,6 @@ Each skill entry powers a row in the table.
 - `level` should be 0-100. Missing values display `-`.
 - `proof` is optional but recommended for credibility.
 
-### Inline Fallback Data (optional)
-
-If you want the page to work completely offline, embed JSON directly inside `index.html`. The scripts fall back to these nodes when fetching fails.
-
-```html
-<script id="projectsData" type="application/json">
-[
-  { "id": "offline-demo", "title": "Offline Project", "description": "...", "tags": ["security"] }
-]
-</script>
-
-<script id="skillsData" type="application/json">
-[
-  { "name": "Linux", "cat": "os", "level": 85, "years": 5 }
-]
-</script>
-```
-
 ### Assets & Visuals
 
 - Replace `assets/Resume_Steve_Sibi_Cyber.pdf` with your own resume (keep the filename or update references).

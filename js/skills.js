@@ -15,7 +15,7 @@
 
         let skills = [];
 
-        // Try to load from external JSON first, fallback to embedded data
+        // Load skills from JSON
         try {
             const response = await fetch('data/skills.json');
             if (response.ok) {
@@ -26,18 +26,6 @@
             }
         } catch (error) {
             console.warn('⚠️ Failed to load external skills data:', error.message);
-            console.log('Trying embedded fallback...');
-            // Fallback to embedded data if exists
-            const DATA_EL = document.getElementById('skillsData');
-            if (DATA_EL) {
-                try {
-                    const text = DATA_EL.textContent || DATA_EL.innerText || '[]';
-                    skills = JSON.parse(text.trim());
-                    console.log('✅ Loaded skills from embedded data:', skills.length);
-                } catch (parseError) {
-                    console.error('❌ Failed to parse embedded skills data:', parseError);
-                }
-            }
         }
 
         if (skills.length === 0) {
@@ -45,8 +33,6 @@
             tbody.innerHTML = '<tr><td colspan="4" class="text-center text-gray-500 dark:text-gray-400 py-6">Failed to load skills data. Please check console for details.</td></tr>';
 
             // Still show the table even if empty
-            const skeleton = document.getElementById('skills-table-skeleton');
-            if (skeleton) skeleton.classList.add('loaded');
             if (table) table.style.display = 'table';
             return;
         }
@@ -247,9 +233,6 @@
 
         setActiveFilter(filterButtons[0]?.dataset.cat || categories[0]?.id || null, { animate: false, force: true });
 
-        // Hide skeleton and show table
-        const skeleton = document.getElementById('skills-table-skeleton');
-        if (skeleton) skeleton.classList.add('loaded');
         if (table) table.style.display = 'table';
 
         console.log('✅ Skills module loaded');

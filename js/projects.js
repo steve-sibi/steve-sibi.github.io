@@ -17,20 +17,6 @@
         const projectLoading = document.getElementById('projectLoading');
         const filterButtons = Array.from(document.querySelectorAll('.project-filter'));
 
-        const parseInlineProjects = () => {
-            const dataEl = document.getElementById('projectsData');
-            if (!dataEl) return [];
-            try {
-                const text = (dataEl.textContent || dataEl.innerText || '[]').trim();
-                if (!text) return [];
-                const parsed = JSON.parse(text);
-                return Array.isArray(parsed) ? parsed : [];
-            } catch (error) {
-                console.error('Failed to parse inline projects data:', error);
-                return [];
-            }
-        };
-
         let cards = [];
         let originalOrder = [];
         let activeFilter = 'all';
@@ -171,18 +157,6 @@
             applyProjectState();
         };
 
-        const tryInlineProjects = () => {
-            const inlineProjects = parseInlineProjects();
-            if (!inlineProjects.length) return false;
-            try {
-                hydrateProjects(inlineProjects);
-                return true;
-            } catch (error) {
-                console.error('Inline projects data invalid:', error);
-                return false;
-            }
-        };
-
         const showProjectError = (message) => {
             grid.setAttribute('aria-busy', 'false');
             if (projectLoading) {
@@ -204,9 +178,7 @@
                 hydrateProjects(projects);
             } catch (error) {
                 console.error('Failed to load projects:', error);
-                if (!tryInlineProjects()) {
-                    showProjectError('Unable to load projects right now. Please check GitHub for the latest work.');
-                }
+                showProjectError('Unable to load projects right now. Please check GitHub for the latest work.');
             }
         };
 

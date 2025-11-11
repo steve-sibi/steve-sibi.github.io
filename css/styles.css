@@ -1868,28 +1868,6 @@ html:not(.dark) .hero-animated-bg {
 }
 
 /* Skills Table Skeleton */
-.skills-table-skeleton {
-    width: 100%;
-}
-
-.skills-table-skeleton .skeleton-row {
-    display: grid;
-    grid-template-columns: 2fr 3fr 1fr 1fr;
-    gap: 1rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid rgba(var(--color-cyber-green-rgb), 0.1);
-}
-
-.skills-table-skeleton .skeleton-cell {
-    height: 24px;
-    border-radius: 4px;
-}
-
-.skills-table-skeleton .skeleton-progress {
-    height: 8px;
-    border-radius: 4px;
-}
-
 /* Fade out skeleton on load */
 .skeleton-wrapper {
     position: relative;
