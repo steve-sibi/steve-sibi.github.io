@@ -1601,3 +1601,30 @@ html {
     height: var(--resume-panel-max-h);
     max-height: var(--resume-panel-max-h);
 }
+
+@supports (height: 100dvh) {
+    #resumeModal {
+        --resume-panel-max-h: min(99.5dvh, 1200px);
+    }
+}
+
+@media (max-width: 640px) {
+    #resumeModal {
+        --resume-panel-max-h: 100vh;
+        --resume-panel-width: 100%;
+    }
+
+    @supports (height: 100dvh) {
+        #resumeModal {
+            --resume-panel-max-h: 100dvh;
+        }
+    }
+
+    .resume-modal-panel {
+        border-radius: 0;
+        width: 100%;
+        max-width: 100%;
+        border-left-width: 0;
+        border-right-width: 0;
+    }
+}
