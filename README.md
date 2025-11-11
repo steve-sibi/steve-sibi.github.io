@@ -113,14 +113,13 @@ npm run dev
 | `js/navigation.js` | Mobile drawer toggling, focus trapping, overlay handling, and active link highlighting. |
 | `js/typed-text.js` | Lazy Typed.js integration for the hero text with reduced-motion fallbacks. |
 | `js/github-calendar.js` | Loads the GitHub contribution calendar on demand, prunes extraneous markup, and coordinates skeleton display. |
-| `js/skills.js` | Fetches skills from `data/skills.json`, renders the table, manages category filters, and falls back to inline JSON if needed. |
-| `js/projects.js` | Hydrates project cards from `data/projects.json`, powers filters/search/sort, and wires up the quick-view modal data attributes. |
+| `js/skills.js` | Loads skills from `data/skills.json`, renders the table, and drives discipline filters/progress bars. |
+| `js/projects.js` | Loads `data/projects.json`, instantiates project cards, and powers filters/search/sort plus the quick-view modal payload. |
 | `js/modal.js` | Handles the project quick-view modal, highlight lists, tech pills, and copy-to-clipboard toast notifications. |
 | `js/resume-preview.js` | Opens/closes the resume preview modal, injects the PDF iframe source, and fires GA events. |
 | `js/contact.js` | Submits the Web3Forms contact form, toggles button states, and shows inline success/error alerts. |
 | `js/scroll-arrow.js` | Controls the bidirectional scroll arrow, including bottom detection and smooth scrolling. |
 | `js/animations.js` | Section fade-ins, hero content animation class, resume download tracking, and (optional) email copy helper. |
-| `js/main.js` | Stub that documents the modular architecture (kept for backwards compatibility). |
 
 ---
 
