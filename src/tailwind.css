@@ -10,8 +10,8 @@
 @theme {
     --color-cyber-black: #000000;
     --color-cyber-dark: #111111;
-    --color-cyber-green: #00ff9f;
-    --color-cyber-green-dark: #00cc66;
+    --color-cyber-green: #10b981;
+    --color-cyber-green-dark: #047857;
 
     /* custom font family -> generates the `font-share-tech` utility */
     --font-share-tech: "Share Tech Mono", monospace;

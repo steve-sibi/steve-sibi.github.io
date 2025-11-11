@@ -253,7 +253,7 @@ steve-sibi.github.io/
 @import "tailwindcss";
 
 @theme {
-  --color-cyber-green: #00ff9f;
+  --color-cyber-green: #10b981;
   --color-cyber-dark: #0a0e27;
   --font-family-sans: "Share Tech Mono", system-ui, sans-serif;
   /* Add tokens here */
