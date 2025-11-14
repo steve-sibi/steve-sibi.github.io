@@ -744,6 +744,47 @@ html {
     transform: translateY(1px);
 }
 
+.github-link-button {
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    transition: color .2s ease, background .2s ease, box-shadow .25s ease, transform .25s ease;
+}
+
+.github-link-button::before {
+    content: '';
+    position: absolute;
+    inset: -35%;
+    border-radius: inherit;
+    background: radial-gradient(circle, rgba(var(--color-cyber-green-rgb), .35), transparent 60%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .35s ease;
+    z-index: -1;
+}
+
+.github-link-button:hover::before,
+.github-link-button:focus-visible::before {
+    opacity: 1;
+}
+
+.github-link-button:hover,
+.github-link-button:focus-visible {
+    background: var(--color-cyber-green);
+    color: var(--color-cyber-black, #000);
+    border-color: var(--color-cyber-green);
+    box-shadow:
+        0 0 22px rgba(var(--color-cyber-green-rgb), .5),
+        0 0 8px rgba(var(--color-cyber-green-rgb), .65);
+    transform: translateY(-1px);
+}
+
+.github-link-button:focus-visible {
+    outline: 2px solid rgba(var(--color-cyber-green-rgb), .55);
+    outline-offset: 2px;
+}
+
 /* Animated hero background */
 .hero-animated-bg {
     position: absolute;
@@ -1760,6 +1801,14 @@ html:not(.dark) .hero-animated-bg {
 
 #contactForm button:active {
     transform: scale(0.98);
+}
+
+.contact-submit-button {
+    cursor: pointer;
+}
+
+.contact-submit-button:disabled {
+    cursor: not-allowed;
 }
 
 /* Status message animations */
