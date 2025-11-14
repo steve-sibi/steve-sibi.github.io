@@ -974,7 +974,7 @@ html:not(.dark) .hero-animated-bg {
 
 .hero-terminal__prompt {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 8px;
 }
 
@@ -986,14 +986,24 @@ html:not(.dark) .hero-animated-bg {
 .hero-terminal__input {
     color: rgba(255, 255, 255, 0.9);
     flex: 1;
+    min-width: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    position: relative;
+}
+
+.hero-terminal__input::after {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: calc(1em + 2px);
+    margin-left: 3px;
+    background: var(--color-cyber-green);
+    animation: terminalCursorBlink 1s step-end infinite;
 }
 
 .hero-terminal__cursor {
-    display: inline-block;
-    width: 8px;
-    height: 16px;
-    background: var(--color-cyber-green);
-    animation: terminalCursorBlink 1s step-end infinite;
+    display: none;
 }
 
 @keyframes terminalCursorBlink {
