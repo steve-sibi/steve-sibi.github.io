@@ -2140,10 +2140,10 @@ html:not(.dark) .hero-animated-bg {
 /* Front card styling */
 .cert-card-front {
     background: radial-gradient(circle at 50% 26%,
-        rgba(196, 255, 232, 0.85) 0%,
-        rgba(221, 255, 241, 0.82) 40%,
-        rgba(232, 252, 244, 0.88) 70%,
-        rgba(246, 255, 250, 0.95) 100%);
+            rgba(196, 255, 232, 0.85) 0%,
+            rgba(221, 255, 241, 0.82) 40%,
+            rgba(232, 252, 244, 0.88) 70%,
+            rgba(246, 255, 250, 0.95) 100%);
     border: 2px solid rgba(0, 177, 125, 0.35);
     box-shadow:
         0 10px 30px rgba(0, 0, 0, 0.08),
@@ -2154,26 +2154,26 @@ html:not(.dark) .hero-animated-bg {
 
 .dark .cert-card-front {
     background: radial-gradient(circle at 50% 26%,
-        rgba(23, 64, 48, 0.85) 0%,
-        rgba(12, 36, 30, 0.92) 44%,
-        rgba(5, 15, 12, 0.96) 100%);
+            rgba(23, 64, 48, 0.85) 0%,
+            rgba(12, 36, 30, 0.92) 44%,
+            rgba(5, 15, 12, 0.96) 100%);
     border-color: rgba(0, 255, 159, 0.5);
 }
 
 /* Back card styling */
 .cert-card-back {
-    background: linear-gradient(135deg, 
-        rgba(0, 255, 159, 0.95) 0%, 
-        rgba(0, 200, 125, 0.95) 100%);
+    background: linear-gradient(135deg,
+            rgba(0, 255, 159, 0.95) 0%,
+            rgba(0, 200, 125, 0.95) 100%);
     color: #000;
     transform: rotateY(180deg);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .dark .cert-card-back {
-    background: linear-gradient(135deg, 
-        rgba(0, 255, 159, 0.95) 0%, 
-        rgba(0, 200, 125, 0.95) 100%);
+    background: linear-gradient(135deg,
+            rgba(0, 255, 159, 0.95) 0%,
+            rgba(0, 200, 125, 0.95) 100%);
 }
 
 /* Badge icon container */
@@ -2187,9 +2187,9 @@ html:not(.dark) .hero-animated-bg {
     justify-content: center;
     padding: 14px;
     background: radial-gradient(circle,
-        rgba(231, 255, 245, 0.92) 0%,
-        rgba(215, 250, 237, 0.85) 55%,
-        rgba(205, 245, 232, 0.9) 100%);
+            rgba(231, 255, 245, 0.92) 0%,
+            rgba(215, 250, 237, 0.85) 55%,
+            rgba(205, 245, 232, 0.9) 100%);
     border-radius: 18px;
     border: 1px solid rgba(0, 177, 125, 0.2);
     box-shadow: 0 0 18px rgba(0, 255, 159, 0.14);
@@ -2198,9 +2198,9 @@ html:not(.dark) .hero-animated-bg {
 
 .dark .cert-badge {
     background: radial-gradient(circle at 50% 45%,
-        rgba(32, 42, 45, 0.95) 0%,
-        rgba(18, 32, 35, 0.92) 55%,
-        rgba(10, 22, 24, 0.94) 100%);
+            rgba(32, 42, 45, 0.95) 0%,
+            rgba(18, 32, 35, 0.92) 55%,
+            rgba(10, 22, 24, 0.94) 100%);
     border: 1px solid rgba(0, 255, 159, 0.28);
     box-shadow:
         0 14px 28px rgba(0, 0, 0, 0.35),
@@ -2225,10 +2225,23 @@ html:not(.dark) .hero-animated-bg {
 }
 
 @keyframes certBadgeFloat {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    25% { transform: translateY(-8px) rotate(5deg); }
-    50% { transform: translateY(0px) rotate(0deg); }
-    75% { transform: translateY(-8px) rotate(-5deg); }
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-8px) rotate(5deg);
+    }
+
+    50% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    75% {
+        transform: translateY(-8px) rotate(-5deg);
+    }
 }
 
 /* Badge icon SVG */
@@ -2241,11 +2254,14 @@ html:not(.dark) .hero-animated-bg {
 }
 
 @keyframes certIconPulse {
-    0%, 100% { 
+
+    0%,
+    100% {
         filter: drop-shadow(0 0 10px rgba(0, 255, 159, 0.5));
         transform: scale(1);
     }
-    50% { 
+
+    50% {
         filter: drop-shadow(0 0 20px rgba(0, 255, 159, 0.8));
         transform: scale(1.05);
     }
@@ -2303,10 +2319,13 @@ html:not(.dark) .hero-animated-bg {
 }
 
 @keyframes statusBadgePulse {
-    0%, 100% { 
+
+    0%,
+    100% {
         box-shadow: 0 0 10px rgba(0, 255, 159, 0.3);
     }
-    50% { 
+
+    50% {
         box-shadow: 0 0 20px rgba(0, 255, 159, 0.6);
     }
 }
@@ -2334,8 +2353,13 @@ html:not(.dark) .hero-animated-bg {
 }
 
 @keyframes hexagonRotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Particle effects */
@@ -2371,16 +2395,25 @@ html:not(.dark) .hero-animated-bg {
 }
 
 @keyframes particleFloat {
-    0%, 100% { 
+
+    0%,
+    100% {
         opacity: 0;
         transform: translateY(0px);
     }
-    10% { opacity: 0.6; }
-    50% { 
+
+    10% {
+        opacity: 0.6;
+    }
+
+    50% {
         opacity: 0.8;
         transform: translateY(-30px);
     }
-    90% { opacity: 0.6; }
+
+    90% {
+        opacity: 0.6;
+    }
 }
 
 /* Back card details */
@@ -2436,7 +2469,7 @@ html:not(.dark) .hero-animated-bg {
 
 /* Hover effects on card container */
 .cert-card-container:hover .cert-card-front {
-    box-shadow: 
+    box-shadow:
         0 12px 48px rgba(0, 0, 0, 0.2),
         0 0 0 1px rgba(0, 255, 159, 0.2) inset,
         0 0 60px rgba(0, 255, 159, 0.2);
@@ -2447,11 +2480,11 @@ html:not(.dark) .hero-animated-bg {
     .cert-card-container {
         height: 300px;
     }
-    
+
     .cert-title {
         font-size: 1.125rem;
     }
-    
+
     .cert-badge {
         width: 70px;
         height: 70px;
@@ -2468,6 +2501,7 @@ html:not(.dark) .hero-animated-bg {
 
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
+
     .cert-card,
     .cert-badge,
     .cert-icon,
@@ -2477,7 +2511,7 @@ html:not(.dark) .hero-animated-bg {
     .cert-particles::after {
         animation: none !important;
     }
-    
+
     .cert-card-container:hover .cert-card {
         transform: rotateY(180deg);
         transition: transform 0.3s ease;

@@ -12,19 +12,19 @@
 
     function initCertificationEffects() {
         const certCards = document.querySelectorAll('.cert-card-container');
-        
+
         if (certCards.length === 0) return;
 
         certCards.forEach((container, index) => {
             // Add staggered entrance animation only once
             container.style.opacity = '0';
             container.style.transform = 'translateY(30px)';
-            
+
             setTimeout(() => {
                 container.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 container.style.opacity = '1';
                 container.style.transform = 'translateY(0)';
-                
+
                 // Remove inline styles after animation completes to prevent interference
                 setTimeout(() => {
                     container.style.transition = '';
@@ -42,13 +42,13 @@
             const card = container.querySelector('.cert-card');
             if (card) {
                 let isFlipped = false;
-                
+
                 container.addEventListener('click', (e) => {
                     // Don't flip if clicking on verify button
                     if (e.target.closest('.cert-verify-btn')) {
                         return;
                     }
-                    
+
                     isFlipped = !isFlipped;
                     card.classList.toggle('is-flipped', isFlipped);
                     container.classList.toggle('is-active', isFlipped);
@@ -81,17 +81,17 @@
     function createParticles(container) {
         // Create multiple floating particles
         const particleCount = 8;
-        
+
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'floating-particle';
-            
+
             // Random position
             const x = Math.random() * 100;
             const y = Math.random() * 100;
             const delay = Math.random() * 4;
             const duration = 3 + Math.random() * 2;
-            
+
             particle.style.cssText = `
                 position: absolute;
                 width: 3px;
@@ -104,7 +104,7 @@
                 animation-delay: ${delay}s;
                 pointer-events: none;
             `;
-            
+
             container.appendChild(particle);
         }
     }
@@ -115,14 +115,14 @@
 
         // Create temporary burst particles
         const burstCount = 12;
-        
+
         for (let i = 0; i < burstCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'burst-particle';
-            
+
             const angle = (360 / burstCount) * i;
             const distance = 50 + Math.random() * 30;
-            
+
             particle.style.cssText = `
                 position: absolute;
                 width: 4px;
@@ -137,9 +137,9 @@
                 --angle: ${angle}deg;
                 --distance: ${distance}px;
             `;
-            
+
             particleContainer.appendChild(particle);
-            
+
             // Remove after animation
             setTimeout(() => particle.remove(), 1000);
         }
