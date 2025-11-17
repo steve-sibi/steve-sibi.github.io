@@ -1021,38 +1021,37 @@ html:not(.dark) .hero-animated-bg {
 
 /* 3D Floating Terminal */
 .hero-terminal-container {
-    position: absolute;
-    top: 50%;
-    right: clamp(1.5rem, 6vw, 5rem);
-    transform: translate3d(0, -50%, 0);
-    width: min(32rem, 38vw);
+    position: relative;
+    margin: 3rem auto 0;
+    width: min(32rem, 80vw);
     max-width: 90vw;
-    perspective: 1400px;
     z-index: 1;
     pointer-events: none;
     opacity: 0.9;
-    filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.45));
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
     transition: opacity 0.3s ease;
 }
 
 @media (max-width: 1280px) {
     .hero-terminal-container {
-        width: min(29rem, 45vw);
-        right: clamp(1rem, 4vw, 3.5rem);
+        width: min(29rem, 85vw);
+        margin-top: 2.5rem;
     }
 }
 
 @media (max-width: 1024px) {
     .hero-terminal-container {
-        top: 58%;
-        width: min(24rem, 55vw);
-        opacity: 0.75;
+        width: min(24rem, 90vw);
+        opacity: 0.85;
+        margin-top: 2rem;
     }
 }
 
 @media (max-width: 768px) {
     .hero-terminal-container {
-        display: none;
+        width: 95vw;
+        opacity: 0.8;
+        margin-top: 1.5rem;
     }
 }
 
@@ -1060,24 +1059,10 @@ html:not(.dark) .hero-animated-bg {
     background: rgba(20, 20, 30, 0.95);
     border-radius: 8px;
     box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 10px 30px rgba(0, 0, 0, 0.4),
         0 0 0 1px rgba(var(--color-cyber-green-rgb), 0.2),
         inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-    transform: rotateX(8deg) rotateY(-12deg);
     transition: transform 0.3s ease;
-    animation: terminalFloat 6s ease-in-out infinite;
-}
-
-@keyframes terminalFloat {
-
-    0%,
-    100% {
-        transform: rotateX(8deg) rotateY(-12deg) translateY(0);
-    }
-
-    50% {
-        transform: rotateX(8deg) rotateY(-12deg) translateY(-15px);
-    }
 }
 
 .hero-terminal__header {
@@ -1090,6 +1075,20 @@ html:not(.dark) .hero-animated-bg {
     border-bottom: 1px solid rgba(var(--color-cyber-green-rgb), 0.2);
 }
 
+@media (max-width: 768px) {
+    .hero-terminal__header {
+        padding: 8px 10px;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-terminal__header {
+        padding: 6px 8px;
+        gap: 8px;
+    }
+}
+
 .hero-terminal__buttons {
     display: flex;
     gap: 6px;
@@ -1100,6 +1099,20 @@ html:not(.dark) .hero-animated-bg {
     height: 12px;
     border-radius: 50%;
     transition: opacity 0.2s;
+}
+
+@media (max-width: 768px) {
+    .hero-terminal__button {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-terminal__button {
+        width: 8px;
+        height: 8px;
+    }
 }
 
 .hero-terminal__button--close {
@@ -1122,15 +1135,50 @@ html:not(.dark) .hero-animated-bg {
     text-align: center;
 }
 
+@media (max-width: 768px) {
+    .hero-terminal__title {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-terminal__title {
+        font-size: 10px;
+    }
+}
+
 .hero-terminal__body {
     padding: 16px;
     font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
     font-size: 13px;
     line-height: 1.6;
     color: var(--color-cyber-green);
-    min-height: 200px;
-    max-height: 300px;
+    height: 300px;
     overflow-y: auto;
+    text-align: left;
+}
+
+@media (max-width: 1024px) {
+    .hero-terminal__body {
+        height: 250px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-terminal__body {
+        height: 200px;
+        font-size: 11px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-terminal__body {
+        height: 180px;
+        font-size: 10px;
+        padding: 10px;
+    }
 }
 
 .hero-terminal__output {
