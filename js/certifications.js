@@ -12,36 +12,60 @@
 
     function initCertificationEffects() {
         const certCards = document.querySelectorAll('.cert-card-container');
+        const prefersReducedMotion = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let activeCard = null;
 
         if (certCards.length === 0) return;
 
         certCards.forEach((container, index) => {
-            // Add staggered entrance animation only once
-            container.style.opacity = '0';
-            container.style.transform = 'translateY(30px)';
+            // Add staggered entrance animation only once (skipped for reduced motion)
+            if (!prefersReducedMotion) {
+                container.style.opacity = '0';
+                container.style.transform = 'translateY(30px)';
 
-            setTimeout(() => {
-                container.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                container.style.opacity = '1';
-                container.style.transform = 'translateY(0)';
-
-                // Remove inline styles after animation completes to prevent interference
                 setTimeout(() => {
-                    container.style.transition = '';
-                    container.style.transform = '';
-                }, 600);
-            }, 100 * index);
+                    container.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    container.style.opacity = '1';
+                    container.style.transform = 'translateY(0)';
+
+                    // Remove inline styles after animation completes to prevent interference
+                    setTimeout(() => {
+                        container.style.transition = '';
+                        container.style.transform = '';
+                    }, 600);
+                }, 100 * index);
+            }
 
             // Enhanced particle system
             const particleContainer = container.querySelector('.cert-particles');
             if (particleContainer) {
-                createParticles(particleContainer);
+                createParticles(particleContainer, prefersReducedMotion);
             }
 
             // Add click handler for mobile/touch devices
             const card = container.querySelector('.cert-card');
             if (card) {
-                let isFlipped = false;
+                card.setAttribute('tabindex', '0');
+                card.setAttribute('role', 'button');
+                card.setAttribute('aria-pressed', 'false');
+
+                const setFlippedState = (nextState) => {
+                    // Close any other active card
+                    if (nextState && activeCard && activeCard !== card) {
+                        const otherContainer = activeCard.closest('.cert-card-container');
+                        if (otherContainer) {
+                            otherContainer.classList.remove('is-active');
+                            activeCard.classList.remove('is-flipped');
+                            activeCard.setAttribute('aria-pressed', 'false');
+                        }
+                    }
+
+                    card.classList.toggle('is-flipped', nextState);
+                    container.classList.toggle('is-active', nextState);
+                    card.setAttribute('aria-pressed', nextState ? 'true' : 'false');
+                    activeCard = nextState ? card : null;
+                };
 
                 container.addEventListener('click', (e) => {
                     // Don't flip if clicking on verify button
@@ -49,9 +73,14 @@
                         return;
                     }
 
-                    isFlipped = !isFlipped;
-                    card.classList.toggle('is-flipped', isFlipped);
-                    container.classList.toggle('is-active', isFlipped);
+                    setFlippedState(!card.classList.contains('is-flipped'));
+                });
+
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setFlippedState(!card.classList.contains('is-flipped'));
+                    }
                 });
             }
 
@@ -66,7 +95,8 @@
                     if (entry.isIntersecting) {
                         entry.target.classList.add('cert-visible');
                         // Trigger particle burst
-                        triggerParticleBurst(entry.target);
+                        triggerParticleBurst(entry.target, prefersReducedMotion);
+                        observer.unobserve(entry.target);
                     }
                 });
             }, {
@@ -78,7 +108,14 @@
         }
     }
 
-    function createParticles(container) {
+    function createParticles(container, prefersReducedMotion) {
+        if (prefersReducedMotion) {
+            container.querySelectorAll('.floating-particle').forEach(node => node.remove());
+            return;
+        }
+
+        container.querySelectorAll('.floating-particle').forEach(node => node.remove());
+        const fragment = document.createDocumentFragment();
         // Create multiple floating particles
         const particleCount = 8;
 
@@ -105,11 +142,15 @@
                 pointer-events: none;
             `;
 
-            container.appendChild(particle);
+            fragment.appendChild(particle);
         }
+
+        container.appendChild(fragment);
     }
 
-    function triggerParticleBurst(container) {
+    function triggerParticleBurst(container, prefersReducedMotion) {
+        if (prefersReducedMotion) return;
+
         const particleContainer = container.querySelector('.cert-particles');
         if (!particleContainer) return;
 
