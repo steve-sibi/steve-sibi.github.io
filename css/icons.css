@@ -239,3 +239,19 @@
 .fa-user-shield::before {
     content: "\f505";
 }
+
+.fa-layer-group::before {
+    content: "\f5fd";
+}
+
+.fa-fire::before {
+    content: "\f06d";
+}
+
+.fa-door-open::before {
+    content: "\f52b";
+}
+
+.fa-award::before {
+    content: "\f559";
+}

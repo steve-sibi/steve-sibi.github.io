@@ -702,9 +702,9 @@
     </section>
 
     <!-- TryHackMe -->
-    <section id="tryhackme" class="py-10 px-6 bg-gray-50 dark:bg-cyber-dark dark:bg-opacity-30">
+    <section id="tryhackme" class="py-20 px-6 bg-gray-50 dark:bg-cyber-dark dark:bg-opacity-30">
       <div class="container mx-auto max-w-5xl">
-        <div class="flex items-center pb-4 mb-4 border-b border-gray-200 dark:border-cyber-green-dark relative">
+        <div class="flex items-center pb-6 mb-6 border-b border-gray-200 dark:border-cyber-green-dark relative">
           <h2 class="text-2xl md:text-3xl font-bold text-black dark:text-cyber-green">TryHackMe Progress</h2>
           <div
             class="h-px flex-1 ml-4 bg-gradient-to-r from-gray-400 to-transparent dark:from-cyber-green to-transparent">
@@ -713,14 +713,35 @@
           <div class="absolute -bottom-px left-0 w-1 h-3 bg-cyber-green"></div>
           <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
         </div>
-        <div class="border-l-2 border-cyber-green pl-4 py-2">
-          <h3 class="text-lg font-bold text-black dark:text-cyber-green">Placed top 7% on TryHackMe</h3>
-          <a href="https://tryhackme.com/p/DankKnight" target="_blank" rel="noopener"
-            class="inline-block mt-3 rounded-lg ring-1 ring-cyber-green/30 hover:ring-cyber-green transition">
-            <img src="https://tryhackme-badges.s3.amazonaws.com/DankKnight.png"
-              alt="TryHackMe badge for user DankKnight" width="420" height="90" loading="lazy" decoding="async"
-              class="block h-auto w-[360px] md:w-[420px] rounded-lg" />
-          </a>
+
+        <!-- Stats Grid -->
+        <div id="thm-stats-container" class="thm-stats-grid mb-8"></div>
+
+        <!-- Badge Section -->
+        <div
+          class="border border-gray-200 dark:border-cyber-green-dark rounded-lg p-6 backdrop-blur-sm bg-white dark:bg-black dark:bg-opacity-30">
+          <div class="flex flex-col md:flex-row items-center gap-6">
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-black dark:text-cyber-green mb-3">Continuous Learning Journey</h3>
+              <p class="text-gray-700 dark:text-gray-300 mb-4">
+                Actively completing hands-on cybersecurity challenges and labs on TryHackMe.
+                From web exploitation to Active Directory pentesting, consistently expanding practical skills.
+              </p>
+              <a href="https://tryhackme.com/p/DankKnight" target="_blank" rel="noopener"
+                class="inline-flex items-center gap-2 px-4 py-2 bg-cyber-green text-black rounded-md hover:bg-opacity-80 transition-all font-semibold">
+                <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                View Full Profile
+              </a>
+            </div>
+            <div class="flex-shrink-0">
+              <a href="https://tryhackme.com/p/DankKnight" target="_blank" rel="noopener"
+                class="inline-block rounded-lg ring-2 ring-cyber-green/30 hover:ring-cyber-green transition-all hover:scale-105 transform">
+                <img src="https://tryhackme-badges.s3.amazonaws.com/DankKnight.png"
+                  alt="TryHackMe badge for user DankKnight" width="420" height="90" loading="lazy" decoding="async"
+                  class="block h-auto w-[320px] md:w-[380px] rounded-lg" />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1244,6 +1265,7 @@
   <script defer src="js/typed-text.js"></script>
   <script defer src="js/hero-terminal.js"></script>
   <script defer src="js/github-calendar.js"></script>
+  <script defer src="js/tryhackme.js"></script>
   <script defer src="js/skills.js"></script>
   <script defer src="js/projects.js"></script>
   <script defer src="js/modal.js"></script>
