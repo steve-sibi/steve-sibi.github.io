@@ -114,6 +114,10 @@
     content: "\f091";
 }
 
+.fa-star::before {
+    content: "\f005";
+}
+
 .fa-envelope::before {
     content: "\f0e0";
 }
@@ -140,6 +144,10 @@
 
 .fa-university::before {
     content: "\f19c";
+}
+
+.fa-user-tie::before {
+    content: "\f508";
 }
 
 .fa-calendar-alt::before {
@@ -246,6 +254,10 @@
 
 .fa-layer-group::before {
     content: "\f5fd";
+}
+
+.fa-microscope::before {
+    content: "\f610";
 }
 
 .fa-fire::before {
