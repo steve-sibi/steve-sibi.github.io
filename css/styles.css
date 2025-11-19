@@ -2547,12 +2547,26 @@ html:not(.dark) .hero-animated-bg {
 .cert-issuer {
     font-size: 0.875rem;
     color: #666;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     text-align: center;
 }
 
 .dark .cert-issuer {
     color: rgba(0, 255, 159, 0.7);
+}
+
+/* Certificate issue date */
+.cert-issue-date {
+    font-size: 0.75rem;
+    color: #888;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.dark .cert-issue-date {
+    color: rgba(0, 255, 159, 0.6);
 }
 
 /* Status badge */
@@ -2773,4 +2787,278 @@ html:not(.dark) .hero-animated-bg {
         transform: rotateY(180deg);
         transition: transform 0.3s ease;
     }
+}
+
+/* =====================================================================
+   === In Progress Certifications Styles ==============================
+   ===================================================================== */
+
+.cert-progress-card {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    border: 2px solid rgba(0, 177, 125, 0.2);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.dark .cert-progress-card {
+    background: linear-gradient(135deg,
+            rgba(23, 64, 48, 0.6) 0%,
+            rgba(12, 36, 30, 0.7) 100%);
+    border-color: rgba(0, 255, 159, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cert-progress-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 255, 159, 0.15);
+    border-color: rgba(0, 255, 159, 0.5);
+}
+
+.dark .cert-progress-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 255, 159, 0.25);
+}
+
+/* Animated gradient border effect */
+.cert-progress-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            rgba(0, 255, 159, 0.3),
+            rgba(0, 255, 159, 0.8),
+            rgba(0, 255, 159, 0.3));
+    background-size: 200% 100%;
+    animation: borderGlow 3s linear infinite;
+}
+
+@keyframes borderGlow {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+.cert-progress-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.cert-progress-badge {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background: radial-gradient(circle,
+            rgba(231, 255, 245, 0.92) 0%,
+            rgba(215, 250, 237, 0.85) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 177, 125, 0.2);
+    box-shadow: 0 0 18px rgba(0, 255, 159, 0.14);
+}
+
+.dark .cert-progress-badge {
+    background: radial-gradient(circle,
+            rgba(32, 42, 45, 0.95) 0%,
+            rgba(18, 32, 35, 0.92) 100%);
+    border-color: rgba(0, 255, 159, 0.28);
+    box-shadow: 0 0 22px rgba(0, 255, 159, 0.28);
+}
+
+.cert-progress-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 12px rgba(0, 255, 159, 0.4));
+}
+
+.cert-progress-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    color: #000;
+    line-height: 1.3;
+}
+
+.dark .cert-progress-title {
+    color: #00ff9f;
+    text-shadow: 0 0 8px rgba(0, 255, 159, 0.3);
+}
+
+.cert-progress-issuer {
+    font-size: 0.875rem;
+    color: #666;
+    text-align: center;
+    margin-top: -0.5rem;
+}
+
+.dark .cert-progress-issuer {
+    color: rgba(0, 255, 159, 0.7);
+}
+
+/* Progress Bar */
+.cert-progress-status {
+    margin-top: 0.5rem;
+}
+
+.cert-progress-bar {
+    width: 100%;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.dark .cert-progress-bar {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.cert-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg,
+            #00ff9f 0%,
+            #00d680 50%,
+            #00ff9f 100%);
+    background-size: 200% 100%;
+    border-radius: 10px;
+    position: relative;
+    animation: progressShine 2s ease-in-out infinite;
+    box-shadow: 0 0 12px rgba(0, 255, 159, 0.6);
+}
+
+@keyframes progressShine {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 0%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+/* Timeline */
+.cert-progress-timeline {
+    padding: 1rem;
+    background: rgba(0, 255, 159, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 159, 0.1);
+}
+
+.dark .cert-progress-timeline {
+    background: rgba(0, 255, 159, 0.08);
+    border-color: rgba(0, 255, 159, 0.2);
+}
+
+.cert-progress-badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(0, 255, 159, 0.15);
+    border: 1px solid rgba(0, 255, 159, 0.3);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #00b17d;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.dark .cert-progress-badge-status {
+    color: #00ff9f;
+    background: rgba(0, 255, 159, 0.2);
+}
+
+/* Pulsing dot indicator */
+.cert-progress-pulse {
+    width: 8px;
+    height: 8px;
+    background: #00ff9f;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 159, 0.7);
+    }
+
+    50% {
+        box-shadow: 0 0 0 6px rgba(0, 255, 159, 0);
+    }
+}
+
+/* Focus areas list */
+.cert-progress-details {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 1rem;
+}
+
+.dark .cert-progress-details {
+    border-top-color: rgba(0, 255, 159, 0.2);
+}
+
+.cert-progress-details ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.cert-progress-details li {
+    color: #333;
+    padding: 0.25rem 0;
+}
+
+.dark .cert-progress-details li {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cert-progress-badge {
+        width: 80px;
+        height: 80px;
+    }
+
+    .cert-progress-title {
+        font-size: 1.125rem;
+    }
+
+    .cert-progress-content {
+        padding: 1.5rem;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    .cert-progress-card::before,
+    .cert-progress-fill,
+    .cert-progress-pulse {
+        animation: none !important;
+    }
+
+    .cert-progress-card:hover {
+        transform: none;
+    }
+}
 }
