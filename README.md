@@ -14,6 +14,7 @@
 ### ✨ Experience-first UI
 - **Dark/Light Theme:** toggle updates the sun/moon icon, respects system defaults, and persists in `localStorage`.
 - **Hero motion cues:** Typed.js headlines, glitch typography, and IntersectionObserver-driven fade-ins keep the narrative lively without overwhelming users.
+- **3D hero terminal:** looping, reduced-motion-aware terminal commands add a hands-on vibe without blocking input.
 - **Responsive layout:** sticky sidebar navigation, experience timeline, cards, and tables adapt cleanly across breakpoints.
 - **Resume preview modal:** inline PDF viewer with download CTA plus analytics tracking.
 - **Bidirectional scroll arrow:** one floating button scrolls down section-by-section and flips to a "back to top" affordance near the footer.
@@ -21,14 +22,16 @@
 ### 🧠 Data & Integrations
 - **Projects grid:** pulls from `data/projects.json`, supports tag filters, instant search, alpha sort, and a quick-view modal with repo/readme links plus copy-to-clipboard clone commands.
 - **Skills matrix:** builds an accessible table with discipline filters, progress bars, experience tags, and proof links with inline JSON fallback.
-- **GitHub activity:** lazy-loads `github-calendar` with a skeleton message and prunes surplus markup for accessibility.
+- **GitHub activity:** fetches contributions from `github-contributions-api.jogruber.de` when the section enters view, then renders an accessible heatmap plus skeleton/empty states.
+- **TryHackMe progress:** configurable stats cards (rank, level, streak, rooms, badges) plus the live profile badge for instant social proof.
 - **Contact form workflow:** Web3Forms API + honeypot + inline success/error alerts, with GA events emitted from `js/contact.js`.
-- **Social proof:** TryHackMe badge, LinkedIn/GitHub buttons, and a resume download CTA are wired into the UI.
+- **Social proof:** LinkedIn/GitHub buttons and a resume download CTA are wired into the UI.
 
 ### ⚙️ Performance & Accessibility
 - **Modular vanilla JS:** discrete feature files share helpers via `utils.js` and gate work behind IntersectionObserver.
-- **Lazy vendor loading:** external scripts (Typed.js, GitHub Calendar) load on demand through a cached script loader and respect `prefers-reduced-motion`.
-- **Resilient data:** placeholders for GitHub calendar plus inline JSON fallbacks for projects and skills keep sections useful even on flaky networks.
+- **Lazy vendor loading:** external scripts (Typed.js) load on demand through a cached script loader; contributions API calls and animations stay behind IntersectionObserver triggers.
+- **Resilient data:** inline JSON fallbacks for projects and skills keep sections useful even on flaky networks, with skeleton/error states for GitHub activity.
+- **Icon subset:** `css/icons.css` preloads the minimal Font Awesome fonts to avoid the full library weight.
 - **Keyboard-friendly UX:** focus trapping in the mobile drawer and modals, ARIA labels, and semantic tables keep everything screen-reader friendly.
 - **Tailwind CLI pipeline:** minified `css/tailwind.css`, preloaded fonts/icons, and a sprinkling of custom CSS deliver speed without a heavyweight build system.
 
@@ -112,12 +115,15 @@ npm run dev
 | `js/theme.js` | Dark/light mode toggle with ARIA updates and `localStorage` persistence. |
 | `js/navigation.js` | Mobile drawer toggling, focus trapping, overlay handling, and active link highlighting. |
 | `js/typed-text.js` | Lazy Typed.js integration for the hero text with reduced-motion fallbacks. |
-| `js/github-calendar.js` | Loads the GitHub contribution calendar on demand, prunes extraneous markup, and coordinates skeleton display. |
+| `js/hero-terminal.js` | 3D hero terminal typing loop with output/history management and reduced-motion fallback. |
+| `js/github-calendar.js` | Fetches contributions via `github-contributions-api.jogruber.de`, renders an accessible heatmap, and handles skeleton/error states. |
+| `js/tryhackme.js` | Renders TryHackMe stats cards from the configured username and stat counts. |
 | `js/skills.js` | Loads skills from `data/skills.json`, renders the table, and drives discipline filters/progress bars. |
 | `js/projects.js` | Loads `data/projects.json`, instantiates project cards, and powers filters/search/sort plus the quick-view modal payload. |
 | `js/modal.js` | Handles the project quick-view modal, highlight lists, tech pills, and copy-to-clipboard toast notifications. |
 | `js/resume-preview.js` | Opens/closes the resume preview modal, injects the PDF iframe source, and fires GA events. |
 | `js/contact.js` | Submits the Web3Forms contact form, toggles button states, and shows inline success/error alerts. |
+| `js/certifications.js` | Certification flip-card interactions, particle effects, and reduced-motion-friendly entrance animations. |
 | `js/scroll-arrow.js` | Controls the bidirectional scroll arrow, including bottom detection and smooth scrolling. |
 | `js/animations.js` | Section fade-ins, hero content animation class, resume download tracking, and (optional) email copy helper. |
 
@@ -164,6 +170,7 @@ steve-sibi.github.io/
 ├── assets/
 │   └── Resume_Steve_Sibi_Cyber.pdf
 ├── css/
+│   ├── icons.css
 │   ├── styles.css
 │   └── tailwind.css
 ├── data/
@@ -171,13 +178,19 @@ steve-sibi.github.io/
 │   └── skills.json
 ├── icons/               # Favicons + PWA manifest
 ├── images/
+│   ├── cert-logos/
+│   │   ├── aws.svg
+│   │   ├── comptia.svg
+│   │   ├── fortinet.svg
+│   │   └── icsi.svg
 │   ├── og-card.png
 │   └── profile_pic_steve.jpg
 ├── js/
 │   ├── animations.js
+│   ├── certifications.js
 │   ├── contact.js
 │   ├── github-calendar.js
-│   ├── main.js
+│   ├── hero-terminal.js
 │   ├── modal.js
 │   ├── navigation.js
 │   ├── projects.js
@@ -185,6 +198,7 @@ steve-sibi.github.io/
 │   ├── scroll-arrow.js
 │   ├── skills.js
 │   ├── theme.js
+│   ├── tryhackme.js
 │   ├── typed-text.js
 │   └── utils.js
 ├── src/
@@ -205,12 +219,14 @@ steve-sibi.github.io/
 | `src/tailwind.css` | Tailwind input plus custom `@theme` tokens. |
 | `css/tailwind.css` | Generated (minified) Tailwind output - do not edit directly. |
 | `css/styles.css` | Handwritten component styles, timelines, and animations. |
+| `css/icons.css` | Minimal Font Awesome subset with preloads to keep icons lightweight. |
 | `data/projects.json` | Source of truth for the projects grid. |
 | `data/skills.json` | Source of truth for the skills matrix. |
 | `assets/Resume_Steve_Sibi_Cyber.pdf` | Resume served inside the preview modal and download button. |
 | `icons/` | All favicons and `site.webmanifest`. |
 | `images/og-card.png` | Open Graph / social preview image referenced in `<head>`. |
-| `js/*.js` | Feature-specific JavaScript modules (see table above). |
+| `images/cert-logos/` | Certification logos used in the cards and progress tiles. |
+| `js/*.js` | Feature-specific JavaScript modules, including the GitHub contributions fetcher, TryHackMe stats, hero terminal, and UI helpers. |
 | `.github/` | GitHub workflows and documentation helpers (e.g., Copilot instructions). |
 
 ---
@@ -228,9 +244,9 @@ steve-sibi.github.io/
 | Library / API | Purpose | Version |
 |---------------|---------|---------|
 | [Tailwind CSS](https://tailwindcss.com/) | Utility-first styling & theming | 4.1.13 (CLI) |
-| [Font Awesome](https://fontawesome.com/) | Icons (served via CDN) | 6.5.1 |
+| [Font Awesome](https://fontawesome.com/) | Icon subset (preloaded fonts via CDN) | 6.5.1 |
 | [Typed.js](https://github.com/mattboldt/typed.js) | Hero typing animation | 2.0.12 |
-| [GitHub Calendar](https://github.com/Bloggify/github-calendar) | Contribution heatmap embed | latest (CDN) |
+| [GitHub Contributions API](https://github-contributions-api.jogruber.de/) | JSON feed for the contributions heatmap | v4 API |
 | [Web3Forms](https://web3forms.com/) | Contact form backend | API |
 | [Google Analytics 4](https://marketingplatform.google.com/about/analytics/) | Analytics & event tracking | `gtag.js` |
 
@@ -286,15 +302,12 @@ Update your access key and redirect URL inside the contact form in `index.html`.
 </form>
 ```
 
-### GitHub Calendar Username
+### GitHub Contributions Username
 
-Set your GitHub username in `js/github-calendar.js`.
+`js/github-calendar.js` pulls from `https://github-contributions-api.jogruber.de/v4/`. Update the username constant to your GitHub handle:
 
 ```javascript
-GitHubCalendar('#github-calendar', 'steve-sibi', {
-  responsive: true,
-  summary: false
-});
+const USERNAME = 'steve-sibi';
 ```
 
 ### Hero Typed Headlines
@@ -313,6 +326,22 @@ new Typed('#typed-text', {
 });
 ```
 
+### Hero Terminal Commands
+
+Update the command/output loop in `js/hero-terminal.js` to match the stories you want to tell:
+
+```javascript
+const commandSequences = [
+  {
+    command: 'nmap -sV 192.168.1.0/24',
+    output: ['Starting Nmap scan...', 'Discovered open services', 'Scan complete: 24 hosts up'],
+    type: 'success'
+  },
+  // ...
+];
+```
+The module trims history automatically and falls back to static output when `prefers-reduced-motion` is enabled.
+
 ### Resume Preview
 
 `js/resume-preview.js` points to `assets/Resume_Steve_Sibi_Cyber.pdf`. Swap the file or update the path:
@@ -323,16 +352,26 @@ const resumePath = 'assets/Resume_Steve_Sibi_Cyber.pdf';
 
 Remember to update the download link in `index.html` too.
 
-### TryHackMe Badge
+### TryHackMe Stats & Badge
 
-Update the handle and badge URL inside the `#tryhackme` section.
+`js/tryhackme.js` drives the stats grid. Update the username and numbers there:
 
-```html
-<a href="https://tryhackme.com/p/DankKnight" target="_blank" rel="noopener">
-  <img src="https://tryhackme-badges.s3.amazonaws.com/DankKnight.png"
-       alt="TryHackMe badge for user DankKnight">
-</a>
+```javascript
+const THM_USERNAME = 'DankKnight';
+const userStats = {
+  rank: '7%',
+  level: 8,
+  streak: 45,
+  roomsCompleted: 59,
+  badgesEarned: 10,
+  userRank: 'Top 7%'
+};
 ```
+The badge image and profile link live in the `#tryhackme` section of `index.html`; swap the handle/URL if you change users.
+
+### Certifications & Progress Cards
+
+Cert flip cards are defined under `#certifications` in `index.html` using logos from `images/cert-logos/`. Update titles, issuers, verification URLs, and skill bullets inline. Progress targets and percentages for in-progress certs live in `#certifications-in-progress`; adjust the text and inline widths together.
 
 ---
 
@@ -395,11 +434,11 @@ Each skill entry powers a row in the table.
 
 Built-in optimizations:
 
-- **Lazy execution** via IntersectionObserver for Typed.js, GitHub Calendar, scroll arrow state, and fade-in animations.
-- **Dynamic script loader** caches vendor scripts to prevent duplicate downloads.
-- **Reduced motion support** swaps the hero animation for static text when users prefer less motion.
+- **Lazy execution** via IntersectionObserver for Typed.js, GitHub contributions fetch/render, scroll arrow state, and fade-in animations.
+- **Dynamic script loader** caches vendor scripts (Typed.js) to prevent duplicate downloads.
+- **Reduced motion support** swaps hero effects (typed text, 3D terminal, particles) for static output when users prefer less motion.
 - **Lightweight tooling** because only Tailwind CLI runs at build time; everything else is static assets.
-- **Minimized layout shift** with pre-sized images (TryHackMe badge, OG card) and preloaded Font Awesome fonts.
+- **Minimized layout shift** with pre-sized images (TryHackMe badge, OG card) and preloaded Font Awesome subset fonts.
 
 Before publishing, run your own Lighthouse audits to validate Core Web Vitals for your hardware/network.
 
@@ -464,7 +503,7 @@ Cybersecurity Engineer · Penetration Tester · Privacy Advocate
 - Icons by [Font Awesome](https://fontawesome.com/)
 - Fonts by [Google Fonts](https://fonts.google.com/)
 - Typing effect by [Typed.js](https://github.com/mattboldt/typed.js/)
-- GitHub heatmap by [GitHub Calendar](https://github.com/Bloggify/github-calendar)
+- GitHub heatmap data by [github-contributions-api](https://github-contributions-api.jogruber.de/)
 - Form backend by [Web3Forms](https://web3forms.com/)
 - Hosting by [GitHub Pages](https://pages.github.com/)
 
