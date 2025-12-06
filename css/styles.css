@@ -3291,7 +3291,8 @@ html:not(.dark) .hero-animated-bg {
 .secure-terminal-output {
     margin-top: 10px;
     margin-bottom: 20px;
-    white-space: pre-wrap;
+    white-space: pre;
+    overflow-x: auto;
 }
 
 .secure-terminal-cursor {
