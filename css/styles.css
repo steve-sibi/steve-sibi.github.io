@@ -3163,9 +3163,17 @@ html:not(.dark) .hero-animated-bg {
 }
 
 @keyframes holo-scan {
-    0% { left: -100%; }
-    20% { left: 200%; }
-    100% { left: 200%; }
+    0% {
+        left: -100%;
+    }
+
+    20% {
+        left: 200%;
+    }
+
+    100% {
+        left: 200%;
+    }
 }
 
 .holo-badge {
@@ -3194,8 +3202,13 @@ html:not(.dark) .hero-animated-bg {
 }
 
 @keyframes scan-fast {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 0% 200%; }
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 0% 200%;
+    }
 }
 
 /* Secure Terminal Interface */
@@ -3228,9 +3241,17 @@ html:not(.dark) .hero-animated-bg {
     border-radius: 50%;
 }
 
-.secure-terminal-button.red { background: #ff5f56; }
-.secure-terminal-button.yellow { background: #ffbd2e; }
-.secure-terminal-button.green { background: #27c93f; }
+.secure-terminal-button.red {
+    background: #ff5f56;
+}
+
+.secure-terminal-button.yellow {
+    background: #ffbd2e;
+}
+
+.secure-terminal-button.green {
+    background: #27c93f;
+}
 
 .secure-terminal-title {
     flex: 1;
@@ -3271,14 +3292,34 @@ html:not(.dark) .hero-animated-bg {
 }
 
 @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
 }
 
-.syntax-keyword { color: #c586c0; }
-.syntax-string { color: #ce9178; }
-.syntax-comment { color: #6a9955; }
-.syntax-variable { color: #9cdcfe; }
-.syntax-function { color: #dcdcaa; }
+.syntax-keyword {
+    color: #c586c0;
+}
 
+.syntax-string {
+    color: #ce9178;
+}
 
+.syntax-comment {
+    color: #6a9955;
+}
+
+.syntax-variable {
+    color: #9cdcfe;
+}
+
+.syntax-function {
+    color: #dcdcaa;
+}
