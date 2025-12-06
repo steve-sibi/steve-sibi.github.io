@@ -1,6 +1,6 @@
-/* 
- * Minimal Icon Set - Custom Font Awesome Subset
- * Replaces 300KB+ full FA library with ~15KB of only used icons
+/*
+ * Minimal Icon Set - Self-hosted Font Awesome subset
+ * Replaces the full CDN load with a trimmed, locally served glyph set
  * Icons are rendered using Unicode characters and CSS pseudo-elements
  */
 
@@ -10,7 +10,7 @@
     font-style: normal;
     font-weight: 900;
     font-display: swap;
-    src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2") format("woff2");
+    src: url("./fonts/fa-solid-subset.woff2") format("woff2");
 }
 
 @font-face {
@@ -18,7 +18,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2") format("woff2");
+    src: url("./fonts/fa-brands-subset.woff2") format("woff2");
 }
 
 /* Base icon styles */
@@ -122,8 +122,16 @@
     content: "\f0e0";
 }
 
+.fa-download::before {
+    content: "\f019";
+}
+
 .fa-file-download::before {
     content: "\f56d";
+}
+
+.fa-file-pdf::before {
+    content: "\f1c1";
 }
 
 .fa-external-link-alt::before {
@@ -154,6 +162,10 @@
     content: "\f073";
 }
 
+.fa-calendar-check::before {
+    content: "\f274";
+}
+
 .fa-map-marker-alt::before {
     content: "\f3c5";
 }
@@ -172,6 +184,10 @@
 
 .fa-exclamation-circle::before {
     content: "\f06a";
+}
+
+.fa-info-circle::before {
+    content: "\f05a";
 }
 
 .fa-chevron-down::before {
@@ -270,4 +286,12 @@
 
 .fa-award::before {
     content: "\f559";
+}
+
+.fa-flask::before {
+    content: "\f0c3";
+}
+
+.fa-medal::before {
+    content: "\f5a2";
 }

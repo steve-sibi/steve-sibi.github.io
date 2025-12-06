@@ -31,7 +31,7 @@
 - **Modular vanilla JS:** discrete feature files share helpers via `utils.js` and gate work behind IntersectionObserver.
 - **Lazy vendor loading:** external scripts (Typed.js) load on demand through a cached script loader; contributions API calls and animations stay behind IntersectionObserver triggers.
 - **Resilient data:** inline JSON fallbacks for projects and skills keep sections useful even on flaky networks, with skeleton/error states for GitHub activity.
-- **Icon subset:** `css/icons.css` preloads the minimal Font Awesome fonts to avoid the full library weight.
+- **Icon subset:** `css/icons.css` preloads a self-hosted, minimal Font Awesome subset to avoid the full library weight.
 - **Keyboard-friendly UX:** focus trapping in the mobile drawer and modals, ARIA labels, and semantic tables keep everything screen-reader friendly.
 - **Tailwind CLI pipeline:** minified `css/tailwind.css`, preloaded fonts/icons, and a sprinkling of custom CSS deliver speed without a heavyweight build system.
 
@@ -518,9 +518,9 @@ Cybersecurity Engineer · Penetration Tester · Privacy Advocate
 - [x] Web3Forms-powered contact form with inline alerts
 - [x] Bidirectional scroll arrow and section fade-in animations
 - [x] Lazy-loaded GitHub activity and Typed.js hero text
+- [x] Font Awesome subset loading (self-hosted icons)
 
 ### 🚧 In Progress
-- [ ] Performance optimization (Font Awesome subset loading)
 - [ ] Enhanced project screenshots / media slots
 
 ### 📅 Planned
