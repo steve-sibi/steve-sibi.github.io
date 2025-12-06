@@ -286,36 +286,49 @@
           <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
-          <div class="md:col-span-1 flex justify-center">
-            <div class="w-48 h-48 rounded-full border-4 border-cyber-green overflow-hidden relative">
-              <img src="images/profile_pic_steve.jpg" alt="Portrait of Steve Sibi" width="192" height="192"
-                class="w-full h-full object-cover" loading="lazy" />
+        <!-- Secure Terminal Interface -->
+        <div class="secure-terminal">
+          <div class="secure-terminal-header">
+            <div class="secure-terminal-buttons">
+              <div class="secure-terminal-button red"></div>
+              <div class="secure-terminal-button yellow"></div>
+              <div class="secure-terminal-button green"></div>
+            </div>
+            <div class="secure-terminal-title">guest@steve-portfolio:~/about</div>
+          </div>
+          <div class="secure-terminal-body">
+            <div class="mb-4">
+              <span class="secure-terminal-prompt">guest@steve-portfolio:~$</span>
+              <span class="secure-terminal-command">cat about_me.json</span>
+            </div>
+            <div class="secure-terminal-output">
+{
+  <span class="syntax-string">"name"</span>: <span class="syntax-string">"Steve Joseph Sibi"</span>,
+  <span class="syntax-string">"role"</span>: <span class="syntax-string">"Cybersecurity Engineer"</span>,
+  <span class="syntax-string">"education"</span>: [
+    <span class="syntax-string">"M.S. Cybersecurity, Illinois Institute of Technology"</span>,
+    <span class="syntax-string">"B.S. Computing Security, RIT"</span>
+  ],
+  <span class="syntax-string">"skills"</span>: {
+    <span class="syntax-string">"web_dev"</span>: [<span class="syntax-string">"Django"</span>, <span class="syntax-string">"JavaScript"</span>, <span class="syntax-string">"AWS"</span>],
+    <span class="syntax-string">"security"</span>: [<span class="syntax-string">"Penetration Testing"</span>, <span class="syntax-string">"Forensics"</span>, <span class="syntax-string">"Secure System Design"</span>],
+    <span class="syntax-string">"infrastructure"</span>: [<span class="syntax-string">"Ansible"</span>, <span class="syntax-string">"Terraform"</span>, <span class="syntax-string">"Docker"</span>]
+  },
+  <span class="syntax-string">"bio"</span>: <span class="syntax-string">"I bridge the gap between software engineering and security to build resilient, scalable systems. Passionate about cryptographic algorithms and open-source contributions."</span>,
+  <span class="syntax-string">"status"</span>: <span class="syntax-string">"Available for hire"</span>
+}
+            </div>
+            <div>
+              <span class="secure-terminal-prompt">guest@steve-portfolio:~$</span>
+              <span class="secure-terminal-cursor"></span>
             </div>
           </div>
-          <div class="md:col-span-3">
-            <p class="mb-4 text-gray-800 dark:text-gray-300">
-              I'm a <strong class="text-cyber-green">Master of Cybersecurity</strong> graduate from <em>Illinois
-                Institute of Technology</em> and hold a Bachelor of Science in Computing Security from <em>Rochester
-                Institute of Technology</em>. I've developed a robust understanding of penetration testing, forensics,
-              and secure system design.
-            </p>
-            <p class="mb-4 text-gray-800 dark:text-gray-300">
-              My professional experience spans <strong class="text-cyber-green">web development</strong> using <strong
-                class="text-cyber-green">Django, JavaScript, and AWS</strong>, to <strong
-                class="text-cyber-green">infrastructure security</strong> with tools like <strong
-                class="text-cyber-green">Ansible, Terraform, and Docker</strong>. I'm passionate about bridging software
-              engineering with cutting-edge security practices to build resilient, scalable systems.
-            </p>
-            <p class="mb-6 text-gray-800 dark:text-gray-300">
-              Outside of work, I love experimenting with cryptographic algorithms, container orchestration, and
-              contributing to open-source projects that make cybersecurity accessible to all.
-            </p>
-            <a href="#contact"
-              class="px-6 py-3 bg-cyber-green text-black rounded-md hover:bg-opacity-80 transition-all inline-block">
-              Hire Me
+        </div>
+        
+        <div class="mt-8 text-center">
+             <a href="#contact" class="px-6 py-3 bg-cyber-green text-black rounded-md hover:bg-opacity-80 transition-all inline-block font-bold">
+              <i class="fas fa-terminal mr-2"></i>Initiate Contact Protocol
             </a>
-          </div>
         </div>
       </div>
     </section>
