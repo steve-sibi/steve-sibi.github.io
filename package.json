@@ -15,6 +15,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "lint": "node scripts/lint.js",
     "build:css": "tailwindcss -i ./src/tailwind.css -o ./css/tailwind.css --minify",
     "watch:css": "tailwindcss -i ./src/tailwind.css -o ./css/tailwind.css --watch",
     "start": "python3 -m http.server 8000",

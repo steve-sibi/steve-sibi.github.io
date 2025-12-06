@@ -91,6 +91,7 @@ npm run dev
 
 | Command | Description |
 |---------|-------------|
+| `npm run lint` | Syntax-check all JS modules and validate JSON data files |
 | `npm run build:css` | Compile and minify `src/tailwind.css` → `css/tailwind.css` for production |
 | `npm run watch:css` | Watch Tailwind input and rebuild on every change |
 | `npm start` | Serve the site from the repo root via `python3 -m http.server 8000` |
@@ -138,6 +139,12 @@ npm run build:css
 ```
 
 This regenerates the minified `css/tailwind.css`. Because the rest of the site is static HTML/JS, no additional bundling is required.
+
+### CI/CD (GitHub Actions)
+
+- Workflow: `.github/workflows/ci.yml`
+- Triggers: pushes to `main` and all pull requests
+- Steps: `npm ci` → `npm run lint` → `npm run build:css` → upload `css/tailwind.css` as an artifact
 
 ### Deploy to GitHub Pages
 
@@ -519,13 +526,13 @@ Cybersecurity Engineer · Penetration Tester · Privacy Advocate
 - [x] Bidirectional scroll arrow and section fade-in animations
 - [x] Lazy-loaded GitHub activity and Typed.js hero text
 - [x] Font Awesome subset loading (self-hosted icons)
+- [x] GitHub Actions CI/CD for linting + CSS builds
 
 ### 🚧 In Progress
 - [ ] Enhanced project screenshots / media slots
 
 ### 📅 Planned
 - [ ] Automated image optimization pipeline
-- [ ] GitHub Actions CI/CD for linting + CSS builds
 - [ ] Accessibility audit (axe-core + manual testing)
 - [ ] Progressive Web App enhancements
 - [ ] Print-friendly stylesheet for resume downloads
