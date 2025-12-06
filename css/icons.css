@@ -90,6 +90,10 @@
     content: "\f007";
 }
 
+.fa-user-secret::before {
+    content: "\f21b";
+}
+
 .fa-briefcase::before {
     content: "\f0b1";
 }
@@ -160,6 +164,10 @@
 
 .fa-calendar-alt::before {
     content: "\f073";
+}
+
+.fa-clock::before {
+    content: "\f017";
 }
 
 .fa-calendar-check::before {
