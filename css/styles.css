@@ -1196,6 +1196,14 @@ html:not(.dark) .hero-animated-bg {
     opacity: 0.55;
 }
 
+.hero-animated-bg.is-paused,
+.hero-animated-bg.is-paused::before,
+.hero-animated-bg.is-paused::after,
+.hero-animated-overlay.is-paused,
+.scanline-effect.is-paused::after {
+    animation-play-state: paused !important;
+}
+
 @keyframes heroBackgroundShift {
     0% {
         background-position: 10% 30%;
@@ -2691,6 +2699,13 @@ html:not(.dark) .hero-animated-bg {
     90% {
         opacity: 0.6;
     }
+}
+
+.cert-particles.is-paused::before,
+.cert-particles.is-paused::after,
+.cert-particles.is-paused .floating-particle,
+.cert-particles.is-paused .burst-particle {
+    animation-play-state: paused !important;
 }
 
 /* Back card details */

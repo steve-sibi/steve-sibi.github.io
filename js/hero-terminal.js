@@ -67,6 +67,14 @@
     let currentSequenceIndex = 0;
     let isTyping = false;
     let typingTimeout = null;
+    let isPaused = false;
+    let heroInView = true;
+
+    const activeTimeouts = new Set();
+    const heroSection = document.getElementById('home');
+    const heroBackground = document.querySelector('.hero-animated-bg');
+    const heroOverlay = document.querySelector('.hero-animated-overlay');
+    const scanline = document.querySelector('.scanline-effect');
 
     // Element references
     const outputElement = document.getElementById('heroTerminalOutput');
@@ -81,20 +89,64 @@
     /**
      * Type text character by character with realistic timing
      */
+    function scheduleTimeout(fn, delay) {
+        const id = setTimeout(() => {
+            activeTimeouts.delete(id);
+            if (isPaused) return;
+            fn();
+        }, delay);
+        activeTimeouts.add(id);
+        return id;
+    }
+
+    function clearAllTimeouts() {
+        activeTimeouts.forEach(clearTimeout);
+        activeTimeouts.clear();
+        typingTimeout = null;
+    }
+
+    function toggleHeroAnimations(paused) {
+        [heroBackground, heroOverlay, scanline].forEach(el => {
+            if (el) el.classList.toggle('is-paused', paused);
+        });
+    }
+
+    function pauseTerminal() {
+        if (isPaused) return;
+        isPaused = true;
+        isTyping = false;
+        clearAllTimeouts();
+        toggleHeroAnimations(true);
+    }
+
+    function resumeTerminal() {
+        if (!isPaused || document.hidden || !heroInView) return;
+        isPaused = false;
+        toggleHeroAnimations(false);
+        if (!isTyping) {
+            scheduleTimeout(() => executeCommand(commandSequences[currentSequenceIndex]), 150);
+        }
+    }
+
     function typeText(text, element, callback) {
         let charIndex = 0;
         element.textContent = '';
 
         function typeChar() {
+            if (isPaused) {
+                typingTimeout = scheduleTimeout(typeChar, 100);
+                return;
+            }
+
             if (charIndex < text.length) {
                 element.textContent += text[charIndex];
                 charIndex++;
 
                 // Variable typing speed for more realistic effect
                 const delay = Math.random() * 50 + 30; // 30-80ms per character
-                typingTimeout = setTimeout(typeChar, delay);
-            } else {
-                if (callback) callback();
+                typingTimeout = scheduleTimeout(typeChar, delay);
+            } else if (callback) {
+                callback();
             }
         }
 
@@ -134,13 +186,13 @@
      * Execute a command sequence
      */
     function executeCommand(sequence) {
-        if (isTyping) return;
+        if (isPaused || isTyping) return;
         isTyping = true;
 
         // Type the command
         typeText(sequence.command, inputElement, function () {
             // Show command in output
-            setTimeout(function () {
+            scheduleTimeout(function () {
                 addOutput('$ ' + sequence.command, 'terminal-command');
                 inputElement.textContent = '';
 
@@ -153,11 +205,11 @@
                                 'terminal-result';
                         addOutput(sequence.output[outputIndex], className);
                         outputIndex++;
-                        setTimeout(showNextOutput, 400);
+                        scheduleTimeout(showNextOutput, 400);
                     } else {
                         // Command complete, wait before next
                         manageOutputHistory();
-                        setTimeout(function () {
+                        scheduleTimeout(function () {
                             isTyping = false;
                             nextCommand();
                         }, 2000);
@@ -192,18 +244,45 @@
         }
 
         // Start with a small delay
-        setTimeout(function () {
+        scheduleTimeout(function () {
             executeCommand(commandSequences[0]);
         }, 1500);
+
+        // Pause/resume when hero is off-screen
+        if (heroSection && 'IntersectionObserver' in window) {
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    heroInView = entry.isIntersecting;
+                });
+
+                if (heroInView && !document.hidden) {
+                    resumeTerminal();
+                } else {
+                    pauseTerminal();
+                }
+            }, { threshold: 0.2 });
+
+            heroObserver.observe(heroSection);
+        }
+
+        // Pause when tab hidden, resume when visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                pauseTerminal();
+            } else {
+                resumeTerminal();
+            }
+        });
+
+        // Ensure hero animations start unpaused on load
+        toggleHeroAnimations(false);
     }
 
     /**
      * Cleanup function
      */
     function cleanup() {
-        if (typingTimeout) {
-            clearTimeout(typingTimeout);
-        }
+        pauseTerminal();
     }
 
     // Initialize when DOM is ready

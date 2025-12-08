@@ -106,6 +106,8 @@
 
             certCards.forEach(card => observer.observe(card));
         }
+
+        setupParticlePauseControls(prefersReducedMotion);
     }
 
     function createParticles(container, prefersReducedMotion) {
@@ -184,6 +186,36 @@
             // Remove after animation
             setTimeout(() => particle.remove(), 1000);
         }
+    }
+
+    function setupParticlePauseControls(prefersReducedMotion) {
+        if (prefersReducedMotion) return;
+
+        const particleContainers = document.querySelectorAll('.cert-particles');
+        if (particleContainers.length === 0) return;
+
+        let sectionInView = true;
+
+        const setParticlesPaused = (paused) => {
+            particleContainers.forEach(container => container.classList.toggle('is-paused', paused));
+        };
+
+        const certSection = document.getElementById('certifications');
+        if (certSection && 'IntersectionObserver' in window) {
+            const sectionObserver = new IntersectionObserver((entries) => {
+                sectionInView = entries.some(entry => entry.isIntersecting);
+                setParticlesPaused(!sectionInView || document.hidden);
+            }, { threshold: 0.15 });
+
+            sectionObserver.observe(certSection);
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            setParticlesPaused(document.hidden || !sectionInView);
+        });
+
+        // Initialize state
+        setParticlesPaused(document.hidden || !sectionInView);
     }
 
     // Add dynamic CSS for burst animation
