@@ -3315,14 +3315,14 @@ html:not(.dark) .hero-animated-bg {
     color: #e5e7eb;
     font-size: 0.95rem;
     line-height: 1.6;
-    max-height: 500px;
-    overflow-y: auto;
+    min-height: 600px;
 }
 
 @media (max-width: 768px) {
     .secure-terminal-body {
         padding: 15px;
         font-size: 0.85rem;
+        min-height: auto;
     }
 }
 
@@ -3330,7 +3330,7 @@ html:not(.dark) .hero-animated-bg {
     .secure-terminal-body {
         padding: 12px;
         font-size: 0.8rem;
-        max-height: 400px;
+        min-height: auto;
     }
 }
 
