@@ -535,4 +535,3 @@ Cybersecurity Engineer · Penetration Tester · Privacy Advocate
 - [ ] Automated image optimization pipeline
 - [ ] Accessibility audit (axe-core + manual testing)
 - [ ] Progressive Web App enhancements
-- [ ] Print-friendly stylesheet for resume downloads
