@@ -3251,6 +3251,9 @@ html:not(.dark) .hero-animated-bg {
     overflow: hidden;
     position: relative;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .secure-terminal:hover {
@@ -3316,6 +3319,7 @@ html:not(.dark) .hero-animated-bg {
     font-size: 0.95rem;
     line-height: 1.6;
     min-height: 600px;
+    flex: 1;
 }
 
 @media (max-width: 768px) {
@@ -3390,6 +3394,10 @@ html:not(.dark) .hero-animated-bg {
 @media (min-width: 1024px) {
     .about-grid {
         grid-template-columns: 1.1fr 0.9fr;
+        align-items: stretch;
+    }
+    .about-right {
+        height: 100%;
     }
 }
 
