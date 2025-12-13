@@ -3,6 +3,11 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 /* TryHackMe Stats Cards */
 .thm-stats-grid {
     display: grid;
@@ -3351,7 +3356,9 @@ html:not(.dark) .hero-animated-bg {
 .secure-terminal-output {
     margin-top: 10px;
     margin-bottom: 20px;
-    white-space: pre;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-width: 100%;
     overflow-x: auto;
 }
 
@@ -3387,13 +3394,14 @@ html:not(.dark) .hero-animated-bg {
 /* About layout */
 .about-grid {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
     align-items: start;
 }
 
 @media (min-width: 1024px) {
     .about-grid {
-        grid-template-columns: 1.1fr 0.9fr;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
         align-items: stretch;
     }
     .about-right {
@@ -3405,6 +3413,7 @@ html:not(.dark) .hero-animated-bg {
 .about-right {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .about-left {
