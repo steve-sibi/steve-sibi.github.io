@@ -533,5 +533,4 @@ Cybersecurity Engineer · Penetration Tester · Privacy Advocate
 
 ### 📅 Planned
 - [ ] Automated image optimization pipeline
-- [ ] Accessibility audit (axe-core + manual testing)
 - [ ] Progressive Web App enhancements
