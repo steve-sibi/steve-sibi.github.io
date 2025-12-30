@@ -11,14 +11,9 @@
 (() => {
     'use strict';
 
-    // TryHackMe username
-    const THM_USERNAME = 'DankKnight';
-    const THM_PROFILE_URL = `https://tryhackme.com/p/${THM_USERNAME}`;
-
     // UPDATE THESE VALUES WITH YOUR CURRENT TRYHACKME STATS
     // Note: TryHackMe doesn't have a public API, so these need to be manually updated
     const userStats = {
-        rank: '7%',           // Your global rank percentage (e.g., "Top 7%", "5%")
         level: 8,            // Your current level
         streak: 45,           // Your current day streak
         roomsCompleted: 59,  // Total rooms completed

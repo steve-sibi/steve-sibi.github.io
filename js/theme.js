@@ -11,11 +11,7 @@
         if (!themeToggle) return;
 
         const supportsViewTransitions = typeof document.startViewTransition === 'function';
-        const prefersReducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-        function shouldReduceMotion() {
-            return Boolean(prefersReducedMotionQuery?.matches);
-        }
+        const shouldReduceMotion = () => (window.prefersReducedMotion ? window.prefersReducedMotion() : false);
 
         function setThemeIcon() {
             const isDark = document.documentElement.classList.contains('dark');

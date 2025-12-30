@@ -45,20 +45,6 @@
         }
 
         // =====================================================================
-        // === Resume Download Tracking ========================================
-        // =====================================================================
-        document.querySelectorAll('[data-resume-download]').forEach(link => {
-            link.addEventListener('click', () => {
-                if (typeof gtag === 'function') {
-                    gtag('event', 'download_resume', {
-                        event_category: 'engagement',
-                        event_label: 'resume_pdf'
-                    });
-                }
-            });
-        });
-
-        // =====================================================================
         // === Copy Email Helper ===============================================
         // =====================================================================
         const copyEmailBtn = document.getElementById('copyEmail');

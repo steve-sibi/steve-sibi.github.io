@@ -179,7 +179,6 @@
 
         let cursor = new Date(calendarStart);
         let week = new Array(7).fill(null);
-        let weekIndex = 0;
 
         while (cursor <= calendarEnd) {
             const isoDate = toISODate(cursor);
@@ -199,7 +198,6 @@
             if (weekday === 6) {
                 weeks.push(week);
                 week = new Array(7).fill(null);
-                weekIndex++;
             }
 
             cursor = addDays(cursor, 1);

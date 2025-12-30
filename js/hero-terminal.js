@@ -66,7 +66,6 @@
 
     let currentSequenceIndex = 0;
     let isTyping = false;
-    let typingTimeout = null;
     let isPaused = false;
     let heroInView = true;
 
@@ -102,7 +101,6 @@
     function clearAllTimeouts() {
         activeTimeouts.forEach(clearTimeout);
         activeTimeouts.clear();
-        typingTimeout = null;
     }
 
     function toggleHeroAnimations(paused) {
@@ -134,7 +132,7 @@
 
         function typeChar() {
             if (isPaused) {
-                typingTimeout = scheduleTimeout(typeChar, 100);
+                scheduleTimeout(typeChar, 100);
                 return;
             }
 
@@ -144,7 +142,7 @@
 
                 // Variable typing speed for more realistic effect
                 const delay = Math.random() * 50 + 30; // 30-80ms per character
-                typingTimeout = scheduleTimeout(typeChar, delay);
+                scheduleTimeout(typeChar, delay);
             } else if (callback) {
                 callback();
             }
@@ -233,7 +231,7 @@
      */
     function init() {
         // Check for reduced motion preference
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const prefersReducedMotion = window.prefersReducedMotion ? window.prefersReducedMotion() : false;
         if (prefersReducedMotion) {
             // Show static content instead
             addOutput('$ whoami', 'terminal-command');

@@ -10,6 +10,7 @@
         const modal = document.getElementById('projectModal');
         const modalTitle = document.getElementById('modalTitle');
         const modalDesc = document.getElementById('modalDesc');
+        const modalHighlights = document.getElementById('modalHighlights');
         const modalTech = document.getElementById('modalTech');
         const modalLink = document.getElementById('modalLink');
         const modalReadme = document.getElementById('modalReadme');
@@ -20,10 +21,15 @@
 
         if (!modal) return;
 
-        let modalReturnFocus = null;
+        const panel = modal.querySelector('div.relative');
+        const controller = window.createModalController ? window.createModalController({
+            modal,
+            panel,
+            closeSelectors: ['[data-close-modal]'],
+            initialFocusSelector: '[data-project-modal-initial-focus]',
+        }) : null;
 
         window.openModalFromCard = function (card) {
-            modalReturnFocus = document.activeElement;
             modalTitle.textContent = card.dataset.title || 'Project';
 
             const p = card.querySelector('p');
@@ -39,13 +45,12 @@
                 modalMedia.classList.add('hidden');
             }
 
-            const ul = document.getElementById('modalHighlights');
-            ul.innerHTML = '';
+            if (modalHighlights) modalHighlights.innerHTML = '';
             const points = (card.dataset.highlights || '').split(';').map(s => s.trim()).filter(Boolean);
             points.forEach(pt => {
                 const li = document.createElement('li');
                 li.textContent = pt;
-                ul.appendChild(li);
+                modalHighlights && modalHighlights.appendChild(li);
             });
 
             modalTech.innerHTML = '';
@@ -65,25 +70,15 @@
             modalCopy.dataset.clipboard = clone;
             modalToast.classList.add('hidden');
 
-            modal.classList.remove('hidden');
-            const closer = modal.querySelector('[data-close-modal]');
-            closer && closer.focus();
-            document.body.style.overflow = 'hidden';
+            if (controller) {
+                controller.open();
+            } else {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                const closer = modal.querySelector('[data-project-modal-initial-focus]') || modal.querySelector('[data-close-modal]');
+                closer && closer.focus();
+            }
         };
-
-        function closeModal() {
-            modal.classList.add('hidden');
-            document.body.style.overflow = '';
-            if (modalReturnFocus) modalReturnFocus.focus();
-        }
-
-        modal.querySelectorAll('[data-close-modal]').forEach(el => el.addEventListener('click', closeModal));
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
-        });
-
-        const panel = modal.querySelector('div.relative');
-        if (panel) panel.addEventListener('click', e => e.stopPropagation());
 
         if (modalCopy) {
             modalCopy.addEventListener('click', async () => {

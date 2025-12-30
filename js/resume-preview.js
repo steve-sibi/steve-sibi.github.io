@@ -10,54 +10,43 @@
     const modalPanel = modal ? modal.querySelector('[data-resume-modal-panel]') : null;
     const pdfViewer = document.getElementById('resumePdfViewer');
     const resumePath = 'assets/Resume_Steve_Sibi_Cyber.pdf';
-    let modalReturnFocus = null;
 
     if (!modal || !pdfViewer || !modalPanel) return;
 
-    /**
-     * Open the resume preview modal
-     */
+    const controller = window.createModalController ? window.createModalController({
+        modal,
+        panel: modalPanel,
+        closeSelectors: ['[data-close-resume-modal]'],
+        initialFocusSelector: '[data-resume-modal-initial-focus]',
+        closeOnBackdrop: true,
+        onOpen: () => {
+            pdfViewer.src = resumePath;
+
+            if (typeof gtag === 'function') {
+                gtag('event', 'resume_preview', {
+                    event_category: 'engagement',
+                    event_label: 'resume_modal_opened'
+                });
+            }
+        },
+        onClose: () => {
+            pdfViewer.src = '';
+        },
+    }) : null;
+
     function openResumeModal() {
-        modalReturnFocus = document.activeElement;
+        if (controller) {
+            controller.open();
+            return;
+        }
 
-        // Set the PDF source
         pdfViewer.src = resumePath;
-
-        // Show modal
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
 
-        // Focus the close button
         const closeBtn = modal.querySelector('[data-resume-modal-initial-focus]') ||
             modal.querySelector('[data-close-resume-modal]');
-        if (closeBtn) {
-            setTimeout(() => closeBtn.focus(), 100);
-        }
-
-        // Track with GA if available
-        if (typeof gtag === 'function') {
-            gtag('event', 'resume_preview', {
-                event_category: 'engagement',
-                event_label: 'resume_modal_opened'
-            });
-        }
-    }
-
-    /**
-     * Close the resume preview modal
-     */
-    function closeResumeModal() {
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
-
-        // Clear the iframe to stop loading
-        pdfViewer.src = '';
-
-        // Return focus
-        if (modalReturnFocus) {
-            modalReturnFocus.focus();
-            modalReturnFocus = null;
-        }
+        closeBtn && closeBtn.focus();
     }
 
     // Attach event listeners to all resume preview triggers
@@ -66,30 +55,6 @@
             e.preventDefault();
             openResumeModal();
         });
-    });
-
-    // Attach event listeners to all close buttons
-    modal.querySelectorAll('[data-close-resume-modal]').forEach(btn => {
-        btn.addEventListener('click', closeResumeModal);
-    });
-
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-            closeResumeModal();
-        }
-    });
-
-    // Prevent clicks inside the modal content from closing
-    modalPanel.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
-
-    // Close when clicking on the dimmed backdrop
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeResumeModal();
-        }
     });
 
     // Track download button clicks

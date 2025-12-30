@@ -12,8 +12,7 @@
 
     function initCertificationEffects() {
         const certCards = document.querySelectorAll('.cert-card-container');
-        const prefersReducedMotion = window.matchMedia &&
-            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const prefersReducedMotion = window.prefersReducedMotion ? window.prefersReducedMotion() : false;
         let activeCard = null;
 
         if (certCards.length === 0) return;

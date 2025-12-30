@@ -42,18 +42,12 @@
             if (typedInitialized || !typedTarget) return;
             typedInitialized = true;
 
-            const loader = window.loadExternalScript || ((src) => {
-                return new Promise((resolve, reject) => {
-                    const script = document.createElement('script');
-                    script.src = src;
-                    script.async = true;
-                    script.onload = resolve;
-                    script.onerror = reject;
-                    document.head.appendChild(script);
-                });
-            });
+            if (typeof window.loadExternalScript !== 'function') {
+                typedTarget.textContent = 'Cybersecurity';
+                return;
+            }
 
-            loader(TYPED_SRC)
+            window.loadExternalScript(TYPED_SRC)
                 .then(startTyped)
                 .catch(() => {
                     typedTarget.textContent = 'Cybersecurity';
