@@ -271,39 +271,51 @@
       </div>
     </section>
 
-    <!-- About -->
-    <section id="about" class="py-20 px-6">
-      <div class="container mx-auto max-w-5xl">
-        <div class="flex items-center pb-6 mb-6 border-b border-gray-200 dark:border-cyber-green-dark relative">
-          <h2 class="text-2xl md:text-3xl font-bold text-black dark:text-cyber-green">About Me</h2>
-          <div
-            class="h-px flex-1 ml-4 bg-gradient-to-r from-gray-400 to-transparent dark:from-cyber-green to-transparent">
-          </div>
-          <div class="absolute -bottom-px left-0 w-20 h-px bg-cyber-green"></div>
-          <div class="absolute -bottom-px left-0 w-1 h-3 bg-cyber-green"></div>
-          <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
-        </div>
+	    <!-- About -->
+	    <section id="about" class="py-20 px-6">
+	      <div class="container mx-auto max-w-5xl">
+	        <div class="flex items-center pb-6 mb-6 border-b border-gray-200 dark:border-cyber-green-dark relative">
+	          <h2 class="text-2xl md:text-3xl font-bold text-black dark:text-cyber-green">About Me</h2>
+	          <div
+	            class="h-px flex-1 ml-4 bg-gradient-to-r from-gray-400 to-transparent dark:from-cyber-green to-transparent">
+	          </div>
+	          <div class="absolute -bottom-px left-0 w-20 h-px bg-cyber-green"></div>
+	          <div class="absolute -bottom-px left-0 w-1 h-3 bg-cyber-green"></div>
+	          <div class="absolute -bottom-px left-24 w-1 h-3 bg-cyber-green"></div>
+	        </div>
 
-        <div class="about-grid">
-          <div class="about-left">
-            <div class="about-intro-wrapper">
-              <p class="about-intro text-lg md:text-xl leading-relaxed text-black dark:text-white mb-4">
-                I'm a <strong>Cybersecurity Engineer</strong> specializing in building secure, scalable cloud
-                infrastructure.
-                I help organizations protect their critical data through automated security testing, threat detection,
-                and
-                secure application development.
-              </p>
-              <p class="about-intro-secondary text-base md:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-                With expertise spanning cloud platforms (AWS/Azure), DevSecOps automation, and full-stack development,
-                I bridge the gap between security and functionality—delivering systems that are both robust and
-                user-friendly.
-              </p>
-            </div>
+	        <div class="about-lead">
+	          <img src="images/profile_pic_steve.jpg" alt="Portrait of Steve Joseph Sibi"
+	            class="about-avatar border-2 border-cyber-green" loading="lazy" decoding="async" />
+	          <div class="about-lead-copy">
+	            <p class="about-mission text-gray-700 dark:text-gray-300">
+	              Automation-first security for modern cloud teams—secure defaults, measurable outcomes, and calm
+	              operations.
+	            </p>
+	            <p class="about-mission-sub text-gray-500 dark:text-gray-400">
+	              Cybersecurity Engineer · Cloud Security · DevSecOps · AppSec
+	            </p>
+	          </div>
+	        </div>
 
-            <div class="about-cards">
-              <div class="about-card">
-                <div class="about-card-icon">
+	        <div class="about-grid">
+	          <div class="about-left">
+	            <div class="about-intro-wrapper">
+	              <p class="about-intro text-lg md:text-xl leading-relaxed text-black dark:text-white mb-4">
+	                I'm a <strong>Cybersecurity Engineer</strong> specializing in secure, scalable cloud infrastructure.
+	                I help organizations protect critical data through automated security testing, threat detection, and
+	                secure application development.
+	              </p>
+	              <ul class="about-highlights text-gray-700 dark:text-gray-300">
+	                <li>Cloud platforms: AWS &amp; Azure, infrastructure hardening, secure-by-default patterns</li>
+	                <li>DevSecOps automation: CI/CD security, SAST/DAST, IaC guardrails</li>
+	                <li>Full-stack mindset: balancing security, performance, and user experience</li>
+	              </ul>
+	            </div>
+
+	            <div class="about-cards">
+	              <div class="about-card">
+	                <div class="about-card-icon">
                   <i class="fas fa-shield-alt" aria-hidden="true"></i>
                 </div>
                 <div>
@@ -345,23 +357,32 @@
             </div>
           </div>
 
-          <div class="about-right">
-            <!-- Secure Terminal Interface -->
-            <div class="secure-terminal">
-              <div class="secure-terminal-header">
-                <div class="secure-terminal-buttons">
-                  <div class="secure-terminal-button red"></div>
-                  <div class="secure-terminal-button yellow"></div>
-                  <div class="secure-terminal-button green"></div>
-                </div>
-                <div class="secure-terminal-title">guest@steve-portfolio:~/about</div>
-              </div>
-              <div class="secure-terminal-body">
-                <div class="mb-4">
-                  <span class="secure-terminal-prompt">guest@steve-portfolio:~$</span>
-                  <span class="secure-terminal-command">cat about_me.json</span>
-                </div>
-                <pre class="secure-terminal-output" aria-label="about_me.json contents">{
+	          <div class="about-right">
+	            <details class="about-terminal-details">
+	              <summary class="about-terminal-summary">
+	                <span class="about-terminal-summary__label">
+	                  <i class="fas fa-terminal" aria-hidden="true"></i>
+	                  Technical Snapshot
+	                </span>
+	                <span class="about-terminal-summary__hint">Tap to expand</span>
+	              </summary>
+
+	              <!-- Secure Terminal Interface -->
+	              <div class="secure-terminal" aria-label="Technical snapshot terminal">
+	                <div class="secure-terminal-header">
+	                  <div class="secure-terminal-buttons">
+	                    <div class="secure-terminal-button red"></div>
+	                    <div class="secure-terminal-button yellow"></div>
+	                    <div class="secure-terminal-button green"></div>
+	                  </div>
+	                  <div class="secure-terminal-title">guest@steve-portfolio:~/about</div>
+	                </div>
+	                <div class="secure-terminal-body">
+	                  <div class="mb-4">
+	                    <span class="secure-terminal-prompt">guest@steve-portfolio:~$</span>
+	                    <span class="secure-terminal-command">cat about_me.json</span>
+	                  </div>
+	                  <pre class="secure-terminal-output" aria-label="about_me.json contents">{
   <span class="syntax-string">"identity"</span>: <span class="syntax-string">"Steve Joseph Sibi"</span>,
   <span class="syntax-string">"role"</span>: <span class="syntax-string">"Cybersecurity Engineer"</span>,
   <span class="syntax-string">"status"</span>: <span class="syntax-string">"Online"</span>,
@@ -375,38 +396,25 @@
   <span class="syntax-string">"favorite_tools"</span>: [<span class="syntax-string">"Python"</span>, <span class="syntax-string">"Terraform"</span>, <span class="syntax-string">"Docker"</span>],
   <span class="syntax-string">"uptime"</span>: <span class="syntax-string">"24/7"</span>
 }</pre>
-                <div class="mb-4">
-                  <span class="secure-terminal-prompt">guest@steve-portfolio:~$</span>
-                  <span class="secure-terminal-command">./check_skills.sh --verbose</span>
-                </div>
-                <pre class="secure-terminal-output"><span style="color: #10b981;">✓</span> Cloud Platforms: AWS, Azure
-<span style="color: #10b981;">✓</span> Security Tools: Burp Suite, Nmap, Wireshark
-<span style="color: #10b981;">✓</span> DevSecOps: CI/CD Security, SAST/DAST
-<span style="color: #10b981;">✓</span> IaC: Terraform, CloudFormation
+	                  <div class="mb-4">
+	                    <span class="secure-terminal-prompt">guest@steve-portfolio:~$</span>
+	                    <span class="secure-terminal-command">./check_skills.sh --verbose</span>
+	                  </div>
+	                  <pre class="secure-terminal-output" aria-label="skills check output"><span class="terminal-ok">✓</span> Cloud Platforms: AWS, Azure
+<span class="terminal-ok">✓</span> Security Tools: Burp Suite, Nmap, Wireshark
+<span class="terminal-ok">✓</span> DevSecOps: CI/CD Security, SAST/DAST
+<span class="terminal-ok">✓</span> IaC: Terraform, CloudFormation
 
-<span style="color: #fbbf24;">Status:</span> Ready for new challenges 🚀</pre>
-                <div class="mb-4">
-                  <span class="secure-terminal-prompt">guest@steve-portfolio:~$</span>
-                  <span class="secure-terminal-command">cat my_approach.txt</span>
-                </div>
-                <pre class="secure-terminal-output"><span style="color: #10b981;">━━━ MY APPROACH ━━━</span>
-
-<span style="color: #10b981;">→</span> Automate Security: Building safety checks directly 
-  into the code.
-
-<span style="color: #10b981;">→</span> Detect &amp; Respond: Finding threats fast and fixing 
-  them faster.
-
-<span style="color: #10b981;">→</span> Privacy First: Designing systems that keep user 
-  data safe by default.</pre>
-                <div>
-                  <span class="secure-terminal-prompt">guest@steve-portfolio:~$</span>
-                  <span class="secure-terminal-cursor"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+<span class="terminal-warn">Status:</span> Ready for new challenges</pre>
+	                  <div>
+	                    <span class="secure-terminal-prompt">guest@steve-portfolio:~$</span>
+	                    <span class="secure-terminal-cursor"></span>
+	                  </div>
+	                </div>
+	              </div>
+	            </details>
+	          </div>
+	        </div>
 
         <div class="mt-8 text-center">
           <a href="#contact"
@@ -1611,6 +1619,7 @@
   <script defer src="js/contact.js"></script>
   <script defer src="js/certifications.js"></script>
   <script defer src="js/scroll-arrow.js"></script>
+  <script defer src="js/about.js"></script>
   <script defer src="js/animations.js"></script>
 </body>
 
