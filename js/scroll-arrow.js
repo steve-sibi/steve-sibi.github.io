@@ -10,6 +10,11 @@
         const scrollArrow = document.getElementById('scroll-arrow');
         if (!scrollArrow) return;
 
+        const getScrollBehavior = () => {
+            if (!window.matchMedia) return 'smooth';
+            return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+        };
+
         const icon = scrollArrow.querySelector('i');
         const scrollTargets = Array.from(document.querySelectorAll('section[id]'));
         const footer = document.querySelector('footer');
@@ -94,8 +99,10 @@
         }
 
         scrollArrow.addEventListener('click', () => {
+            const behavior = getScrollBehavior();
+
             if (isAtBottom) {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({ top: 0, behavior });
                 return;
             }
 
@@ -111,9 +118,9 @@
             }
 
             if (nextSection) {
-                nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                nextSection.scrollIntoView({ behavior, block: 'start' });
             } else {
-                window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+                window.scrollTo({ top: document.documentElement.scrollHeight, behavior });
             }
         });
 

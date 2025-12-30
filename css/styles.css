@@ -3,6 +3,12 @@ html {
     scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 body {
     max-width: 100%;
     overflow-x: hidden;
@@ -13,107 +19,6 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1.5rem;
-}
-
-@media (max-width: 640px) {
-    .thm-stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-}
-
-.thm-stat-card {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.5rem;
-    border: 1px solid rgba(4, 120, 87, 0.2);
-    border-radius: 0.75rem;
-    background: #ffffff;
-    transition: all 0.3s ease;
-}
-
-.dark .thm-stat-card {
-    border-color: rgba(16, 185, 129, 0.3);
-    background: rgba(17, 24, 39, 0.5);
-}
-
-.thm-stat-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
-}
-
-.dark .thm-stat-card:hover {
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-    border-color: rgba(16, 185, 129, 0.5);
-}
-
-.thm-stat-icon {
-    font-size: 1.75rem;
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.5rem;
-    background: rgba(16, 185, 129, 0.1);
-    flex-shrink: 0;
-}
-
-.dark .thm-stat-icon {
-    background: rgba(16, 185, 129, 0.15);
-}
-
-.thm-stat-content {
-    flex: 1;
-    min-width: 0;
-}
-
-.thm-stat-value {
-    font-size: 1.75rem;
-    font-weight: 700;
-    line-height: 1.2;
-    color: #000000;
-    margin-bottom: 0.25rem;
-}
-
-.dark .thm-stat-value {
-    color: var(--color-cyber-green);
-}
-
-.thm-stat-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: #6b7280;
-}
-
-.dark .thm-stat-label {
-    color: #9ca3af;
-}
-
-@media (max-width: 640px) {
-    .thm-stat-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.25rem;
-        gap: 0.75rem;
-    }
-
-    .thm-stat-icon {
-        width: 2.5rem;
-        height: 2.5rem;
-        font-size: 1.5rem;
-    }
-
-    .thm-stat-value {
-        font-size: 1.5rem;
-    }
-
-    .thm-stat-label {
-        font-size: 0.7rem;
-    }
 }
 
 @media (max-width: 640px) {
@@ -294,6 +199,15 @@ body {
     overflow: hidden;
     animation: glitch-2 2s infinite linear alternate-reverse;
     clip: rect(0, 900px, 0, 0)
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .glitch-text::before,
+    .glitch-text::after {
+        content: none !important;
+        animation: none !important;
+    }
 }
 
 /* Scanline effect */

@@ -9,6 +9,8 @@
 
     const USERNAME = 'steve-sibi';
     const API_BASE = 'https://github-contributions-api.jogruber.de/v4/';
+    const STORAGE_KEY = `github-calendar:${USERNAME}:v1`;
+    const STORAGE_TTL_MS = 6 * 60 * 60 * 1000; // 6 hours
     const WEEKDAY_LABELS = ['', 'Mon', '', 'Wed', '', 'Fri', ''];
     const MONTH_FORMAT = new Intl.DateTimeFormat('en-US', { month: 'short', timeZone: 'UTC' });
     const DAY_FORMAT = new Intl.DateTimeFormat('en-US', {
@@ -68,28 +70,70 @@
         skeleton.classList.toggle('loaded', !isLoading);
     }
 
+    function readContributionCache({ allowExpired = false } = {}) {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return null;
+            const parsed = JSON.parse(raw);
+            const timestamp = typeof parsed?.ts === 'number' ? parsed.ts : null;
+            const data = Array.isArray(parsed?.data) ? parsed.data : null;
+
+            if (!timestamp || !data) return null;
+
+            const age = Date.now() - timestamp;
+            const isExpired = !Number.isFinite(age) || age > STORAGE_TTL_MS;
+            if (isExpired && !allowExpired) return null;
+
+            return data;
+        } catch {
+            return null;
+        }
+    }
+
+    function writeContributionCache(contributions) {
+        if (!Array.isArray(contributions) || contributions.length === 0) return;
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                ts: Date.now(),
+                data: contributions
+            }));
+        } catch {
+            // Ignore caching failures (private mode, quota exceeded, etc.)
+        }
+    }
+
     async function fetchContributionData() {
+        const cached = readContributionCache();
+        if (cached) return cached;
+
+        const stale = readContributionCache({ allowExpired: true });
         const now = new Date();
         const currentYear = now.getUTCFullYear();
         const years = [currentYear - 1, currentYear];
 
-        const results = await Promise.allSettled(years.map(fetchYear));
-        const contributions = [];
-        const errors = [];
+        try {
+            const results = await Promise.allSettled(years.map(fetchYear));
+            const contributions = [];
+            const errors = [];
 
-        results.forEach((result) => {
-            if (result.status === 'fulfilled') {
-                contributions.push(...(result.value?.contributions ?? []));
-            } else if (result.reason) {
-                errors.push(result.reason.message || 'Unknown error');
+            results.forEach((result) => {
+                if (result.status === 'fulfilled') {
+                    contributions.push(...(result.value?.contributions ?? []));
+                } else if (result.reason) {
+                    errors.push(result.reason.message || 'Unknown error');
+                }
+            });
+
+            if (!contributions.length) {
+                throw new Error(errors[0] || 'No contribution data available');
             }
-        });
 
-        if (!contributions.length) {
-            throw new Error(errors[0] || 'No contribution data available');
+            writeContributionCache(contributions);
+            return contributions;
+        } catch (error) {
+            if (stale) return stale;
+            throw error;
         }
-
-        return contributions;
     }
 
     async function fetchYear(year) {
@@ -97,7 +141,6 @@
             headers: {
                 'Accept': 'application/json'
             },
-            cache: 'no-store',
             mode: 'cors'
         });
 
