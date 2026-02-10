@@ -266,123 +266,6 @@ steve-sibi.github.io/
 
 ---
 
-## Configuration
-
-### Tailwind Theme
-
-`src/tailwind.css` contains Tailwind 4's inline configuration. Update tokens and layers there, then rebuild.
-
-```css
-@import "tailwindcss";
-
-@theme {
-  --color-cyber-green: #10b981;
-  --color-cyber-dark: #0a0e27;
-  --font-family-sans: "Share Tech Mono", system-ui, sans-serif;
-  /* Add tokens here */
-}
-```
-
-### Analytics (GA4)
-
-Replace `G-F499NLV8V2` with your GA4 Measurement ID near the top of `index.html`.
-
-```html
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F499NLV8V2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-F499NLV8V2');
-</script>
-```
-
-### Contact Form (Web3Forms)
-
-Update your access key and redirect URL inside the contact form in `index.html`.
-
-```html
-<form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="YOUR-ACCESS-KEY">
-  <input type="hidden" name="redirect" value="https://steve-sibi.github.io/#contact">
-  <input type="checkbox" name="botcheck" class="hidden">
-  <!-- ... -->
-</form>
-```
-
-### GitHub Contributions Username
-
-`js/github-calendar.js` pulls from `https://github-contributions-api.jogruber.de/v4/`. Update the username constant to your GitHub handle:
-
-```javascript
-const USERNAME = 'steve-sibi';
-```
-
-### Hero Typed Headlines
-
-Edit the strings array in `js/typed-text.js` to change the rotating hero skills.
-
-```javascript
-new Typed('#typed-text', {
-  strings: [
-    'Data Privacy &amp; Encryption',
-    'Network Security',
-    'Cloud Security'
-    // ...
-  ],
-  loop: true
-});
-```
-
-### Hero Terminal Commands
-
-Update the command/output loop in `js/hero-terminal.js` to match the stories you want to tell:
-
-```javascript
-const commandSequences = [
-  {
-    command: 'nmap -sV 192.168.1.0/24',
-    output: ['Starting Nmap scan...', 'Discovered open services', 'Scan complete: 24 hosts up'],
-    type: 'success'
-  },
-  // ...
-];
-```
-The module trims history automatically and falls back to static output when `prefers-reduced-motion` is enabled.
-
-### Resume Preview
-
-`js/resume-preview.js` points to `assets/Resume_Steve_Sibi_DevOps.pdf`. Swap the file or update the path:
-
-```javascript
-const resumePath = 'assets/Resume_Steve_Sibi_DevOps.pdf';
-```
-
-Remember to update the download link in `index.html` too.
-
-### TryHackMe Stats & Badge
-
-`js/tryhackme.js` drives the stats grid. Update the username and numbers there:
-
-```javascript
-const THM_USERNAME = 'DankKnight';
-const userStats = {
-  rank: '7%',
-  level: 8,
-  streak: 45,
-  roomsCompleted: 59,
-  badgesEarned: 10,
-  userRank: 'Top 7%'
-};
-```
-The badge image and profile link live in the `#tryhackme` section of `index.html`; swap the handle/URL if you change users.
-
-### Certifications & Progress Cards
-
-Cert flip cards are defined under `#certifications` in `index.html` using logos from `images/cert-logos/`. Update titles, issuers, verification URLs, and skill bullets inline. Progress targets and percentages for in-progress certs live in `#certifications-in-progress`; adjust the text and inline widths together.
-
----
-
 ## Customization
 
 ### Projects (`data/projects.json`)
@@ -452,22 +335,9 @@ Before publishing, run your own Lighthouse audits to validate Core Web Vitals fo
 
 ---
 
-## Browser Support
-
-| Browser | Minimum Version | Notes |
-|---------|----------------|-------|
-| Chrome | 90+ | IntersectionObserver + CSS custom properties required. |
-| Firefox | 88+ | Tested with reduced-motion preference. |
-| Safari | 14+ | Works with WebKit's `prefers-color-scheme`. |
-| Edge | 90+ | Chromium-based Edge supports all required APIs. |
-
-The experience relies on `fetch`, `IntersectionObserver`, CSS Grid/Flexbox, and `localStorage`.
-
----
-
 ## Contributing
 
-This is a personal portfolio, but suggestions and issues are welcome.
+This is my personal portfolio, but suggestions and issues are welcome.
 
 1. **Fork** the repo.
 2. **Create** a feature branch (`git checkout -b feature/amazing-feature`).
@@ -497,7 +367,6 @@ Permission to use, copy, modify, and/or distribute this software for any purpose
 ## Contact
 
 **Steve Joseph Sibi**  
-DevOps Engineer · DevSecOps Engineer · Cloud Security Automation
 
 - Website: [steve-sibi.github.io](https://steve-sibi.github.io/)
 - LinkedIn: [steve-sibi](https://www.linkedin.com/in/steve-sibi)
