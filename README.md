@@ -1,17 +1,18 @@
-# 🔐 Steve Joseph Sibi - DevOps & DevSecOps Portfolio
+# Steve Joseph Sibi - DevOps & DevSecOps Portfolio
 
-[![Live Site](https://img.shields.io/badge/Live-steve--sibi.github.io-00ff9f?style=for-the-badge)](https://steve-sibi.github.io/)
-[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg?style=for-the-badge)](LICENSE)
+[![Live Site](https://img.shields.io/badge/Live-steve--sibi.github.io-00c48c)](https://steve-sibi.github.io/)
+[![CI](https://github.com/steve-sibi/steve-sibi.github.io/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/steve-sibi/steve-sibi.github.io/actions/workflows/ci.yml)
+[![License: ISC](https://img.shields.io/badge/License-ISC-0f67a7.svg)](LICENSE)
 
-> A modern, data-driven cybersecurity portfolio built with vanilla JavaScript modules, Tailwind CSS 4, and deployed on GitHub Pages.
+> A modern, data-driven DevOps and DevSecOps portfolio built with vanilla JavaScript modules, Tailwind CSS 4, and deployed on GitHub Pages.
 
 ![Portfolio Preview](images/og-card.png)
 
 ---
 
-## 🚀 Features
+## Features
 
-### ✨ Experience-first UI
+### Experience-first UI
 - **Dark/Light Theme:** toggle updates the sun/moon icon, respects system defaults, and persists in `localStorage`.
 - **Hero motion cues:** Typed.js headlines, glitch typography, and IntersectionObserver-driven fade-ins keep the narrative lively without overwhelming users.
 - **3D hero terminal:** looping, reduced-motion-aware terminal commands add a hands-on vibe without blocking input.
@@ -19,7 +20,7 @@
 - **Resume preview modal:** inline PDF viewer with download CTA plus analytics tracking.
 - **Bidirectional scroll arrow:** one floating button scrolls down section-by-section and flips to a "back to top" affordance near the footer.
 
-### 🧠 Data & Integrations
+### Data & Integrations
 - **Projects grid:** pulls from `data/projects.json`, supports tag filters, instant search, alpha sort, and a quick-view modal with repo/readme links plus copy-to-clipboard clone commands.
 - **Skills matrix:** builds an accessible table with discipline filters, progress bars, experience tags, and proof links with inline JSON fallback.
 - **GitHub activity:** fetches contributions from `github-contributions-api.jogruber.de` when the section enters view, then renders an accessible heatmap plus skeleton/empty states.
@@ -27,7 +28,7 @@
 - **Contact form workflow:** Web3Forms API + honeypot + inline success/error alerts, with GA events emitted from `js/contact.js`.
 - **Social proof:** LinkedIn/GitHub buttons and a resume download CTA are wired into the UI.
 
-### ⚙️ Performance & Accessibility
+### Performance & Accessibility
 - **Modular vanilla JS:** discrete feature files share helpers via `utils.js` and gate work behind IntersectionObserver.
 - **Lazy vendor loading:** external scripts (Typed.js) load on demand through a cached script loader; contributions API calls and animations stay behind IntersectionObserver triggers.
 - **Resilient data:** inline JSON fallbacks for projects and skills keep sections useful even on flaky networks, with skeleton/error states for GitHub activity.
@@ -37,7 +38,7 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Quick Start](#-quick-start)
 - [Development](#-development)
@@ -56,7 +57,7 @@
 
 ---
 
-## ⚡ Quick Start
+## Quick Start
 
 ### Prerequisites
 - **Node.js** 18+
@@ -85,7 +86,7 @@ npm run dev
 
 ---
 
-## 🔧 Development
+## Development
 
 ### Available Scripts
 
@@ -130,7 +131,7 @@ npm run dev
 
 ---
 
-## 📦 Build & Deploy
+## Build & Deploy
 
 ### Production Build
 
@@ -170,7 +171,7 @@ GitHub Pages will redeploy automatically after every push.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 steve-sibi.github.io/
@@ -238,7 +239,7 @@ steve-sibi.github.io/
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Core Technologies
 - **HTML5** with semantic sections, ARIA labels, and skip links.
@@ -265,7 +266,7 @@ steve-sibi.github.io/
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 ### Tailwind Theme
 
@@ -382,7 +383,7 @@ Cert flip cards are defined under `#certifications` in `index.html` using logos 
 
 ---
 
-## 🎨 Customization
+## Customization
 
 ### Projects (`data/projects.json`)
 
@@ -437,7 +438,7 @@ Each skill entry powers a row in the table.
 
 ---
 
-## ⚡ Performance
+## Performance
 
 Built-in optimizations:
 
@@ -451,7 +452,7 @@ Before publishing, run your own Lighthouse audits to validate Core Web Vitals fo
 
 ---
 
-## 🌐 Browser Support
+## Browser Support
 
 | Browser | Minimum Version | Notes |
 |---------|----------------|-------|
@@ -464,7 +465,7 @@ The experience relies on `fetch`, `IntersectionObserver`, CSS Grid/Flexbox, and 
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 This is a personal portfolio, but suggestions and issues are welcome.
 
@@ -483,29 +484,29 @@ This is a personal portfolio, but suggestions and issues are welcome.
 
 ---
 
-## 📝 License
+## License
 
 This project is licensed under the **ISC License**.
 
-Copyright © 2025 Steve Joseph Sibi
+Copyright © 2026 Steve Joseph Sibi
 
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 
 ---
 
-## 📬 Contact
+## Contact
 
 **Steve Joseph Sibi**  
 DevOps Engineer · DevSecOps Engineer · Cloud Security Automation
 
-- 🌐 Website: [steve-sibi.github.io](https://steve-sibi.github.io/)
-- 💼 LinkedIn: [steve-sibi](https://www.linkedin.com/in/steve-sibi)
-- 🐙 GitHub: [@steve-sibi](https://github.com/steve-sibi)
-- 📧 Email: stevesibi326@gmail.com
+- Website: [steve-sibi.github.io](https://steve-sibi.github.io/)
+- LinkedIn: [steve-sibi](https://www.linkedin.com/in/steve-sibi)
+- GitHub: [@steve-sibi](https://github.com/steve-sibi)
+- Email: stevesibi326@gmail.com
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Icons by [Font Awesome](https://fontawesome.com/)
 - Fonts by [Google Fonts](https://fonts.google.com/)
@@ -516,9 +517,9 @@ DevOps Engineer · DevSecOps Engineer · Cloud Security Automation
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
-### ✅ Completed
+### Completed
 - [x] Modularized JavaScript architecture
 - [x] Project quick-view modal with copy-to-clipboard support
 - [x] Resume preview modal with analytics events
@@ -528,9 +529,9 @@ DevOps Engineer · DevSecOps Engineer · Cloud Security Automation
 - [x] Font Awesome subset loading (self-hosted icons)
 - [x] GitHub Actions CI/CD for linting + CSS builds
 
-### 🚧 In Progress
+### In Progress
 - [ ] Enhanced project screenshots / media slots
 
-### 📅 Planned
+### Planned
 - [ ] Automated image optimization pipeline
 - [ ] Progressive Web App enhancements
