@@ -21,15 +21,15 @@
 
             new Typed('#typed-text', {
                 strings: [
-                    'Data Privacy &amp; Encryption',
-                    'Network Security',
-                    'Cloud Security',
-                    'Incident Response',
-                    'Threat Hunting',
-                    'Penetration Testing',
-                    'Reverse Engineering',
-                    'Secure Software Engineering',
-                    'SIEM',
+                    'DevOps Automation',
+                    'DevSecOps Security',
+                    'Cloud Reliability Engineering',
+                    'CI/CD Pipelines',
+                    'Infrastructure as Code',
+                    'Kubernetes &amp; Containers',
+                    'Security Observability',
+                    'SIEM &amp; Incident Response',
+                    'IAM &amp; RBAC Governance',
                 ],
                 typeSpeed: 50,
                 backSpeed: 50,
@@ -43,20 +43,20 @@
             typedInitialized = true;
 
             if (typeof window.loadExternalScript !== 'function') {
-                typedTarget.textContent = 'Cybersecurity';
+                typedTarget.textContent = 'DevOps & DevSecOps';
                 return;
             }
 
             window.loadExternalScript(TYPED_SRC)
                 .then(startTyped)
                 .catch(() => {
-                    typedTarget.textContent = 'Cybersecurity';
+                    typedTarget.textContent = 'DevOps & DevSecOps';
                 });
         };
 
         // Skip animation if user prefers reduced motion
         if (prefersReduced) {
-            typedTarget.textContent = 'Cybersecurity';
+            typedTarget.textContent = 'DevOps & DevSecOps';
             console.log('✅ TypedJS skipped (reduced motion)');
             return;
         }

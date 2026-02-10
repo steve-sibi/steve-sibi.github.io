@@ -1,245 +1,103 @@
 [
-    {
-        "id": "mini-saas-ato",
-        "title": "Account Takeover (ATO) Detection and Response",
-        "description": "A production-style ATO simulation lab with Flask, Datadog, Azure Functions, & signed webhooks for real-time session invalidation.",
-        "icon": "fas fa-user-secret",
-        "tags": [
-            "security",
-            "cloud",
-            "automation"
-        ],
-        "pillTech": [
-            "Python",
-            "Flask",
-            "Datadog",
-            "Azure"
-        ],
-        "tech": [
-            "Python",
-            "Flask",
-            "Datadog",
-            "Azure",
-            "Azure Functions",
-            "Signed Webhooks"
-        ],
-        "link": "https://github.com/steve-sibi/mini-saas-ato",
-        "readme": "https://github.com/steve-sibi/mini-saas-ato#readme",
-        "clone": "https://github.com/steve-sibi/mini-saas-ato.git",
-        "highlights": [
-            "Detects brute-force & credential-stuffing with Datadog pipelines",
-            "Signed webhooks + Azure Functions invalidate sessions in seconds",
-            "Production-like lab with safe ATO flows"
-        ]
-    },
-    {
-        "id": "azure-devsecops-aca",
-        "title": "Azure Event-Driven URL Scanner",
-        "description": "Event-driven URL scanning microservice on Azure Container Apps (ACA) demonstrating scalable DevSecOps workflows.",
-        "icon": "fas fa-cloud",
-        "tags": [
-            "cloud",
-            "security",
-            "automation"
-        ],
-        "pillTech": [
-            "FastAPI",
-            "Terraform",
-            "KEDA",
-            "Service Bus"
-        ],
-        "tech": [
-            "FastAPI",
-            "Python",
-            "Azure Container Apps",
-            "Terraform",
-            "GitHub Actions OIDC",
-            "Service Bus",
-            "KEDA",
-            "Key Vault"
-        ],
-        "link": "https://github.com/steve-sibi/azure-devsecops-aca",
-        "readme": "https://github.com/steve-sibi/azure-devsecops-aca#readme",
-        "clone": "https://github.com/steve-sibi/azure-devsecops-aca.git",
-        "highlights": [
-            "Zero-secrets CI with GitHub OIDC",
-            "KEDA autoscaling from queue depth",
-            "IaC with Terraform across environments"
-        ]
-    },
-    {
-        "id": "privacyfusion",
-        "title": "PrivacyFusion",
-        "description": "Toolkit that blends Diffprivlib and TenSEAL to demo differential privacy & homomorphic encryption workflows.",
-        "icon": "fas fa-user-secret",
-        "tags": [
-            "privacy",
-            "security"
-        ],
-        "pillTech": [
-            "PyQt",
-            "Diffprivlib",
-            "TenSEAL"
-        ],
-        "tech": [
-            "Python",
-            "PyQt",
-            "Diffprivlib",
-            "TenSEAL",
-            "Homomorphic Encryption"
-        ],
-        "link": "https://github.com/steve-sibi/DataPriv-Encryptor",
-        "readme": "https://github.com/steve-sibi/DataPriv-Encryptor#readme",
-        "clone": "https://github.com/steve-sibi/DataPriv-Encryptor.git",
-        "highlights": [
-            "Hands-on differential privacy workflows",
-            "Homomorphic encryption transforms with TenSEAL",
-            "Desktop UX with PyQt"
-        ]
-    },
-    {
-        "id": "automated-vuln-scanner",
-        "title": "Automated Vulnerability Scanner",
-        "description": "Concurrent network scans with an interactive Flask UI.",
-        "icon": "fas fa-bug",
-        "tags": [
-            "security",
-            "automation"
-        ],
-        "pillTech": [
-            "Flask",
-            "Nmap",
-            "Concurrency"
-        ],
-        "tech": [
-            "Python",
-            "Flask",
-            "Concurrency",
-            "Nmap"
-        ],
-        "link": "https://github.com/steve-sibi/Automated-Vulnerability-Scanner",
-        "readme": "https://github.com/steve-sibi/Automated-Vulnerability-Scanner#readme",
-        "clone": "https://github.com/steve-sibi/Automated-Vulnerability-Scanner.git",
-        "highlights": [
-            "Concurrent network scans (async workers)",
-            "Interactive Flask results UI",
-            "Built-in Nmap parsing"
-        ]
-    },
-    {
-        "id": "server-hardening",
-        "title": "Server Hardening Script Suite",
-        "description": "Automated Linux hardening (updates, services, firewalls & SSH, strong passwords, logging).",
-        "icon": "fas fa-shield-alt",
-        "tags": [
-            "security",
-            "automation"
-        ],
-        "pillTech": [
-            "Bash",
-            "Linux",
-            "Security"
-        ],
-        "tech": [
-            "Bash",
-            "Linux",
-            "SSH",
-            "Firewall",
-            "Password Policy"
-        ],
-        "link": "https://github.com/steve-sibi/Server-Hardening-Script",
-        "readme": "https://github.com/steve-sibi/Server-Hardening-Script#readme",
-        "clone": "https://github.com/steve-sibi/Server-Hardening-Script.git",
-        "highlights": [
-            "Baseline hardening aligned with CIS-style controls",
-            "Auto-configures firewall & SSH",
-            "Enforces password & logging policies"
-        ]
-    },
-    {
-        "id": "diff-privacy-ml",
-        "title": "Exploring Differential Privacy in ML",
-        "description": "Standard vs. differentially private logistic regression using TensorFlow Privacy.",
-        "icon": "fas fa-lock",
-        "tags": [
-            "privacy",
-            "ml"
-        ],
-        "pillTech": [
-            "TensorFlow Privacy",
-            "Python"
-        ],
-        "tech": [
-            "TensorFlow Privacy",
-            "Logistic Regression",
-            "Python"
-        ],
-        "link": "https://github.com/steve-sibi/differential-privacy-ml",
-        "readme": "https://github.com/steve-sibi/differential-privacy-ml#readme",
-        "clone": "https://github.com/steve-sibi/differential-privacy-ml.git",
-        "highlights": [
-            "Compare standard vs DP logistic regression",
-            "Track accuracy vs privacy (ε) tradeoffs",
-            "Clear, reproducible notebook"
-        ]
-    },
-    {
-        "id": "mactime-beautifier",
-        "title": "Mactime Beautifier",
-        "description": "Cleans and formats Mactime data to streamline forensic timelines.",
-        "icon": "fas fa-clock",
-        "tags": [
-            "forensics",
-            "automation"
-        ],
-        "pillTech": [
-            "Forensics",
-            "Parsing",
-            "Linux"
-        ],
-        "tech": [
-            "Python",
-            "Linux",
-            "Forensics",
-            "Log Parsing"
-        ],
-        "link": "https://github.com/steve-sibi/mactimebeautifier",
-        "readme": "https://github.com/steve-sibi/mactimebeautifier#readme",
-        "clone": "https://github.com/steve-sibi/mactimebeautifier.git",
-        "highlights": [
-            "Parses & normalizes mactime CSV",
-            "Filters & exports clean timelines",
-            "CLI-first, scriptable"
-        ]
-    },
-    {
-        "id": "splunk-siem-homelab",
-        "title": "Splunk Enterprise + Splunk SOAR Lab",
-        "description": "Homelab ingesting logs, custom dashboards and SPL rules, with SOAR playbooks for response automation.",
-        "icon": "fas fa-server",
-        "tags": [
-            "security",
-            "automation"
-        ],
-        "pillTech": [
-            "Splunk",
-            "SOAR",
-            "Automation"
-        ],
-        "tech": [
-            "Splunk",
-            "SOAR",
-            "Dashboards",
-            "Correlation Searches",
-            "Playbooks"
-        ],
-        "link": "https://github.com/steve-sibi/splunk-siem-homelab",
-        "readme": "https://github.com/steve-sibi/splunk-siem-homelab#readme",
-        "clone": "https://github.com/steve-sibi/splunk-siem-homelab.git",
-        "highlights": [
-            "Ingests Windows & Linux logs",
-            "Custom SPL correlation searches",
-            "Automated SOAR playbooks"
-        ]
-    }
+  {
+    "id": "mini-saas-ato",
+    "title": "ATO Detection & Auto-Containment",
+    "description": "Production-style account takeover detection and response lab using Datadog detections, Flask webhooks, and Azure Functions for rapid session containment.",
+    "icon": "fas fa-user-secret",
+    "tags": [
+      "security",
+      "cloud",
+      "automation"
+    ],
+    "pillTech": [
+      "Flask",
+      "Datadog",
+      "Azure Functions",
+      "Python"
+    ],
+    "tech": [
+      "Python",
+      "Flask",
+      "Datadog",
+      "Azure Functions",
+      "Signed Webhooks",
+      "Incident Response Automation"
+    ],
+    "link": "https://github.com/steve-sibi/mini-saas-ato",
+    "readme": "https://github.com/steve-sibi/mini-saas-ato#readme",
+    "clone": "https://github.com/steve-sibi/mini-saas-ato.git",
+    "highlights": [
+      "Implements real-time ATO detection and automated session revocation",
+      "Uses signed webhook workflows for secure containment actions",
+      "Demonstrates cloud-native response patterns for high-risk auth events"
+    ]
+  },
+  {
+    "id": "azure-devsecops-aca",
+    "title": "Azure Event-Driven URL Scanner",
+    "description": "Secure event-driven URL scanning microservice on Azure Container Apps with Terraform IaC and GitHub Actions OIDC-based CI/CD.",
+    "icon": "fas fa-cloud",
+    "tags": [
+      "cloud",
+      "security",
+      "automation"
+    ],
+    "pillTech": [
+      "FastAPI",
+      "Terraform",
+      "Azure Container Apps",
+      "GitHub Actions"
+    ],
+    "tech": [
+      "FastAPI",
+      "Python",
+      "Azure Container Apps",
+      "Terraform",
+      "GitHub Actions OIDC",
+      "Service Bus",
+      "KEDA",
+      "Azure Key Vault"
+    ],
+    "link": "https://github.com/steve-sibi/azure-devsecops-aca",
+    "readme": "https://github.com/steve-sibi/azure-devsecops-aca#readme",
+    "clone": "https://github.com/steve-sibi/azure-devsecops-aca.git",
+    "highlights": [
+      "Eliminates long-lived credentials with OIDC federation",
+      "Uses Terraform modules for repeatable infrastructure provisioning",
+      "Scales event-driven scanning workloads with queue-triggered autoscaling"
+    ]
+  },
+  {
+    "id": "splunk-siem-homelab",
+    "title": "Splunk Enterprise + Splunk SOAR Homelab",
+    "description": "24x7 SIEM/SOAR lab environment ingesting Windows and Linux logs for alert triage and response automation workflows.",
+    "icon": "fas fa-server",
+    "tags": [
+      "security",
+      "automation"
+    ],
+    "pillTech": [
+      "Splunk Enterprise",
+      "Splunk SOAR",
+      "Windows/Linux",
+      "Python"
+    ],
+    "tech": [
+      "Splunk Enterprise Security",
+      "Splunk SOAR",
+      "Python",
+      "Windows Logs",
+      "Linux Logs",
+      "Alert Triage",
+      "Automated Response"
+    ],
+    "link": "https://github.com/steve-sibi/splunk-siem-homelab",
+    "readme": "https://github.com/steve-sibi/splunk-siem-homelab#readme",
+    "clone": "https://github.com/steve-sibi/splunk-siem-homelab.git",
+    "highlights": [
+      "Builds centralized log monitoring across multi-OS telemetry",
+      "Implements alert triage playbooks for repeatable incident workflows",
+      "Demonstrates end-to-end SIEM to SOAR response automation"
+    ]
+  }
 ]

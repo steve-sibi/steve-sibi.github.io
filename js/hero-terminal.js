@@ -6,59 +6,59 @@
 (function () {
     'use strict';
 
-    // Terminal command sequences with cybersecurity theme
+    // Terminal command sequences with DevOps/DevSecOps theme
     const commandSequences = [
         {
-            command: 'nmap -sV 192.168.1.0/24',
+            command: 'terraform plan -var-file=prod.tfvars',
             output: [
-                'Starting Nmap scan...',
-                'Discovered open services',
-                'Scan complete: 24 hosts up'
+                'Loading infrastructure state...',
+                'Drift detection: no critical deviations',
+                'Compliance checks passed'
             ],
             type: 'success'
         },
         {
-            command: 'sudo metasploit',
+            command: 'kubectl get pods -A',
             output: [
-                'Starting Metasploit Framework...',
-                'Loading modules... [✓]',
-                'Ready for penetration testing'
+                'Scanning cluster workloads...',
+                '0 crashlooping pods in production',
+                'Service health: stable'
             ],
             type: 'success'
         },
         {
-            command: 'wireshark -i eth0',
+            command: 'aws cloudwatch list-metrics --namespace Application',
             output: [
-                'Capturing packets...',
-                'Analyzing network traffic',
-                'Press Ctrl+C to stop'
+                'Collecting telemetry...',
+                '1,200+ metrics indexed',
+                'Anomaly detection pipelines active'
             ],
             type: 'warning'
         },
         {
-            command: 'john --wordlist=rockyou.txt hash.txt',
+            command: 'splunk search "index=cloud OR index=iam severity=high"',
             output: [
-                'Starting password cracker...',
-                'Testing 14M passwords',
-                'Cracked: 3/5 hashes'
+                'Correlating cloud, app, and IAM logs...',
+                '300+ security events triaged this month',
+                'High-priority alerts routed to on-call'
             ],
             type: 'success'
         },
         {
-            command: 'sqlmap -u "target.com" --dbs',
+            command: 'ansible-playbook hardening.yml --check',
             output: [
-                'Testing for SQL injection...',
-                'Vulnerability detected!',
-                'Databases: users, admin, logs'
+                'Running CIS/NIST baseline checks...',
+                'Policy compliance: 95%+',
+                'Patch window tasks queued'
             ],
             type: 'warning'
         },
         {
-            command: 'aircrack-ng capture.cap',
+            command: './incident_restore.sh --priority p1',
             output: [
-                'Analyzing wireless capture...',
-                'Attempting WPA handshake crack',
-                'Key found: [REDACTED]'
+                'Executing response runbook...',
+                'Critical services restored within SLA',
+                'Post-incident report generated'
             ],
             type: 'success'
         }
@@ -236,8 +236,8 @@
             // Show static content instead
             addOutput('$ whoami', 'terminal-command');
             addOutput('steve-sibi', 'terminal-success');
-            addOutput('$ cat skills.txt', 'terminal-command');
-            addOutput('Cybersecurity Specialist | Penetration Tester', 'terminal-result');
+            addOutput('$ cat profile.txt', 'terminal-command');
+            addOutput('DevOps & DevSecOps Engineer | Cloud Reliability + Security Observability', 'terminal-result');
             return;
         }
 

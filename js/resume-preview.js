@@ -9,7 +9,7 @@
     const modal = document.getElementById('resumeModal');
     const modalPanel = modal ? modal.querySelector('[data-resume-modal-panel]') : null;
     const pdfViewer = document.getElementById('resumePdfViewer');
-    const resumePath = 'assets/Resume_Steve_Sibi_Cyber.pdf';
+    const resumePath = 'assets/Resume_Steve_Sibi_DevOps.pdf';
 
     if (!modal || !pdfViewer || !modalPanel) return;
 

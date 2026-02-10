@@ -38,10 +38,10 @@
         }
 
         const categories = [
-            { id: 'cyber', label: 'Cybersecurity' },
-            { id: 'prog', label: 'Programming' },
+            { id: 'cyber', label: 'Security & DevSecOps' },
+            { id: 'prog', label: 'Programming & Scripting' },
             { id: 'os', label: 'Operating Systems' },
-            { id: 'cloud', label: 'Cloud & DevOps' }
+            { id: 'cloud', label: 'Cloud & Platform Engineering' }
         ];
         const filterButtons = Array.from(document.querySelectorAll('.skills-filter'));
         const headingEl = document.getElementById('skillsDisciplineHeading');

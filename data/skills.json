@@ -1,223 +1,57 @@
 [
-    {
-        "name": "nmap",
-        "cat": "cyber",
-        "level": 90,
-        "years": 5,
-        "proof": "https://github.com/steve-sibi/Automated-Vulnerability-Scanner"
-    },
-    {
-        "name": "Wireshark",
-        "cat": "cyber",
-        "level": 80,
-        "years": 4
-    },
-    {
-        "name": "Nessus",
-        "cat": "cyber",
-        "level": 80,
-        "years": 3
-    },
-    {
-        "name": "Burp Suite",
-        "cat": "cyber",
-        "level": 80,
-        "years": 3
-    },
-    {
-        "name": "Splunk",
-        "cat": "cyber",
-        "level": 80,
-        "years": 2,
-        "proof": "https://github.com/steve-sibi/splunk-siem-homelab"
-    },
-    {
-        "name": "Volatility",
-        "cat": "cyber",
-        "level": 75,
-        "years": 2
-    },
-    {
-        "name": "Autopsy",
-        "cat": "cyber",
-        "level": 75,
-        "years": 2
-    },
-    {
-        "name": "Docker",
-        "cat": "cyber",
-        "level": 85,
-        "years": 4,
-        "proof": "https://github.com/steve-sibi/azure-devsecops-aca"
-    },
-    {
-        "name": "Ansible",
-        "cat": "cyber",
-        "level": 80,
-        "years": 3,
-        "proof": "https://github.com/steve-sibi/azure-devsecops-aca"
-    },
-    {
-        "name": "VMware",
-        "cat": "cyber",
-        "level": 75,
-        "years": 4
-    },
-    {
-        "name": "Terraform",
-        "cat": "cyber",
-        "level": 75,
-        "years": 3,
-        "proof": "https://github.com/steve-sibi/azure-devsecops-aca"
-    },
-    {
-        "name": "Python",
-        "cat": "prog",
-        "level": 90,
-        "years": 6,
-        "proof": "https://github.com/steve-sibi/mini-saas-ato"
-    },
-    {
-        "name": "Django",
-        "cat": "prog",
-        "level": 85,
-        "years": 4,
-        "proof": "https://github.com/steve-sibi/mini-saas-ato"
-    },
-    {
-        "name": "C",
-        "cat": "prog",
-        "level": 80,
-        "years": 3
-    },
-    {
-        "name": "JavaScript",
-        "cat": "prog",
-        "level": 80,
-        "years": 4
-    },
-    {
-        "name": "Bash",
-        "cat": "prog",
-        "level": 85,
-        "years": 5,
-        "proof": "https://github.com/steve-sibi/Server-Hardening-Script"
-    },
-    {
-        "name": "PowerShell",
-        "cat": "prog",
-        "level": 75,
-        "years": 3
-    },
-    {
-        "name": "SQL",
-        "cat": "prog",
-        "level": 80,
-        "years": 4
-    },
-    {
-        "name": "HTML",
-        "cat": "prog",
-        "level": 85,
-        "years": 6
-    },
-    {
-        "name": "CSS",
-        "cat": "prog",
-        "level": 80,
-        "years": 6
-    },
-    {
-        "name": "Ruby",
-        "cat": "prog",
-        "level": 60,
-        "years": 1
-    },
-    {
-        "name": "macOS",
-        "cat": "os",
-        "level": 95,
-        "years": 8
-    },
-    {
-        "name": "Windows 10/11",
-        "cat": "os",
-        "level": 90,
-        "years": 7
-    },
-    {
-        "name": "Linux",
-        "cat": "os",
-        "level": 85,
-        "years": 5,
-        "proof": "https://github.com/steve-sibi/Server-Hardening-Script"
-    },
-    {
-        "name": "Windows Server 2012/2019",
-        "cat": "os",
-        "level": 75,
-        "years": 3
-    },
-    {
-        "name": "AWS",
-        "cat": "cloud",
-        "level": 90,
-        "years": 3
-    },
-    {
-        "name": "Azure",
-        "cat": "cloud",
-        "level": 80,
-        "years": 3,
-        "proof": "https://github.com/steve-sibi/azure-devsecops-aca"
-    },
-    {
-        "name": "Azure Security & Compliance",
-        "cat": "cloud",
-        "level": 80,
-        "years": 2
-    },
-    {
-        "name": "Azure DevOps",
-        "cat": "cloud",
-        "level": 75,
-        "years": 2
-    },
-    {
-        "name": "GitHub",
-        "cat": "cloud",
-        "level": 85,
-        "years": 6,
-        "proof": "https://github.com/steve-sibi"
-    },
-    {
-        "name": "Bitbucket",
-        "cat": "cloud",
-        "level": 80,
-        "years": 2
-    },
-    {
-        "name": "Jira",
-        "cat": "cloud",
-        "level": 80,
-        "years": 2
-    },
-    {
-        "name": "GCP",
-        "cat": "cloud",
-        "level": 75,
-        "years": 1
-    },
-    {
-        "name": "Microsoft 365",
-        "cat": "cloud",
-        "level": 85,
-        "years": 4
-    },
-    {
-        "name": "Microsoft Intune",
-        "cat": "cloud",
-        "level": 80,
-        "years": 2
-    }
+  { "name": "IAM", "cat": "cyber", "level": 92, "years": 5 },
+  { "name": "RBAC", "cat": "cyber", "level": 92, "years": 5 },
+  { "name": "Splunk SIEM", "cat": "cyber", "level": 90, "years": 4, "proof": "https://github.com/steve-sibi/splunk-siem-homelab" },
+  { "name": "Zero Trust", "cat": "cyber", "level": 84, "years": 3 },
+  { "name": "Vulnerability Scanning", "cat": "cyber", "level": 86, "years": 4 },
+  { "name": "MITRE ATT&CK", "cat": "cyber", "level": 80, "years": 3 },
+  { "name": "NIST / ISO 27001", "cat": "cyber", "level": 82, "years": 4 },
+  { "name": "OWASP Top 10", "cat": "cyber", "level": 80, "years": 3 },
+  { "name": "CloudTrail", "cat": "cyber", "level": 84, "years": 4 },
+  { "name": "Trivy", "cat": "cyber", "level": 78, "years": 2 },
+  { "name": "Checkov", "cat": "cyber", "level": 78, "years": 2 },
+  { "name": "tfsec", "cat": "cyber", "level": 72, "years": 2 },
+  { "name": "Semgrep", "cat": "cyber", "level": 70, "years": 2 },
+  { "name": "SonarQube", "cat": "cyber", "level": 72, "years": 2 },
+  { "name": "Gitleaks", "cat": "cyber", "level": 70, "years": 2 },
+
+  { "name": "Python", "cat": "prog", "level": 92, "years": 5, "proof": "https://github.com/steve-sibi/mini-saas-ato" },
+  { "name": "SQL", "cat": "prog", "level": 88, "years": 5 },
+  { "name": "Bash", "cat": "prog", "level": 86, "years": 5 },
+  { "name": "PowerShell", "cat": "prog", "level": 80, "years": 4 },
+  { "name": "PySpark", "cat": "prog", "level": 72, "years": 2 },
+  { "name": "Pandas", "cat": "prog", "level": 84, "years": 4 },
+  { "name": "NumPy", "cat": "prog", "level": 80, "years": 4 },
+
+  { "name": "Linux (Ubuntu/Debian/CentOS)", "cat": "os", "level": 90, "years": 5, "proof": "https://github.com/steve-sibi/Server-Hardening-Script" },
+  { "name": "Windows Server", "cat": "os", "level": 80, "years": 4 },
+
+  { "name": "AWS", "cat": "cloud", "level": 92, "years": 5 },
+  { "name": "Azure", "cat": "cloud", "level": 90, "years": 5, "proof": "https://github.com/steve-sibi/azure-devsecops-aca" },
+  { "name": "GCP", "cat": "cloud", "level": 72, "years": 2 },
+  { "name": "Docker", "cat": "cloud", "level": 88, "years": 5 },
+  { "name": "Kubernetes (EKS/AKS)", "cat": "cloud", "level": 84, "years": 4 },
+  { "name": "Helm", "cat": "cloud", "level": 78, "years": 3 },
+  { "name": "Terraform", "cat": "cloud", "level": 90, "years": 5, "proof": "https://github.com/steve-sibi/azure-devsecops-aca" },
+  { "name": "CloudFormation", "cat": "cloud", "level": 78, "years": 3 },
+  { "name": "ARM Templates", "cat": "cloud", "level": 74, "years": 3 },
+  { "name": "Ansible", "cat": "cloud", "level": 86, "years": 4 },
+  { "name": "Jenkins", "cat": "cloud", "level": 84, "years": 4 },
+  { "name": "GitHub Actions", "cat": "cloud", "level": 86, "years": 3 },
+  { "name": "Azure DevOps", "cat": "cloud", "level": 82, "years": 3 },
+  { "name": "Bitbucket CI/CD", "cat": "cloud", "level": 80, "years": 3 },
+  { "name": "Prometheus", "cat": "cloud", "level": 80, "years": 3 },
+  { "name": "Grafana", "cat": "cloud", "level": 82, "years": 3 },
+  { "name": "ELK Stack", "cat": "cloud", "level": 76, "years": 2 },
+  { "name": "CloudWatch", "cat": "cloud", "level": 88, "years": 5 },
+  { "name": "AWS X-Ray", "cat": "cloud", "level": 76, "years": 3 },
+  { "name": "Azure Monitor", "cat": "cloud", "level": 84, "years": 4 },
+  { "name": "PostgreSQL", "cat": "cloud", "level": 84, "years": 4 },
+  { "name": "MySQL", "cat": "cloud", "level": 78, "years": 3 },
+  { "name": "MongoDB", "cat": "cloud", "level": 72, "years": 2 },
+  { "name": "Redis", "cat": "cloud", "level": 70, "years": 2 },
+  { "name": "HashiCorp Vault", "cat": "cloud", "level": 78, "years": 2 },
+  { "name": "AWS Secrets Manager", "cat": "cloud", "level": 80, "years": 3 },
+  { "name": "Azure Key Vault", "cat": "cloud", "level": 82, "years": 3 },
+  { "name": "Git", "cat": "cloud", "level": 90, "years": 5, "proof": "https://github.com/steve-sibi" }
 ]

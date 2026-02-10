@@ -52,7 +52,7 @@
         if (copyEmailBtn && copyEmailToast) {
             let toastTimer;
             copyEmailBtn.addEventListener('click', async () => {
-                const email = copyEmailBtn.dataset.email || 'steve.sibi@gmail.com';
+                const email = copyEmailBtn.dataset.email || 'stevesibi326@gmail.com';
                 try {
                     await navigator.clipboard.writeText(email);
                     copyEmailToast.textContent = 'Email copied — talk soon!';
