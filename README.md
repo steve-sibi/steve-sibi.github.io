@@ -4,7 +4,7 @@
 [![CI](https://github.com/steve-sibi/steve-sibi.github.io/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/steve-sibi/steve-sibi.github.io/actions/workflows/ci.yml)
 [![License: ISC](https://img.shields.io/badge/License-ISC-0f67a7.svg)](LICENSE)
 
-> A modern, data-driven DevOps and DevSecOps portfolio built with vanilla JavaScript modules, Tailwind CSS 4, and deployed on GitHub Pages.
+> My take on designing a Tech portfolio built with vanilla JavaScript modules, Tailwind CSS 4, and deployed on GitHub Pages. I'll continue to modify this website as my experience grows (and welcome design feedbacks as well)!
 
 ![Portfolio Preview](images/og-card.png)
 
