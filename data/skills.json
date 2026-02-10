@@ -23,6 +23,8 @@
   { "name": "Pandas", "cat": "prog", "level": 84, "years": 4 },
   { "name": "NumPy", "cat": "prog", "level": 80, "years": 4 },
 
+  { "name": "macOS", "cat": "os", "level": 95, "years": 8 },
+  { "name": "Windows 10/11", "cat": "os", "level": 94, "years": 7 },
   { "name": "Linux (Ubuntu/Debian/CentOS)", "cat": "os", "level": 90, "years": 5, "proof": "https://github.com/steve-sibi/Server-Hardening-Script" },
   { "name": "Windows Server", "cat": "os", "level": 80, "years": 4 },
 
