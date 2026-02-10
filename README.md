@@ -1,4 +1,4 @@
-# 🔐 Steve Joseph Sibi - Cybersecurity Portfolio
+# 🔐 Steve Joseph Sibi - DevOps & DevSecOps Portfolio
 
 [![Live Site](https://img.shields.io/badge/Live-steve--sibi.github.io-00ff9f?style=for-the-badge)](https://steve-sibi.github.io/)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg?style=for-the-badge)](LICENSE)
@@ -104,7 +104,7 @@ npm run dev
    - Structure & copy: `index.html`
    - Tailwind utilities / design tokens: `src/tailwind.css`
    - Component styles & animations: `css/styles.css`
-3. **Update data:** `data/projects.json`, `data/skills.json`, and `assets/Resume_Steve_Sibi_Cyber.pdf`.
+3. **Update data:** `data/projects.json`, `data/skills.json`, and `assets/Resume_Steve_Sibi_DevOps.pdf`.
 4. **Adjust behavior:** edit the relevant file in `js/` (see module table below).
 5. **Build CSS** before committing: `npm run build:css`.
 
@@ -175,7 +175,7 @@ GitHub Pages will redeploy automatically after every push.
 ```
 steve-sibi.github.io/
 ├── assets/
-│   └── Resume_Steve_Sibi_Cyber.pdf
+│   └── Resume_Steve_Sibi_DevOps.pdf
 ├── css/
 │   ├── icons.css
 │   ├── styles.css
@@ -229,7 +229,7 @@ steve-sibi.github.io/
 | `css/icons.css` | Minimal Font Awesome subset with preloads to keep icons lightweight. |
 | `data/projects.json` | Source of truth for the projects grid. |
 | `data/skills.json` | Source of truth for the skills matrix. |
-| `assets/Resume_Steve_Sibi_Cyber.pdf` | Resume served inside the preview modal and download button. |
+| `assets/Resume_Steve_Sibi_DevOps.pdf` | Resume served inside the preview modal and download button. |
 | `icons/` | All favicons and `site.webmanifest`. |
 | `images/og-card.png` | Open Graph / social preview image referenced in `<head>`. |
 | `images/cert-logos/` | Certification logos used in the cards and progress tiles. |
@@ -351,10 +351,10 @@ The module trims history automatically and falls back to static output when `pre
 
 ### Resume Preview
 
-`js/resume-preview.js` points to `assets/Resume_Steve_Sibi_Cyber.pdf`. Swap the file or update the path:
+`js/resume-preview.js` points to `assets/Resume_Steve_Sibi_DevOps.pdf`. Swap the file or update the path:
 
 ```javascript
-const resumePath = 'assets/Resume_Steve_Sibi_Cyber.pdf';
+const resumePath = 'assets/Resume_Steve_Sibi_DevOps.pdf';
 ```
 
 Remember to update the download link in `index.html` too.
@@ -431,7 +431,7 @@ Each skill entry powers a row in the table.
 
 ### Assets & Visuals
 
-- Replace `assets/Resume_Steve_Sibi_Cyber.pdf` with your own resume (keep the filename or update references).
+- Replace `assets/Resume_Steve_Sibi_DevOps.pdf` with your own resume (keep the filename or update references).
 - Update `images/og-card.png` to refresh the Open Graph preview.
 - Favicons and manifest live under `icons/`; regenerate with a favicon generator if you change branding.
 
@@ -496,12 +496,12 @@ Permission to use, copy, modify, and/or distribute this software for any purpose
 ## 📬 Contact
 
 **Steve Joseph Sibi**  
-Cybersecurity Engineer · Penetration Tester · Privacy Advocate
+DevOps Engineer · DevSecOps Engineer · Cloud Security Automation
 
 - 🌐 Website: [steve-sibi.github.io](https://steve-sibi.github.io/)
 - 💼 LinkedIn: [steve-sibi](https://www.linkedin.com/in/steve-sibi)
 - 🐙 GitHub: [@steve-sibi](https://github.com/steve-sibi)
-- 📧 Email: steve.sibi@gmail.com
+- 📧 Email: stevesibi326@gmail.com
 
 ---
 
