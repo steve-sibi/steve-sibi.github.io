@@ -40,20 +40,19 @@
 
 ## Table of Contents
 
-- [Quick Start](#-quick-start)
-- [Development](#-development)
-- [Build & Deploy](#-build--deploy)
-- [Project Structure](#-project-structure)
-- [Tech Stack](#-tech-stack)
-- [Configuration](#-configuration)
-- [Customization](#-customization)
-- [Performance](#-performance)
-- [Browser Support](#-browser-support)
-- [Contributing](#-contributing)
-- [License](#-license)
-- [Contact](#-contact)
-- [Acknowledgments](#-acknowledgments)
-- [Roadmap](#-roadmap)
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Development](#development)
+- [Build & Deploy](#build--deploy)
+- [Project Structure](#project-structure)
+- [Tech Stack](#tech-stack)
+- [Customization](#customization)
+- [Performance](#performance)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Acknowledgments](#acknowledgments)
+- [Roadmap](#roadmap)
 
 ---
 
